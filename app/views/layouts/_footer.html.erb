@@ -1,0 +1,58 @@
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-3">
+        <%= image_tag "main-logo", id: "footer-logo", alt: "get a grip studio footer logo" %>
+      </div>
+      <div class="col-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Get A Grip Studios</h5>
+            <address class="card-text">
+              3800 Victoria Park Ave <br>
+              North York<br>
+              Ontario, Canada<br>
+              M2H 3H7
+            </address>
+          </div>
+        </div><!--card-->
+      </div>
+      <div class="col-3">
+        <div class="card">
+          <div class="card-body">
+            <!-- <h5 class="card-title">Get A Grip Studiost</h5> -->
+            <p class="card-text">
+              Offering Creative Solutions For Podcasters & Advertisers
+            </p>
+            <%= link_to "Contact us", "https://getagripstudios.com/contact/", class: "btn btn-secondary", target: "_blank" %>
+          </div>
+        </div><!--card-->
+      </div>
+      <div class="col-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Social media</h5>
+            <ul class="social_media_list">
+              <li>
+                <%= link_to "https://www.linkedin.com/company/get-a-grip-studios", class: "linked-in" do %>
+                  <i class="fab fa-linkedin-in"></i>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to "https://www.facebook.com/GetAGripStudios", class: "facebook" do %>
+                  <i class="fab fa-facebook-f"></i>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to "https://twitter.com/getagripstudios", class: "twitter" do %>
+                  <i class="fab fa-twitter"></i>
+                <% end %>
+              </li>
+            </ul>
+          </div>
+        </div><!--card-->
+      </div>
+    </div>
+    <p class="mt-3 footer-copyright">&#169; <%= DateTime.now.year %> Get A Grip Studios. All Rights Reserved.</p>
+  </div>
+</footer>
