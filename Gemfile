@@ -32,7 +32,9 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
+gem 'httparty'
+#google api gem calendarapi
+gem 'google-api-client', require: 'google/apis/calendar_v3'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
