@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    <%= link_to root_path, :class => "navbar-brand" do %>
+      <%=  image_tag 'main-logo.png', alt: "get a grip logo" %>
+    <% end %>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Dashboard
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Book show
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Get a grip on lighting</a>
+            <a class="dropdown-item" href="#">Get a grip on life</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Main site
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <%= link_to "Home", "https://getagripstudios.com", class: "dropdown-item", target: "_blank" %>
+            <%= link_to "Podcast services", "https://getagripstudios.com/services", class: "dropdown-item", target: "_blank" %>
+            <%= link_to "Show & clients", "https://getagripstudios.com/shows-clients", class: "dropdown-item", target: "_blank" %>
+            <%= link_to "About", "https://getagripstudios.com/about/", class: "dropdown-item", target: "_blank" %>
+            <%= link_to "Contact", "https://getagripstudios.com/contact/", class: "dropdown-item", target: "_blank" %>
+          </div>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Login", our_users_path, class: "nav-link" %>
+        </li>
+      </ul>
+    </div>
+  </div><!--container-->
+</nav>

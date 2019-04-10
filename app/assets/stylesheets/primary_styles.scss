@@ -1,0 +1,143 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+:root {
+  --site-light-grey: #DDDDDD;
+  // --site-dark-grey: #5D5B5B;
+  --site-dark-grey: #444444;
+  --site-black: #262626;
+}
+
+
+/*
+###############################
+    general styles
+###############################
+###############################
+*/
+
+h5
+{
+  font-weight: bold;
+}
+
+.btn
+{
+  transition: all 0.5s ease;
+}
+
+.btn-primary
+{
+  background-color: var(--site-dark-grey);
+  border-color: var(--site-dark-grey);
+}
+
+.btn-primary:hover
+{
+  background-color: var(--site-light-grey);
+  border-color: var(--site-light-grey);
+  color: var(--site-dark-grey);
+}
+
+.btn-secondary
+{
+  background-color: var(--site-black);
+  border-color: var(--site-black);
+}
+
+.btn-secondary:hover
+{
+  background-color: var(--site-light-grey);
+  border-color: var(--site-light-grey);
+  color: var(--site-black);
+}
+
+body{
+  font-family: Arial,sans-serif;
+}
+
+nav img
+{
+  // border: solid 1px red;
+  width: 173px;
+  height: 60px;
+}
+
+section
+{
+  padding: 30px 0;
+}
+
+form label {
+  display: none;
+}
+
+/*
+###############################
+    footer styles
+###############################
+###############################
+*/
+footer
+{
+  background-color: var(--site-dark-grey);
+  color: white;
+  padding: 30px 0;
+}
+
+footer .card
+{
+  background-color: initial;
+  border: initial;
+}
+
+.social_media_list
+{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.social_media_list li
+{
+  float: left;
+  margin-right: 5px;
+}
+
+.social_media_list li:last-child
+{
+  margin-right: 0;
+}
+
+.social_media_list a
+{
+  display: block;
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  border-radius: 50%;
+  line-height: 40px;
+  text-align: center;
+  color: white;
+  background-color: var(--site-black);
+}
+
+.social_media_list a:hover
+{
+  background-color: var(--site-light-grey);
+  border-color: var(--site-light-grey);
+  color: var(--site-black);
+  transition: all 0.5s ease;
+}
+
+#footer-logo
+{
+  filter: invert(50%) brightness(200%);
+}
+
+.footer-copyright
+{
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
