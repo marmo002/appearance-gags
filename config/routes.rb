@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   root "users#index"
   # resources :users, except: [:destroy]
 
-  get "our-users" => "users#new"
+  get "our_users" => "users#new"
   post "users" => "users#create"
 end
