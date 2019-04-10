@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  root "users#index"
+  root "dashboard#index"
   # resources :users, except: [:destroy]
 
   get "our_users" => "users#new"
@@ -9,5 +9,7 @@ Rails.application.routes.draw do
 
   resources :sessions, only: [:create]
   delete 'logout' => 'sessions#destroy', as: :logout
+
+  get "dashboard" => "dashboard#index"
 
 end
