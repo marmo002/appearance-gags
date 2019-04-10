@@ -32,6 +32,13 @@ h5
   border-color: var(--site-dark-grey);
 }
 
+.btn-primary:hover
+{
+  background-color: var(--site-light-grey);
+  border-color: var(--site-light-grey);
+  color: var(--site-dark-grey);
+}
+
 .btn-secondary
 {
   background-color: var(--site-black);
@@ -56,6 +63,15 @@ nav img
   height: 60px;
 }
 
+section
+{
+  padding: 30px 0;
+}
+
+form label {
+  display: none;
+}
+
 /*
 ###############################
     footer styles
@@ -67,12 +83,6 @@ footer
   background-color: var(--site-dark-grey);
   color: white;
   padding: 30px 0;
-}
-
-.btn-primary
-{
-  background-color: var(--site-black);
-  border-color: var(--site-black);
 }
 
 footer .card
