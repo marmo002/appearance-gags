@@ -6,4 +6,8 @@ Rails.application.routes.draw do
 
   get "our_users" => "users#new"
   post "users" => "users#create"
+
+  resources :sessions, only: [:create]
+  delete 'logout' => 'sessions#destroy', as: :logout
+
 end

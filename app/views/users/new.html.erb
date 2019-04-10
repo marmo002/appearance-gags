@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-10">
-        <div class="row">
+        <div class="row justify-content-between">
           <div class="col-md-6">
             <h2>Sign up</h2>
             <p>
@@ -12,13 +12,13 @@
               nisi ut aliquip ex ea commodo consequat.
             </p>
             <%= form_for @user do |f| %>
-            <% @user.errors.full_messages.each do |error| %>
-              <div class="alert alert-danger" role="alert">
-                <span class="sr-only">Error:</span>
-                <%= error %>
-              </div>
+              <% @user.errors.full_messages.each do |error| %>
+                <p class="text-danger" >
+                  <span class="sr-only">Error:</span>
+                  <%= error %>
+                </p>
+              <% end %>
 
-            <% end %>
               <div class="form-group">
                  <%= f.label :first_name %>
                  <%= f.text_field :first_name, class: "form-control", placeholder: "First name" %>
@@ -36,12 +36,14 @@
 
               <div class="form-group">
                  <%= f.label :phone %>
-                 <%= f.telephone_field :phone, class: "form-control", placeholder: "Phone" %>
+                 <%= f.telephone_field :phone, class: "form-control", placeholder: "Phone", "aria-describedby" => "phone-help" %>
+                 <small id="phone-help" class="form-text text-muted">Phone must be in format (123) 456 7878.</small>
               </div>
 
               <div class="form-group">
                  <%= f.label :password %>
-                 <%= f.password_field :password, class: "form-control", placeholder: "Your password" %>
+                 <%= f.password_field :password, class: "form-control", placeholder: "Your password", "aria-describedby" => "password-help" %>
+                 <small id="password-help" class="form-text text-muted">Password must be at least 6 characters.</small>
               </div>
 
               <div class="form-group">
@@ -52,13 +54,23 @@
               <%= f.submit "Sign up ;)", class: "btn btn-primary", role: "button" %>
             <% end %>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-4 align-self-center">
             <h2>Log in</h2>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </p>
-
+            <%= form_tag sessions_path, :method => :post do %>
+              <div class="form-group">
+                <%= label_tag :email %>
+                <%= text_field_tag :email, nil, placeholder: "email", class: "form-control" %>
+              </div>
+              <div class="form-group">
+                <%= label_tag :password %>
+                <%= password_field_tag :password, nil, placeholder: "password", class: "form-control" %>
+              </div>
+                <%= submit_tag "Log in", :class => 'btn btn-primary' %>
+            <% end %>
           </div>
         </div>
       </div>

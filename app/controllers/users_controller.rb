@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :require_login, only: [:index]
+
   def index
     @users = User.all
   end
@@ -13,7 +15,7 @@ class UsersController < ApplicationController
      session[:user_id] = @user.id
      redirect_to root_path
    else
-     flash[:alert] = "Please fix errors"
+     # flash[:alert] = "Please fix errors"
      render :new
    end
   end

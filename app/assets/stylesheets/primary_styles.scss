@@ -23,7 +23,7 @@ h5
 
 .btn
 {
-  transition: all 0.5s ease;
+  transition: all 0.3s ease;
 }
 
 .btn-primary
@@ -32,11 +32,18 @@ h5
   border-color: var(--site-dark-grey);
 }
 
-.btn-primary:hover
+.btn-primary:hover,
+.btn-primary:not(:disabled):not(.disabled):active,
+.btn-primary:not(:disabled):not(.disabled).active,
+.show > .btn-primary.dropdown-toggle,
+.btn-primary:focus,
+.btn-primary:visited
 {
   background-color: var(--site-light-grey);
   border-color: var(--site-light-grey);
   color: var(--site-dark-grey);
+  outline-color: var(--site-dark-grey);
+  box-shadow: 0 0 0 1px rgba(68, 68, 68, 0.5);
 }
 
 .btn-secondary
@@ -65,11 +72,31 @@ nav img
 
 section
 {
-  padding: 30px 0;
+  padding: 100px 0;
 }
 
 form label {
   display: none;
+}
+
+@keyframes alertPop {
+  0% {opacity: 0;}
+  20% {opacity: 1;}
+  80% {opacity: 1;}
+  100% {opacity: 0;}
+}
+
+.flash-alerts
+{
+  position: absolute;
+  top: 100px;
+  width: 30vw;
+  z-index: 1000;
+  left: calc(50vw - 30vw/2);
+  opacity: 0;
+  animation-name: alertPop;
+  animation-duration: 4s;
+  animation-fill-mode: forwards;
 }
 
 /*
@@ -120,6 +147,7 @@ footer .card
   text-align: center;
   color: white;
   background-color: var(--site-black);
+  transition: all 0.3s ease;
 }
 
 .social_media_list a:hover
@@ -127,7 +155,6 @@ footer .card
   background-color: var(--site-light-grey);
   border-color: var(--site-light-grey);
   color: var(--site-black);
-  transition: all 0.5s ease;
 }
 
 #footer-logo
