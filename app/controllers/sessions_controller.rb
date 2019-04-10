@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:email])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to root_url
+      redirect_to dashboard_url
       flash[:primary] = "Your logged in sucessfully."
     else
       flash[:danger] = "Email or password incorrect. Please try again."
