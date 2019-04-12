@@ -5,22 +5,40 @@
 
         <ul class="nav nav-tabs" id="myTab" role="tablist">
           <li class="nav-item">
-            <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true">Home</a>
+            <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true">Profile</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
+            <a class="nav-link" id="personal-social-media-tab" data-toggle="tab" href="#user-social-media" role="tab" aria-controls="user-social-media" aria-selected="false">Personal social media</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
+            <a class="nav-link" id="company-info-tab" data-toggle="tab" href="#company_info" role="tab" aria-controls="company_info" aria-selected="false">Company info</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="release-tab" data-toggle="tab" href="#release" role="tab" aria-controls="release" aria-selected="false">Release</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="booking-history-tab" data-toggle="tab" href="#booking-history" role="tab" aria-controls="booking-history" aria-selected="false">Booking history</a>
           </li>
         </ul>
         <div class="tab-content" id="myTabContent">
           <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-            <h2>Welcome <%= current_user.full_name %></h2>
-            
+            <h2>Personal information</h2>
+            <%= render 'dashboard/profileform' %>
+
           </div><!--profile-tab-->
-          <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
-          <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+          <div class="tab-pane fade" id="user-social-media" role="tabpanel" aria-labelledby="personal-social-media-tab">
+            <h2>Personal social media</h2>
+            <%= render 'dashboard/personalsocialmediaform' %>
+          </div><!--personal-social-media-tab-->
+          <div class="tab-pane fade" id="company_info" role="tabpanel" aria-labelledby="company-info-tab">
+            <p>Company social media</p>
+          </div><!--copmany-social-media-tab-->
+          <div class="tab-pane fade" id="release" role="tabpanel" aria-labelledby="release-tab">
+            <p>Release tab</p>
+          </div><!--release-tab-->
+          <div class="tab-pane fade" id="booking-history" role="tabpanel" aria-labelledby="booking-history-tab">
+            <p>Release tab</p>
+          </div><!--release-tab-->
         </div>
       </div>
     </div>

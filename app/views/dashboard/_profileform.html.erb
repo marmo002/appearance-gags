@@ -1,0 +1,53 @@
+<%= form_for current_user, url: dashboard_update_path do |f| %>
+  <% current_user.errors.full_messages.each do |error| %>
+    <p class="text-danger" >
+      <span class="sr-only">Error:</span>
+      <%= error %>
+    </p>
+  <% end %>
+  <div class="form-group">
+     <%= f.label :first_name %>
+     <%= f.text_field :first_name, class: "form-control", placeholder: "First name" %>
+  </div>
+
+  <div class="form-group">
+     <%= f.label :last_name %>
+     <%= f.text_field :last_name, class: "form-control", placeholder: "Last name" %>
+  </div>
+
+  <div class="form-group">
+     <%= f.label :email %>
+     <%= f.email_field :email, class: "form-control", placeholder: "E-mail" %>
+  </div>
+
+  <div class="form-group">
+     <%= f.label :phone %>
+     <%= f.telephone_field :phone, class: "form-control", placeholder: "Phone", "aria-describedby" => "phone-help" %>
+     <small id="phone-help" class="form-text text-muted">Phone must be in format (123) 456 7878.</small>
+  </div>
+
+  <%= f.fields_for :personal_info do | p_info_fields| %>
+    <div class="form-group">
+      <%= p_info_fields.label :profile_pic %>
+      <%= p_info_fields.file_field :profile_pic, id: "exampleFormControlFile1", class: "form-control-file", "aria-describedby" => "image-help" %>
+      <small id="image-help" class="form-text text-muted">Image size allowed: 700px by 700px and up</small>
+    </div>
+
+    <div class="form-group">
+      <%= p_info_fields.label :name_on_show %>
+      <%= p_info_fields.text_field :name_on_show, id: "name_on_show", class: "form-control", placeholder: "Name on show", value: current_user.personal_info['name_on_show'] %>
+    </div>
+
+    <div class="form-group">
+      <%= p_info_fields.label :title_on_show %>
+      <%= p_info_fields.text_field :title_on_show, id: "title_on_show", class: "form-control", placeholder: "Title for show", value: current_user.personal_info['title_on_show'] %>
+    </div>
+
+    <div class="form-group">
+      <%= p_info_fields.label :bio %>
+      <%= p_info_fields.text_area :bio, id: "user_bio", class: "form-control", placeholder: "Your bio", value: current_user.personal_info['bio'] %>
+    </div>
+  <% end %>
+
+  <%= f.submit "Save", class: "btn btn-primary", role: "button" %>
+<% end %>
