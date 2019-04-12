@@ -26,13 +26,18 @@
      <small id="phone-help" class="form-text text-muted">Phone must be in format (123) 456 7878.</small>
   </div>
 
-  <%= f.fields_for :social_media do | social| %>
-  <div class="form-group">
-    <%= social.label :profile_pic %>
-    <%= social.file_field :profile_pic, id: "exampleFormControlFile1", class: "form-control-file", "aria-describedby" => "image-help" %>
-    <small id="image-help" class="form-text text-muted">Image size allowed: 700px by 700px and up</small>
-  </div>
+  <% if current_user.avatar.attached? %>
+    <!-- <img src="..." alt="..." class="img-thumbnail"> -->
+    <%= image_tag url_for(current_user.avatar) %>
   <% end %>
+
+  <div class="form-group">
+    <div class="custom-file">
+      <%= f.file_field :avatar, class: "custom-file-input", "aria-describedby" => "image-help" %>
+      <%= f.label :avatar, class: "custom-file-label" %>
+    </div>
+    <small id="image-help" class="form-text text-muted">Image minimun size: 700px by 700px</small>
+  </div>
 
   <div class="form-group">
     <%= f.label :name_for_show %>

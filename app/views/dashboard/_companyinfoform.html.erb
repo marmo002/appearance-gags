@@ -5,6 +5,19 @@
      <%= f.text_field :company_name, class: "form-control", placeholder: "Company name" %>
   </div>
 
+
+  <% if current_user.companylogo.attached? %>
+    <%= image_tag url_for(current_user.companylogo) %>
+  <% end %>
+
+  <div class="form-group">
+    <div class="custom-file">
+      <%= f.file_field :companylogo, class: "custom-file-input", "aria-describedby" => "image-help" %>
+      <%= f.label :company_logo, class: "custom-file-label" %>
+    </div>
+    <small id="image-help" class="form-text text-muted">Image minimun size: 700px by 700px</small>
+  </div>
+
   <%= f.fields_for :company_social_media do | c_media| %>
     <div class="form-group">
       <%= c_media.label :companywebsite %>
