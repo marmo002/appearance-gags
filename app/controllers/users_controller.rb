@@ -37,12 +37,14 @@ private
       :last_name,
       :email,
       :phone,
+      :avatar,
       :password,
       :password_confirmation,
       :name_for_show,
       :title_for_show,
       :bio,
       :company_name,
+      :companylogo,
       social_media: [ :facebook, :linkedin, :twitter, :instagram, :other ],
       company_social_media: [ :website, :facebook, :linkedin, :twitter, :instagram, :other ]
     )
