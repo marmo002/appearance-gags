@@ -1,0 +1,41 @@
+<%= form_for current_user, url: dashboard_update_path do |f| %>
+
+  <div class="form-group">
+     <%= f.label :company_name %>
+     <%= f.text_field :company_name, class: "form-control", placeholder: "Company name" %>
+  </div>
+
+  <%= f.fields_for :company_social_media do | c_media| %>
+    <div class="form-group">
+      <%= c_media.label :companywebsite %>
+      <%= c_media.text_field :website, id: :company_website, class: "form-control", placeholder: "Company website", value: current_user.company_social_media["website"] %>
+    </div>
+
+    <div class="form-group">
+      <%= c_media.label :companyfacebook %>
+      <%= c_media.text_field :facebook, id: :company_facebook, class: "form-control", placeholder: "Company facebook", value: current_user.company_social_media["facebook"] %>
+    </div>
+
+    <div class="form-group">
+      <%= c_media.label :companylinkedin %>
+      <%= c_media.text_field :linkedin, id: :company_linkedin, class: "form-control", placeholder: "Company linkedIn", value: current_user.company_social_media["linkedin"] %>
+    </div>
+
+    <div class="form-group">
+      <%= c_media.label :companytwitter %>
+      <%= c_media.text_field :twitter, id: :company_twitter, class: "form-control", placeholder: "Company twitter handle", value: current_user.company_social_media["twitter"] %>
+    </div>
+
+    <div class="form-group">
+      <%= c_media.label :companyinstagram %>
+      <%= c_media.text_field :instagram, id: :company_instagram, class: "form-control", placeholder: "Company instagram handle", value: current_user.company_social_media["instagram"] %>
+    </div>
+
+    <div class="form-group">
+      <%= c_media.label :companyother %>
+      <%= c_media.text_field :other, id: :company_other, class: "form-control", placeholder: "Other", value: current_user.company_social_media["other"] %>
+    </div>
+  <% end %>
+
+  <%= f.submit "Save", class: "btn btn-primary", role: "button" %>
+<% end %>
