@@ -4,12 +4,15 @@ Rails.application.routes.draw do
   root "dashboard#index"
   # resources :users, except: [:destroy]
 
-  get "our_users" => "users#new"
-  post "users" => "users#create"
+  # get "our_users" => "users#new"
+  # post "users" => "users#create"
+  # patch "users" => "users#update"
+  resources :users
 
   resources :sessions, only: [:create]
   delete 'logout' => 'sessions#destroy', as: :logout
 
   get "dashboard" => "dashboard#index"
+  patch "user_update" => "dashboard#user_update", as: :dashboard_update
 
 end
