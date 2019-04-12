@@ -8,10 +8,10 @@ class DashboardController < ApplicationController
   def user_update
     user = current_user
     if user.update(user_params)
-      flash[:primary] = "Info saved"
+      flash[:primary] = "New info was saved"
       redirect_to dashboard_url
     else
-      flash[:danger] = "Review form"
+      flash[:danger] = "Please review form"
       redirect_to dashboard_url
     end
   end
@@ -27,13 +27,12 @@ private
       :phone,
       :password,
       :password_confirmation,
-      personal_info: [
-        :profile_pic,
-        :name_on_show,
-        :title_on_show,
-        :bio,
-        social_media: [ :facebook, :linkedin, :twitter, :instagram, :other ]
-      ]
+      :name_for_show,
+      :title_for_show,
+      :bio,
+      :company_name,
+      social_media: [ :profile, :facebook, :linkedin, :twitter, :instagram, :other ],
+      company_social_media: [ :website, :facebook, :linkedin, :twitter, :instagram, :other ]
     )
   end
 

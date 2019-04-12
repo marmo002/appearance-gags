@@ -1,32 +1,30 @@
 <%= form_for current_user, url: dashboard_update_path do |f| %>
 
-  <%= f.fields_for :personal_info do | p_info_fields| %>
-    <%= p_info_fields.fields_for :social_media do | media| %>
-      <div class="form-group">
-        <%= media.label :facebook %>
-        <%= media.text_field :facebook, id: :personal_facebook, class: "form-control", placeholder: "Personal facebook", value: (current_user.personal_info["social_media"]["facebook"] if social_media_present) %>
-      </div>
+  <%= f.fields_for :social_media do | media| %>
+    <div class="form-group">
+      <%= media.label :facebook %>
+      <%= media.text_field :facebook, id: :personal_facebook, class: "form-control", placeholder: "Personal facebook", value: current_user.social_media["facebook"] %>
+    </div>
 
-      <div class="form-group">
-        <%= media.label :linkedin %>
-        <%#= media.text_field :linkedin, id: :personal_linkedin, class: "form-control", placeholder: "Personal linkedIn", value: current_user.personal_info["social_media"]["linkedin"] %>
-      </div>
+    <div class="form-group">
+      <%= media.label :linkedin %>
+      <% media.text_field :linkedin, id: :personal_linkedin, class: "form-control", placeholder: "Personal linkedIn", value: current_user.social_media["linkedin"] %>
+    </div>
 
-      <div class="form-group">
-        <%= media.label :twitter %>
-        <%#= media.text_field :twitter, id: :personal_twitter, class: "form-control", placeholder: "Personal twitter handle", value: current_user.personal_info["social_media"]["twitter"] %>
-      </div>
+    <div class="form-group">
+      <%= media.label :twitter %>
+      <%= media.text_field :twitter, id: :personal_twitter, class: "form-control", placeholder: "Personal twitter handle", value: current_user.social_media["twitter"] %>
+    </div>
 
-      <div class="form-group">
-        <%= media.label :instagram %>
-        <%#= media.text_field :instagram, id: :personal_instagram, class: "form-control", placeholder: "Personal instagram handle", value: current_user.personal_info["social_media"]["instagram"] %>
-      </div>
+    <div class="form-group">
+      <%= media.label :instagram %>
+      <%= media.text_field :instagram, id: :personal_instagram, class: "form-control", placeholder: "Personal instagram handle", value: current_user.social_media["instagram"] %>
+    </div>
 
-      <div class="form-group">
-        <%= media.label :other %>
-        <%#= media.text_field :other, id: :personal_other, class: "form-control", placeholder: "Other Social Media", value: current_user.personal_info["social_media"]["other"] %>
-      </div>
-    <% end %>
+    <div class="form-group">
+      <%= media.label :other %>
+      <%= media.text_field :other, id: :personal_other, class: "form-control", placeholder: "Other Social Media", value: current_user.social_media["other"] %>
+    </div>
   <% end %>
 
   <%= f.submit "Save", class: "btn btn-primary", role: "button" %>

@@ -15,17 +15,17 @@ class UsersController < ApplicationController
      render :new
     end
   end
-
-  def update
-    user = current_user
-    if user.update(user_params)
-      flash[:primary] = "Info saved"
-      head dashboard_url
-    else
-      flash[:alert] = "Review form"
-      render "dashboard/index"
-    end
-  end
+  #
+  # def update
+  #   user = current_user
+  #   if user.update(user_params)
+  #     flash[:primary] = "Info saved"
+  #     head dashboard_url
+  #   else
+  #     flash[:alert] = "Review form"
+  #     render "dashboard/index"
+  #   end
+  # end
 
 
 private
@@ -39,13 +39,12 @@ private
       :phone,
       :password,
       :password_confirmation,
-      personal_info: [
-        :profile_pic,
-        :name_on_show,
-        :title_on_show,
-        :bio,
-        social_media: [ :facebook, :linkedin, :twitter, :instagram, :other ]
-      ]
+      :name_for_show,
+      :title_for_show,
+      :bio,
+      :company_name,
+      social_media: [ :facebook, :linkedin, :twitter, :instagram, :other ],
+      company_social_media: [ :website, :facebook, :linkedin, :twitter, :instagram, :other ]
     )
   end
 
