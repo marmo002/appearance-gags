@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   delete 'logout' => 'sessions#destroy', as: :logout
 
   get "dashboard" => "dashboard#index"
+  get "admin" => "dashboard#admin_dashboard"
   patch "user_update" => "dashboard#user_update", as: :dashboard_update
 
 end
