@@ -3,10 +3,16 @@ class DashboardController < ApplicationController
 
   def index
     # @user = User.find(current_user.id)
+    if is_admin?
+      redirect_to admin_url
+    end
+  end
+
+  def admin_dashboard
+
   end
 
   def user_update
-
     if current_user.update(user_params)
       flash[:primary] = "New info was saved"
       redirect_to dashboard_url
@@ -20,7 +26,6 @@ class DashboardController < ApplicationController
 private
 
   def user_params
-
     params.require(:user).permit(
       :first_name,
       :last_name,
@@ -31,6 +36,7 @@ private
       :password_confirmation,
       :name_for_show,
       :title_for_show,
+      :signed_release,
       :bio,
       :company_name,
       :companylogo,

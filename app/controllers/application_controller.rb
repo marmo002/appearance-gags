@@ -1,14 +1,24 @@
 class ApplicationController < ActionController::Base
 
   helper_method :current_user
+  helper_method :company
   helper_method :require_login
+  helper_method :is_admin?
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
+  def company
+    @company ||= Company.find(1)
+  end
+
   def logged_in?
     session[:user_id] != nil
+  end
+
+  def is_admin?
+    logged_in? && current_user.role == "admin"
   end
 
   def require_login
