@@ -24,16 +24,19 @@
         </ul>
         <div class="tab-content" id="myTabContent">
           <% if session[:user_errors] %>
-            <% session[:user_errors].each do |errors, val| %>
-              <% val.each do |error| %>
-                <p class="text-danger" >
-                  <span class="sr-only">Error:</span>
-                  <%= error %>
-                </p>
+            <div class="errors_container">
+              <% session[:user_errors].each do |errors, val| %>
+                <% val.each do |error| %>
+                  <p class="text-danger" >
+                    <span class="sr-only">Error:</span>
+                    <%= error %>
+                  </p>
+                <% end %>
               <% end %>
-            <% end %>
-            <% session[:user_errors] = nil %>
+              <% session[:user_errors] = nil %>
+            </div>
           <% end %>
+
           <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
             <h2>Personal information</h2>
             <%= render 'dashboard/profileform' %>
