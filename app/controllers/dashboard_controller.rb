@@ -6,12 +6,13 @@ class DashboardController < ApplicationController
   end
 
   def user_update
-    user = current_user
-    if user.update(user_params)
+
+    if current_user.update(user_params)
       flash[:primary] = "New info was saved"
       redirect_to dashboard_url
     else
       flash[:danger] = "Please review form"
+      session[:user_errors] = current_user.errors.as_json(full_messages: true)
       redirect_to dashboard_url
     end
   end

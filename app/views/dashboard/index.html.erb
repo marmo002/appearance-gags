@@ -2,7 +2,6 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-
         <ul class="nav nav-tabs" id="myTab" role="tablist">
           <li class="nav-item">
             <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true">Profile</a>
@@ -19,12 +18,25 @@
           <li class="nav-item">
             <a class="nav-link" id="booking-history-tab" data-toggle="tab" href="#booking-history" role="tab" aria-controls="booking-history" aria-selected="false">Booking history</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" id="change-password-tab" data-toggle="tab" href="#change-password" role="tab" aria-controls="change_password" aria-selected="false">Change password</a>
+          </li>
         </ul>
         <div class="tab-content" id="myTabContent">
+          <% if session[:user_errors] %>
+            <% session[:user_errors].each do |errors, val| %>
+              <% val.each do |error| %>
+                <p class="text-danger" >
+                  <span class="sr-only">Error:</span>
+                  <%= error %>
+                </p>
+              <% end %>
+            <% end %>
+            <% session[:user_errors] = nil %>
+          <% end %>
           <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
             <h2>Personal information</h2>
             <%= render 'dashboard/profileform' %>
-
           </div><!--profile-tab-->
           <div class="tab-pane fade" id="user-social-media" role="tabpanel" aria-labelledby="personal-social-media-tab">
             <h2>Personal social media</h2>
@@ -39,7 +51,11 @@
           </div><!--release-tab-->
           <div class="tab-pane fade" id="booking-history" role="tabpanel" aria-labelledby="booking-history-tab">
             <p>Release tab</p>
-          </div><!--release-tab-->
+          </div><!--booking-history-tab-->
+          <div class="tab-pane fade" id="change-password" role="tabpanel" aria-labelledby="change-password-tab">
+            <h2>Change your password</h2>
+            <%= render 'dashboard/changepasswordform' %>
+          </div><!--booking-history-tab-->
         </div>
       </div>
     </div>
