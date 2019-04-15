@@ -40,15 +40,15 @@
           <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
             <h2>Personal information</h2>
             <p>Is admin?: <%= is_admin? %></p>
-            <%= render 'dashboard/profileform' %>
+            <%= render 'dashboard/customerpartials/profileform' %>
           </div><!--profile-tab-->
           <div class="tab-pane fade" id="user-social-media" role="tabpanel" aria-labelledby="personal-social-media-tab">
             <h2>Personal social media</h2>
-            <%= render 'dashboard/personalsocialmediaform' %>
+            <%= render 'dashboard/customerpartials/personalsocialmediaform' %>
           </div><!--personal-social-media-tab-->
           <div class="tab-pane fade" id="company_info" role="tabpanel" aria-labelledby="company-info-tab">
             <h2>Company info</h2>
-            <%= render 'dashboard/companyinfoform' %>
+            <%= render 'dashboard/customerpartials/companyinfoform' %>
           </div><!--copmany-social-media-tab-->
           <div class="tab-pane fade" id="release" role="tabpanel" aria-labelledby="release-tab">
             <div class="jumbotron">
@@ -77,7 +77,7 @@
           </div><!--booking-history-tab-->
           <div class="tab-pane fade" id="change-password" role="tabpanel" aria-labelledby="change-password-tab">
             <h2>Change your password</h2>
-            <%= render 'dashboard/changepasswordform' %>
+            <%= render 'dashboard/customerpartials/changepasswordform' %>
           </div><!--booking-history-tab-->
         </div>
       </div>
