@@ -10,7 +10,7 @@ class User < ApplicationRecord
     with: /\A\(\d{3}\).\d{3}.\d{4}\z/,
     message: 'must be in format (123) 456 7878'
   }
-  validates :password, length: { minimum: 6 }, on: :create
+  validates :password, length: { minimum: 6 }
 
   def full_name
     "#{first_name} #{last_name}"
