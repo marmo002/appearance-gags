@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   helper_method :company
   helper_method :require_login
   helper_method :is_admin?
+  helper_method :authorized?
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
@@ -25,6 +26,13 @@ class ApplicationController < ActionController::Base
     unless logged_in?
       flash[:warning] = "You must log in first."
       redirect_to new_user_url
+    end
+  end
+
+  def authorized?
+    unless is_admin?
+      flash[:warning] = "You are not allowed to visit this page."
+      redirect_back(fallback_location: root_path)
     end
   end
 

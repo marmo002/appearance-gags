@@ -47,7 +47,6 @@ ActiveRecord::Schema.define(version: 2019_04_15_152642) do
     t.string "phone"
     t.string "fax"
     t.text "release"
-    t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

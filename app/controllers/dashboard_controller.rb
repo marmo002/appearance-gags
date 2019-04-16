@@ -1,8 +1,8 @@
 class DashboardController < ApplicationController
   before_action :require_login
+  before_action :authorized?, only: [ :admin_dashboard ]
 
   def index
-    # @user = User.find(current_user.id)
     if is_admin?
       redirect_to admin_url
     end

@@ -11,7 +11,6 @@ class CreateCompanies < ActiveRecord::Migration[5.2]
       t.string :phone
       t.string :fax
       t.text :release
-      t.string :password_digest
 
       t.timestamps
     end
