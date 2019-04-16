@@ -14,6 +14,10 @@
  // Custom bootstrap variables must be set or imported *before* bootstrap.
  // use @import to import Sass files.
  @import "bootstrap";
+@import "froala_editor.min";
+@import "froala_style.min";
+@import "font-awesome-sprockets";
+@import "font-awesome";
  @import "primary_styles";
  @import "users";
  @import "dashboard";

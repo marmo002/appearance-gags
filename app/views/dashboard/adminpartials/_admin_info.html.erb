@@ -1,0 +1,24 @@
+<%= form_for current_user, url: dashboard_update_path, html: { class: "customer-form", id: "customer-profile-form" } do |f| %>
+  <div class="form-group">
+     <%= f.label :first_name %>
+     <%= f.text_field :first_name, class: "form-control", placeholder: "First name" %>
+  </div>
+
+  <div class="form-group">
+     <%= f.label :last_name %>
+     <%= f.text_field :last_name, class: "form-control", placeholder: "Last name" %>
+  </div>
+
+  <div class="form-group">
+     <%= f.label :email %>
+     <%= f.email_field :email, class: "form-control", placeholder: "E-mail" %>
+  </div>
+
+  <div class="form-group">
+     <%= f.label :phone %>
+     <%= f.telephone_field :phone, class: "form-control", placeholder: "Phone", "aria-describedby" => "phone-help" %>
+     <small id="phone-help" class="form-text text-muted">Phone must be in format (123) 456 7878.</small>
+  </div>
+
+  <%= f.submit "Save", class: "btn btn-primary", role: "button" %>
+<% end %>

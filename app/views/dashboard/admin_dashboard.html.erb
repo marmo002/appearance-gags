@@ -4,7 +4,10 @@
       <div class="col-md-12">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
           <li class="nav-item">
-            <a class="nav-link active" id="bookings-tab" data-toggle="tab" href="#booking" role="tab" aria-controls="profile" aria-selected="true">Bookings</a>
+            <a class="nav-link active" id="admin-info-tab" data-toggle="tab" href="#admin-info" role="tab" aria-controls="admin-info" aria-selected="true">Admin info</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="bookings-tab" data-toggle="tab" href="#booking" role="tab" aria-controls="profile" aria-selected="true">Bookings</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" id="users-tab" data-toggle="tab" href="#users" role="tab" aria-controls="users" aria-selected="false">Users</a>
@@ -14,9 +17,6 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" id="release-tab" data-toggle="tab" href="#release" role="tab" aria-controls="release" aria-selected="false">Release</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="booking-history-tab" data-toggle="tab" href="#booking-history" role="tab" aria-controls="booking-history" aria-selected="false">Booking history</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" id="change-password-tab" data-toggle="tab" href="#change-password" role="tab" aria-controls="change_password" aria-selected="false">Change password</a>
@@ -37,10 +37,15 @@
             </div>
           <% end %>
 
-          <div class="tab-pane fade show active" id="booking" role="tabpanel" aria-labelledby="bookings-tab">
+          <div class="tab-pane fade show active" id="admin-info" role="tabpanel" aria-labelledby="admin-info-tab">
             <h2>Admin tabs</h2>
             <p>Is admin?: <%= is_admin? %></p>
-            <%= render 'dashboard/customerpartials/profileform' %>
+            <%= render 'dashboard/adminpartials/admin_info' %>
+          </div><!--admin-info-tab-->
+          <div class="tab-pane fade" id="booking" role="tabpanel" aria-labelledby="bookings-tab">
+            <h2>Admin tabs</h2>
+            <p>Is admin?: <%= is_admin? %></p>
+            <%#= render 'dashboard/customerpartials/profileform' %>
           </div><!--bookings-tab-->
           <div class="tab-pane fade" id="users" role="tabpanel" aria-labelledby="users">
             <h2>List of users</h2>
@@ -51,30 +56,9 @@
             <%= render 'dashboard/adminpartials/companyform' %>
           </div><!--copmany-tab-->
           <div class="tab-pane fade" id="release" role="tabpanel" aria-labelledby="release-tab">
-            <div class="jumbotron">
-              <h1 class="display-4">Please read carefully!</h1>
-              <hr class="my-4">
-              <p>
-                <%= company.release %>
-              </p>
-            </div>
-
-            <%= form_for current_user, url: dashboard_update_path do |f| %>
-            <div class="form-group">
-               <%= f.hidden_field :signed_release, value: true  %>
-            </div>
-            <% if current_user.signed_release %>
-              <p class="text-secondary d-inline-block">You already accepted our release</p>
-            <% else %>
-              <%= f.submit "I consent to the Personal Release (one time consent)", class: "btn btn-primary", role: "button" %>
-            <% end %>
-
-            <%= link_to "Send a copy...", root_path, class: "btn btn-primary ml-3" %>
-            <% end %>
+            <h2>Client release</h2>
+            <%= render 'dashboard/adminpartials/companyrelease' %>
           </div><!--release-tab-->
-          <div class="tab-pane fade" id="booking-history" role="tabpanel" aria-labelledby="booking-history-tab">
-            <p>Release tab</p>
-          </div><!--booking-history-tab-->
           <div class="tab-pane fade" id="change-password" role="tabpanel" aria-labelledby="change-password-tab">
             <h2>Change your password</h2>
             <%= render 'dashboard/customerpartials/changepasswordform' %>
