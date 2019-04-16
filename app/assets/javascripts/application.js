@@ -17,3 +17,6 @@
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
+//= require froala_editor.min.js
+
+$(function() { $('#release-text-area').froalaEditor() });
