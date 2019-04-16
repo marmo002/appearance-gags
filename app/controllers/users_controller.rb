@@ -15,18 +15,6 @@ class UsersController < ApplicationController
      render :new
     end
   end
-  #
-  # def update
-  #   user = current_user
-  #   if user.update(user_params)
-  #     flash[:primary] = "Info saved"
-  #     head dashboard_url
-  #   else
-  #     flash[:alert] = "Review form"
-  #     render "dashboard/index"
-  #   end
-  # end
-
 
 private
 
