@@ -1,0 +1,13 @@
+<p>Total users <%= User.all.count %> users</p>
+<p>Total users loaded <%= @users.count %> users</p>
+<ol>
+  <% @users.each do |user| %>
+  <li>
+    <p>full name: <%= user.full_name %></p>
+    <p>email: <%= user.email %></p>
+    <p>phone: <%= user.phone %></p>
+    <p>role: <%= user.role %></p>
+  </li>
+  <hr>
+  <% end %>
+</ol>
