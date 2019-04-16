@@ -7,10 +7,10 @@
             <a class="nav-link active" id="bookings-tab" data-toggle="tab" href="#booking" role="tab" aria-controls="profile" aria-selected="true">Bookings</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="personal-social-media-tab" data-toggle="tab" href="#user-social-media" role="tab" aria-controls="user-social-media" aria-selected="false">Personal social media</a>
+            <a class="nav-link" id="users-tab" data-toggle="tab" href="#users" role="tab" aria-controls="users" aria-selected="false">Users</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="company-info-tab" data-toggle="tab" href="#company_info" role="tab" aria-controls="company_info" aria-selected="false">Company info</a>
+            <a class="nav-link" id="company-tab" data-toggle="tab" href="#company_info" role="tab" aria-controls="company_info" aria-selected="false">Company</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" id="release-tab" data-toggle="tab" href="#release" role="tab" aria-controls="release" aria-selected="false">Release</a>
@@ -42,14 +42,14 @@
             <p>Is admin?: <%= is_admin? %></p>
             <%= render 'dashboard/customerpartials/profileform' %>
           </div><!--bookings-tab-->
-          <div class="tab-pane fade" id="user-social-media" role="tabpanel" aria-labelledby="personal-social-media-tab">
-            <h2>Personal social media</h2>
-            <%= render 'dashboard/customerpartials/personalsocialmediaform' %>
-          </div><!--personal-social-media-tab-->
-          <div class="tab-pane fade" id="company_info" role="tabpanel" aria-labelledby="company-info-tab">
+          <div class="tab-pane fade" id="users" role="tabpanel" aria-labelledby="users">
+            <h2>List of users</h2>
+            <%= render 'dashboard/adminpartials/userstab' %>
+          </div><!--users-tab-->
+          <div class="tab-pane fade" id="company_info" role="tabpanel" aria-labelledby="company-tab">
             <h2>Company info</h2>
-            <%= render 'dashboard/customerpartials/companyinfoform' %>
-          </div><!--copmany-social-media-tab-->
+            <%= render 'dashboard/adminpartials/companyform' %>
+          </div><!--copmany-tab-->
           <div class="tab-pane fade" id="release" role="tabpanel" aria-labelledby="release-tab">
             <div class="jumbotron">
               <h1 class="display-4">Please read carefully!</h1>

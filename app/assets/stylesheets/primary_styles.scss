@@ -83,6 +83,12 @@ form .form-group .custom-file label {
   display: block;
 }
 
+form textarea
+{
+  min-height: 250px;
+  resize: vertical;
+}
+
 @keyframes alertPop {
   0% {opacity: 0;}
   20% {opacity: 1;}

@@ -21,18 +21,22 @@ class User < ApplicationRecord
 private
 
   def image_validation
-    if avatar.blob.image?
-      avatarImage = ActiveStorage::Analyzer::ImageAnalyzer.new(avatar.blob)
-      errors.add :avatar, 'Image must be bigger than 700px' if avatarImage.metadata[:width] < 700
-    else
-      errors.add :avatar, 'File is not an image'
+    if avatar.attached?
+      if avatar.blob.image?
+        avatarImage = ActiveStorage::Analyzer::ImageAnalyzer.new(avatar.blob)
+        errors.add :avatar, 'Image must be bigger than 700px' if avatarImage.metadata[:width] < 700
+      else
+        errors.add :avatar, 'File is not an image'
+      end
     end
 
-    if companylogo.blob.image?
-      companyImage = ActiveStorage::Analyzer::ImageAnalyzer.new(companylogo.blob)
-      errors.add :companylogo, 'Image must be bigger than 700px' if companyImage.metadata[:width] < 700
-    else
-      errors.add :companylogo, 'File is not an image'
+    if avatar.attached?
+      if companylogo.blob.image?
+        companyImage = ActiveStorage::Analyzer::ImageAnalyzer.new(companylogo.blob)
+        errors.add :companylogo, 'Image must be bigger than 700px' if companyImage.metadata[:width] < 700
+      else
+        errors.add :companylogo, 'File is not an image'
+      end
     end
 
   end

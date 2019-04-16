@@ -15,5 +15,6 @@ Rails.application.routes.draw do
   get "dashboard" => "dashboard#index"
   get "admin" => "dashboard#admin_dashboard"
   patch "user_update" => "dashboard#user_update", as: :dashboard_update
+  patch "company_update" => "dashboard#company_update", as: :company_update
 
 end

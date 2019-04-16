@@ -7,12 +7,13 @@
       <div class="col-3">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Get A Grip Studios</h5>
+            <h5 class="card-title"><%= company.name %></h5>
             <address class="card-text">
-              3800 Victoria Park Ave <br>
-              North York<br>
-              Ontario, Canada<br>
-              M2H 3H7
+              <%= company.address1 %>
+              <%= company.address2 %><br>
+              <%= company.city %><br>
+              <%= company.province %><br>
+              <%= company.postal_code %><br>
             </address>
           </div>
         </div><!--card-->
