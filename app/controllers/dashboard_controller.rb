@@ -6,6 +6,8 @@ class DashboardController < ApplicationController
     if is_admin?
       redirect_to admin_url
     end
+    @page = params[:tab]
+
   end
 
   def admin_dashboard

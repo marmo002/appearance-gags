@@ -16,26 +16,26 @@
   <section>
     <div class="container">
       <div class="row justify-content-center">
-        <div class="col-md-10">
-          <div class="row">
-            <div class="col-sm-6">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">Book our lighting show</h5>
-                  <p class="card-text">Lighting industry forum for people to get together and discuss many interesting subjects and issues.</p>
-                  <a href="#" class="btn btn-primary">In studio</a>
-                  <a href="#" class="btn btn-primary">Virtual</a>
-                </div>
+        <div class="col-md-8">
+          <div class="card-deck">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Book our lighting show</h5>
+                <p class="card-text">Lighting industry forum for people to get together and discuss many interesting subjects and issues.</p>
+              </div>
+              <div class="card-footer">
+                <%= link_to "In studio", new_booking_path(show_name: "lighting", type: "in-studio"), class: "btn btn-primary" %>
+                <%= link_to "Virtual", new_booking_path(show_name: "lighting", type: "virtual"), class: "btn btn-primary" %>
               </div>
             </div>
-            <div class="col-sm-6">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">Book our life show</h5>
-                  <p class="card-text">Come on over and feel free to be who you are, own your past and shape your future. This is the show where we talk about it.</p>
-                  <a href="#" class="btn btn-primary">In studio</a>
-                  <a href="#" class="btn btn-primary">Virtual</a>
-                </div>
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Book our life show</h5>
+                <p class="card-text">Come on over and feel free to be who you are, own your past and shape your future. This is the show where we talk about it.</p>
+              </div>
+              <div class="card-footer">
+                <%= link_to "In studio", new_booking_path(show_name: "life", type: "in-studio"), class: "btn btn-primary" %>
+                <%= link_to "Virtual", new_booking_path(show_name: "life", type: "virtual"), class: "btn btn-primary" %>
               </div>
             </div>
           </div>

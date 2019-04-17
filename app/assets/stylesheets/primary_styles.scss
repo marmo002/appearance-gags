@@ -15,6 +15,11 @@
 ###############################
 ###############################
 */
+header, main, footer
+{
+  float: left;
+  width: 100%;
+}
 
 h5
 {
@@ -119,7 +124,7 @@ form textarea
   background-color: var(--site-light-grey);
 }
 
-.jumbotron
+#main-banner .jumbotron
 {
   background-color: initial;
 }

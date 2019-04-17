@@ -1,0 +1,38 @@
+<main>
+  <section id="main-banner">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10">
+          <div class="jumbotron jumbotron-fluid p-0">
+            <div class="container">
+              <h1 class="display-4">Get a grip on <%= @show %> - <%= @type %>.</h1>
+              <p class="lead">Fill out the form bellow and make sure you add all required fields</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-10">
+          <%= form_for @booking, html: { class: "bookings-form", id: "booking-form" } do |f| %>
+            <div class="form-group">
+               <%= f.label :show_name %>
+               <%= f.text_field :show_name, class: "form-control", placeholder: "First name" %>
+            </div>
+
+            <div class="form-group">
+               <%= f.label :type %>
+               <%= f.text_field :type, class: "form-control", placeholder: "Last name" %>
+            </div>
+
+            <%= f.submit "Save", class: "btn btn-primary", role: "button" %>
+          <% end %>
+
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
