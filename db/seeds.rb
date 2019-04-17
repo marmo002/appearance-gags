@@ -65,7 +65,7 @@
       User.create(
         first_name: first_name,
         last_name: Faker::Name.last_name,
-        email: "#{first_name}@mail.com",
+        email: "#{first_name.downcase}@mail.com",
         phone: phone,
         password: "password",
         password_confirmation: "password"

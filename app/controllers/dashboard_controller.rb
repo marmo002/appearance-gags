@@ -9,7 +9,7 @@ class DashboardController < ApplicationController
   end
 
   def admin_dashboard
-    @users = User.where.not(id: current_user.id).take(20)
+    @users = User.where.not(id: current_user.id).first(20)
   end
 
   def user_update

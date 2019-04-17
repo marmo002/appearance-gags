@@ -4,6 +4,8 @@ class User < ApplicationRecord
   has_one_attached :avatar
   has_one_attached :companylogo
 
+  has_many :bookings
+
   validates :first_name, :last_name, :email, :phone, presence: true
   validates :email, uniqueness: true
   validates :phone, format:{
@@ -30,7 +32,7 @@ private
       end
     end
 
-    if avatar.attached?
+    if companylogo.attached?
       if companylogo.blob.image?
         companyImage = ActiveStorage::Analyzer::ImageAnalyzer.new(companylogo.blob)
         errors.add :companylogo, 'Image must be bigger than 700px' if companyImage.metadata[:width] < 700

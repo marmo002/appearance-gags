@@ -5,25 +5,17 @@
      <%= f.text_field :company_name, class: "form-control", placeholder: "Company name" %>
   </div>
 
-  <div class="form-group">
-    <div class="custom-file">
-      <%= f.file_field :companylogo, class: "custom-file-input", "aria-describedby" => "image-help" %>
-      <%= f.label :company_logo, class: "custom-file-label" %>
-    </div>
-    <small id="image-help" class="form-text text-muted">Image minimun size: 700px by 700px</small>
-  </div>
-
   <div class="card mb-3" style="max-width: 540px;">
     <div class="row no-gutters">
+      <% if current_user.companylogo.attached? %>
       <div class="col-md-4 pl-3 align-self-center">
-        <% if current_user.companylogo.attached? %>
         <%= image_tag url_for(current_user.companylogo), class: "card-img" %>
-        <% end %>
       </div>
+      <% end %>
       <div class="col-md-8">
         <div class="card-body">
           <h5 class="card-title">Company logo</h5>
-          <p id="image-help" class="card-text">Please make sure this image is in high resolution.</p>
+          <p id="image-help" class="card-text m-0">Please make sure this image is in high resolution.</p>
           <p class="card-text"><small class="text-muted">(at least 700px wide by 700px hight)</small></p>
           <div class="custom-file">
             <%= f.file_field :companylogo, class: "custom-file-input", "aria-describedby" => "image-help" %>

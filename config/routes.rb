@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   # post "users" => "users#create"
   # patch "users" => "users#update"
   resources :users
+  resources :bookings
 
   resources :sessions, only: [:create]
   delete 'logout' => 'sessions#destroy', as: :logout
