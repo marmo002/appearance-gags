@@ -7,9 +7,11 @@ class BookingsController < ApplicationController
   end
 
   def new
+    bookings_new_security
     @booking = Booking.new
     @show = params[:show_name]
     @type = params[:type]
+
   end
 
   def create
@@ -22,8 +24,23 @@ class BookingsController < ApplicationController
   def signed_release
     unless current_user.signed_release
       flash[:warning] = "Please signed release before booking a show"
-      redirect_to controller: 'dashboard', action: 'index', page: 'release-tab'
+      redirect_to dashboard_url page: 'release-tab'
     end
+  end
+
+  def bookings_new_security
+    unless params[:show_name] == "lighting" || params[:show_name] == "life"
+      # flash[:warning] = "Wrong type of show"
+      redirect_to bookings_path
+      return
+    end
+
+    unless params[:type] == "in-studio" || params[:type] == "virtual"
+      # flash[:warning] = "Wrong type of show location"
+      redirect_to bookings_path
+      return
+    end
+
   end
 
 end
