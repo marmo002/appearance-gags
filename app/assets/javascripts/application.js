@@ -19,4 +19,8 @@
 //= require bootstrap-sprockets
 //= require froala_editor.min.js
 
-$(function() { $('#release-text-area').froalaEditor() });
+document.addEventListener("turbolinks:load", function(){
+
+  $(function() { $('#release-text-area').froalaEditor() });
+
+ });

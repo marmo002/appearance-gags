@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   # post "users" => "users#create"
   # patch "users" => "users#update"
   resources :users
-  resources :bookings
+  resources :bookings, only: [:index, :new]
+  post "bookings" => "bookings#create", as: :create_booking
 
   resources :sessions, only: [:create]
   delete 'logout' => 'sessions#destroy', as: :logout

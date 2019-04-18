@@ -16,7 +16,7 @@ class DashboardController < ApplicationController
 
   def user_update
     if current_user.update(user_params)
-      flash[:primary] = "New info was saved"
+      flash[:primary] = "Profile updated successfully"
       redirect_to dashboard_url
     else
       flash[:danger] = "Please review form"

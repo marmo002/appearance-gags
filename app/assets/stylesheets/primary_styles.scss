@@ -64,6 +64,37 @@ h5
   color: var(--site-black);
 }
 
+.nav-pills .nav-link,
+.nav-pills .show > .nav-link
+{
+  color: var(--site-light-grey);
+}
+
+.nav-pills .nav-link:not(.active):hover,
+.nav-pills .show > .nav-link:hover
+{
+  color: var(--site-dark-grey);
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link
+{
+  background-color: var(--site-dark-grey);
+}
+
+#pills-tab
+{
+  display: grid;
+  grid-template-columns: repeat(6, auto);
+  width: 90%;
+  margin: 0 auto;
+}
+
+#pills-tab .nav-link
+{
+  text-align: center;
+}
+
 body{
   font-family: Arial,sans-serif;
 }
@@ -90,7 +121,7 @@ form .form-group .custom-file label {
 
 form textarea
 {
-  min-height: 250px;
+  min-height: 150px;
   resize: vertical;
 }
 

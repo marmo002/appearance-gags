@@ -13,7 +13,8 @@ class BookingsController < ApplicationController
   end
 
   def create
-
+    @params = params
+    # redirect_to_back fallback_location :root_path
   end
 
   private
@@ -21,7 +22,6 @@ class BookingsController < ApplicationController
   def signed_release
     unless current_user.signed_release
       flash[:warning] = "Please signed release before booking a show"
-      # redirect_to dashboard_url, page: "release"
       redirect_to controller: 'dashboard', action: 'index', page: 'release-tab'
     end
   end
