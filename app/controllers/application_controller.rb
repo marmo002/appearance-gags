@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   helper_method :require_login
   helper_method :is_admin?
   helper_method :authorized?
+  helper_method :get_hash_data
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
@@ -33,6 +34,14 @@ class ApplicationController < ActionController::Base
     unless is_admin?
       flash[:warning] = "You are not allowed to visit this page."
       redirect_back(fallback_location: root_path)
+    end
+  end
+
+  def get_hash_data(data)
+    if data.class == Hash && !data.values[0].empty?
+      data.reject { |k, v| v.empty? }
+    else
+      false
     end
   end
 

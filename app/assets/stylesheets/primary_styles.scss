@@ -26,6 +26,16 @@ h5
   font-weight: bold;
 }
 
+a
+{
+  color: var(--site-black)
+}
+
+a:hover
+{
+  color: var(--site-dark-grey)
+}
+
 .btn
 {
   transition: all 0.3s ease;
@@ -159,6 +169,51 @@ form textarea
 {
   background-color: initial;
 }
+
+fieldset
+{
+  margin-bottom: 2.5rem;
+  padding-bottom: 1rem;
+  border: solid 1px var(--site-light-grey);
+  border-radius: 5px;
+  padding: 15px;
+}
+
+.custom-subtitle-1
+{
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: var(--site-dark-grey);
+  position: relative;
+  padding: 0 10px;
+  display: inline-block;
+  max-width: fit-content;
+  width: auto;
+  background-color: white;
+}
+
+// .custom-subtitle-1::before
+// {
+//   content: "";
+//   position: absolute;
+//   height: 1px;
+//   width: 15px;
+//   background-color: red;
+//   top: 50%;
+//   left: 0;
+// }
+//
+// .custom-subtitle-1::after
+// {
+//   content: "";
+//   position: absolute;
+//   height: 1px;
+//   width: 55px;
+//   background-color: red;
+//   top: 50%;
+//   right: -50px
+// }
 
 /*
 ###############################

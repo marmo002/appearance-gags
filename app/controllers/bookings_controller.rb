@@ -11,7 +11,9 @@ class BookingsController < ApplicationController
     @booking = Booking.new
     @show = params[:show_name]
     @type = params[:type]
-
+    @web = "I have over ear headphone with on-board over mouth microphone connected to your computer via USB port."
+    @cam = "I have a webcam with the appropriate lighting and in a good recording environment (i.e no uncontrolled noises and where interruptions can be eliminated)."
+    # @speed = "I have a webcam with the appropriate lighting and in a good recording environment (i.e no uncontrolled noises and where interruptions can be eliminated)."
   end
 
   def create
@@ -19,7 +21,7 @@ class BookingsController < ApplicationController
     # redirect_to_back fallback_location :root_path
   end
 
-  private
+private
 
   def signed_release
     unless current_user.signed_release
@@ -40,7 +42,6 @@ class BookingsController < ApplicationController
       redirect_to bookings_path
       return
     end
-
   end
 
-end
+end#booking class
