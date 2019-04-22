@@ -10,6 +10,7 @@ class Booking < ApplicationRecord
   validate :harware_speed_requirements, if: :type_virtual?
   validates :info_confirmation, acceptance: { message: '- Please confirm information is current and accurate' }
 
+  default_scope { order(recording_date: :asc) }
   scope :past, lambda { where("recording_date < ?", Date.today) }
   scope :upcomming, lambda { where("recording_date >= ?", Date.today) }
 
