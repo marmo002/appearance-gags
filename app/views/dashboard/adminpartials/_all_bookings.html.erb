@@ -9,6 +9,7 @@
           <thead>
             <tr>
               <th scope="col"></th>
+              <th scope="col">Customer</th>
               <th scope="col">Show</th>
               <th scope="col">Type</th>
               <th scope="col">Date</th>
@@ -20,6 +21,7 @@
 
             <tr>
               <th scope="row"><%= index + 1 %></th>
+              <td><%= booking.user.full_name %></td>
               <td>Get a grip on <%= booking.show_name.capitalize %></td>
               <td><%= booking.booking_type %></td>
               <td><%= booking.recording_date.strftime('%B %d, %Y') %></td>

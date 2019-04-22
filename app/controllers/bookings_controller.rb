@@ -18,7 +18,7 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     @booking.user = current_user
     @booking.show_name = session[:show_name]
-    @booking.type = session[:type]
+    @booking.booking_type = session[:type]
 
     if @booking.save
       flash[:primary] = "Booking created"

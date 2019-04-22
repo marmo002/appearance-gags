@@ -7,11 +7,14 @@ class DashboardController < ApplicationController
       redirect_to admin_url
     end
     @page = params[:tab]
-    @bookings = current_user.bookings.last(10)
+    @upcomming_bookings = current_user.bookings.upcomming.first(10)
+    @past_bookings = current_user.bookings.past.first(10)
   end
 
   def admin_dashboard
     @users = User.where.not(id: current_user.id).first(20)
+    @upcomming_bookings = Booking.upcomming.first(10)
+    @past_bookings = Booking.past.first(10)
   end
 
   def user_update
