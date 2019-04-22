@@ -1,6 +1,7 @@
 class BookingsController < ApplicationController
   before_action :require_login
   before_action :signed_release, only: [:new]
+  before_action :redirect_admin
 
   def index
 
@@ -9,16 +10,21 @@ class BookingsController < ApplicationController
   def new
     bookings_new_security
     @booking = Booking.new
-    @show = params[:show_name]
-    @type = params[:type]
-    @web = "I have over ear headphone with on-board over mouth microphone connected to your computer via USB port."
-    @cam = "I have a webcam with the appropriate lighting and in a good recording environment (i.e no uncontrolled noises and where interruptions can be eliminated)."
-    # @speed = "I have a webcam with the appropriate lighting and in a good recording environment (i.e no uncontrolled noises and where interruptions can be eliminated)."
+    session[:show_name] = params[:show_name]
+    session[:type] = params[:type]
   end
 
   def create
-    @params = params
-    # redirect_to_back fallback_location :root_path
+    @booking = Booking.new(booking_params)
+    @booking.user = current_user
+
+    if @booking.save
+      flash[:primary] = "Booking created"
+      redirect_to dashboard_path
+    else
+      render :new
+      # redirect_back(fallback_location: new_booking_path)
+    end
   end
 
 private
@@ -43,5 +49,41 @@ private
       return
     end
   end
+
+  def redirect_admin
+    if is_admin?
+      redirect_to dashboard_path
+      return
+    end
+  end
+
+  def booking_params
+    params.require(:booking).permit(
+      :recording_date,
+      :recording_time,
+      :test_date,
+      :test_time,
+      :info_confirmation,
+      user_info: [
+        social_media: [
+        :facebook,
+        :linkedin,
+        :twitter,
+        :instagram,
+        :other
+        ],
+        company_social_media: [
+        :company_website,
+        :company_facebook,
+        :company_linkedin,
+        :company_twitter,
+        :company_instagram,
+        :company_other
+        ]
+      ],
+      hardware_requirements: [:headphone, :webcam, :ping, :download, :upload ]
+    )
+  end
+
 
 end#booking class

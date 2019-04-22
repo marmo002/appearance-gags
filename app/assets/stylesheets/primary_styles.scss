@@ -52,7 +52,9 @@ a:hover
 .btn-primary:not(:disabled):not(.disabled).active,
 .show > .btn-primary.dropdown-toggle,
 .btn-primary:focus,
-.btn-primary:visited
+.btn-primary.disabled,
+.btn-primary:disabled
+// .btn-primary:visited
 {
   background-color: var(--site-light-grey);
   border-color: var(--site-light-grey);
@@ -77,7 +79,7 @@ a:hover
 .nav-pills .nav-link,
 .nav-pills .show > .nav-link
 {
-  color: var(--site-light-grey);
+  color: var(--site-dark-grey);
 }
 
 .nav-pills .nav-link:not(.active):hover,
@@ -103,6 +105,14 @@ a:hover
 #pills-tab .nav-link
 {
   text-align: center;
+}
+
+.card-header
+{
+  font-size: 13px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--site-black);
 }
 
 body{

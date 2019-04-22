@@ -1,0 +1,18 @@
+<fieldset>
+  <legend class="custom-subtitle-1" >Pick a recording date</legend>
+  <!-- <small class="form-text text-muted">You must pick a test day at leat 5mins before recording time.</small> -->
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%#= booking.label :recording_date %>
+        <%= booking.date_field :recording_date, id: "recording-date", class: "form-control", placeholder: "Recording date" %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <%#= booking.label :recording_time %>
+        <%= booking.time_field :recording_time, id: "recording-time", class: "form-control", placeholder: "Recording time" %>
+      </div>
+    </div>
+  </div>
+</fieldset>

@@ -1,4 +1,4 @@
-<%= form_for current_user, url: dashboard_update_path, html: { class: "customer-form", id: "customer-profile-form" } do |f| %>
+<%= form_with model: current_user, url: dashboard_update_path, html: { class: "customer-form", id: "customer-profile-form" } do |f| %>
   <div class="form-group">
      <%= f.label :first_name %>
      <%= f.text_field :first_name, class: "form-control", placeholder: "First name" %>

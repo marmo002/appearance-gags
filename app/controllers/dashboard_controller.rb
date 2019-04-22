@@ -16,12 +16,12 @@ class DashboardController < ApplicationController
 
   def user_update
     if current_user.update(user_params)
-      flash[:primary] = "Profile updated successfully"
-      redirect_to dashboard_url
+      # flash[:primary] = "Profile updated successfully"
+      # redirect_to dashboard_url
     else
       flash[:danger] = "Please review form"
       session[:user_errors] = current_user.errors.as_json(full_messages: true)
-      redirect_to dashboard_url
+      # redirect_to dashboard_url
     end
   end
 

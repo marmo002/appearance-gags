@@ -39,7 +39,6 @@
 
           <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
             <h2>Personal information</h2>
-            <p>Is admin?: <%= is_admin? %></p>
             <%= render 'dashboard/customerpartials/profileform' %>
           </div><!--profile-tab-->
           <div class="tab-pane fade" id="user-social-media" role="tabpanel" aria-labelledby="personal-social-media-tab">
@@ -57,17 +56,15 @@
                 <%= company.release.html_safe %>
             </div>
 
-            <%= form_for current_user, url: dashboard_update_path do |f| %>
-            <div class="form-group">
-               <%= f.hidden_field :signed_release, value: true  %>
-            </div>
-            <% if current_user.signed_release %>
-              <p class="text-secondary d-inline-block">You already accepted our release</p>
-            <% else %>
-              <%= f.submit "I consent to the Personal Release (one time consent)", class: "btn btn-primary", role: "button" %>
-            <% end %>
+            <%= form_with model: current_user, url: dashboard_update_path, id: "release-form" do |f| %>
+              <%= f.hidden_field :signed_release, value: true  %>
+              <% if current_user.signed_release %>
+                <p class="text-secondary d-inline-block">You already accepted our release</p>
+              <% else %>
+                <%= f.submit "I consent to the Personal Release (one time consent)", class: "btn btn-primary", role: "button" %>
+              <% end %>
 
-            <%= link_to "Send a copy...", root_path, class: "btn btn-primary ml-3" %>
+              <%= link_to "Send a copy...", root_path, class: "btn btn-primary ml-3" %>
             <% end %>
           </div><!--release-tab-->
           <div class="tab-pane fade" id="booking-history" role="tabpanel" aria-labelledby="booking-history-tab">

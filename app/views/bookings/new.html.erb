@@ -5,7 +5,7 @@
         <div class="col-md-10">
           <div class="jumbotron jumbotron-fluid p-0">
             <div class="container">
-              <h2 class="display-4">Get a grip on <%= @show %> - <%= @type %>.</h2>
+              <h2 class="display-4">Get a grip on <%= session[:show_name] %> - <%= session[:type] %>.</h2>
               <p class="lead">Fill out the form bellow and make sure you add all required fields</p>
             </div>
           </div>
@@ -15,235 +15,59 @@
   </section>
   <section>
     <div class="container">
+      <!-- <div class="row">
+        <div class="col-md-10">
+
+        </div>
+      </div> -->
       <div class="row justify-content-center">
         <div class="col-md-10">
           <%= form_with model: @booking, local: true, url: create_booking_path,  html: { id: "booking-form" } do |booking| %>
-            <fieldset>
-              <legend class="custom-subtitle-1">Profile info</legend>
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <%#= label nil, "First name" %>
-                    <%= text_field nil, nil, class: "form-control", value: current_user.first_name, placeholder: "First name", disabled: true %>
-                  </div>
-
-                  <div class="form-group">
-                    <%= text_field nil, nil, class: "form-control", value: current_user.last_name, placeholder: "Last name", disabled: true  %>
-                  </div>
-
-                  <div class="form-group">
-                    <%= email_field nil, nil, class: "form-control", value: current_user.email, placeholder: "E-mail", disabled: true  %>
-                  </div>
-
-                  <div class="form-group">
-                    <%= telephone_field nil, nil, class: "form-control", value: current_user.phone, placeholder: "Phone", disabled: true  %>
-                  </div>
-                  <div class="form-group">
-                    <%= text_field nil, nil, class: "form-control", value: current_user.name_for_show, placeholder: "Name on show", disabled: true  %>
-                  </div>
-
-                  <div class="form-group">
-                    <%= text_field nil, nil, class: "form-control", value: current_user.name_for_show, placeholder: "Title for show", disabled: true  %>
-                  </div>
-
-                  <div class="form-group">
-                    <%= text_area nil, nil, id: "user_bio", class: "form-control", value: current_user.name_for_show, placeholder: "Your bio", disabled: true  %>
-                  </div>
-                  <div class="form-group">
-                    <% if current_user.avatar.attached? %>
-                    <%= image_tag current_user.avatar, class: "img-thumbnail" %>
-                    <% else %>
-                      <div class="alert alert-light" role="alert">
-                        No profile image added.
-                        <%= link_to "Add it in dashboard", dashboard_url(page: 'profile-tab') %>.
-                      </div>
-                    <% end %>
-                  </div>
+          <% if @booking.errors.any? %>
+            <ul>
+              <% @booking.errors.full_messages.each do |m| %>
+                <div class="alert alert-danger" role="alert">
+                  <ul>
+                    <%= m %>
+                  </ul>
                 </div>
-                <div class="col-md-6">
-                  <div class="card">
-                    <h4 class="card-header">Add personal social media to show</h4>
-                    <div class="card-body">
-                      <% if get_hash_data(current_user.social_media) %>
-                        <%= booking.fields_for :user_info do |user_i| %>
-                          <%= user_i.fields_for :social_media do |social_media| %>
-                            <% get_hash_data(current_user.social_media).each do |personal_social_name, personal_social_url| %>
-                              <div class="form-group">
-                                <div class="custom-control custom-checkbox">
-                                  <%= social_media.check_box personal_social_name, {class: "custom-control-input", id: "#{personal_social_name}"}, "#{personal_social_url}" %>
-                                  <%= social_media.label :personal_social_url, "#{personal_social_name}: #{personal_social_url}", class: "custom-control-label", for: "#{personal_social_name}" %>
-                                </div>
-                              </div>
-                            <% end %>
-                          <% end %>
-                        <% end %>
-                      <% else %>
-                      <div class="alert alert-light" role="alert">
-                        No personal social media added.
-                        <%= link_to "Add it in dashboard", dashboard_url(page: 'personal-social-media-tab') %>.
-                      </div>
-                      <% end %>
-                    </div><!--cardbody-->
-                  </div><!--card-->
-                </div>
-              </div>
-            </fieldset>
-            <!--Personal information-->
-            <fieldset>
-              <legend class="custom-subtitle-1" >Company information</legend>
-              <%= fields_for :current_user do |company_info| %>
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <div class="form-group">
-                      <%= text_field nil, nil, class: "form-control", placeholder: "Company name", value: current_user.company_name, disabled: true %>
-                    </div>
-                    <% if current_user.companylogo.attached? %>
-                      <%= image_tag current_user.companylogo, class: "img-thumbnail" %>
-                    <% else %>
-                    <div class="alert alert-light" role="alert">
-                      No company logo added.
-                      <%= link_to "Add it in dashboard", dashboard_url(page: 'profile-tab') %>.
-                    </div>
-                    <% end %>
-                  </div>
-                </div>
-                <div class="col-md-6">
-
-                  <div class="card">
-                    <h4 class="card-header">Add company social media to show</h4>
-                      <div class="card-body">
-                        <% if get_hash_data(current_user.company_social_media) %>
-                          <%= booking.fields_for :user_info do |user_info| %>
-                            <%= user_info.fields_for :company_social_media do |c_social_media| %>
-                              <% get_hash_data(current_user.company_social_media).each do |csm_name, csm_url| %>
-                                <div class="form-group">
-                                  <div class="custom-control custom-checkbox">
-                                    <%= company_social.check_box "company-#{csm_name}", {class: "custom-control-input", id: "company-#{csm_name}"}, "#{csm_url}" %>
-                                    <%= company_social.label :csm_url, "#{csm_name}: #{csm_url}", class: "custom-control-label", for: "company-#{csm_name}" %>
-                                  </div>
-                                </div>
-                              <% end %>
-                            <% end %>
-                          <% end %>
-                        <% else %>
-                          <div class="alert alert-light" role="alert">
-                            No company social media added.
-                            <%= link_to "Add it in dashboard", dashboard_url(page: 'company-info-tab') %>.
-                          </div>
-                        <% end %>
-                      </div>
-                  </div><!--card-->
-
-                </div>
-              </div>
               <% end %>
-            </fieldset>
+            </ul>
+          <% end %>
+            <!--Personal information-->
+            <%= render 'bookings/partials/personal_info', booking: booking  %>
+            <!--Personal information-->
+
             <!--Company information-->
-            <fieldset>
-              <legend class="custom-subtitle-1" >Pick a recording date</legend>
-              <!-- <small class="form-text text-muted">You must pick a test day at leat 5mins before recording time.</small> -->
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <%#= booking.label :recording_date %>
-                    <%= booking.date_field :recording_date, id: "recording-date", class: "form-control", placeholder: "Recording date" %>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <%#= booking.label :recording_time %>
-                    <%= booking.time_field :recording_time, id: "recording-time", class: "form-control", placeholder: "Recording time" %>
-                  </div>
-                </div>
-              </div>
-            </fieldset>
+            <%= render 'bookings/partials/company_info', booking: booking  %>
+            <!--Company information-->
+
             <!--recording date-->
-            <fieldset>
-              <legend class="custom-subtitle-1" >Pick a test date</legend>
-              <!-- <small class="form-text text-muted">You must pick a test day at leat 5mins before recording time.</small> -->
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <%#= booking.label :test_date %>
-                    <%= booking.date_field :test_date, id: "test-date", class: "form-control", placeholder: "Test date" %>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <%#= booking.label :test_time %>
-                    <%= booking.time_field :test_time, id: "test-time", class: "form-control", placeholder: "Test time" %>
-                  </div>
-                </div>
-              </div>
-            </fieldset>
+            <%= render 'bookings/partials/recording_date', booking: booking  %>
+            <!--recording date-->
+
+            <% if session[:type] == "virtual" %>
             <!--test date-->
-            <fieldset>
-              <legend class="custom-subtitle-1" >Hardware requirements</legend>
-              <!-- <small class="form-text text-muted">You must pick a test day at leat 5mins before recording time.</small> -->
-              <div class="row">
-                <div class="col-md-6">
+            <%= render 'bookings/partials/test_date', booking: booking  %>
+            <!--test date-->
 
-                  <%= booking.fields_for :hardware_requirements do |h_requirements| %>
-                    <div class="form-group">
-                      <div class="custom-control custom-checkbox">
-                        <%= h_requirements.check_box :headphone, {class: "custom-control-input", id: "headphone-checkbox"}, true %>
-                        <%= h_requirements.label :headphone, "#{@web}", class: "custom-control-label", for: "headphone-checkbox" %>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="custom-control custom-checkbox">
-                        <%= h_requirements.check_box :webcam, {class: "custom-control-input", id: "webcam-checkbox"}, true %>
-                        <%= h_requirements.label :webcam, "#{@cam}", class: "custom-control-label", for: "webcam-checkbox" %>
-                      </div>
-                    </div>
-                  <% end %>
-
-                </div>
-                <div class="col-md-6">
-                  <div class="card mb-3">
-                    <h5 class="card-header">Speed test</h5>
-                    <div class="row no-gutters">
-                      <div class="col-md-4 pl-3 align-self-center">
-                        <%= image_tag 'main-logo.png', class: "card-img" %>
-                      </div>
-                      <div class="col-md-8">
-                        <div class="card-body">
-                          <p id="image-help" class="card-text m-0">
-                            With the computer and webbrowser you plan on broadcasting
-                            from; visit
-                            <a href="https://www.speedtest.net" target="_blank">
-                              speedtest.net
-                            </a>
-                            and enter results bellow
-                          </p>
-                          <p class="card-text"><small class="text-muted">(at least 700px wide by 700px hight)</small></p>
-                          <%= booking.fields_for :hardware_requirements do |h_requirements| %>
-                            <div class="form-group">
-                               <%#= h_requirements.label :ping %>
-                               <%= h_requirements.text_field :ping, class: "form-control", placeholder: "Enter: Ping rate(m/s)" %>
-                            </div>
-                            <div class="form-group">
-                               <%#= h_requirements.label :download %>
-                               <%= h_requirements.text_field :download, class: "form-control", placeholder: "Enter: Download speed(mbps)" %>
-                            </div>
-                            <div class="form-group">
-                               <%#= h_requirements.label :upload %>
-                               <%= h_requirements.text_field :upload, class: "form-control", placeholder: "Enter: Upload speed(mbps)" %>
-                            </div>
-                          <% end %>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </fieldset>
             <!--Hardware requirements-->
+            <%= render 'bookings/partials/hardware_requirements', booking: booking  %>
+            <!--Hardware requirements-->
+            <% end %>
+
+            <!--currrent and accurate information-->
+            <div class="form-group">
+              <div class="form-check">
+                <%= booking.check_box :info_confirmation, {class: "form-check-input", id: "form_confirmation"}, true %>
+                <%= booking.label :info_confirmation,  booking_text[:confirmation], class: "form-check-label", for: "form_confirmation" %>
+              </div>
+            </div>
+
+            <!--currrent and accurate information-->
 
             <%= booking.submit class: "btn btn-primary", role: "button" %>
           <% end %>
-
         </div>
       </div>
     </div><!--cardbody-->
