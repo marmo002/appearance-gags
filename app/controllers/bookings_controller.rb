@@ -17,10 +17,12 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     @booking.user = current_user
+    @booking.show_name = session[:show_name]
+    @booking.booking_type = session[:type]
 
     if @booking.save
       flash[:primary] = "Booking created"
-      redirect_to dashboard_path
+      redirect_to dashboard_url page: 'booking-history-tab'
     else
       render :new
       # redirect_back(fallback_location: new_booking_path)

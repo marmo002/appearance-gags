@@ -7,13 +7,13 @@
       <%= booking.fields_for :hardware_requirements do |h_requirements| %>
         <div class="form-group">
           <div class="custom-control custom-checkbox">
-            <%= h_requirements.check_box :headphone, {class: "custom-control-input", id: "headphone-checkbox"}, true %>
+            <%= h_requirements.check_box :headphone, {class: "custom-control-input", id: "headphone-checkbox"}, true, false %>
             <%= h_requirements.label :headphone, booking_text[:headphone], class: "custom-control-label", for: "headphone-checkbox" %>
           </div>
         </div>
         <div class="form-group">
           <div class="custom-control custom-checkbox">
-            <%= h_requirements.check_box :webcam, {class: "custom-control-input", id: "webcam-checkbox"}, true %>
+            <%= h_requirements.check_box :webcam, {class: "custom-control-input", id: "webcam-checkbox"}, true, false %>
             <%= h_requirements.label :webcam, booking_text[:webcam], class: "custom-control-label", for: "webcam-checkbox" %>
           </div>
         </div>
