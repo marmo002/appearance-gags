@@ -1,0 +1,18 @@
+<fieldset>
+  <legend class="custom-subtitle-1" >Pick a test date</legend>
+  <!-- <small class="form-text text-muted">You must pick a test day at leat 5mins before recording time.</small> -->
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%#= booking.label :test_date %>
+        <%= booking.date_field :test_date, id: "test-date", class: "form-control", placeholder: "Test date" %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <%#= booking.label :test_time %>
+        <%= booking.time_field :test_time, id: "test-time", class: "form-control", placeholder: "Test time" %>
+      </div>
+    </div>
+  </div>
+</fieldset>

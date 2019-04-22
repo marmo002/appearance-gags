@@ -1,4 +1,4 @@
-<%= form_for current_user, url: dashboard_update_path do |f| %>
+<%= form_with model: current_user, url: dashboard_update_path do |f| %>
 
   <%= f.fields_for :social_media do | media| %>
     <div class="form-group">

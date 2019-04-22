@@ -15,10 +15,25 @@
 ###############################
 ###############################
 */
+header, main, footer
+{
+  float: left;
+  width: 100%;
+}
 
 h5
 {
   font-weight: bold;
+}
+
+a
+{
+  color: var(--site-black)
+}
+
+a:hover
+{
+  color: var(--site-dark-grey)
 }
 
 .btn
@@ -37,7 +52,9 @@ h5
 .btn-primary:not(:disabled):not(.disabled).active,
 .show > .btn-primary.dropdown-toggle,
 .btn-primary:focus,
-.btn-primary:visited
+.btn-primary.disabled,
+.btn-primary:disabled
+// .btn-primary:visited
 {
   background-color: var(--site-light-grey);
   border-color: var(--site-light-grey);
@@ -56,6 +73,45 @@ h5
 {
   background-color: var(--site-light-grey);
   border-color: var(--site-light-grey);
+  color: var(--site-black);
+}
+
+.nav-pills .nav-link,
+.nav-pills .show > .nav-link
+{
+  color: var(--site-dark-grey);
+}
+
+.nav-pills .nav-link:not(.active):hover,
+.nav-pills .show > .nav-link:hover
+{
+  color: var(--site-dark-grey);
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link
+{
+  background-color: var(--site-dark-grey);
+}
+
+#pills-tab
+{
+  display: grid;
+  grid-template-columns: repeat(6, auto);
+  width: 90%;
+  margin: 0 auto;
+}
+
+#pills-tab .nav-link
+{
+  text-align: center;
+}
+
+.card-header
+{
+  font-size: 13px;
+  font-weight: bold;
+  text-transform: uppercase;
   color: var(--site-black);
 }
 
@@ -85,7 +141,7 @@ form .form-group .custom-file label {
 
 form textarea
 {
-  min-height: 250px;
+  min-height: 150px;
   resize: vertical;
 }
 
@@ -113,6 +169,61 @@ form textarea
 {
   padding-top: 20px;
 }
+
+#main-banner
+{
+  background-color: var(--site-light-grey);
+}
+
+#main-banner .jumbotron
+{
+  background-color: initial;
+}
+
+fieldset
+{
+  margin-bottom: 2.5rem;
+  padding-bottom: 1rem;
+  border: solid 1px var(--site-light-grey);
+  border-radius: 5px;
+  padding: 15px;
+}
+
+.custom-subtitle-1
+{
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: var(--site-dark-grey);
+  position: relative;
+  padding: 0 10px;
+  display: inline-block;
+  max-width: fit-content;
+  width: auto;
+  background-color: white;
+}
+
+// .custom-subtitle-1::before
+// {
+//   content: "";
+//   position: absolute;
+//   height: 1px;
+//   width: 15px;
+//   background-color: red;
+//   top: 50%;
+//   left: 0;
+// }
+//
+// .custom-subtitle-1::after
+// {
+//   content: "";
+//   position: absolute;
+//   height: 1px;
+//   width: 55px;
+//   background-color: red;
+//   top: 50%;
+//   right: -50px
+// }
 
 /*
 ###############################

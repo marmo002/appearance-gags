@@ -7,6 +7,15 @@
     <p>email: <%= user.email %></p>
     <p>phone: <%= user.phone %></p>
     <p>role: <%= user.role %></p>
+    <% if user.social_media.class != String %>
+    <ul>
+      <% user.social_media.each do |m_name, value| %></p>
+      <li>
+        <p><%= m_name %>: <%= value %></p>
+      </li>
+      <% end %>
+    </ul>
+    <% end %>
   </li>
   <hr>
   <% end %>

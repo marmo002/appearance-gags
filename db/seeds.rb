@@ -27,6 +27,7 @@
       email: "michael@mail.com",
       phone: "(416) 333 6554",
       role: "admin",
+      signed_release: true,
       password: "password",
       password_confirmation: "password"
     )
@@ -54,18 +55,19 @@
       email: "martin@mail.com",
       phone: "(416) 939 6469",
       role: "admin",
+      signed_release: true,
       password: "password",
       password_confirmation: "password"
     )
 
     #FAKE USERS
-    250.times do
+    500.times do
       phone = "(#{Faker::PhoneNumber.area_code}) #{Faker::PhoneNumber.exchange_code} #{Faker::PhoneNumber.subscriber_number}"
       first_name = Faker::Name.unique.first_name
       User.create(
         first_name: first_name,
         last_name: Faker::Name.last_name,
-        email: "#{first_name}@mail.com",
+        email: "#{first_name.downcase}@mail.com",
         phone: phone,
         password: "password",
         password_confirmation: "password"
