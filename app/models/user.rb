@@ -40,7 +40,6 @@ private
         errors.add :companylogo, 'File is not an image'
       end
     end
-
   end
 
 

@@ -1,0 +1,11 @@
+<ul>
+  <% @bookings.each do |booking| %>
+    <li>
+      <p>Show: <% booking.show_name %></p>
+      <p>type: <% booking.type %></p>
+      <p>Download speed: <% booking.hardware_requirements['download'] %></p>
+      <p>Upload speed: <% booking.hardware_requirements['upload'] %></p>
+      <br>
+    </li>
+  <% end %>
+</ul>

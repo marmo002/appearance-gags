@@ -7,7 +7,7 @@ class DashboardController < ApplicationController
       redirect_to admin_url
     end
     @page = params[:tab]
-
+    @bookings = current_user.bookings.last(10)
   end
 
   def admin_dashboard
