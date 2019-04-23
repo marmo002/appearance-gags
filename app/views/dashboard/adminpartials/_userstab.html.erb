@@ -1,22 +1,29 @@
 <p>Total users <%= User.all.count %> users</p>
 <p>Total users loaded <%= @users.count %> users</p>
-<ol>
-  <% @users.each do |user| %>
-  <li>
-    <p>full name: <%= user.full_name %></p>
-    <p>email: <%= user.email %></p>
-    <p>phone: <%= user.phone %></p>
-    <p>role: <%= user.role %></p>
-    <% if user.social_media.class != String %>
-    <ul>
-      <% user.social_media.each do |m_name, value| %></p>
-      <li>
-        <p><%= m_name %>: <%= value %></p>
-      </li>
+<div class="row">
+  <div class="col-12">
+    <div class="card-columns">
+      <% @users.each do |user| %>
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title mb-0">
+            <%= user.full_name %>
+          </h5>
+          <p class="card-text">
+          <% if user.signed_release %>
+          <span class="badge badge-success">Signed release</span>
+          <% else %>
+          <span class="badge badge-danger">Pending release</span>
+          <% end %>
+          </p>
+          <h6 class="card-subtitle mb-3 text-muted"><%= user.email %></h6>
+          <h6 class="card-subtitle mb-3 text-muted"><%= user.phone %></h6>
+          <a href="#" class="">User profile</a>
+        </div>
+      </div>
       <% end %>
-    </ul>
-    <% end %>
-  </li>
-  <hr>
-  <% end %>
-</ol>
+    </div><!-- card-deck-->
+
+  </div>
+  <!-- <div class="col-8"></div> -->
+</div>
