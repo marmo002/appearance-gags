@@ -1,2 +1,22 @@
-<h1><%= @text %></h1>
-<p><%= @key_file %></p>
+<h1>Google Key file path</h1>
+<p><%= @response %></p>
+<ul>
+  <% @response.items.each do |event| %>
+    <li>
+      <% if event.start.date %>
+        <p>all day event</p>
+      <% end %>
+
+      <p><%= event.summary %></p>
+      <% if event.hangout_link %>
+        <p><a href="<%= event.hangout_link %>">hang out link</a></p>
+      <% end %>
+
+      <p>Starts on <%= event.start.date_time.strftime('%b %d, %Y at %I:%M:%S %p') %></p>
+      <p>Ends at <%= event.end.date_time.strftime('%I:%M:%S %p') %></p>
+      <p>Duration <%= (event.end.date_time.to_time - event.start.date_time.to_time)/(60*60) %> hours</p>
+      <%#= event.to_json %>
+      <hr>
+    </li>
+  <% end %>
+</ul>
