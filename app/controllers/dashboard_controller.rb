@@ -12,7 +12,7 @@ class DashboardController < ApplicationController
   end
 
   def admin_dashboard
-    @users = User.where.not(id: current_user.id).first(20)
+    @users = User.where.not(id: current_user.id).first(33)
     @upcomming_bookings = Booking.upcomming.first(10)
     @past_bookings = Booking.past.first(10)
   end
