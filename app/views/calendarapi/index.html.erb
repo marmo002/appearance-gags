@@ -1,5 +1,6 @@
 <h1>Google Key file path</h1>
-<p><%= @response %></p>
+<p>no. events: <%= @response.items.length %></p>
+<p><%= @free_busy.to_json %></p>
 <ul>
   <% @response.items.each do |event| %>
     <li>
@@ -12,10 +13,10 @@
         <p><a href="<%= event.hangout_link %>">hang out link</a></p>
       <% end %>
 
-      <p>Starts on <%= event.start.date_time.strftime('%b %d, %Y at %I:%M:%S %p') %></p>
-      <p>Ends at <%= event.end.date_time.strftime('%I:%M:%S %p') %></p>
-      <p>Duration <%= (event.end.date_time.to_time - event.start.date_time.to_time)/(60*60) %> hours</p>
-      <%#= event.to_json %>
+      <p>Starts on <%= event.start.date_time.strftime('%b %d, %Y at %I:%M:%S %p') if event.start.date_time %></p>
+      <p>Ends at <%= event.end.date_time.strftime('%I:%M:%S %p') if event.end.date_time  %></p>
+      <p>Duration <%= (event.end.date_time.to_time - event.start.date_time.to_time)/(60*60) if event.start.date_time  %> hours</p>
+      <%= event.to_json %>
       <hr>
     </li>
   <% end %>

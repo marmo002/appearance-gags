@@ -13,11 +13,14 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require_tree .
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
 //= require froala_editor.min.js
+//= require moment
+//= require moment-timezone-with-data
+//= require tempusdominus-bootstrap-4
+//= require_tree .
 
 document.addEventListener("turbolinks:load", function(){
 

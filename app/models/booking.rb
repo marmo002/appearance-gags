@@ -3,7 +3,7 @@ class Booking < ApplicationRecord
 
   attr_accessor :info_confirmation
 
-  validates :recording_date, :recording_time, presence: true
+  validates :recording_date, presence: true
   validates :test_date, :test_time, presence: true, if: :type_virtual?
   # validates :test_time, presence: true, if: :type_virtual?
   validate :dates_cant_be_past_today
