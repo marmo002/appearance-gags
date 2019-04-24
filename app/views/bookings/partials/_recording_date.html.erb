@@ -4,13 +4,18 @@
   <div class="row">
     <div class="col-md-6">
       <div class="form-group">
-        <%#= booking.label :recording_date %>
-        <%= booking.date_field :recording_date, id: "recording-date", class: "form-control", placeholder: "Recording date" %>
+
+        <div class="input-group date" id="recording-datepicker" data-target-input="nearest">
+          <%= booking.text_field :recording_date, id: "recording-date", class: "form-control datetimepicker-input", data: {target: "#recording-datepicker"}, placeholder: "Recording date" %>
+          <div class="input-group-append" data-target="#recording-datepicker" data-toggle="datetimepicker">
+              <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+          </div>
+        </div>
+
       </div>
     </div>
     <div class="col-md-6">
       <div class="form-group">
-        <%#= booking.label :recording_time %>
         <%= booking.time_field :recording_time, id: "recording-time", class: "form-control", placeholder: "Recording time" %>
       </div>
     </div>

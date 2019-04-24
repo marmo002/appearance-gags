@@ -15,6 +15,9 @@ gem 'jquery-rails'
 gem 'bootstrap', '~> 4.3.1'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 
+# rails bootstrap 4 datetime picker
+gem 'bootstrap4-datetime-picker-rails'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets

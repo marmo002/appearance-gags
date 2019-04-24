@@ -16,6 +16,8 @@ class User < ApplicationRecord
 
   validate :image_validation, on: :update
 
+  default_scope { order(id: :asc) }
+
   def full_name
     "#{first_name} #{last_name}"
   end
