@@ -17,7 +17,7 @@
   <div class="form-group">
      <%= f.label :phone %>
      <%= f.telephone_field :phone, class: "form-control", placeholder: "Phone", "aria-describedby" => "phone-help" %>
-     <small id="phone-help" class="form-text text-muted">Phone must be in format (123) 456 7878.</small>
+     <!-- <small id="phone-help" class="form-text text-muted">Phone must be in format (123) 456 7878.</small> -->
   </div>
 
   <div class="card mb-3" style="max-width: 540px;">
@@ -56,5 +56,5 @@
     <%= f.text_area :bio, id: "user_bio", class: "form-control", placeholder: "Your bio" %>
   </div>
 
-  <%= f.submit "Save", class: "btn btn-primary", role: "button" %>
+  <%= f.submit "Save", class: "btn btn-primary", role: "button", data: { "disable-with": "Updating..." } %>
 <% end %>

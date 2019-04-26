@@ -5,6 +5,7 @@ class DashboardController < ApplicationController
   def index
     if is_admin?
       redirect_to admin_url
+      return
     end
     @page = params[:tab]
     @upcomming_bookings = current_user.bookings.upcomming.first(10)
@@ -18,13 +19,23 @@ class DashboardController < ApplicationController
   end
 
   def user_update
-    if current_user.update(user_params)
-      flash[:primary] = "Profile updated successfully"
-      redirect_to dashboard_url
-    else
-      flash[:danger] = "Please review form"
-      session[:user_errors] = current_user.errors.as_json(full_messages: true)
-      redirect_to dashboard_url
+
+    respond_to do |format|
+      if current_user.update(user_params)
+        format.html {
+          flash[:primary] = "Profile updated successfully"
+          redirect_to dashboard_url
+        }
+        format.js
+        format.json { render json: current_user, status: :updated, location: current_user }
+      else
+        format.html {
+          flash[:danger] = "Please review form"
+          session[:user_errors] = current_user.errors.as_json(full_messages: true)
+          redirect_back(fallback_location: dashboard_path)
+        }
+        format.json { render json: current_user.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -37,6 +48,7 @@ class DashboardController < ApplicationController
       session[:user_errors] = company.errors.as_json(full_messages: true)
       redirect_to dashboard_url
     end
+
   end
 
 private

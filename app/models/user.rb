@@ -14,7 +14,7 @@ class User < ApplicationRecord
   # }
   validates :password, length: { minimum: 6 }, on: :create
 
-  # validate :image_validation, on: :update
+  validate :image_validation, on: :update
 
   default_scope { order(id: :desc) }
 
@@ -46,25 +46,41 @@ private
     item.class == Hash
   end
 
+  # IMAGE VALIDATION VALIDATES IT'S AN IMAGE
   def image_validation
     if avatar.attached?
-      if avatar.blob.image?
-        avatarImage = ActiveStorage::Analyzer::ImageAnalyzer.new(avatar.blob)
-        errors.add :avatar, 'Image must be bigger than 700px' if avatarImage.metadata[:width] < 700
-      else
-        errors.add :avatar, 'File is not an image'
+      unless avatar.blob.image?
+        errors.add :avatar, '- File is not an image'
       end
     end
 
     if companylogo.attached?
-      if companylogo.blob.image?
-        companyImage = ActiveStorage::Analyzer::ImageAnalyzer.new(companylogo.blob)
-        errors.add :companylogo, 'Image must be bigger than 700px' if companyImage.metadata[:width] < 700
-      else
-        errors.add :companylogo, 'File is not an image'
+      unless companylogo.blob.image?
+        errors.add :companylogo, '- File is not an image'
       end
     end
   end
+
+  # IMAGE VALIDATION VALIDATES IT IMAGE AND IT'S A LEATS 700PX WIDE
+  # def image_validation
+  #   if avatar.attached?
+  #     if avatar.blob.image?
+  #       avatarImage = ActiveStorage::Analyzer::ImageAnalyzer.new(avatar.blob)
+  #       errors.add :avatar, 'Image must be bigger than 700px' if avatarImage.metadata[:width] < 700
+  #     else
+  #       errors.add :avatar, 'File is not an image'
+  #     end
+  #   end
+  #
+  #   if companylogo.attached?
+  #     if companylogo.blob.image?
+  #       companyImage = ActiveStorage::Analyzer::ImageAnalyzer.new(companylogo.blob)
+  #       errors.add :companylogo, 'Image must be bigger than 700px' if companyImage.metadata[:width] < 700
+  #     else
+  #       errors.add :companylogo, 'File is not an image'
+  #     end
+  #   end
+  # end
 
 
 end
