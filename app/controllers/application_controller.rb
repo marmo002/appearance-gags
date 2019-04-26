@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
   end
 
   def get_hash_data(data)
-    if data.class == Hash && !data.values[0].empty?
+    if data.class == Hash
       data.reject { |k, v| v.empty? }
     else
       false
