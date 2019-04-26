@@ -6,7 +6,7 @@
       <div class="form-group">
 
         <div class="input-group date" id="recording-datepicker" data-target-input="nearest">
-          <%= booking.text_field :recording_date, id: "recording-date", class: "form-control datetimepicker-input", data: {target: "#recording-datepicker"}, placeholder: "Recording date" %>
+          <%= booking.datetime_field :recording_date, id: "recording-date", class: "form-control datetimepicker-input", data: {target: "#recording-datepicker"}, placeholder: "Recording date" %>
           <div class="input-group-append" data-target="#recording-datepicker" data-toggle="datetimepicker">
               <div class="input-group-text"><i class="fa fa-calendar"></i></div>
           </div>
@@ -14,10 +14,10 @@
 
       </div>
     </div>
-    <div class="col-md-6">
+    <!-- <div class="col-md-6">
       <div class="form-group">
-        <%= booking.time_field :recording_time, id: "recording-time", class: "form-control", placeholder: "Recording time" %>
+        <%#= booking.time_field :recording_time, id: "recording-time", class: "form-control", placeholder: "Recording time" %>
       </div>
-    </div>
+    </div> -->
   </div>
 </fieldset>

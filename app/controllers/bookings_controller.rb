@@ -1,7 +1,8 @@
 class BookingsController < ApplicationController
   before_action :require_login
   before_action :signed_release, only: [:new]
-  before_action :redirect_admin
+  before_action :redirect_admin, only: [:new]
+  before_action :allowed_to_see_booking, only: [:show]
 
   def index
 
@@ -19,6 +20,17 @@ class BookingsController < ApplicationController
     @booking.user = current_user
     @booking.show_name = session[:show_name]
     @booking.booking_type = session[:type]
+    user_info = {
+      'full_name' => current_user.full_name,
+      'email' => current_user.email,
+      'phone' => current_user.phone,
+      'name_for_show' => current_user.name_for_show,
+      'title_for_show' => current_user.title_for_show,
+      'bio' => current_user.bio,
+      'release' => company.release
+    }
+
+    @booking.user_info = @booking.user_info.merge(user_info)
 
     if @booking.save
       flash[:primary] = "Booking created"
@@ -29,7 +41,26 @@ class BookingsController < ApplicationController
     end
   end
 
+  def show
+    @booking = Booking.find(params[:id]) if Booking.exists?(['id = ?', "#{params[:id]}"])
+
+    if @booking
+      @user = @booking.user
+      unless is_admin? || @user == current_user
+        flash[:danger] = "Not allowed to visit this page"
+        redirect_to dashboard_url
+        return
+      end
+    else
+      flash[:warning] = "Record does not exist"
+      redirect_to dashboard_url
+    end
+  end
+
 private
+  def allowed_to_see_booking
+
+  end
 
   def signed_release
     unless current_user.signed_release
@@ -60,6 +91,7 @@ private
   end
 
   def booking_params
+
     params.require(:booking).permit(
       :recording_date,
       :recording_time,

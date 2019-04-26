@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   # post "users" => "users#create"
   # patch "users" => "users#update"
   resources :users
-  resources :bookings, only: [:index, :new]
+  resources :bookings, only: [:index, :new, :show]
   post "bookings" => "bookings#create", as: :create_booking
 
   resources :sessions, only: [:create]

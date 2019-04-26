@@ -2,33 +2,25 @@
   <div class="col-md-8">
     <div class="card">
       <div class="card-header">
-        Upcoming bookings
+        Upcomming
       </div>
       <div class="card-body">
-        <table class="table table-striped table-sm bookings-list-table">
-          <thead>
-            <tr>
-              <th scope="col"></th>
-              <th scope="col">Show</th>
-              <th scope="col">Type</th>
-              <th scope="col">Date</th>
-              <th scope="col">Time</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @upcomming_bookings.each_with_index do |booking, index| %>
-
-            <tr>
-              <th scope="row"><%= index + 1 %></th>
-              <td>Get a grip on <%= booking.show_name.capitalize %></td>
-              <td><%= booking.booking_type %></td>
-              <td><%= booking.recording_date.strftime('%B %d, %Y') if booking.recording_date%></td>
-              <td><%= booking.recording_date.strftime('%I:%M %p') if booking.recording_date %></td>
-            </tr>
-
-            <% end %>
-          </tbody>
-        </table>
+        <% @upcomming_bookings.each do |booking| %>
+          <%= link_to booking_path(booking), class: "card mb-3 link_to_booking #{booking.show_name}-link" do %>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-4">
+                  <p class="bookings-main"><%= booking.recording_date.strftime('%B %d, %Y') %></p>
+                  <p class="text-muted booking-sub"><%= booking.recording_date.strftime('%I:%M %p') %></p>
+                </div>
+                <div class="col-md-5">
+                  <p class="bookings-main"><span class="badge badge-primary <%= booking.show_name %>"><%= booking.show_name %> Show</span></p>
+                  <p class="booking-sub <%= booking.booking_type %>"><%= booking.booking_type %></p>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
       </div>
     </div><!-- card-->
   </div>
@@ -38,26 +30,22 @@
         Past bookings
       </div>
       <div class="card-body">
-        <table class="table table-striped table-sm bookings-list-table">
-          <thead>
-            <tr>
-              <th scope="col"></th>
-              <th scope="col">Show</th>
-              <th scope="col">Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @past_bookings.each_with_index do |booking, index| %>
-
-            <tr>
-              <th scope="row"><%= index + 1 %></th>
-              <td><%= booking.show_name %></td>
-              <td><%= booking.recording_date.strftime('%B %d, %Y') %></td>
-            </tr>
-
-            <% end %>
-          </tbody>
-        </table>
+        <% @past_bookings.each do |booking| %>
+          <%= link_to booking_path(booking), class: "card mb-3 link_to_booking #{booking.show_name}-link" do %>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-12">
+                  <p class="bookings-main"><%= booking.user.full_name %></p>
+                  <p class="text-muted booking-sub"><%= booking.user.email %></p>
+                  <p class="bookings-main"><%= booking.recording_date.strftime('%B %d, %Y') %></p>
+                  <p class="text-muted booking-sub"><%= booking.recording_date.strftime('%I:%M %p') %></p>
+                  <p class="bookings-main"><span class="badge badge-dark"><%= booking.show_name %> Show</span></p>
+                  <p class="badge badge-secondary"><%= booking.booking_type %></p>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
       </div>
     </div><!-- card-->
 

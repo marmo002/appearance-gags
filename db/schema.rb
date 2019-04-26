@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_22_143845) do
+ActiveRecord::Schema.define(version: 2019_04_24_205041) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,10 +40,8 @@ ActiveRecord::Schema.define(version: 2019_04_22_143845) do
     t.string "show_name", null: false
     t.string "booking_type", null: false
     t.json "user_info"
-    t.date "test_date"
-    t.time "test_time"
-    t.date "recording_date"
-    t.time "recording_time"
+    t.datetime "test_date"
+    t.datetime "recording_date"
     t.json "hardware_requirements"
     t.bigint "user_id"
     t.datetime "created_at", null: false

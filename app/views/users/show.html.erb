@@ -1,0 +1,111 @@
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5">
+        <div class="card">
+          <div class="card-header">
+            User info
+          </div>
+          <div class="card-body">
+            <% if @user.avatar.attached? %>
+              <%= image_tag @user.avatar, class: "img-thumbnail" %>
+            <% end %>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <p class="bookings-main">Name: <%= @user.full_name %></p>
+              </li>
+              <li class="list-group-item">
+                <p class="text-muted booking-sub">email: <%= @user.email %></p>
+              </li>
+              <li class="list-group-item">
+                <p class="text-muted booking-sub">phone: <%= @user.phone %></p>
+              </li>
+              <% if @user.name_for_show %>
+              <li class="list-group-item">
+                <%= tag.p "Show name: #{@user.name_for_show}", class: 'text-muted booking-sub' %>
+              </li>
+              <% end %>
+              <% if @user.title_for_show %>
+              <li class="list-group-item">
+                <%= content_tag :p, "Show title: #{@user.title_for_show}", class: 'text-muted booking-sub' %>
+              </li>
+              <% end %>
+              <% if @user.bio %>
+              <li class="list-group-item">
+                <%= content_tag :p, "Bio: #{@user.bio}", class: 'text-muted booking-sub' %>
+              </li>
+              <% end %>
+            </ul>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <p class="bookings-main">Social media</p>
+              </li>
+              <% if @user.social_media_alt %>
+                <% @user.social_media_alt.each do |sm_name, sm_url| %>
+                <li class="list-group-item">
+                  <a href="https://<%= sm_url %>" target="_blank"><%= sm_url %></a>
+                </li>
+                <% end %>
+              <% else %>
+                <li class="list-group-item">
+                  <%= tag.p "User has no social media", class: 'text-muted booking-sub' %>
+                </li>
+              <% end %>
+            </ul>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <p class="bookings-main">Company info</p>
+              </li>
+              <% if @user.companylogo.attached? %>
+              <li class="list-group-item">
+                <%= image_tag @user.companylogo, class: "img-thumbnail" %>
+              </li>
+              <% end %>
+              <%  if @user.company_name %>
+              <li class="list-group-item">
+                <%= tag.p "Company name: #{@user.company_name}", class: 'text-muted booking-sub' %>
+              </li>
+              <% end %>
+              <% if get_hash_data(@user.company_social_media) %>
+                <% get_hash_data(@user.company_social_media).each do |csm_name, csm_url|%>
+                <li class="list-group-item">
+                  <a href="https://<%= csm_url %>" target="_blank"><%= csm_url %></a>
+                </li>
+                <% end %>
+              <% else %>
+                <li class="list-group-item">
+                  <%= tag.p "Company has no social media", class: 'text-muted booking-sub' %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div><!-- card-->
+      </div>
+      <div class="col-md-7">
+        <div class="card">
+          <div class="card-header">
+            Upcomming bookings
+          </div>
+          <div class="card-body">
+            <% @upcomming_bookings.each do |booking| %>
+              <%= link_to booking_path(booking), class: "card mb-3 link_to_booking #{booking.show_name}-link" do %>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <p class="bookings-main"><%= booking.recording_date.strftime('%B %d, %Y') %></p>
+                      <p class="text-muted booking-sub"><%= booking.recording_date.strftime('%I:%M %p') %></p>
+                    </div>
+                    <div class="col-md-5">
+                      <p class="bookings-main"><span class="badge badge-primary <%= booking.show_name %>"><%= booking.show_name %> Show</span></p>
+                      <p class="booking-sub <%= booking.booking_type %>"><%= booking.booking_type %></p>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div><!-- card-->
+      </div>
+    </div>
+  </div>
+</section>
