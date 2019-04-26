@@ -16,13 +16,35 @@ class User < ApplicationRecord
 
   validate :image_validation, on: :update
 
-  default_scope { order(id: :asc) }
+  default_scope { order(id: :desc) }
 
   def full_name
     "#{first_name} #{last_name}"
   end
 
+  def social_media_alt
+    new_r = {}
+    if is_hash? social_media
+      social_media.each { |k, v|
+        next if v.empty?
+        if k == 'twitter'
+          v = 'twitter.com/' + v.gsub(/\W/, '')
+        elsif k == 'instagram'
+          v = 'instagram.com/' + v.gsub(/\W/, '')
+        end
+        new_r[k] = v
+      }
+      new_r
+    else
+      false
+    end
+  end
+
 private
+
+  def is_hash?(item)
+    item.class == Hash
+  end
 
   def image_validation
     if avatar.attached?

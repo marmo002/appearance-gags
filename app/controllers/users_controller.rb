@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :require_login, only: [:index, :update]
+  before_action :authorized?, only: [:show]
 
   def new
     @user = User.new
@@ -14,6 +15,11 @@ class UsersController < ApplicationController
      # flash[:alert] = "Please fix errors"
      render :new
     end
+  end
+
+  def show
+    @user = User.find params[:id]
+    @upcomming_bookings = @user.bookings.upcomming.first(10)
   end
 
 private
