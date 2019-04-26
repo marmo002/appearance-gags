@@ -38,8 +38,9 @@
             <!--Company information-->
 
             <!--recording date-->
-            <%= render 'bookings/partials/recording_date', booking: booking  %>
-            <%#= render 'bookings/partials/recording_date_so_form', booking: booking  %>
+            
+            <%#= render 'bookings/partials/recording_date', booking: booking  %>
+            <%= render 'bookings/partials/recording_date_so_form', booking: booking  %>
             <!--recording date-->
 
             <% if session[:type] == "virtual" %>

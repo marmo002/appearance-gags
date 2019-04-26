@@ -2,26 +2,6 @@
   <div class="container">
     <div class="row">
       <div class="col-md-4">
-        <div class="card mb-3">
-          <div class="card-header">
-            Booking info
-          </div>
-          <div class="card-body">
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">
-                <p class="bookings-main">Get a grip studios</p>
-              </li>
-              <li class="list-group-item">
-                <p class="bookings-main"><span class="badge badge-primary <%= @booking.show_name %>"><%= @booking.show_name %> Show</span></p>
-                <p class="booking-sub <%= @booking.booking_type %>"><%= @booking.booking_type %></p>
-              </li>
-              <li class="list-group-item">
-                <p class="bookings-main"><%= @booking.recording_date.strftime('%B %d, %Y') %></p>
-                <p class="text-muted booking-sub"><%= @booking.recording_date.strftime('%I:%M %p') %></p>
-              </li>
-            </ul>
-          </div>
-        </div><!-- card-->
         <div class="card">
           <div class="card-header">
             Booking info
@@ -39,6 +19,11 @@
                 <p class="bookings-main"><%= @booking.recording_date.strftime('%B %d, %Y') %></p>
                 <p class="text-muted booking-sub"><%= @booking.recording_date.strftime('%I:%M %p') %></p>
               </li>
+              <% if is_admin? %>
+              <li class="list-group-item">
+                <p class="bookings-main"><%= link_to 'User profile', @user, class: 'btn btn-primary' %></p>
+              </li>
+              <% end %>
             </ul>
           </div>
         </div><!-- card-->
