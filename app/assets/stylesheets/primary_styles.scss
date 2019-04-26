@@ -36,6 +36,16 @@ h5
 //   color: var(--site-dark-grey)
 // }
 
+.border_errors
+{
+  border: solid 1px red;
+}
+
+.alert-text
+{
+  display: none;
+}
+
 .btn
 {
   transition: all 0.3s ease;

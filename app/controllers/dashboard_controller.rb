@@ -22,19 +22,25 @@ class DashboardController < ApplicationController
 
     respond_to do |format|
       if current_user.update(user_params)
+        format.json {
+          render json: {
+            status: "success",
+            type: "primary",
+            message: "Profile updated successfully"
+          }
+        }
         format.html {
           flash[:primary] = "Profile updated successfully"
           redirect_to dashboard_url
         }
-        format.js
-        format.json { render json: current_user, status: :updated, location: current_user }
+        # format.js
       else
+        format.json { render json: current_user.errors }
         format.html {
           flash[:danger] = "Please review form"
           session[:user_errors] = current_user.errors.as_json(full_messages: true)
           redirect_back(fallback_location: dashboard_path)
         }
-        format.json { render json: current_user.errors, status: :unprocessable_entity }
       end
     end
   end

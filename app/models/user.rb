@@ -50,13 +50,13 @@ private
   def image_validation
     if avatar.attached?
       unless avatar.blob.image?
-        errors.add :avatar, '- File is not an image'
+        errors.add :avatar, 'File is not an image'
       end
     end
 
     if companylogo.attached?
       unless companylogo.blob.image?
-        errors.add :companylogo, '- File is not an image'
+        errors.add :companylogo, 'File is not an image'
       end
     end
   end
