@@ -39,6 +39,9 @@ gem 'bcrypt', '~> 3.1.7'
 # Use ActiveStorage variant
 gem 'mini_magick', '~> 4.8'
 
+#mask phone number, ip etc
+# gem 'jquery_mask_rails', '~> 0.1.0'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'httparty'

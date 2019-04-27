@@ -8,10 +8,10 @@ class User < ApplicationRecord
 
   validates :first_name, :last_name, :email, :phone, presence: true
   validates :email, uniqueness: true
-  validates :phone, format:{
-    with: /\A\(\d{3}\).\d{3}.\d{4}\z/,
-    message: 'must be in format (123) 456 7878'
-  }
+  # validates :phone, format:{
+  #   with: /\A\(\d{3}\).\d{3}.\d{4}\z/,
+  #   message: 'must be in format (123) 456 7878'
+  # }
   validates :password, length: { minimum: 6 }, on: :create
 
   validate :image_validation, on: :update
@@ -46,25 +46,41 @@ private
     item.class == Hash
   end
 
+  # IMAGE VALIDATION VALIDATES IT'S AN IMAGE
   def image_validation
     if avatar.attached?
-      if avatar.blob.image?
-        avatarImage = ActiveStorage::Analyzer::ImageAnalyzer.new(avatar.blob)
-        errors.add :avatar, 'Image must be bigger than 700px' if avatarImage.metadata[:width] < 700
-      else
+      unless avatar.blob.image?
         errors.add :avatar, 'File is not an image'
       end
     end
 
     if companylogo.attached?
-      if companylogo.blob.image?
-        companyImage = ActiveStorage::Analyzer::ImageAnalyzer.new(companylogo.blob)
-        errors.add :companylogo, 'Image must be bigger than 700px' if companyImage.metadata[:width] < 700
-      else
+      unless companylogo.blob.image?
         errors.add :companylogo, 'File is not an image'
       end
     end
   end
+
+  # IMAGE VALIDATION VALIDATES IT IMAGE AND IT'S A LEATS 700PX WIDE
+  # def image_validation
+  #   if avatar.attached?
+  #     if avatar.blob.image?
+  #       avatarImage = ActiveStorage::Analyzer::ImageAnalyzer.new(avatar.blob)
+  #       errors.add :avatar, 'Image must be bigger than 700px' if avatarImage.metadata[:width] < 700
+  #     else
+  #       errors.add :avatar, 'File is not an image'
+  #     end
+  #   end
+  #
+  #   if companylogo.attached?
+  #     if companylogo.blob.image?
+  #       companyImage = ActiveStorage::Analyzer::ImageAnalyzer.new(companylogo.blob)
+  #       errors.add :companylogo, 'Image must be bigger than 700px' if companyImage.metadata[:width] < 700
+  #     else
+  #       errors.add :companylogo, 'File is not an image'
+  #     end
+  #   end
+  # end
 
 
 end

@@ -16,31 +16,31 @@ class Booking < ApplicationRecord
 # READERS(GETTERS)
 
   def full_name
-    user_info['full_name']
+    user_info['full_name'] if user_info
   end
 
   def email
-    user_info['email']
+    user_info['email'] if user_info
   end
 
   def phone
-    user_info['phone']
+    user_info['phone'] if user_info
   end
 
   def name_for_show
-    user_info['name_for_show']
+    user_info['name_for_show'] if user_info
   end
 
   def title_for_show
-    user_info['title_for_show']
+    user_info['title_for_show'] if user_info
   end
 
   def bio
-    user_info['bio']
+    user_info['bio'] if user_info
   end
 
   def release
-    user_info['release']
+    user_info['release'] if user_info
   end
 
   # INSTANCE METHODS
