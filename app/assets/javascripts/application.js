@@ -31,8 +31,8 @@ document.addEventListener("turbolinks:load", function(){
   for (var i = 0; i < customInputField.length; i++) {
 
     $(customInputField[i]).change(function(){
-      console.log('input field changed');
-      var imageName = customInputField[i].value();
+      console.log(this);
+      var imageName = this.value;
       $(this).next().text(imageName);
     });
 

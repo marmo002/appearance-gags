@@ -36,7 +36,25 @@ document.addEventListener("turbolinks:load", function(){
     }
 
     if (data.status == "success") {
+
       displayErrors( data.type, data.message);
+
+
+      if (data.avatar) {
+
+        var avatar_img = $('.avatar-card .card-img')[0];
+
+        if ( avatar_img ) {
+          avatar_img.src = data.avatar;
+        } else {
+          $('<div/>', {
+            class: 'col-md-4 pl-3 align-self-center'
+          })
+          .append("<img src='" + data.avatar + "' class='card-img'>")
+          .prependTo('.avatar-card .row');
+        }
+      }
+
     } else {
 
       displayErrors( 'danger', 'Please corrent errors');

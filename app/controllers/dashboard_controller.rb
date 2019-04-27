@@ -26,7 +26,8 @@ class DashboardController < ApplicationController
           render json: {
             status: "success",
             type: "primary",
-            message: "Profile updated successfully"
+            message: "Profile updated successfully",
+            avatar: url_for(current_user.avatar)
           }
         }
         format.html {
