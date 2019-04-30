@@ -9,6 +9,13 @@ document.addEventListener("turbolinks:load", function(){
   });
   // ADD RIGHT PARAMS TO URL WHEN CLICK ON DASHBOARD TAB
 
+  // GET NEXT URL FROM SUBMENU
+  function go_to_next_form(srcElement){
+    let nextUrl = $(srcElement).attr("data-next");
+    document.location = nextUrl;
+  }
+  // GET NEXT URL FROM SUBMENU
+
   // get dashboard tab from params and activate accordingtly
   var url_string = window.location.href;
   var url = new URL(url_string);
@@ -47,8 +54,6 @@ document.addEventListener("turbolinks:load", function(){
         .prependTo( card_box.children('.row') );
       }
     }
-
-
   });
 
   document.body.addEventListener('ajax:success', function(event) {
@@ -56,8 +61,10 @@ document.addEventListener("turbolinks:load", function(){
     var detail = event.detail;
     var data = detail[0], status = detail[1], xhr = detail[2];
     var srcElement = event.target;
-    var model = event.target.attributes.action.value.split('/')[1].split('_')[0];
-    console.log(data);
+    var model = srcElement.attributes.action.value.split('/')[1].split('_')[0];
+    console.log(event);
+    console.log("-------------");
+    console.log(model);
 
     var all_inputs = $(srcElement).find('.border_errors');
     for (var i = 0; i < all_inputs.length; i++) {
@@ -70,11 +77,20 @@ document.addEventListener("turbolinks:load", function(){
     }
 
     if (data.status == "success") {
-      // success message
-      displayMessages( data.type, data.message);
 
-      // empty passwordfields if they have text
-      $('#change_pass_form input[type="password"]').val('');
+      if (data.action) {
+
+        go_to_next_form(srcElement)
+
+      } else {
+
+        // success message
+        displayMessages( data.type, data.message);
+
+        // empty passwordfields if they have text
+        $('#change_pass_form input[type="password"]').val('');
+      }
+
 
     } else {
 
@@ -107,8 +123,12 @@ document.addEventListener("turbolinks:load", function(){
 
 
   function displayMessages(type, message){
-    var errorMessages = $('<div id="main-alerts" class="alert alert-' + type + ' flash-alerts" role="alert">'+ message +'</div>');
+    var errorMessages = $(
+      '<div id="main-alerts" class="alert alert-' + type + ' flash-alerts alert-dismissible fade show" role="alert">'+ message +'</div>'
+    );
     $('body').prepend(errorMessages);
+
+
 
     setTimeout(function(){ $('#main-alerts').remove() }, 4200);
 

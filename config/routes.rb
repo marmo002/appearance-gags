@@ -8,7 +8,15 @@ Rails.application.routes.draw do
   # post "users" => "users#create"
   # patch "users" => "users#update"
   resources :users
-  get "welcome" => "users#profile_creation", as: :welcome
+
+  get "welcome" => "welcome_form#profile_creation", as: :welcome
+  get "welcome_social" => "welcome_form#profile_social", as: :welcome_social
+  get "welcome_company" => "welcome_form#company_info", as: :welcome_company
+  get "welcome_release" => "welcome_form#release", as: :welcome_release
+
+  patch "user_welcome_update" => "welcome_form#user_update", as: :welcome_update
+  patch "user_welcome_finish" => "welcome_form#done_profile", as: :welcome_finish
+
   resources :bookings, only: [:index, :new, :show]
   post "bookings" => "bookings#create", as: :create_booking
 

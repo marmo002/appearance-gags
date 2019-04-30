@@ -1,0 +1,26 @@
+/*
+###############################
+    WelcomeForm styles
+###############################
+###############################
+*/
+
+#welcome__profile-form
+{
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  grid-column-gap: 10px;
+  width: 70%;
+  margin: 0 auto;
+}
+
+#welcome__profile-form .nav-link {
+  text-align: center;
+}
+
+#welcome-inputs-wrapper
+{
+  border: solid 1px var(--site-light-grey);
+  padding: 0 25px 25px;
+  border-radius: 15px;
+}

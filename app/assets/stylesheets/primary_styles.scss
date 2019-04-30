@@ -143,7 +143,7 @@ section
 
 label
 {
-  overflow: hidden;
+  // overflow: hidden;
 }
 
 form .form-group label {
@@ -174,10 +174,10 @@ form textarea
   width: 30vw;
   z-index: 1000;
   left: calc(50vw - 30vw/2);
-  opacity: 0;
-  animation-name: alertPop;
-  animation-duration: 4s;
-  animation-fill-mode: forwards;
+  // opacity: 0;
+  // animation-name: alertPop;
+  // animation-duration: 4s;
+  // animation-fill-mode: forwards;
 }
 
 .errors_container
