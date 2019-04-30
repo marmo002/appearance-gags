@@ -1,12 +1,15 @@
 class WelcomeFormController < ApplicationController
-  # before_action :is_new_user?
+  before_action :done_with_profile?
 
   def profile_creation
+
   end
 
 private
-  def is_new_user?
-    redirect_to dashboard_path unless session[:user_profile_setup]
+  def done_with_profile?
+    if current_user.profile_done
+      redirect_to dashboard_url
+    end
   end
 
 end

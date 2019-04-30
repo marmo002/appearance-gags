@@ -1,3 +1,18 @@
-// Place all the styles related to the WelcomeForm controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+/*
+###############################
+    WelcomeForm styles
+###############################
+###############################
+*/
+
+#welcome__profile-form
+{
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  width: 70%;
+  margin: 0 auto;
+}
+
+#welcome__profile-form .nav-link {
+    text-align: center;
+}
