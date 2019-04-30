@@ -11,8 +11,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      session[:user_profile_setup] = true
       redirect_to welcome_path
+      flash[:primary] = "Fill our initial form and accept release to start booking"
     else
      # flash[:alert] = "Please fix errors"
      render :new

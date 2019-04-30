@@ -4,13 +4,13 @@
       <div class="col-md-10">
 
         <%#= render 'welcome_form/partials/welcome_submenu' %>
-        <h2 class="custom-subtitle-1">Personal information</h2>
+        <h2 class="custom-subtitle-1">Company information</h2>
         <div class="tab-content" id="welcome-inputs-wrapper">
           <%= render 'dashboard/show_errors' %>
-          <div class="tab-pane fade show active" id="profile">
-            <!-- <h2>Personal information</h2> -->
-            <%= form_with model: current_user, url: welcome_update_path, html: { class: "customer-form", id: "user-profile-form", data: { next: welcome_social_path } } do |f| %>
-              <%= render 'dashboard/customerpartials/profileform', f: f %>
+          <div class="tab-pane fade show active" id="company-info">
+            <%= form_with model: current_user, url: welcome_update_path, html: { class: "customer-form", id: "user-profile-form", data: { next: welcome_release_path } } do |f| %>
+              <%= render 'dashboard/customerpartials/companyinfoform', f: f %>
+              <%= link_to "Back", welcome_social_path, class: "btn btn-primary"  %>
               <%= f.submit "Next", class: "btn btn-primary float-right", role: "button", data: { "disable-with": "Updating..." } %>
             <% end %>
           </div><!--profile-tab-->

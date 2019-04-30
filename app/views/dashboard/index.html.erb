@@ -32,12 +32,16 @@
             <% end %>
           </div><!--profile-tab-->
           <div class="tab-pane fade" id="user-social-media" role="tabpanel" aria-labelledby="personal-social-media-tab">
-            <h2>Personal social media</h2>
-            <%= render 'dashboard/customerpartials/personalsocialmediaform' %>
+            <%= form_with model: current_user, url: dashboard_update_path, id: 'user_socialmedia' do |f| %>
+              <%= render 'dashboard/customerpartials/personalsocialmediaform', f: f %>
+              <%= f.submit "Save", class: "btn btn-primary", role: "button" %>
+            <% end %>
           </div><!--personal-social-media-tab-->
           <div class="tab-pane fade" id="company_info" role="tabpanel" aria-labelledby="company-info-tab">
-            <h2>Company info</h2>
-            <%= render 'dashboard/customerpartials/companyinfoform' %>
+            <%= form_with model: current_user, url: dashboard_update_path do |f| %>
+              <%= render 'dashboard/customerpartials/companyinfoform', f: f %>
+              <%= f.submit "Save", class: "btn btn-primary", role: "button" %>
+            <% end %>
           </div><!--copmany-social-media-tab-->
           <div class="tab-pane fade" id="release" role="tabpanel" aria-labelledby="release-tab">
             <%= render 'dashboard/customerpartials/user_release_form' %>
