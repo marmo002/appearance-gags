@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   # post "users" => "users#create"
   # patch "users" => "users#update"
   resources :users
-  get "welcome" => "users#profile_creation", as: :welcome
+
+  get "welcome" => "welcome_form#profile_creation", as: :welcome
+  
   resources :bookings, only: [:index, :new, :show]
   post "bookings" => "bookings#create", as: :create_booking
 

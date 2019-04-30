@@ -19,11 +19,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def profile_creation
-    redirect_to dashboard_path unless session[:user_profile_setup]
-
-  end
-
   def show
     @user = User.find params[:id]
     @upcomming_bookings = @user.bookings.upcomming.first(10)
