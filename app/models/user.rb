@@ -18,6 +18,11 @@ class User < ApplicationRecord
 
   default_scope { order(id: :desc) }
 
+  # CLASS METHODS
+  def self.release_updated
+    User.update_all( {signed_release: false} )
+  end
+
   def full_name
     "#{first_name} #{last_name}"
   end

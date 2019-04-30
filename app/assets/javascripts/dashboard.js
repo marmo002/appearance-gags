@@ -1,4 +1,14 @@
 document.addEventListener("turbolinks:load", function(){
+  // ADD RIGHT PARAMS TO URL WHEN CLICK ON DASHBOARD TAB
+  $('.dashboard_navigation a').click(function(e){
+    let tabPage = this.id
+    $('#' + tabPage).tab('show');
+    // document.location.search = "?page=" + tabPage;
+
+    window.history.pushState("string", "Title", "?page=" + tabPage );
+  });
+  // ADD RIGHT PARAMS TO URL WHEN CLICK ON DASHBOARD TAB
+
   // get dashboard tab from params and activate accordingtly
   var url_string = window.location.href;
   var url = new URL(url_string);
@@ -9,64 +19,79 @@ document.addEventListener("turbolinks:load", function(){
   }
   // get dashboard tab from params and activate accordingtly
 
+  // VALIDATE IMAGE FILE INPUT WITH JS
+  $('input:file').change( function(){
+    var card_box = $(this).closest('.card');
+    var avatar_img = card_box.find('.card-img')[0];
+    var input_file = this.files[0]
+    var fileType = input_file["type"];
+    var validImageTypes = ["image/gif", "image/jpeg", "image/png"];
+
+    card_box.removeClass("border_errors");
+    card_box.find('small').hide();
+
+    if ($.inArray(fileType, validImageTypes) < 0) {
+      card_box.toggleClass("border_errors");
+      card_box.find('small').text('File is not an image');
+      card_box.find('small').show();
+    } else {
+      var img_src = window.URL.createObjectURL(input_file)
+
+      if ( avatar_img ) {
+        avatar_img.src = img_src;
+      } else {
+        $('<div/>', {
+          class: 'col-md-4 pl-3 align-self-center'
+        })
+        .append("<img src='" + img_src + "' class='card-img'>")
+        .prependTo( card_box.children('.row') );
+      }
+    }
+
+
+  });
+
   document.body.addEventListener('ajax:success', function(event) {
 
     var detail = event.detail;
     var data = detail[0], status = detail[1], xhr = detail[2];
-    console.log(detail);
-    console.log("--------------");
-    console.log("data: ");
+    var srcElement = event.target;
+    var model = event.target.attributes.action.value.split('/')[1].split('_')[0];
     console.log(data);
-    console.log("--------------");
-    console.log("status: ");
-    console.log(status);
-    console.log("--------------");
-    console.log("xhr: ");
-    console.log(xhr);
-    console.log("--------------");
 
-    var all_inputs = $('.border_errors');
+    var all_inputs = $(srcElement).find('.border_errors');
     for (var i = 0; i < all_inputs.length; i++) {
       $(all_inputs[i]).removeClass("border_errors");
     }
 
-    var all_small_tags = $('small');
+    var all_small_tags = $(srcElement).find('small.alert-text');
     for (var i = 0; i < all_small_tags.length; i++) {
       $(all_small_tags[i]).hide();
     }
 
     if (data.status == "success") {
+      // success message
+      displayMessages( data.type, data.message);
 
-      displayErrors( data.type, data.message);
-
-
-      if (data.avatar) {
-
-        var avatar_img = $('.avatar-card .card-img')[0];
-
-        if ( avatar_img ) {
-          avatar_img.src = data.avatar;
-        } else {
-          $('<div/>', {
-            class: 'col-md-4 pl-3 align-self-center'
-          })
-          .append("<img src='" + data.avatar + "' class='card-img'>")
-          .prependTo('.avatar-card .row');
-        }
-      }
+      // empty passwordfields if they have text
+      $('#change_pass_form input[type="password"]').val('');
 
     } else {
 
-      displayErrors( 'danger', 'Please corrent errors');
+      displayMessages( 'danger', 'Please fix errors');
 
       for (const elm_id of Object.keys(data)) {
-          console.log(elm_id, data[elm_id]);
-          var small_tag = $("#" + elm_id);
+          // console.log(elm_id, data[elm_id]);
+
+          var small_tag = $(srcElement).find("#" + elm_id);
           if (elm_id == "avatar") {
-            var input_tag = $(".avatar-card");
-          } else {
-            var input_tag = $("#user_" + elm_id);
+            var input_tag = $(srcElement).find(".avatar-card");
+          } else if (elm_id == "companylogo") {
+            var input_tag = $(srcElement).find(".companylogo-card");
+          }else {
+            var input_tag = $(srcElement).find("#"+model+"_" + elm_id);
           }
+          // console.log(input_tag);
 
           input_tag.toggleClass("border_errors");
 
@@ -81,7 +106,7 @@ document.addEventListener("turbolinks:load", function(){
   // ajax cycle for user dashboard profile form
 
 
-  function displayErrors(type, message){
+  function displayMessages(type, message){
     var errorMessages = $('<div id="main-alerts" class="alert alert-' + type + ' flash-alerts" role="alert">'+ message +'</div>');
     $('body').prepend(errorMessages);
 
@@ -90,13 +115,11 @@ document.addEventListener("turbolinks:load", function(){
   }
 
   // RELEASE TAB SIGNED BUTTON
-  $('#release-form').on("ajax:success", function(event, data, status, xhr){
-    let releaseParagraph = $('<p class="text-secondary d-inline-block">You already accepted our release</p>');
+  $('#release-form').on("ajax:success", function(event){
+    let releaseParagraph = $('<p class="text-secondary d-inline-block">Released signed. Thank you</p>');
     $('#release-form input[type="submit"]').remove();
-    $('#release-form').append( releaseParagraph );
-    $('#release-form').append( releaseParagraph );
-
-    displayErrors( 'primary', 'Profile updated successfully');
+    $('#release-form').prepend( releaseParagraph );
+    // $('#release-form').append( releaseParagraph );
   });
 
-});
+}); //turbolinks end

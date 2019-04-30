@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :authorized?, only: [:show]
 
   def new
+    redirect_to dashboard_url if logged_in?
     @user = User.new
   end
 
@@ -10,11 +11,17 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to dashboard_path
+      session[:user_profile_setup] = true
+      redirect_to welcome_path
     else
      # flash[:alert] = "Please fix errors"
      render :new
     end
+  end
+
+  def profile_creation
+    redirect_to dashboard_path unless session[:user_profile_setup]
+
   end
 
   def show

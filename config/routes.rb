@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   # post "users" => "users#create"
   # patch "users" => "users#update"
   resources :users
+  get "welcome" => "users#profile_creation", as: :welcome
   resources :bookings, only: [:index, :new, :show]
   post "bookings" => "bookings#create", as: :create_booking
 
@@ -18,5 +19,6 @@ Rails.application.routes.draw do
   get "admin" => "dashboard#admin_dashboard"
   patch "user_update" => "dashboard#user_update", as: :dashboard_update
   patch "company_update" => "dashboard#company_update", as: :company_update
+  patch "company_release_update" => "dashboard#release_update", as: :release_update
 
 end

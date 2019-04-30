@@ -1,14 +1,16 @@
-<%= form_for company, url: company_update_path do |f| %>
+<%= form_with model: company, url: company_update_path, id: 'admin-company-form' do |f| %>
 
   <div class="form-group">
      <%= f.label :name %>
      <%= f.text_field :name, class: "form-control", placeholder: "Company name", "aria-describedby" => "name-help" %>
      <small id="name-help" class="form-text text-muted">*Required field.</small>
+     <small id="name" class="alert-text m-1 text-danger">Company name error</small>
   </div>
 
   <div class="form-group">
      <%= f.label :address1 %>
      <%= f.text_field :address1, class: "form-control", placeholder: "Address 1" %>
+     <small id="address1" class="alert-text m-1 text-danger">Address1 error</small>
   </div>
 
   <div class="form-group">
@@ -19,26 +21,31 @@
   <div class="form-group">
      <%= f.label :city %>
      <%= f.text_field :city, class: "form-control", placeholder: "City" %>
+     <small id="city" class="alert-text m-1 text-danger">City error</small>
   </div>
 
   <div class="form-group">
      <%= f.label :province %>
      <%= f.text_field :province, class: "form-control", placeholder: "Province" %>
+     <small id="province" class="alert-text m-1 text-danger">Province error</small>
   </div>
 
   <div class="form-group">
      <%= f.label :postal_code %>
      <%= f.text_field :postal_code, class: "form-control", placeholder: "Postal code" %>
+     <small id="postal_code" class="alert-text m-1 text-danger">Province error</small>
   </div>
 
   <div class="form-group">
      <%= f.label :email %>
      <%= f.email_field :email, class: "form-control", placeholder: "E-mail" %>
+     <small id="email" class="alert-text m-1 text-danger">Email error</small>
   </div>
 
   <div class="form-group">
      <%= f.label :phone %>
      <%= f.telephone_field :phone, class: "form-control", placeholder: "phone" %>
+     <small id="phone" class="alert-text m-1 text-danger">Phone error</small>
   </div>
 
   <div class="form-group">

@@ -29,6 +29,11 @@ class ApplicationController < ActionController::Base
       flash[:warning] = "You must log in first."
       redirect_to new_user_url
     end
+
+    if session[:user_profile_setup]
+      flash[:warning] = "Please finished your profile set up."
+      redirect_to welcome_url
+    end
   end
 
   def authorized?
