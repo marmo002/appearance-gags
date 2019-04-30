@@ -18,8 +18,38 @@ class DashboardController < ApplicationController
     @past_bookings = Booking.past.first(10)
   end
 
-  def user_update
+  def release_update
+    respond_to do |format|
+      if company.update( params.require(:company).permit(:release) )
+        format.json {
+          render json: {
+            status: "success",
+            type: "primary",
+            message: "Info updated successfully",
+          }
+        }
+        format.html {
+          flash[:primary] = "New info was saved"
+          redirect_to dashboard_url
+        }
 
+        #updates all users signed_release = false
+        User.release_updated
+
+      else
+        format.json {
+          render json: company.errors
+         }
+        format.html {
+          flash[:danger] = "Please review form"
+          session[:user_errors] = company.errors.as_json(full_messages: true)
+          redirect_to dashboard_url
+        }
+      end
+    end
+  end
+
+  def user_update
     respond_to do |format|
       if current_user.update(user_params)
         format.json {
@@ -27,7 +57,8 @@ class DashboardController < ApplicationController
             status: "success",
             type: "primary",
             message: "Profile updated successfully",
-            avatar: url_for(current_user.avatar)
+            avatar: current_user.avatar.attached? ? url_for(current_user.avatar) : nil,
+            companylogo: current_user.companylogo.attached? ? url_for(current_user.companylogo) : nil
           }
         }
         format.html {
@@ -43,18 +74,35 @@ class DashboardController < ApplicationController
           redirect_back(fallback_location: dashboard_path)
         }
       end
-    end
+    end#respond_to end
   end
 
   def company_update
-    if company.update(company_params)
-      flash[:primary] = "New info was saved"
-      redirect_to dashboard_url
-    else
-      flash[:danger] = "Please review form"
-      session[:user_errors] = company.errors.as_json(full_messages: true)
-      redirect_to dashboard_url
-    end
+    respond_to do |format|
+      if company.update(company_params)
+        format.json {
+          render json: {
+            status: "success",
+            type: "primary",
+            message: "Info updated successfully",
+          }
+        }
+        format.html {
+          flash[:primary] = "New info was saved"
+          redirect_to dashboard_url
+        }
+      else
+        format.json {
+          render json: company.errors
+         }
+        format.html {
+          flash[:danger] = "Please review form"
+          session[:user_errors] = company.errors.as_json(full_messages: true)
+          redirect_to dashboard_url
+        }
+      end
+    end#respond_to end
+
 
   end
 

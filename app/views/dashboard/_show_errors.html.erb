@@ -1,0 +1,13 @@
+<% if session[:user_errors] %>
+  <div class="errors_container">
+    <% session[:user_errors].each do |errors, val| %>
+      <% val.each do |error| %>
+        <p class="text-danger" >
+          <span class="sr-only">Error:</span>
+          <%= error %>
+        </p>
+      <% end %>
+    <% end %>
+    <% session[:user_errors] = nil %>
+  </div>
+<% end %>

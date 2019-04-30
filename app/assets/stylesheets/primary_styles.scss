@@ -141,6 +141,11 @@ section
   padding: 50px 0;
 }
 
+label
+{
+  overflow: hidden;
+}
+
 form .form-group label {
   display: none;
 }

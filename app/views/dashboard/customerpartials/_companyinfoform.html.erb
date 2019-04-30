@@ -5,7 +5,7 @@
      <%= f.text_field :company_name, class: "form-control", placeholder: "Company name" %>
   </div>
 
-  <div class="card mb-3" style="max-width: 540px;">
+  <div class="card companylogo-card mb-3" style="max-width: 540px;">
     <div class="row no-gutters">
       <% if current_user.companylogo.attached? %>
       <div class="col-md-4 pl-3 align-self-center">
@@ -21,6 +21,7 @@
             <%= f.file_field :companylogo, class: "custom-file-input", "aria-describedby" => "image-help" %>
             <%= f.label :add_new_image, class: "custom-file-label" %>
           </div>
+          <small id="companylogo" class="alert-text m-1 text-danger">Image error</small>
         </div>
       </div>
     </div>

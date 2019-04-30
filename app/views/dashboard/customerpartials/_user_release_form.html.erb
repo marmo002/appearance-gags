@@ -1,0 +1,16 @@
+<div class="jumbotron">
+  <h1 class="display-4">Digital Media Video and Audio Recording Release</h1>
+  <hr class="my-4">
+    <%= company.release.html_safe %>
+</div>
+
+<%= form_with model: current_user, url: dashboard_update_path, id: "release-form" do |f| %>
+  <%= f.hidden_field :signed_release, value: true  %>
+  <% if current_user.signed_release %>
+    <p class="text-secondary d-inline-block">Released signed. Thank you</p>
+  <% else %>
+    <%= f.submit "I consent to the Personal Release (one time consent)", class: "btn btn-primary", role: "button" %>
+  <% end %>
+
+  <%= link_to "Send a copy...", root_path, class: "btn btn-primary ml-3", data: { "disable-with": "Updating..." } %>
+<% end %>
