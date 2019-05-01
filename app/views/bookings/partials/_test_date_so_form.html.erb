@@ -1,11 +1,11 @@
 
-<fieldset id="recording_date-field">
-  <legend class="custom-subtitle-1" >Pick a recording date</legend>
-  <h2 class="d-none">Recording date: <span id="recording_date_placeholder"></span></h2>
   <script>
 
     function hide_recording_date(id){
-      $('#' + id).hide();
+      if (id) {
+        $('#' + id).hide();
+        console.log("No embeded date picker");
+      }
     }
 
     // CHECK IF THERE IS A RECORDING DATE
@@ -38,36 +38,17 @@
         var recording_date = data['bookingInfo']['MeetingTimes'][0]['CustomerTime'];
         console.log(recording_date);
         console.log('---------------');
-        $('#recording_date').val(recording_date);
+        $('#recording_test_date').val(recording_date);
         console.log("---------------------------");
         console.log("RecordingDate ADDED TO Hidden input");
         console.log("---------------------------");
 
-        setUpDatesDivs("recording_date", "SOIDIV_GetAGripOnLighting", "recording_date_placeholder" );
-
-        var eventType = "<%= session[:type] %>";
-
-        if (eventType && eventType == "virtual"){
-          $.ajax({
-            url: "<%= url_for(get_test_form_path) %>",
-            context: document.body
-          }).done(function(response) {
-            console.log(response);
-            $('#test_date_so_form').html(response);
-            $('#test_date_alert_box').hide();
-            // tutorial.fadeIn(2000);
-          });
-        }
+        setUpDatesDivs("recording_test_date", "SOIDIV_GetAGripOnLife", "test_date_placeholder" );
 
       }
     }
   </script>
   <!-- ScheduleOnce embed START -->
-  <div id="SOIDIV_GetAGripOnLighting" data-so-page="GetAGripOnLighting" data-height="550" data-style="border: 1px solid #d8d8d8; min-width: 290px; max-width: 900px;" data-psz="11"></div>
+  <div id="SOIDIV_GetAGripOnLife" data-so-page="GetAGripOnLife" data-height="550" data-style="border: 1px solid #d8d8d8; min-width: 290px; max-width: 900px;" data-psz="11"></div>
   <script type="text/javascript" src="https://cdn.oncehub.com/mergedjs/so.js"></script>
   <!-- ScheduleOnce embed END -->
-  <%= booking.hidden_field :recording_date, id: "recording_date" %>
-  <script>
-    setUpDatesDivs("recording_date", "SOIDIV_GetAGripOnLighting", "recording_date_placeholder" );
-  </script>
-</fieldset>

@@ -62,6 +62,15 @@ class BookingsController < ApplicationController
     end
   end
 
+  def get_test_form
+    # respond_to do |format|
+    #   format.json {
+    #     render
+    #   }
+    # end
+    render partial: "bookings/partials/test_date_so_form"
+  end
+
 private
   def allowed_to_see_booking
 

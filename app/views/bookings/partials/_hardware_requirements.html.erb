@@ -29,7 +29,7 @@
           </div>
           <div class="col-md-8">
             <div class="card-body">
-              <p id="image-help" class="card-text m-0">
+              <p id="image-help" class="card-text">
                 With the computer and webbrowser you plan on broadcasting
                 from; visit
                 <a href="https://www.speedtest.net" target="_blank">
@@ -37,7 +37,7 @@
                 </a>
                 and enter results bellow
               </p>
-              <p class="card-text"><small class="text-muted">(at least 700px wide by 700px hight)</small></p>
+              <!-- <p class="card-text"><small class="text-muted">(at least 700px wide by 700px hight)</small></p> -->
               <%= booking.fields_for :hardware_requirements do |h_requirements| %>
                 <div class="form-group">
                    <%#= h_requirements.label :ping %>

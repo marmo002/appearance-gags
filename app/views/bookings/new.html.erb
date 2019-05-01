@@ -37,7 +37,7 @@
               <% end %>
             </ul>
           <% end %>
-          
+
           <!--recording date-->
           <%#= render 'bookings/partials/recording_date', booking: booking  %>
           <%= render 'bookings/partials/recording_date_so_form', booking: booking  %>
@@ -45,7 +45,22 @@
 
           <% if session[:type] == "virtual" %>
           <!--test date-->
-          <%= render 'bookings/partials/test_date', booking: booking  %>
+          <%#= render 'bookings/partials/test_date_so_form', booking: booking  %>
+          <fieldset id="test_date-field">
+            <legend class="custom-subtitle-1" >Pick a test date</legend>
+            <h2 class="d-none">Test date: <span id="test_date_placeholder"></span></h2>
+            <div id="test_date_alert_box" class="alert alert-warning" role="alert">
+              Pick a recording date first
+            </div>
+            <div id="test_date_so_form">
+              
+            </div>
+
+            <%= hidden_field :booking, :test_date, id: "recording_test_date" %>
+            <script>
+              setUpDatesDivs("recording_test_date", "SOIDIV_GetAGripOnLife", "test_date_placeholder" );
+            </script>
+          </fieldset>
           <!--test date-->
 
           <!--Hardware requirements-->
