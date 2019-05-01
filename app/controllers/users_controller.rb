@@ -2,6 +2,10 @@ class UsersController < ApplicationController
   before_action :require_login, only: [:index, :update]
   before_action :authorized?, only: [:show]
 
+  def index
+    @users = User.where.not(id: current_user.id).first(33)
+  end
+
   def new
     redirect_to dashboard_url if logged_in?
     @user = User.new

@@ -36,5 +36,25 @@ document.addEventListener("turbolinks:load", function(){
     });
   }
 
+  if (document.location.pathname == "/admin") {
+    var currentPage = "/dashboard";
+  } else {
+    var currentPage = document.location.pathname;
+  }
 
- });
+  console.log(currentPage);
+  console.log("----------");
+  const mainMenuAnchors = $('#main-menu a');
+  console.log(mainMenuAnchors);
+
+  for (var i = 0; i < mainMenuAnchors.length; i++) {
+    let currentValue = mainMenuAnchors[i].attributes[1].nodeValue;
+
+    if (currentValue && currentValue === currentPage) {
+
+      $(mainMenuAnchors[i]).addClass('active');
+    }
+
+  }
+
+});//turbolinks end

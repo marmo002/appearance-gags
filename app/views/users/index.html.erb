@@ -1,1 +1,36 @@
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <p>Total users <%= User.all.count %> users</p>
+        <p>Total users loaded <%= @users.count %> users</p>
+        <div class="row">
+          <div class="col-12">
+            <div class="card-columns">
+              <% @users.each do |user| %>
+              <div class="card mb-3">
+                <div class="card-body">
+                  <h5 class="card-title mb-0">
+                    <%= user.full_name %>
+                  </h5>
+                  <p class="card-text">
+                  <% if user.signed_release %>
+                  <span class="badge badge-success">Signed release</span>
+                  <% else %>
+                  <span class="badge badge-danger">Pending release</span>
+                  <% end %>
+                  </p>
+                  <h6 class="card-subtitle mb-3 text-muted"><%= user.email %></h6>
+                  <h6 class="card-subtitle mb-3 text-muted"><%= user.phone %></h6>
+                  <%= link_to "User profile", user_path(user), class: 'stretched-link' %>
+                </div>
+              </div>
+              <% end %>
+            </div><!-- card-columns-->
+          </div>
+        </div>
 
+      </div>
+    </div>
+  </div>
+</section>

@@ -117,6 +117,19 @@ h5
   text-align: center;
 }
 
+#admin-dashboard-submenu
+{
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  width: 90%;
+  margin: 0 auto;
+}
+
+#admin-dashboard-submenu .nav-link
+{
+  text-align: center;
+}
+
 .card-header
 {
   font-size: 13px;
