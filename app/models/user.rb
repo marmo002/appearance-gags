@@ -27,28 +27,26 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
-  def social_media_alt
-    new_r = {}
-    if is_hash?(social_media) && social_media.length > 0
-          social_media.each { |k, v|
-            next if v.empty?
-            if k == 'twitter'
-              v = 'twitter.com/' + v.gsub(/\W/, '')
-            elsif k == 'instagram'
-              v = 'instagram.com/' + v.gsub(/\W/, '')
-            end
-            new_r[k] = v
-          }
-          new_r
+  def get_hash_data(which_social)
+    case which_social
+    when "social_media"
+      hash_to_clean = self.social_media
+    when "company_social_media"
+      hash_to_clean = self.company_social_media
+    end
+
+    if hash_to_clean.class == Hash
+      hash_to_clean.reject { |k, v| v.empty? }
     else
       false
     end
   end
 
-  def company_social_media_alt
+  def get_social_media(user_attribute)
     new_r = {}
-    if is_hash?(company_social_media )&& company_social_media.length > 0
-          company_social_media.each { |k, v|
+    social_hash = get_hash_data(user_attribute)
+    if social_hash && social_hash.length > 0
+          social_hash.each { |k, v|
             next if v.empty?
             if k == 'twitter'
               v = 'twitter.com/' + v.gsub(/\W/, '')

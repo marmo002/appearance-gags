@@ -22,10 +22,10 @@
       <div class="card">
         <h4 class="card-header">Add company social media to show</h4>
           <div class="card-body">
-            <% if current_user.company_social_media_alt %>
+            <% if current_user.get_social_media("company_social_media") %>
               <%= booking.fields_for :user_info do |user_info| %>
                 <%= user_info.fields_for :company_social_media do |c_social_media| %>
-                  <% current_user.company_social_media_alt.each do |csm_name, csm_url| %>
+                  <% current_user.get_social_media("company_social_media").each do |csm_name, csm_url| %>
                     <div class="form-group">
                       <div class="custom-control custom-checkbox">
                         <%= c_social_media.check_box "company_#{csm_name}", {class: "custom-control-input", id: "company-#{csm_name}"}, "#{csm_url}" %>

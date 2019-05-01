@@ -43,10 +43,10 @@
         <h4 class="card-header">Add personal social media to show</h4>
         <div class="card-body">
 
-          <% if current_user.social_media_alt %>
+          <% if current_user.get_social_media("social_media") %>
             <%= booking.fields_for :user_info do |user_i| %>
               <%= user_i.fields_for :social_media do |social_media| %>
-                <% current_user.social_media_alt.each do |personal_social_name, personal_social_url| %>
+                <% current_user.get_social_media("social_media").each do |personal_social_name, personal_social_url| %>
                   <div class="form-group">
                     <div class="custom-control custom-checkbox">
                       <%= social_media.check_box personal_social_name, {class: "custom-control-input", id: "#{personal_social_name}"}, "#{personal_social_url}" %>
