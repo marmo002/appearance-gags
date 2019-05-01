@@ -30,9 +30,11 @@ class ApplicationController < ActionController::Base
       redirect_to new_user_url
     end
 
-    if current_user.profile_done == false
-      flash[:warning] = "Please finished your profile set up."
-      redirect_to welcome_url
+    if logged_in?
+      unless current_user.profile_done
+        flash[:warning] = "Please finished your profile set up."
+        redirect_to welcome_url
+      end
     end
   end
 

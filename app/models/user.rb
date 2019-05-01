@@ -29,17 +29,35 @@ class User < ApplicationRecord
 
   def social_media_alt
     new_r = {}
-    if is_hash? social_media
-      social_media.each { |k, v|
-        next if v.empty?
-        if k == 'twitter'
-          v = 'twitter.com/' + v.gsub(/\W/, '')
-        elsif k == 'instagram'
-          v = 'instagram.com/' + v.gsub(/\W/, '')
-        end
-        new_r[k] = v
-      }
-      new_r
+    if is_hash? social_media && social_media.length > 0
+          social_media.each { |k, v|
+            next if v.empty?
+            if k == 'twitter'
+              v = 'twitter.com/' + v.gsub(/\W/, '')
+            elsif k == 'instagram'
+              v = 'instagram.com/' + v.gsub(/\W/, '')
+            end
+            new_r[k] = v
+          }
+          new_r
+    else
+      false
+    end
+  end
+
+  def company_social_media_alt
+    new_r = {}
+    if is_hash? company_social_media && company_social_media.length > 0
+          social_media.each { |k, v|
+            next if v.empty?
+            if k == 'twitter'
+              v = 'twitter.com/' + v.gsub(/\W/, '')
+            elsif k == 'instagram'
+              v = 'instagram.com/' + v.gsub(/\W/, '')
+            end
+            new_r[k] = v
+          }
+          new_r
     else
       false
     end

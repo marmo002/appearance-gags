@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   patch "user_welcome_finish" => "welcome_form#done_profile", as: :welcome_finish
 
   resources :bookings, only: [:index, :new, :show]
+  get "booking_test_form" => "bookings#get_test_form", as: :get_test_form
   post "bookings" => "bookings#create", as: :create_booking
 
   resources :sessions, only: [:create]

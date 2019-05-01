@@ -1,6 +1,8 @@
-document.addEventListener("turbolinks:load", function(){
+$(function () {
 
-  $(function () {
+  document.addEventListener("turbolinks:load", function(){
+
+      // DATEPICKER OPTIONS
       $('#recording-datepicker').datetimepicker({
           format: 'L',
           disabledDates: [
@@ -11,6 +13,8 @@ document.addEventListener("turbolinks:load", function(){
           minDate: Date.now(),
           daysOfWeekDisabled: [0, 6]
       });
-  });
 
-});
+  });//end turbolinks
+
+
+});//end document.ready

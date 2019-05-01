@@ -8,6 +8,10 @@ class BookingsController < ApplicationController
 
   end
 
+  def in_studio
+    @show = params[:show]
+  end
+
   def new
     bookings_new_security
     @booking = Booking.new
@@ -29,11 +33,12 @@ class BookingsController < ApplicationController
       'bio' => current_user.bio,
       'release' => company.release
     }
-
     @booking.user_info = @booking.user_info.merge(user_info)
 
     if @booking.save
       flash[:primary] = "Booking created"
+      session[:show_name] = nil
+      session[:type] = nil
       redirect_to dashboard_url page: 'booking-history-tab'
     else
       render :new
@@ -55,6 +60,15 @@ class BookingsController < ApplicationController
       flash[:warning] = "Record does not exist"
       redirect_to dashboard_url
     end
+  end
+
+  def get_test_form
+    # respond_to do |format|
+    #   format.json {
+    #     render
+    #   }
+    # end
+    render partial: "bookings/partials/test_date_so_form"
   end
 
 private

@@ -5,8 +5,16 @@
         <div class="col-md-10">
           <div class="jumbotron jumbotron-fluid p-0">
             <div class="container">
-              <h2 class="display-4">Get a grip on <%= session[:show_name] %> - <%= session[:type] %>.</h2>
-              <p class="lead">Fill out the form bellow and make sure you add all required fields</p>
+              <h2 class="display-4">Get a grip studios</h2>
+              <!-- <p class="lead"> -->
+                <span class="badge badge-primary <%= session[:show_name] %>">
+                  <%= session[:show_name] %> Show
+                </span>
+                <span class='<%= session[:type] %>'>
+                  <%= session[:type] %> booking
+                </span>
+              <!-- </p> -->
+              <!-- <p class="lead">Fill out the form bellow and make sure you add all required fields</p> -->
             </div>
           </div>
         </div>
@@ -29,40 +37,56 @@
               <% end %>
             </ul>
           <% end %>
-            <!--Personal information-->
-            <%= render 'bookings/partials/personal_info', booking: booking  %>
-            <!--Personal information-->
 
-            <!--Company information-->
-            <%= render 'bookings/partials/company_info', booking: booking  %>
-            <!--Company information-->
+          <!--recording date-->
+          <%#= render 'bookings/partials/recording_date', booking: booking  %>
+          <%= render 'bookings/partials/recording_date_so_form', booking: booking  %>
+          <!--recording date-->
 
-            <!--recording date-->
-            <%#= render 'bookings/partials/recording_date', booking: booking  %>
-            <%= render 'bookings/partials/recording_date_so_form', booking: booking  %>
-            <!--recording date-->
-
-            <% if session[:type] == "virtual" %>
-            <!--test date-->
-            <%= render 'bookings/partials/test_date', booking: booking  %>
-            <!--test date-->
-
-            <!--Hardware requirements-->
-            <%= render 'bookings/partials/hardware_requirements', booking: booking  %>
-            <!--Hardware requirements-->
-            <% end %>
-
-            <!--currrent and accurate information-->
-            <div class="form-group">
-              <div class="form-check">
-                <%= booking.check_box :info_confirmation, {class: "form-check-input", id: "form_confirmation"} %>
-                <%= booking.label :info_confirmation,  booking_text[:confirmation], class: "form-check-label", for: "form_confirmation" %>
-              </div>
+          <% if session[:type] == "virtual" %>
+          <!--test date-->
+          <%#= render 'bookings/partials/test_date_so_form', booking: booking  %>
+          <fieldset id="test_date-field">
+            <legend class="custom-subtitle-1" >Pick a test date</legend>
+            <h2 class="d-none">Test date: <span id="test_date_placeholder"></span></h2>
+            <div id="test_date_alert_box" class="alert alert-warning" role="alert">
+              Pick a recording date first
             </div>
-            <!--currrent and accurate information-->
+            <div id="test_date_so_form">
+              
+            </div>
 
-            <%= booking.submit class: "btn btn-primary", role: "button" %>
+            <%= hidden_field :booking, :test_date, id: "recording_test_date" %>
+            <script>
+              setUpDatesDivs("recording_test_date", "SOIDIV_GetAGripOnLife", "test_date_placeholder" );
+            </script>
+          </fieldset>
+          <!--test date-->
+
+          <!--Hardware requirements-->
+          <%= render 'bookings/partials/hardware_requirements', booking: booking  %>
+          <!--Hardware requirements-->
           <% end %>
+
+          <!--Personal information-->
+          <%= render 'bookings/partials/personal_info', booking: booking  %>
+          <!--Personal information-->
+
+          <!--Company information-->
+          <%= render 'bookings/partials/company_info', booking: booking  %>
+          <!--Company information-->
+
+          <!--currrent and accurate information-->
+          <div class="form-group">
+            <div class="form-check">
+              <%= booking.check_box :info_confirmation, {class: "form-check-input", id: "form_confirmation"} %>
+              <%= booking.label :info_confirmation,  booking_text[:confirmation], class: "form-check-label", for: "form_confirmation" %>
+            </div>
+          </div>
+          <!--currrent and accurate information-->
+
+          <%= booking.submit class: "btn btn-primary", role: "button" %>
+        <% end %>
         </div>
       </div>
     </div><!--cardbody-->

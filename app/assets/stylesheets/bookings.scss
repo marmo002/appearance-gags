@@ -32,9 +32,15 @@ p.bookings-main .lighting
   background-color: var(--cyan);
 }
 
-p.bookings-main .life
+.badge.lighting
+{
+  font-size: 1rem;
+}
+
+.badge.life
 {
   background-color: var(--purple);
+  font-size: 1rem;
 }
 
 a.link_to_booking
@@ -60,10 +66,24 @@ p.booking-sub {
 
 .virtual
 {
+  display: inline-block;
   color: orange;
+  border: solid 1px orange;
+  padding: 0.25em 0.4em;
+  line-height: 1;
+  border-radius: 0.25rem;
+  margin-top: 5px;
+  font-size: 1rem;
 }
 
 .in-studio
 {
+  display: inline-block;
   color: #0052f7;
+  border: solid 1px #0052f7;
+  padding: 0.25em 0.4em;
+  line-height: 1;
+  border-radius: 0.25rem;
+  margin-top: 5px;
+  font-size: 1rem;
 }
