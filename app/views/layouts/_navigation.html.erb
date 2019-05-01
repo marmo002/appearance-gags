@@ -8,9 +8,9 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse" id="main-menu">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
+        <li class="nav-item">
           <%= link_to dashboard_path, class: "nav-link" do %>
             Dashboard
             <span class="sr-only">(current)</span>
@@ -19,6 +19,14 @@
         <% unless is_admin? %>
         <li class="nav-item">
           <%= link_to "Book show", bookings_path, class: "nav-link" %>
+        </li>
+        <% end %>
+        <% if is_admin? %>
+        <li class="nav-item">
+          <%= link_to "Users", users_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Bookings", bookings_list_path, class: "nav-link" %>
         </li>
         <% end %>
         <!-- <li class="nav-item dropdown">

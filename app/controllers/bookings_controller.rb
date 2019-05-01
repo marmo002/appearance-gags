@@ -1,5 +1,6 @@
 class BookingsController < ApplicationController
   before_action :require_login
+  before_action :authorized?, only: [:bookings_list]
   before_action :signed_release, only: [:new]
   before_action :redirect_admin, only: [:new]
   before_action :allowed_to_see_booking, only: [:show]
@@ -8,8 +9,9 @@ class BookingsController < ApplicationController
 
   end
 
-  def in_studio
-    @show = params[:show]
+  def bookings_list
+    @upcomming_bookings = Booking.upcomming.first(10)
+    @past_bookings = Booking.past.first(10)
   end
 
   def new

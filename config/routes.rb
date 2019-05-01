@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  root "dashboard#index"
+  root "bookings#index"
   # resources :users, except: [:destroy]
 
   get "calendar" => "calendarapi#index"
@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   patch "user_welcome_finish" => "welcome_form#done_profile", as: :welcome_finish
 
   resources :bookings, only: [:index, :new, :show]
+  get "bookings_list" => "bookings#bookings_list", as: :bookings_list
   get "booking_test_form" => "bookings#get_test_form", as: :get_test_form
   post "bookings" => "bookings#create", as: :create_booking
 
