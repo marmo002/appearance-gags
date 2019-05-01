@@ -8,6 +8,10 @@ class BookingsController < ApplicationController
 
   end
 
+  def in_studio
+    @show = params[:show]
+  end
+
   def new
     bookings_new_security
     @booking = Booking.new
@@ -29,11 +33,12 @@ class BookingsController < ApplicationController
       'bio' => current_user.bio,
       'release' => company.release
     }
-
     @booking.user_info = @booking.user_info.merge(user_info)
 
     if @booking.save
       flash[:primary] = "Booking created"
+      session[:show_name] = nil
+      session[:type] = nil
       redirect_to dashboard_url page: 'booking-history-tab'
     else
       render :new

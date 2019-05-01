@@ -28,6 +28,7 @@
       phone: "(416) 333 6554",
       role: "admin",
       signed_release: true,
+      profile_done: true,
       password: "password",
       password_confirmation: "password"
     )
@@ -50,12 +51,13 @@
 
     #USER ADMIN
     User.create(
-      first_name: "Martin",
-      last_name: "Maco",
-      email: "martin@mail.com",
-      phone: "(416) 939 6469",
+      first_name: "Admin",
+      last_name: "User",
+      email: "admin@mail.com",
+      phone: "(416) 000 0000",
       role: "admin",
       signed_release: true,
+      profile_done: true,
       password: "password",
       password_confirmation: "password"
     )
@@ -72,6 +74,6 @@
         password: "password",
         password_confirmation: "password"
       )
-
     end
+
   end
