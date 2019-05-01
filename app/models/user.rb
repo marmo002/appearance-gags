@@ -29,7 +29,7 @@ class User < ApplicationRecord
 
   def social_media_alt
     new_r = {}
-    if is_hash? social_media && social_media.length > 0
+    if is_hash?(social_media) && social_media.length > 0
           social_media.each { |k, v|
             next if v.empty?
             if k == 'twitter'
@@ -47,8 +47,8 @@ class User < ApplicationRecord
 
   def company_social_media_alt
     new_r = {}
-    if is_hash? company_social_media && company_social_media.length > 0
-          social_media.each { |k, v|
+    if is_hash?(company_social_media )&& company_social_media.length > 0
+          company_social_media.each { |k, v|
             next if v.empty?
             if k == 'twitter'
               v = 'twitter.com/' + v.gsub(/\W/, '')
