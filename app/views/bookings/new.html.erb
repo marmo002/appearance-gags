@@ -38,34 +38,46 @@
             </ul>
           <% end %>
 
-          <!--recording date-->
-          <%#= render 'bookings/partials/recording_date', booking: booking  %>
-          <%= render 'bookings/partials/recording_date_so_form', booking: booking  %>
-          <!--recording date-->
-
           <% if session[:type] == "virtual" %>
-          <!--test date-->
-          <%#= render 'bookings/partials/test_date_so_form', booking: booking  %>
-          <fieldset id="test_date-field">
-            <legend class="custom-subtitle-1" >Pick a test date</legend>
-            <h2 class="d-none">Test date: <span id="test_date_placeholder"></span></h2>
-            <div id="test_date_alert_box" class="alert alert-warning" role="alert">
-              Pick a recording date first
-            </div>
-            <div id="test_date_so_form">
-              
-            </div>
+            <!--test date-->
+            <%= render 'bookings/partials/test_date_so_form', booking: booking  %>
+            <!--test date-->
 
-            <%= hidden_field :booking, :test_date, id: "recording_test_date" %>
-            <script>
-              setUpDatesDivs("recording_test_date", "SOIDIV_GetAGripOnLife", "test_date_placeholder" );
-            </script>
-          </fieldset>
-          <!--test date-->
+            <!--recording date-->
+            <fieldset id="recording_date-field">
+              <legend class="custom-subtitle-1" >Pick a recording date</legend>
+              <h2 class="d-none">Recording date: <span id="recording_date_placeholder"></span></h2>
+              <div id="recording_date_alert_box" class="alert alert-warning" role="alert">
+                Pick a recording date first
+              </div>
+              <div id="recording_so_form">
+                <%#= render 'bookings/partials/recording_date_so_form', booking: booking  %>
+              </div>
+              <%= booking.hidden_field :recording_date, id: "recording_date" %>
+              <script>
+                setUpDatesDivs("recording_date", "SOIDIV_GetAGripOnLighting", "recording_date_placeholder" );
+              </script>
+            </fieldset>
+            <!--recording date-->
 
-          <!--Hardware requirements-->
-          <%= render 'bookings/partials/hardware_requirements', booking: booking  %>
-          <!--Hardware requirements-->
+            <!--Hardware requirements-->
+            <%= render 'bookings/partials/hardware_requirements', booking: booking  %>
+            <!--Hardware requirements-->
+
+          <% else %>
+            <!--recording date-->
+            <fieldset id="recording_date-field">
+              <legend class="custom-subtitle-1" >Pick a recording date</legend>
+              <h2 class="d-none">Recording date: <span id="recording_date_placeholder"></span></h2>
+              <div id="recording_so_form">
+                <%= render 'bookings/partials/recording_date_so_form', booking: booking  %>
+              </div>
+              <%= booking.hidden_field :recording_date, id: "recording_date" %>
+              <script>
+                setUpDatesDivs("recording_date", "SOIDIV_GetAGripOnLighting", "recording_date_placeholder" );
+              </script>
+            </fieldset>
+            <!--recording date-->
           <% end %>
 
           <!--Personal information-->

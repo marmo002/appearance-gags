@@ -1,6 +1,7 @@
-
+<fieldset id="test_date-field">
+  <legend class="custom-subtitle-1" >Pick a test date</legend>
+  <h2 class="d-none">Test date: <span id="test_date_placeholder"></span></h2>
   <script>
-
     function hide_recording_date(id){
       if (id) {
         $('#' + id).hide();
@@ -45,6 +46,17 @@
 
         setUpDatesDivs("recording_test_date", "SOIDIV_GetAGripOnLife", "test_date_placeholder" );
 
+
+        $.ajax({
+          url: "<%= url_for(get_recording_form_path) %>",
+          context: document.body
+        }).done(function(response) {
+          console.log(response);
+          $('#recording_so_form').html(response);
+          $('#recording_date_alert_box').hide();
+          // tutorial.fadeIn(2000);
+        });
+
       }
     }
   </script>
@@ -52,3 +64,8 @@
   <div id="SOIDIV_GetAGripOnLife" data-so-page="GetAGripOnLife" data-height="550" data-style="border: 1px solid #d8d8d8; min-width: 290px; max-width: 900px;" data-psz="11"></div>
   <script type="text/javascript" src="https://cdn.oncehub.com/mergedjs/so.js"></script>
   <!-- ScheduleOnce embed END -->
+  <%= booking.hidden_field :test_date, id: "recording_test_date" %>
+  <script>
+    setUpDatesDivs("recording_test_date", "SOIDIV_GetAGripOnLife", "test_date_placeholder" );
+  </script>
+</fieldset>

@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
   resources :bookings, only: [:index, :new, :show]
   get "bookings_list" => "bookings#bookings_list", as: :bookings_list
-  get "booking_test_form" => "bookings#get_test_form", as: :get_test_form
+  get "booking_recording_form" => "bookings#get_recording_form", as: :get_recording_form
   post "bookings" => "bookings#create", as: :create_booking
 
   resources :sessions, only: [:create]
