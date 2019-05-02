@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   # patch "users" => "users#update"
   resources :users
 
+
   get "welcome" => "welcome_form#profile_creation", as: :welcome
   get "welcome_social" => "welcome_form#profile_social", as: :welcome_social
   get "welcome_company" => "welcome_form#company_info", as: :welcome_company
@@ -30,5 +31,6 @@ Rails.application.routes.draw do
   patch "user_update" => "dashboard#user_update", as: :dashboard_update
   patch "company_update" => "dashboard#company_update", as: :company_update
   patch "company_release_update" => "dashboard#release_update", as: :release_update
+  get "send_release" => "dashboard#send_release", as: :send_release
 
 end
