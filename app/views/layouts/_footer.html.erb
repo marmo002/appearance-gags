@@ -1,10 +1,10 @@
 <footer>
   <div class="container">
     <div class="row">
-      <div class="col-3 align-self-center">
+      <div class="col-md-12 col-lg-3 align-self-center">
         <%= image_tag "main-logo", id: "footer-logo", alt: "get a grip studio footer logo" %>
       </div>
-      <div class="col-3">
+      <div class="col-md-4 col-lg-3">
         <div class="card">
           <div class="card-body">
             <h5 class="card-title"><%= company.name %></h5>
@@ -18,10 +18,9 @@
           </div>
         </div><!--card-->
       </div>
-      <div class="col-3">
+      <div class="col-md-4 col-lg-3">
         <div class="card">
           <div class="card-body">
-            <!-- <h5 class="card-title">Get A Grip Studiost</h5> -->
             <p class="card-text">
               Offering Creative Solutions For Podcasters & Advertisers
             </p>
@@ -29,7 +28,7 @@
           </div>
         </div><!--card-->
       </div>
-      <div class="col-3">
+      <div class="col-md-4 col-lg-3">
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">Social media</h5>
@@ -54,6 +53,10 @@
         </div><!--card-->
       </div>
     </div>
-    <p class="m-0 mt-3 footer-copyright">&#169; <%= DateTime.now.year %> Get A Grip Studios. All Rights Reserved.</p>
+    <div class="row">
+      <div class="col-12">
+        <p class="m-0 mt-3 footer-copyright">&#169; <%= DateTime.now.year %> Get A Grip Studios. All Rights Reserved.</p>
+      </div>
+    </div>
   </div>
 </footer>
