@@ -102,15 +102,15 @@ private
         errors.add(:hardware_requirements, "Please confirm you have proper webcam")
       end
 
-      if hardware_requirements['ping'].length < 2
+      if hardware_requirements['ping'].length < 1
         errors.add(:hardware_requirements, "Verify ping")
       end
 
-      if hardware_requirements['download'].length < 2
+      if hardware_requirements['download'].length < 1
         errors.add(:hardware_requirements, "Verify download")
       end
 
-      if hardware_requirements['upload'].length < 2
+      if hardware_requirements['upload'].length < 1
         errors.add(:hardware_requirements, "Verify upload")
       end
 
