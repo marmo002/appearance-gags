@@ -7,6 +7,23 @@ class UsersController < ApplicationController
     if params[:search] && !params[:search].empty?
       @users = User.search(params[:search], current_user.id)
     end
+
+    respond_to do |format|
+      format.json {
+        json_data = @users.map do |user|
+          {
+            "userId": user.id,
+            "userName": user.full_name,
+            "signed_release": user.signed_release,
+            "email": user.email,
+            "phone": user.phone
+          }
+        end
+        render json: json_data
+      }
+
+      format.html
+    end
   end
 
   def new

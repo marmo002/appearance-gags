@@ -42,11 +42,8 @@ document.addEventListener("turbolinks:load", function(){
     var currentPage = document.location.pathname;
   }
 
-  console.log(currentPage);
-  console.log("----------");
   const mainMenuAnchors = $('#main-menu a');
-  console.log(mainMenuAnchors);
-
+  
   for (var i = 0; i < mainMenuAnchors.length; i++) {
     let currentValue = mainMenuAnchors[i].attributes[1].nodeValue;
 
