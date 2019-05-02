@@ -49,6 +49,11 @@ class DashboardController < ApplicationController
     end
   end
 
+  def send_release
+    AppMailer.send_release_copy.deliver_now
+    redirect_to dashboard_url
+  end
+
   def user_update
     respond_to do |format|
       if current_user.update(user_params)
@@ -101,10 +106,9 @@ class DashboardController < ApplicationController
           redirect_to dashboard_url
         }
       end
-    end#respond_to end
+    end# respond_to end
 
-
-  end
+  end # company_update
 
 private
 
