@@ -23,6 +23,15 @@ class User < ApplicationRecord
     User.update_all( {signed_release: false} )
   end
 
+  def self.search(search_term, user_id)
+    by_name = where.not(id: user_id).where("lower(first_name) ILIKE ?", "%#{search_term.downcase}%").first(20)
+    by_last = where.not(id: user_id).where("lower(last_name) ILIKE ?", "%#{search_term.downcase}%").first(20)
+    by_email = where.not(id: user_id).where("lower(email) ILIKE ?", "%#{search_term.downcase}%").first(20)
+    # by_last = where("lower(last_name) ILIKE ?", "%#{search_term.downcase}%")
+    results = [by_name, by_last, by_email].flatten.uniq
+  end
+
+  # INSTANCE METHODS
   def full_name
     "#{first_name} #{last_name}"
   end

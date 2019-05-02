@@ -40,8 +40,8 @@
               <li class="list-group-item">
                 <p class="bookings-main">Social media</p>
               </li>
-              <% if @user.social_media_alt %>
-                <% @user.social_media_alt.each do |sm_name, sm_url| %>
+              <% if @user.get_social_media("social_media") %>
+                <% @user.get_social_media("social_media").each do |sm_name, sm_url| %>
                 <li class="list-group-item">
                   <a href="https://<%= sm_url %>" target="_blank"><%= sm_url %></a>
                 </li>
@@ -66,8 +66,8 @@
                 <%= tag.p "Company name: #{@user.company_name}", class: 'text-muted booking-sub' %>
               </li>
               <% end %>
-              <% if get_hash_data(@user.company_social_media) %>
-                <% get_hash_data(@user.company_social_media).each do |csm_name, csm_url|%>
+              <% if @user.get_social_media("company_social_media") %>
+                <% @user.get_social_media("company_social_media").each do |csm_name, csm_url|%>
                 <li class="list-group-item">
                   <a href="https://<%= csm_url %>" target="_blank"><%= csm_url %></a>
                 </li>

@@ -1,18 +1,28 @@
 <section>
   <div class="container">
-    <!-- <div class="row">
+    <div class="row">
       <div class="col-auto">
-        <form class="form-inline my-2 my-lg-0">
+        <!-- <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+          <button class="btn btn-outline-primary my-2" type="submit">Search</button>
+        </form> -->
+
+        <%= form_tag(users_path, method: :get, id: "search-form", class: "form-inline my-2 my-lg-0") do %>
+          <%= text_field_tag :search, params[:search], placeholder: "Search", class: "form-control mr-sm-2" %>
+          <%= submit_tag 'Search', name: nil, class: 'btn btn-outline-primary my-2' %>
+          <% if params[:search]%>
+            <%= link_to 'Clear', users_path, class: 'btn btn-outline-primary ml-2' %>
+          <% end %>
+        <% end %>
+
       </div>
-    </div> -->
+    </div>
     <!-- end row -->
     <div class="row">
       <div class="col-md-12">
         <p>Total users <%= User.all.count %> users</p>
         <p>Total users loaded <%= @users.count %> users</p>
+        <p>Class <%= @users.class %></p>
         <div class="row">
           <div class="col-12">
             <div class="card-columns">

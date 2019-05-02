@@ -3,7 +3,6 @@ class BookingsController < ApplicationController
   before_action :authorized?, only: [:bookings_list]
   before_action :signed_release, only: [:new]
   before_action :redirect_admin, only: [:new]
-  before_action :allowed_to_see_booking, only: [:show]
 
   def index
 

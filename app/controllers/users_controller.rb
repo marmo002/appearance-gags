@@ -4,6 +4,9 @@ class UsersController < ApplicationController
 
   def index
     @users = User.where.not(id: current_user.id).first(33)
+    if params[:search] && !params[:search].empty?
+      @users = User.search(params[:search], current_user.id)
+    end
   end
 
   def new
