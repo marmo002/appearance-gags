@@ -17,7 +17,7 @@ document.addEventListener("turbolinks:load", function(){
       console.log(clearButton);
       if (!clearButton) {
         let clickbutton = "<a id='clear_button' class='btn btn-outline-primary ml-2' href='/users'>Clear</a>";
-        $('#users_search').append(clickbutton);
+        $('#users_search_form').append(clickbutton);
       }
 
       $.ajax({

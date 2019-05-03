@@ -14,7 +14,7 @@
             </div>
           </li>
         </ul>
-        <%= form_tag(users_path, method: :get, id: "users_search", class: "form-inline my-2 my-lg-0") do %>
+        <%= form_tag(users_path, method: :get, id: "users_search_form", class: "form-inline my-2 my-lg-0") do %>
           <%= text_field_tag :search, params[:search], placeholder: "Search", id: "user_search_form", class: "form-control mr-sm-2", autofocus: true %>
           <%= submit_tag 'Search', name: nil, class: 'btn btn-outline-primary my-2' %>
           <% if params[:search]%>
