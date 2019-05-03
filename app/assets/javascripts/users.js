@@ -49,7 +49,6 @@ document.addEventListener("turbolinks:load", function(){
       });
     } // if statment search term not empty
 
-
   });//user_search_form end
 
 });//turbolinks end
