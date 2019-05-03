@@ -6,25 +6,22 @@ document.addEventListener("turbolinks:load", function(){
     // document.location.search = "?page=" + tabPage;
 
     window.history.pushState("string", "Title", "?page=" + tabPage );
-  });
-  // ADD RIGHT PARAMS TO URL WHEN CLICK ON DASHBOARD TAB
+  });// ADD RIGHT PARAMS TO URL WHEN CLICK ON DASHBOARD TAB
 
   // GET NEXT URL FROM SUBMENU
   function go_to_next_form(srcElement){
     let nextUrl = $(srcElement).attr("data-next");
     document.location = nextUrl;
-  }
-  // GET NEXT URL FROM SUBMENU
+  }// GET NEXT URL FROM SUBMENU
 
-  // get dashboard tab from params and activate accordingtly
+  // Get main menu item activated when on their page
   var url_string = window.location.href;
   var url = new URL(url_string);
   var tabName = url.searchParams.get("page");
 
   if (tabName) {
     $('#' + tabName).tab('show')
-  }
-  // get dashboard tab from params and activate accordingtly
+  }// get dashboard tab from params and activate accordingtly
 
   // VALIDATE IMAGE FILE INPUT WITH JS
   $('input:file').change( function(e){
@@ -59,8 +56,6 @@ document.addEventListener("turbolinks:load", function(){
       }
 
     }//check if any files -- end
-
-
 
   });
 
@@ -98,7 +93,6 @@ document.addEventListener("turbolinks:load", function(){
         // empty passwordfields if they have text
         $('#change_pass_form input[type="password"]').val('');
       }
-
 
     } else {
 

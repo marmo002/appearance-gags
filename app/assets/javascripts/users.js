@@ -1,9 +1,10 @@
 document.addEventListener("turbolinks:load", function(){
   // const userSearchInput =
   $("#user_search_form").keyup(function(e){
+    console.log(e);
 
     var keySearch = e.currentTarget.value;
-
+    console.log("------------");
     console.log(keySearch.length);
 
     if (keySearch.trim().length === 0) {
@@ -11,7 +12,9 @@ document.addEventListener("turbolinks:load", function(){
     }
 
     if (keySearch.trim().length > 0) {
-
+console.log(keySearch);
+console.log("------------");
+console.log("------------");
       $.ajax({
         url: "/users?utf8=✓&search=" + keySearch,
         method:'get',
@@ -21,7 +24,7 @@ document.addEventListener("turbolinks:load", function(){
         users_lists_container.html("");
 
         // console.log(response);
-        console.log(response.length);
+        // console.log(response.length);
         $('#loaded').text(response.length);
 
         response.map(function(user) {
