@@ -26,18 +26,6 @@ document.addEventListener("turbolinks:load", function(){
 
   $('#release-text-area').froalaEditor()
 
-  // ADD INPUT FILE IMAGE NAME TO IMAGE LABEL
-  var customInputField = $('.custom-file-input');
-  for (var i = 0; i < customInputField.length; i++) {
-    $(customInputField[i]).change(function(){
-      // console.log(this);
-      // console.log("-------------");
-
-      var imageName = this.value.slice(12);
-      $(this).next().text(imageName);
-    });
-  }
-
   if (document.location.pathname == "/admin") {
     var currentPage = "/dashboard";
   } else {

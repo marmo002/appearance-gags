@@ -12,9 +12,14 @@ document.addEventListener("turbolinks:load", function(){
     }
 
     if (keySearch.trim().length > 0) {
-console.log(keySearch);
-console.log("------------");
-console.log("------------");
+
+      let clearButton = document.getElementById('clear_button');
+      console.log(clearButton);
+      if (!clearButton) {
+        let clickbutton = "<a id='clear_button' class='btn btn-outline-primary ml-2' href='/users'>Clear</a>";
+        $('#users_search').append(clickbutton);
+      }
+
       $.ajax({
         url: "/users?utf8=✓&search=" + keySearch,
         method:'get',
