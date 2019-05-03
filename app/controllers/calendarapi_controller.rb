@@ -23,8 +23,8 @@ class CalendarapiController < ApplicationController
     # event = service.insert_event('primary', event, send_notifications: true)
     # puts "Created event '#{event.summary}' (#{event.id})"
 
-    # calendar_id = 'getagripmatt@gmail.com'
-    calendar_id = 'martin.st8n@gmail.com'
+    calendar_id = 'getagripmatt@gmail.com'
+    # calendar_id = 'martin.st8n@gmail.com'
     @response = service.list_events(
         calendar_id,
         max_results: 30,
