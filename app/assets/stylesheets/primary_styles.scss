@@ -172,6 +172,18 @@ label
   // overflow: hidden;
 }
 
+input,
+textarea
+{
+  font-weight: bold!important;
+}
+
+input::placeholder,
+textarea::placeholder
+{
+  font-weight: initial!important;
+}
+
 form .form-group label {
   display: none;
 }
