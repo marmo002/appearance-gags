@@ -186,6 +186,11 @@ form textarea
   resize: vertical;
 }
 
+small
+{
+  text-transform: initial;
+}
+
 @keyframes alertPop {
   0% {opacity: 0;}
   20% {opacity: 1;}
@@ -199,11 +204,17 @@ form textarea
   top: 90px;
   width: 35vw;
   z-index: 1000;
+  padding: 0.5rem 1rem;
   left: calc(50vw - 35vw/2);
-  // opacity: 0;
-  // animation-name: alertPop;
-  // animation-duration: 4s;
-  // animation-fill-mode: forwards;
+  opacity: 0;
+  animation-name: alertPop;
+  animation-duration: 4s;
+  animation-fill-mode: forwards;
+}
+
+.alert-dismissible .close
+{
+  padding: 0.5rem 1rem;
 }
 
 .errors_container

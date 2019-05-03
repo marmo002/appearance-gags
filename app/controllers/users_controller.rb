@@ -36,7 +36,7 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       redirect_to welcome_path
-      flash[:primary] = "Fill our initial form and accept release to start booking"
+      # flash[:primary] = "Fill our initial form and accept release to start booking"
     else
      # flash[:alert] = "Please fix errors"
      render :new

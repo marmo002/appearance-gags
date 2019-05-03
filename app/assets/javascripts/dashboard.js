@@ -27,33 +27,41 @@ document.addEventListener("turbolinks:load", function(){
   // get dashboard tab from params and activate accordingtly
 
   // VALIDATE IMAGE FILE INPUT WITH JS
-  $('input:file').change( function(){
+  $('input:file').change( function(e){
+
     var card_box = $(this).closest('.card');
     var avatar_img = card_box.find('.card-img')[0];
-    var input_file = this.files[0]
-    var fileType = input_file["type"];
-    var validImageTypes = ["image/gif", "image/jpeg", "image/png"];
 
-    card_box.removeClass("border_errors");
-    card_box.find('small').hide();
+    if (this.files.lenght > 0) {
+      var input_file = this.files[0]
+      var fileType = input_file["type"];
+      var validImageTypes = ["image/gif", "image/jpeg", "image/png"];
 
-    if ($.inArray(fileType, validImageTypes) < 0) {
-      card_box.toggleClass("border_errors");
-      card_box.find('small').text('File is not an image');
-      card_box.find('small').show();
-    } else {
-      var img_src = window.URL.createObjectURL(input_file)
+      card_box.removeClass("border_errors");
+      card_box.find('small').hide();
 
-      if ( avatar_img ) {
-        avatar_img.src = img_src;
+      if ($.inArray(fileType, validImageTypes) < 0) {
+        card_box.toggleClass("border_errors");
+        card_box.find('small').text('File is not an image');
+        card_box.find('small').show();
       } else {
-        $('<div/>', {
-          class: 'col-md-4 pl-3 align-self-center'
-        })
-        .append("<img src='" + img_src + "' class='card-img'>")
-        .prependTo( card_box.children('.row') );
+        var img_src = window.URL.createObjectURL(input_file)
+
+        if ( avatar_img ) {
+          avatar_img.src = img_src;
+        } else {
+          $('<div/>', {
+            class: 'col-md-4 pl-3 align-self-center'
+          })
+          .append("<img src='" + img_src + "' class='card-img'>")
+          .prependTo( card_box.children('.row') );
+        }
       }
-    }
+
+    }//check if any files -- end
+
+
+
   });
 
   document.body.addEventListener('ajax:success', function(event) {

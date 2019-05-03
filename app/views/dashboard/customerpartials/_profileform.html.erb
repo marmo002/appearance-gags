@@ -2,25 +2,27 @@
   <div class="col-md-6">
     <div class="form-group">
       <%= f.label :first_name %>
-      <%= f.text_field :first_name, class: "form-control", placeholder: "First name" %>
+      <%= f.text_field :first_name, class: "form-control", placeholder: "Your legal First name" %>
       <small id="first_name" class="alert-text m-1 text-danger">First name error</small>
+
     </div>
 
     <div class="form-group">
       <%= f.label :last_name %>
-      <%= f.text_field :last_name, class: "form-control", placeholder: "Last name" %>
+      <%= f.text_field :last_name, class: "form-control", placeholder: "Your legal last name" %>
       <small id="last_name" class="alert-text m-1 text-danger">Last name error</small>
     </div>
 
     <div class="form-group">
       <%= f.label :email %>
-      <%= f.email_field :email, class: "form-control", placeholder: "E-mail" %>
+      <%= f.email_field :email, class: "form-control", placeholder: "Your email (just between us, no spam)" %>
       <small id="email" class="alert-text m-1 text-danger">Email error</small>
+      <small id="" class="form-text text-muted mb-3">your email (just between us, no spam)</small>
     </div>
 
     <div class="form-group">
       <%= f.label :phone %>
-      <%= f.telephone_field :phone, class: "form-control", placeholder: "Phone", "aria-describedby" => "phone-help" %>
+      <%= f.telephone_field :phone, class: "form-control", placeholder: "Your phone # (just beetween us, no spam)", "aria-describedby" => "phone-help" %>
       <!-- <small id="phone-help" class="form-text text-muted">Phone must be in format (123) 456 7878.</small> -->
       <small id="phone" class="alert-text m-1 text-danger">Phone error</small>
     </div>
@@ -35,7 +37,9 @@
         <div class="col-md-8">
           <div class="card-body">
             <h5 class="card-title">Profile image</h5>
-            <p id="image-help" class="card-text">Try to upload a high resolution image.</p>
+            <p id="image-help" class="card-text">
+              Upload a picture of yourself that will be used to promote the show on the internet
+            </p>
             <!-- <p class="card-text"><small class="text-muted">(at least 700px wide by 700px hight)</small></p> -->
             <div class="custom-file">
               <%= f.file_field :avatar, class: "custom-file-input" %>
@@ -51,17 +55,17 @@
   <div class="col-md-6">
     <div class="form-group">
       <%= f.label :name_for_show %>
-      <%= f.text_field :name_for_show, id: "name_for_show", class: "form-control", placeholder: "Name on show" %>
+      <%= f.text_field :name_for_show, id: "name_for_show", class: "form-control", placeholder: "Your name as you want it to appear on the internet" %>
     </div>
 
     <div class="form-group">
       <%= f.label :title_for_show %>
-      <%= f.text_field :title_for_show, id: "title_for_show", class: "form-control", placeholder: "Title for show" %>
+      <%= f.text_field :title_for_show, id: "title_for_show", class: "form-control", placeholder: "Your title, what you call yourself" %>
     </div>
 
     <div class="form-group">
       <%= f.label :bio %>
-      <%= f.text_area :bio, id: "user_bio", class: "form-control", placeholder: "Your bio" %>
+      <%= f.text_area :bio, id: "user_bio", class: "form-control", placeholder: "Your bio, how you want yourself described in text on the internet. We may shorten or make minor edits" %>
     </div>
   </div><!-- end col--->
 </div><!-- end row-->

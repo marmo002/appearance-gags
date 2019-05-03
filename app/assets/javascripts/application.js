@@ -31,7 +31,9 @@ document.addEventListener("turbolinks:load", function(){
   for (var i = 0; i < customInputField.length; i++) {
     $(customInputField[i]).change(function(){
       // console.log(this);
-      var imageName = this.value;
+      // console.log("-------------");
+
+      var imageName = this.value.slice(12);
       $(this).next().text(imageName);
     });
   }
@@ -43,7 +45,7 @@ document.addEventListener("turbolinks:load", function(){
   }
 
   const mainMenuAnchors = $('#main-menu a');
-  
+
   for (var i = 0; i < mainMenuAnchors.length; i++) {
     let currentValue = mainMenuAnchors[i].attributes[1].nodeValue;
 
