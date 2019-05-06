@@ -127,8 +127,8 @@ private
       :bio,
       :company_name,
       :companylogo,
-      social_media: [ :profile, :facebook, :linkedin, :twitter, :instagram, :other ],
-      company_social_media: [ :website, :facebook, :linkedin, :twitter, :instagram, :other ]
+      social_media: [ :profile, :facebook, :linkedin, :twitter, :instagram, :youtube, :other ],
+      company_social_media: [ :website, :facebook, :linkedin, :twitter, :instagram, :youtube ]
     )
   end
 
