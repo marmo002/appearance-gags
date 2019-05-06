@@ -25,8 +25,8 @@ class WelcomeFormController < ApplicationController
     if params['user']['signed_release'] == "1"
       current_user.signed_release = true
       current_user.profile_done = true
-
       current_user.save
+      AppMailer.send_release_copy(current_user.id).deliver_now
 
       flash[:primary] = "Welcome to Get A Grip Studios"
       redirect_to dashboard_url
