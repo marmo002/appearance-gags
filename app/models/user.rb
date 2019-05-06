@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_one_attached :avatar
   has_one_attached :companylogo
 
-  has_many :bookings
+  has_many :bookings, dependent: :destroy
 
   validates :first_name, :last_name, :email, :phone, presence: true
   validates :email, uniqueness: true
