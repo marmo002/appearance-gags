@@ -50,7 +50,7 @@ class DashboardController < ApplicationController
   end
 
   def send_release
-    AppMailer.send_release_copy.deliver_now
+    AppMailer.send_release_copy(current_user, company.release).deliver_now
     redirect_to dashboard_url
   end
 

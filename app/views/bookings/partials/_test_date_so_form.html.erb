@@ -1,5 +1,7 @@
 <fieldset id="test_date-field">
-  <legend class="custom-subtitle-1" >Pick a test date</legend>
+  <legend class="custom-subtitle-1" >Pick a test date
+    <small id="" class="form-text text-muted mb-3">Keep in mind that your test must be scheduled before the recording date.</small>
+  </legend>
   <h2 class="d-none">Test date: <span id="test_date_placeholder"></span></h2>
   <script>
     function hide_recording_date(id){
@@ -45,7 +47,6 @@
         console.log("---------------------------");
 
         setUpDatesDivs("recording_test_date", "SOIDIV_GetAGripOnLife", "test_date_placeholder" );
-
 
         $.ajax({
           url: "<%= url_for(get_recording_form_path) %>",

@@ -28,7 +28,7 @@
                   <% current_user.get_social_media("company_social_media").each do |csm_name, csm_url| %>
                     <div class="form-group">
                       <div class="custom-control custom-checkbox">
-                        <%= c_social_media.check_box "company_#{csm_name}", {class: "custom-control-input", id: "company-#{csm_name}"}, "#{csm_url}" %>
+                        <%= c_social_media.check_box "company_#{csm_name}", {checked: true, class: "custom-control-input", id: "company-#{csm_name}"}, "#{csm_url}" %>
                         <%= c_social_media.label :csm_url, "#{csm_name}: #{csm_url}", class: "custom-control-label", for: "company-#{csm_name}" %>
                       </div>
                     </div>

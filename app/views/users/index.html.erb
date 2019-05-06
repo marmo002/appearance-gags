@@ -1,39 +1,40 @@
 <section>
   <div class="container">
-    <!-- <div class="row">
-      <div class="col-auto">
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+    <nav class="navbar navbar-expand navbar-light bg-light mb-4">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <div class="button-like-divs">
+              Total users <span id="totals" class="badge badge-light"><%= User.all.count %></span>
+            </div>
+          </li>
+          <li class="nav-item ml-2">
+            <div class="button-like-divs">
+              Users loaded <span id="loaded" class="badge badge-light"><%= @users.count %></span>
+            </div>
+          </li>
+        </ul>
+        <%= form_tag(users_path, method: :get, id: "users_search_form", class: "form-inline my-2 my-lg-0") do %>
+          <%= text_field_tag :search, params[:search], placeholder: "Search", id: "user_search_form", class: "form-control mr-sm-2", autofocus: true %>
+          <%= submit_tag 'Search', name: nil, class: 'btn btn-outline-primary my-2' %>
+          <% if params[:search]%>
+          <%= link_to 'Clear', users_path, id: "clear_button", class: 'btn btn-outline-primary ml-2' %>
+          <% end %>
+        <% end %>
       </div>
-    </div> -->
-    <!-- end row -->
+    </nav>
     <div class="row">
       <div class="col-md-12">
-        <p>Total users <%= User.all.count %> users</p>
-        <p>Total users loaded <%= @users.count %> users</p>
+
         <div class="row">
           <div class="col-12">
-            <div class="card-columns">
-              <% @users.each do |user| %>
-              <div class="card mb-3">
-                <div class="card-body">
-                  <h5 class="card-title mb-0">
-                    <%= user.full_name %>
-                  </h5>
-                  <p class="card-text">
-                  <% if user.signed_release %>
-                  <span class="badge badge-success">Signed release</span>
-                  <% else %>
-                  <span class="badge badge-danger">Pending release</span>
-                  <% end %>
-                  </p>
-                  <h6 class="card-subtitle mb-3 text-muted"><%= user.email %></h6>
-                  <h6 class="card-subtitle mb-3 text-muted"><%= user.phone %></h6>
-                  <%= link_to "User profile", user_path(user), class: 'stretched-link' %>
-                </div>
-              </div>
+            <div id="users_lists_container" class="card-columns">
+              <% unless @users.empty? %>
+              <%= render 'users/partials/users_list', users: @users  %>
+              <% else %>
+                <p class="lead">
+                  No results found
+                </p>
               <% end %>
             </div><!-- card-columns-->
           </div>

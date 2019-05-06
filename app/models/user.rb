@@ -16,13 +16,24 @@ class User < ApplicationRecord
 
   validate :image_validation, on: :update
 
-  default_scope { order(id: :desc) }
+  default_scope { order(first_name: :asc) }
 
   # CLASS METHODS
   def self.release_updated
     User.update_all( {signed_release: false} )
   end
 
+  def self.search(search_term, user_id)
+    by_name = where.not(id: user_id).where("first_name ILIKE ?", "%#{search_term}%").first(20)
+    by_last = where.not(id: user_id).where("last_name ILIKE ?", "%#{search_term}%").first(20)
+    by_email = where.not(id: user_id).where("email ILIKE ?", "%#{search_term}%").first(20)
+    by_phone = where.not(id: user_id).where("phone LIKE ?", "%#{search_term}%").first(20)
+    # by_last = where("lower(last_name) ILIKE ?", "%#{search_term.downcase}%")
+    results = [by_name, by_last, by_email, by_phone].flatten.uniq
+
+  end
+
+  # INSTANCE METHODS
   def full_name
     "#{first_name} #{last_name}"
   end

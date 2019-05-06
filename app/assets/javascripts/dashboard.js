@@ -1,60 +1,66 @@
 document.addEventListener("turbolinks:load", function(){
+
+  // -------------------------------------
   // ADD RIGHT PARAMS TO URL WHEN CLICK ON DASHBOARD TAB
+  // ------------------------------------- */
   $('.dashboard_navigation a').click(function(e){
-    let tabPage = this.id
+    let tabPage = this.id;
     $('#' + tabPage).tab('show');
-    // document.location.search = "?page=" + tabPage;
 
     window.history.pushState("string", "Title", "?page=" + tabPage );
-  });
-  // ADD RIGHT PARAMS TO URL WHEN CLICK ON DASHBOARD TAB
+  });// ADD RIGHT PARAMS TO URL WHEN CLICK ON DASHBOARD TAB
 
   // GET NEXT URL FROM SUBMENU
   function go_to_next_form(srcElement){
     let nextUrl = $(srcElement).attr("data-next");
     document.location = nextUrl;
-  }
-  // GET NEXT URL FROM SUBMENU
+  }// GET NEXT URL FROM SUBMENU
 
-  // get dashboard tab from params and activate accordingtly
+  // Get main menu item activated when on their page
   var url_string = window.location.href;
   var url = new URL(url_string);
   var tabName = url.searchParams.get("page");
 
   if (tabName) {
-    $('#' + tabName).tab('show')
-  }
-  // get dashboard tab from params and activate accordingtly
+    $('#' + tabName).tab('show');
+  }// get dashboard tab from params and activate accordingtly
 
   // VALIDATE IMAGE FILE INPUT WITH JS
-  $('input:file').change( function(){
+  $('input:file').change( function(e){
     var card_box = $(this).closest('.card');
     var avatar_img = card_box.find('.card-img')[0];
-    var input_file = this.files[0]
-    var fileType = input_file["type"];
-    var validImageTypes = ["image/gif", "image/jpeg", "image/png"];
 
-    card_box.removeClass("border_errors");
-    card_box.find('small').hide();
+    if (this.files.length > 0) {
 
-    if ($.inArray(fileType, validImageTypes) < 0) {
-      card_box.toggleClass("border_errors");
-      card_box.find('small').text('File is not an image');
-      card_box.find('small').show();
-    } else {
-      var img_src = window.URL.createObjectURL(input_file)
+      var input_file = this.files[0];
+      var fileType = input_file["type"];
+      var validImageTypes = ["image/gif", "image/jpeg", "image/png"];
+    // console.log(input_file.name);
+      $(this).next().text(input_file.name);
+      card_box.removeClass("border_errors");
+      card_box.find('small').hide();
 
-      if ( avatar_img ) {
-        avatar_img.src = img_src;
+      if ($.inArray(fileType, validImageTypes) < 0) {
+        card_box.toggleClass("border_errors");
+        card_box.find('small').text('File is not an image');
+        card_box.find('small').show();
       } else {
-        $('<div/>', {
-          class: 'col-md-4 pl-3 align-self-center'
-        })
-        .append("<img src='" + img_src + "' class='card-img'>")
-        .prependTo( card_box.children('.row') );
+        var img_src = window.URL.createObjectURL(input_file);
+
+        if ( avatar_img ) {
+          avatar_img.src = img_src;
+        } else {
+          $('<div/>', {
+            class: 'col-md-4 pl-3 align-self-center'
+          })
+          .append("<img src='" + img_src + "' class='card-img'>")
+          .prependTo( card_box.children('.row') );
+        }
       }
-    }
-  });
+
+    }//check if any files -- end
+
+  });//input:file change
 
   document.body.addEventListener('ajax:success', function(event) {
 
@@ -91,7 +97,6 @@ document.addEventListener("turbolinks:load", function(){
         $('#change_pass_form input[type="password"]').val('');
       }
 
-
     } else {
 
       displayMessages( 'danger', 'Please fix errors');
@@ -104,7 +109,7 @@ document.addEventListener("turbolinks:load", function(){
             var input_tag = $(srcElement).find(".avatar-card");
           } else if (elm_id == "companylogo") {
             var input_tag = $(srcElement).find(".companylogo-card");
-          }else {
+          } else {
             var input_tag = $(srcElement).find("#"+model+"_" + elm_id);
           }
           // console.log(input_tag);
@@ -127,8 +132,6 @@ document.addEventListener("turbolinks:load", function(){
       '<div id="main-alerts" class="alert alert-' + type + ' flash-alerts alert-dismissible fade show" role="alert">'+ message +'</div>'
     );
     $('body').prepend(errorMessages);
-
-
 
     setTimeout(function(){ $('#main-alerts').remove() }, 4200);
 

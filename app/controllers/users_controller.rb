@@ -4,6 +4,26 @@ class UsersController < ApplicationController
 
   def index
     @users = User.where.not(id: current_user.id).first(33)
+    if params[:search] && !params[:search].empty?
+      @users = User.search(params[:search], current_user.id)
+    end
+
+    respond_to do |format|
+      format.json {
+        json_data = @users.map do |user|
+          {
+            "userId": user.id,
+            "userName": user.full_name,
+            "signed_release": user.signed_release,
+            "email": user.email,
+            "phone": user.phone
+          }
+        end
+        render json: json_data
+      }
+
+      format.html
+    end
   end
 
   def new
@@ -16,7 +36,7 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       redirect_to welcome_path
-      flash[:primary] = "Fill our initial form and accept release to start booking"
+      # flash[:primary] = "Fill our initial form and accept release to start booking"
     else
      # flash[:alert] = "Please fix errors"
      render :new
