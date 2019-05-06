@@ -13,7 +13,6 @@
 ###############################
     general styles
 ###############################
-###############################
 */
 header, main, footer
 {
@@ -182,6 +181,28 @@ input::placeholder,
 textarea::placeholder
 {
   font-weight: initial!important;
+}
+
+#pass-field
+{
+  width: 80%;
+  float: left;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right: 0;
+}
+
+.attached-button
+{
+  float: left;
+  width: 20%;
+}
+
+.attached-button button
+{
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  width: 100%;
 }
 
 form .form-group label {

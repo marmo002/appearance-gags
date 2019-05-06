@@ -1,4 +1,27 @@
 document.addEventListener("turbolinks:load", function(){
+  //////////////////////////////////////
+  //    Reveal password on click
+  //////////////////////////////////////
+  function changeInputType(){
+    const passButton = $('#show-pass-button');
+
+    passButton.click(function(e){
+      let passInput = $('#pass-field');
+      if (passInput[0].type === "password"){
+        passInput[0].type = "text";
+        $('#pass-confirmation')[0].type = "text";
+        passButton.text('Hide');
+      } else {
+        passInput[0].type = "password";
+        $('#pass-confirmation')[0].type = "password";
+        passButton.text('Show');
+
+      }
+    });
+  }
+
+  changeInputType();
+
   // const userSearchInput =
   $("#user_search_form").keyup(function(e){
     console.log(e);
