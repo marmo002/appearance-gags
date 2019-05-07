@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get "bookings_list" => "bookings#bookings_list", as: :bookings_list
   get "booking_recording_form" => "bookings#get_recording_form", as: :get_recording_form
   post "bookings" => "bookings#create", as: :create_booking
+  get "bookings_alt" => "bookings#new_alt", as: :new_alt
 
   resources :sessions, only: [:create]
   delete 'logout' => 'sessions#destroy', as: :logout

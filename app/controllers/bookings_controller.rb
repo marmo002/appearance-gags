@@ -1,16 +1,26 @@
 class BookingsController < ApplicationController
   before_action :require_login
   before_action :authorized?, only: [:bookings_list]
-  before_action :signed_release, only: [:new]
+  before_action :signed_release, only: [:new, :new_alt]
   before_action :redirect_admin, only: [:new]
 
   def index
-
   end
 
-  def bookings_list
-    @upcomming_bookings = Booking.upcomming.first(10)
-    @past_bookings = Booking.past.first(10)
+  def show
+    @booking = Booking.find(params[:id]) if Booking.exists?(['id = ?', "#{params[:id]}"])
+
+    if @booking
+      @user = @booking.user
+      unless is_admin? || @user == current_user
+        flash[:danger] = "Not allowed to visit this page"
+        redirect_to dashboard_url
+        return
+      end
+    else
+      flash[:warning] = "Record does not exist"
+      redirect_to dashboard_url
+    end
   end
 
   def new
@@ -18,6 +28,10 @@ class BookingsController < ApplicationController
     @booking = Booking.new
     session[:show_name] = params[:show_name]
     session[:type] = params[:type]
+  end
+
+  def new_alt
+    @booking = Booking.new
   end
 
   def create
@@ -47,20 +61,9 @@ class BookingsController < ApplicationController
     end
   end
 
-  def show
-    @booking = Booking.find(params[:id]) if Booking.exists?(['id = ?', "#{params[:id]}"])
-
-    if @booking
-      @user = @booking.user
-      unless is_admin? || @user == current_user
-        flash[:danger] = "Not allowed to visit this page"
-        redirect_to dashboard_url
-        return
-      end
-    else
-      flash[:warning] = "Record does not exist"
-      redirect_to dashboard_url
-    end
+  def bookings_list
+    @upcomming_bookings = Booking.upcomming.first(10)
+    @past_bookings = Booking.past.first(10)
   end
 
   def get_recording_form
@@ -71,7 +74,7 @@ private
 
   def signed_release
     unless current_user.signed_release
-      flash[:warning] = "Please signed release before booking a show"
+      flash[:warning] = "Our release has been updated. Please read carefully and signed consent"
       redirect_to dashboard_url page: 'release-tab'
     end
   end

@@ -1,7 +1,25 @@
-<section>
+<section id="main-banner" class="banner-background-image">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
+        <div class="jumbotron jumbotron-fluid p-0">
+          <div class="container">
+            <h2 class="display-4">Get a grip studios</h2>
+            <!-- <p class="lead"> -->
+            <!-- </p> -->
+            <!-- <p class="lead">Fill out the form bellow and make sure you add all required fields</p> -->
+             <!-- <a class="btn btn-primary btn-lg mt-3" href="#" role="button">Book an appearance today!</a> -->
+             <%= link_to "Book an appearance today!", bookings_path, class: "btn btn-primary btn-lg mt-3", role: "button" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-10">
         <ul class="nav nav-pills mb-3 dashboard_navigation" id="pills-tab" role="tablist">
           <li class="nav-item">
             <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true">Profile</a>

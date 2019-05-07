@@ -90,7 +90,7 @@ private
 
   def type_virtual?
     booking_type == "virtual"
-  end
+  end#type_virtual?
 
   def harware_speed_requirements
 
@@ -126,6 +126,6 @@ private
         errors.add(:test_date, "can't be after recording date")
       end
     end
-  end
+  end#dates_cant_be_past_today
 
 end
