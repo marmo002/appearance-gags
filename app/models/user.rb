@@ -46,7 +46,7 @@ class User < ApplicationRecord
       hash_to_clean = self.company_social_media
     end
 
-    if hash_to_clean.class == Hash
+    if is_hash? hash_to_clean
       hash_to_clean.reject { |k, v| v.empty? }
     else
       false
@@ -63,6 +63,8 @@ class User < ApplicationRecord
               v = 'twitter.com/' + v.gsub(/\W/, '')
             elsif k == 'instagram'
               v = 'instagram.com/' + v.gsub(/\W/, '')
+            else
+              v = v.gsub(/https?:\/\//, '')
             end
             new_r[k] = v
           }
