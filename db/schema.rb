@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_08_144429) do
+ActiveRecord::Schema.define(version: 2019_05_08_153909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,9 +81,9 @@ ActiveRecord::Schema.define(version: 2019_05_08_144429) do
     t.text "bio"
     t.string "company_name"
     t.boolean "profile_done", default: false
-    t.string "legal_first"
-    t.string "legal_last"
-    t.datetime "dob"
+    t.string "legal_first", null: false
+    t.string "legal_last", null: false
+    t.datetime "dob", null: false
     t.string "company_legal"
     t.string "company_phone"
     t.string "company_address1"
