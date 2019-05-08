@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card-deck">
+      <%= booking.radio_button :show_name, "life", class: "pick-show-input d-none" %>
+      <%= booking.label "show_name_life", class: "card booking-labels lifeshow-label" do %>
+          <%=  image_tag 'getagripLifeLogo.jpeg', class: "card-img-top", alt: "get a grip life" %>
+          <div class="card-body">
+            <span class="gag-badge gag-primary-badge mb-3">
+              Life Show
+            </span>
+            <p class="card-text">
+              Come on over and feel free to be who you are, own your past and shape your future. This is the show where we talk about it.
+            </p>
+          </div>
+      <% end %><!--label-end-->
+
+      <%= booking.radio_button :show_name, "lighting", class: "pick-show-input d-none" %>
+      <%= booking.label "show_name_lighting", class: "card booking-labels lightingshow-label" do %>
+        <%=  image_tag 'getagripLightingLogo.jpeg', class: "card-img-top", alt: "get a grip life" %>
+        <div class="card-body">
+          <span class="gag-badge gag-primary-badge mb-3">
+            Lighting Show
+          </span>
+          <p class="card-text">
+            Lighting industry forum for people to get together and discuss many interesting subjects and issues.
+          </p>
+        </div>
+      <% end %><!--label-end-->
+    </div>
+  </div><!-- col -->
+</div>

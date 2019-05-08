@@ -1,6 +1,27 @@
+//GOT TO NEXT TAB WHEN CLICK ON BUTTON
+function bookingsNextTab(){
+  $(".bookings-next").on('click', function(e){
+    e.preventDefault()
+    let listTabId =  $(this).parent().attr('id');
+    let nextTab = $('a[href="#'+listTabId+'"]').next();
+    console.log( nextTab );
+    if (nextTab) {
+      $( nextTab ).tab('show')
+    } else {
+      console.log("bookings js: No next tab was found");
+    }
+  });
+}
+
 $(function () {
 
+  //GOT TO NEXT TAB WHEN CLICK ON BUTTON
+  bookingsNextTab();
+
   document.addEventListener("turbolinks:load", function(){
+
+    //GOT TO NEXT TAB WHEN CLICK ON BUTTON
+    bookingsNextTab();
 
       // DATEPICKER OPTIONS
       $('#recording-datepicker').datetimepicker({
@@ -14,7 +35,17 @@ $(function () {
           daysOfWeekDisabled: [0, 6]
       });
 
+
   });//end turbolinks
+
+
+  //WHEN CLICK ON RADIO BUTTON, ADD BORDER TO LABEL
+  // $('input[type=radio]').change(function(e){
+  //   let parentElement = $(this).parent();
+  //   let parentBorderColor = parentElement.css("border-color");
+  //   parentElement.css("border-color", parentBorderColor);
+  //
+  // });
 
 
 });//end document.ready

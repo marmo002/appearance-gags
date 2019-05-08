@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card-deck">
+      <%= booking.radio_button :booking_type, "in-studio", id: "booking_showtype_instudio", class: "pick-type-input d-none" %>
+      <%= booking.label "showtype_instudio", class: "card booking-labels in-studio-label" do %>
+          <div class="card-body">
+            <span class="gag-badge gag-secondary-badge mb-3">
+              in-studio booking
+            </span>
+            <p class="card-text">
+              Come on over and feel free to be who you are, own your past and shape your future. This is the show where we talk about it.
+            </p>
+          </div>
+      <% end %><!--label-end-->
+
+      <%= booking.radio_button :booking_type, "virtual", id: "booking_showtype_virtual", class: "pick-show-input d-none" %>
+      <%= booking.label "showtype_virtual", class: "card booking-labels virtual-label" do %>
+        <div class="card-body">
+          <span class="gag-badge gag-secondary-badge mb-3">
+            virtual booking
+          </span>
+          <p class="card-text">
+            Lighting industry forum for people to get together and discuss many interesting subjects and issues.
+          </p>
+        </div>
+      <% end %><!--label-end-->
+    </div>
+  </div><!-- col -->
+</div>

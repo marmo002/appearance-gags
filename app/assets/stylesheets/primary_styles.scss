@@ -122,6 +122,13 @@ h5
   grid-template-columns: repeat(6, auto);
   width: 90%;
   margin: 0 auto;
+  //Dashboard modifications V1
+  position: relative;
+  top: -34px;
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  border-bottom: solid 1px var(--site-light-grey);
 }
 
 #pills-tab .nav-link
@@ -173,7 +180,7 @@ section
 
 .banner-background-image
 {
-  
+
 }
 
 label

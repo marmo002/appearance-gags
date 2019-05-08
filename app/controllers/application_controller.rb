@@ -55,7 +55,7 @@ class ApplicationController < ActionController::Base
 
   def booking_text
     {
-      headphone: "I have over ear headphone with on-board over mouth microphone connected to your computer via USB port.",
+      headphone: "I have over ear headphone with on-board over mouth microphone connected to my computer via USB port.",
       webcam: "I have a webcam with the appropriate lighting and in a good recording environment (i.e no uncontrolled noises and where interruptions can be eliminated).",
       confirmation: "I confirm that the above information is current and accurate."
     }

@@ -9,12 +9,87 @@
   display: block;
 }
 
-// #booking-form small
-// {
-//   display: inline-block;
-//   margin-bottom: 1rem;
-//   padding-left: 20px;
-// }
+#booking-tab-content{
+  border: solid 1px var(--site-light-grey);
+  border-radius: 5px;
+  padding: 0 30px;
+}
+
+.bookings-next
+{
+  margin-top: 15px;
+}
+
+.booking-labels
+{
+  cursor: pointer;
+}
+
+.gag-badge
+{
+  display: inline-block;
+  padding: 0.25em 0.4em;
+  line-height: 1;
+  border-radius: 0.25rem;
+  margin-top: 5px;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.gag-primary-badge
+{
+  color: white;
+  background-color: grey;
+}
+
+.gag-secondary-badge
+{
+  background-color: initial;
+  color: grey;
+  border: solid 1px grey;
+}
+
+.lifeshow-label:hover,
+input[type='radio']:checked + .lifeshow-label,
+{
+  border: solid 1px var(--purple);
+}
+input[type='radio']:checked + .lifeshow-label .gag-primary-badge
+{
+  background-color: var(--purple);
+}
+
+.lightingshow-label:hover,
+input[type='radio']:checked + .lightingshow-label
+{
+  border: solid 1px var(--cyan);
+}
+input[type='radio']:checked + .lightingshow-label .gag-primary-badge
+{
+  background-color: var(--cyan);
+}
+
+.in-studio-label:hover,
+input[type='radio']:checked + .in-studio-label,
+{
+  border: solid 1px #0052f7;
+}
+input[type='radio']:checked + .in-studio-label .gag-secondary-badge
+{
+  border: solid 1px #0052f7;
+  color: #0052f7;
+}
+
+.virtual-label:hover,
+input[type='radio']:checked + .virtual-label,
+{
+  border: solid 1px orange;
+}
+input[type='radio']:checked + .virtual-label .gag-secondary-badge
+{
+  border: solid 1px orange;
+  color: orange;
+}
 
 p.bookings-main {
     font-weight: bold;
@@ -27,7 +102,7 @@ p.bookings-main .badge
   font-size: 15px;
 }
 
-p.bookings-main .lighting
+.lighting
 {
   background-color: var(--cyan);
 }
