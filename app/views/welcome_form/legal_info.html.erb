@@ -4,17 +4,17 @@
       <div class="col-md-10">
 
         <%#= render 'welcome_form/partials/welcome_submenu' %>
-        <h2 class="custom-subtitle-1">Step 3 of 7: Personal social media</h2>
+        <h2 class="custom-subtitle-1">Step 4 of 7: Legal information</h2>
         <p class="subtle_subtitle">Enter the social media you want us to promote on the show</p>
         <div class="progress mb-3">
-          <div class="progress-bar" role="progressbar" style="width: 42%;" aria-valuenow="42" aria-valuemin="0" aria-valuemax="100"> Initial intake 42%</div>
+          <div class="progress-bar" role="progressbar" style="width: 56%;" aria-valuenow="56" aria-valuemin="0" aria-valuemax="100"> Initial intake 56%</div>
         </div>
         <div class="tab-content" id="welcome-inputs-wrapper">
           <%= render 'dashboard/show_errors' %>
           <div class="tab-pane fade show active" id="personal-social-media">
-            <%= form_with model: current_user, url: welcome_update_path, html: { class: "customer-form", id: "user-profile-form", data: { next: welcome_legal_path } } do |f| %>
-              <%= render 'dashboard/customerpartials/personalsocialmediaform', f: f %>
-              <%= link_to "Back", welcome_profile_image_path, class: "btn btn-primary"  %>
+            <%= form_with model: current_user, url: welcome_update_path, html: { class: "customer-form", id: "user-profile-form", data: { next: welcome_company_path } } do |f| %>
+              <%= render 'welcome_form/partials/legal_info_form', f: f %>
+              <%= link_to "Back", welcome_social_path, class: "btn btn-primary"  %>
               <%= f.submit "Next", class: "btn btn-primary float-right", role: "button", data: { "disable-with": "Updating..." } %>
             <% end %>
           </div><!--profile-tab-->

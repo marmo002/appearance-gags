@@ -11,7 +11,9 @@ Rails.application.routes.draw do
 
 
   get "welcome" => "welcome_form#internet_profile", as: :welcome
+  get "welcome_profile_image" => "welcome_form#profile_image", as: :welcome_profile_image
   get "welcome_social" => "welcome_form#profile_social", as: :welcome_social
+  get "welcome_legal" => "welcome_form#legal_info", as: :welcome_legal
   get "welcome_company" => "welcome_form#company_info", as: :welcome_company
   get "welcome_release" => "welcome_form#release", as: :welcome_release
 

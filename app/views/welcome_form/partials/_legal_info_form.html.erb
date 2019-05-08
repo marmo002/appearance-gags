@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name, class: "form-control", placeholder: "Your legal First name" %>
+      <small id="first_name" class="alert-text m-1 text-danger">First name error</small>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name, class: "form-control", placeholder: "Your legal last name" %>
+      <small id="last_name" class="alert-text m-1 text-danger">Last name error</small>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :email %>
+      <%= f.email_field :email, class: "form-control", placeholder: "Your email (just between us, no spam)" %>
+      <small id="email" class="alert-text m-1 text-danger">Email error</small>
+      <small id="" class="form-text text-muted mb-3">your email (just between us, no spam)</small>
+    </div>
+
+  </div><!-- end col--->
+
+  <div class="col-md-6">
+
+  </div><!-- end col--->
+</div><!-- end row-->

@@ -1,15 +1,24 @@
 class WelcomeFormController < ApplicationController
+  rescue_from ActionController::ParameterMissing do |exception|
+    json_response({ message: error }, :unprocessable_entity)
+  end
+
   before_action :done_with_profile?
 
   def internet_profile
     # session[:welcome_process] = session[:welcome_process] || "profile_creation"
   end
 
+  def profile_image
+    # session[:welcome_process] = session[:welcome_process] || "profile_creation"
+  end
+
   def profile_social
-    # case session[:welcome_process]
-    # when 1
-    #   redirect_to welcome_path
-    # end
+
+  end
+
+  def legal_info
+
   end
 
   def company_info
@@ -54,7 +63,6 @@ class WelcomeFormController < ApplicationController
           flash[:primary] = "Profile updated successfully"
           redirect_back(fallback_location: welcome_path)
         }
-        # format.js
       else
         format.json { render json: current_user.errors }
         format.html {

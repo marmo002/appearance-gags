@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_01_113437) do
+ActiveRecord::Schema.define(version: 2019_05_08_144429) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,6 +81,16 @@ ActiveRecord::Schema.define(version: 2019_05_01_113437) do
     t.text "bio"
     t.string "company_name"
     t.boolean "profile_done", default: false
+    t.string "legal_first"
+    t.string "legal_last"
+    t.datetime "dob"
+    t.string "company_legal"
+    t.string "company_phone"
+    t.string "company_address1"
+    t.string "company_address2"
+    t.string "company_city"
+    t.string "company_province"
+    t.string "company_postalcode"
     t.index ["email"], name: "index_users_on_email"
   end
 

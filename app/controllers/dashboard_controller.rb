@@ -33,7 +33,7 @@ class DashboardController < ApplicationController
           redirect_to dashboard_url
         }
 
-        #updates all users signed_release = false
+        #updates all users to signed_release = false
         User.release_updated
 
       else
