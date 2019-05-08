@@ -1,9 +1,9 @@
 class ChangeTableUsers < ActiveRecord::Migration[5.2]
   def change
     change_table :users do |t|
-      t.string :legal_first, null: false
-      t.string :legal_last, null: false
-      t.datetime :dob, null: false
+      t.string :legal_first
+      t.string :legal_last
+      t.datetime :dob
 
       t.string :company_legal
       t.string :company_phone
