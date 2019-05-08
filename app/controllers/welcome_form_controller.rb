@@ -1,7 +1,7 @@
 class WelcomeFormController < ApplicationController
   before_action :done_with_profile?
 
-  def profile_creation
+  def internet_profile
     # session[:welcome_process] = session[:welcome_process] || "profile_creation"
   end
 

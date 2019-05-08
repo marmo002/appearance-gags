@@ -295,7 +295,7 @@ fieldset
 {
   text-transform: uppercase;
   font-weight: bold;
-  margin-bottom: 1rem;
+  margin-bottom: 0;
   color: var(--site-dark-grey);
   position: relative;
   padding: 0 10px;
@@ -303,6 +303,13 @@ fieldset
   max-width: fit-content;
   width: auto;
   background-color: white;
+}
+
+.subtle_subtitle {
+  padding: 0 10px;
+  color: dimgrey;
+  font-weight: bold;
+  font-size: 1rem;
 }
 
 // .custom-subtitle-1::before
