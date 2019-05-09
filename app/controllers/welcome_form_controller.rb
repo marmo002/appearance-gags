@@ -5,6 +5,10 @@ class WelcomeFormController < ApplicationController
 
   before_action :done_with_profile?
 
+  def legal_info
+
+  end
+
   def internet_profile
     # session[:welcome_process] = session[:welcome_process] || "profile_creation"
   end
@@ -17,11 +21,11 @@ class WelcomeFormController < ApplicationController
 
   end
 
-  def legal_info
+  def company_legal
 
   end
 
-  def company_info
+  def company_social
 
   end
 
@@ -47,9 +51,15 @@ class WelcomeFormController < ApplicationController
   end
 
   def user_update
+
+    if params['has_company']
+      session[:has_company] = true
+    else
+      session[:has_company] = nil
+    end
+
     respond_to do |format|
-      current_user.attributes = user_params
-      if current_user.save
+      if current_user.update(user_params)
         format.json {
           render json: {
             status: "success",

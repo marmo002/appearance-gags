@@ -42,6 +42,10 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
+  def dob_formatted
+    dob.strftime("%B %d, %Y")
+  end
+
   def get_hash_data(which_social)
     case which_social
     when "social_media"

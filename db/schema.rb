@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 2019_05_09_130742) do
     t.text "bio"
     t.string "company_name"
     t.boolean "profile_done", default: false
-    t.datetime "dob"
+    t.date "dob"
     t.string "company_legal_name"
     t.string "company_phone"
     t.string "company_address1"

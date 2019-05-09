@@ -1,7 +1,7 @@
 class ChangeTableUsers < ActiveRecord::Migration[5.2]
   def self.up
     change_table :users do |t|
-      t.datetime :dob
+      t.date :dob
 
       t.string :company_legal_name
       t.string :company_phone
