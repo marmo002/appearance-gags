@@ -6,7 +6,8 @@ class User < ApplicationRecord
 
   has_many :bookings, dependent: :destroy
 
-  validates :first_name, :last_name, :email, :phone, presence: true
+  validates :email, :phone, presence: true
+  validates :first_name, :last_name, :dob, presence: true, on: :update
   validates :email, uniqueness: true
   # validates :phone, format:{
   #   with: /\A\(\d{3}\).\d{3}.\d{4}\z/,
@@ -14,8 +15,11 @@ class User < ApplicationRecord
   # }
   validates :password, length: { minimum: 6 }, on: :create
 
+  # CUSTOM VALIDATIONS
   validate :image_validation, on: :update
+  # validate :legal_info
 
+  # SCOPES
   default_scope { order(first_name: :asc) }
 
   # CLASS METHODS
@@ -93,6 +97,25 @@ private
         errors.add :companylogo, 'File is not an image'
       end
     end
+  end
+
+  # Custom validation for legal_first, legal_last, and dob
+  def legal_info
+    # unless first_name == nil
+    #   if first_name.empty?
+    #     errors.add :legal_first, first_name
+    #   end
+    # end
+    #
+    # if legal_last.empty?
+    #   errors.add :legal_last, 'Need a legal last name'
+    # end
+    #
+    # if dob
+    #   if dob.empty?
+    #     errors.add :dob, 'Please add your date of birth'
+    #   end
+    # end
   end
 
   # IMAGE VALIDATION VALIDATES IT IMAGE AND IT'S A LEATS 700PX WIDE

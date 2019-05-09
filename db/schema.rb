@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_08_153909) do
+ActiveRecord::Schema.define(version: 2019_05_09_130742) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,8 +65,8 @@ ActiveRecord::Schema.define(version: 2019_05_08_153909) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "first_name", null: false
-    t.string "last_name", null: false
+    t.string "first_name"
+    t.string "last_name"
     t.string "email", null: false
     t.string "phone", null: false
     t.string "password_digest", null: false
@@ -81,10 +81,8 @@ ActiveRecord::Schema.define(version: 2019_05_08_153909) do
     t.text "bio"
     t.string "company_name"
     t.boolean "profile_done", default: false
-    t.string "legal_first"
-    t.string "legal_last"
     t.datetime "dob"
-    t.string "company_legal"
+    t.string "company_legal_name"
     t.string "company_phone"
     t.string "company_address1"
     t.string "company_address2"
@@ -92,6 +90,9 @@ ActiveRecord::Schema.define(version: 2019_05_08_153909) do
     t.string "company_province"
     t.string "company_postalcode"
     t.index ["email"], name: "index_users_on_email"
+    t.index ["first_name"], name: "index_users_on_first_name"
+    t.index ["last_name"], name: "index_users_on_last_name"
+    t.index ["phone"], name: "index_users_on_phone"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

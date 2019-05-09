@@ -1,7 +1,7 @@
 function datePicker(conatinerId){
   // DATEPICKER OPTIONS
   $('#' + conatinerId).datetimepicker({
-    viewMode: 'decades',
+    viewMode: 'years',
     format: 'DD/MM/YYYY'
   });
 }

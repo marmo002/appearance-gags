@@ -55,9 +55,7 @@
     #USER ADMIN
     User.create(
       first_name: "Admin",
-      legal_first: "Admin",
       last_name: "User",
-      legal_last: "User",
       dob: "1987-07-01 00:00:00 +0000",
       email: "admin@mail.com",
       phone: "(416) 000 0000",
@@ -74,9 +72,7 @@
       first_name = Faker::Name.unique.first_name
       User.create(
         first_name: first_name,
-        legal_first: first_name,
         last_name: Faker::Name.last_name,
-        legal_last: Faker::Name.last_name,
         dob: Faker::Date.birthday(18, 65),
         email: "#{first_name.downcase}@mail.com",
         phone: phone,

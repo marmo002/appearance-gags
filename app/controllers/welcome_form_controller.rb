@@ -48,7 +48,8 @@ class WelcomeFormController < ApplicationController
 
   def user_update
     respond_to do |format|
-      if current_user.update(user_params)
+      current_user.attributes = user_params
+      if current_user.save
         format.json {
           render json: {
             status: "success",
@@ -85,6 +86,7 @@ private
     params.require(:user).permit(
       :first_name,
       :last_name,
+      :dob,
       :email,
       :phone,
       :avatar,
