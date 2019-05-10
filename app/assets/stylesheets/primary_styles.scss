@@ -239,6 +239,48 @@ form textarea
 small
 {
   text-transform: initial;
+  padding: 0 10px;
+}
+
+.gag-form-group
+{
+  margin-bottom: 10px;
+}
+
+.input_wrapper
+{
+  border: solid 1px #ced4da;
+  background-color: #e9ecef;
+  width: 36px;
+  height: 36px;
+  float: left;
+  position: relative;
+  border-radius: 3px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right-width: 0;
+}
+
+.gag-checkbox
+{
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  left: 50%;
+  margin-left: -5px;
+  top: 50%;
+  margin-top: -6px;
+}
+
+.gag-checkbox-label
+{
+  display: inline-block;
+  padding: 5px 20px;
+  border: solid 1px #ced4da;
+  background-color: #e9ecef;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  color: #495057;
 }
 
 @keyframes alertPop {
@@ -303,6 +345,13 @@ fieldset
   max-width: fit-content;
   width: auto;
   background-color: white;
+}
+
+.subtle_subtitle {
+  padding: 0 10px;
+  color: dimgrey;
+  font-weight: bold;
+  font-size: 1rem;
 }
 
 // .custom-subtitle-1::before

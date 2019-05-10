@@ -23,7 +23,10 @@
     #USER ADMIN
     User.create(
       first_name: "Michael",
+      legal_first: "Michael",
       last_name: "Colligan",
+      legal_last: "Colligan",
+      dob: "1977-07-01 00:00:00 +0000",
       email: "michael@mail.com",
       phone: "(416) 333 6554",
       role: "admin",
@@ -53,6 +56,7 @@
     User.create(
       first_name: "Admin",
       last_name: "User",
+      dob: "1987-07-01",
       email: "admin@mail.com",
       phone: "(416) 000 0000",
       role: "admin",
@@ -67,8 +71,9 @@
       phone = "(#{Faker::PhoneNumber.area_code}) #{Faker::PhoneNumber.exchange_code} #{Faker::PhoneNumber.subscriber_number}"
       first_name = Faker::Name.unique.first_name
       User.create(
-        first_name: first_name,
-        last_name: Faker::Name.last_name,
+        # first_name: first_name,
+        # last_name: Faker::Name.last_name,
+        # dob: Faker::Date.birthday(18, 65),
         email: "#{first_name.downcase}@mail.com",
         phone: phone,
         password: "password",

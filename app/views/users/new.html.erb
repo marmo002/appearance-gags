@@ -20,16 +20,6 @@
               <% end %>
 
               <div class="form-group">
-                 <%= f.label :first_name %>
-                 <%= f.text_field :first_name, class: "form-control", placeholder: "First name" %>
-              </div>
-
-              <div class="form-group">
-                 <%= f.label :last_name %>
-                 <%= f.text_field :last_name, class: "form-control", placeholder: "Last name" %>
-              </div>
-
-              <div class="form-group">
                  <%= f.label :email %>
                  <%= f.email_field :email, class: "form-control", placeholder: "E-mail" %>
               </div>
@@ -44,7 +34,7 @@
                   <%#= f.label :password %>
                   <%= f.password_field :password, id: "pass-field", class: "form-control", placeholder: "Your password", "aria-describedby" => "password-help" %>
                   <div class="attached-button">
-                    <button class="btn btn-outline-secondary" type="button" id="show-pass-button">Show</button>
+                    <button class="btn btn-outline-secondary" type="button" id="show-pass-button" tabIndex="-1">Show</button>
                   </div>
                   <small id="password-help" class="form-text text-muted">Password must be at least 6 characters.</small>
               </div>

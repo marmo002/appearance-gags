@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card mb-3 avatar-card" style="max-width: 100%;">
+      <div class="row no-gutters">
+        <% if current_user.avatar.attached? %>
+        <div class="col-md-4 pl-3 align-self-center">
+          <%= image_tag current_user.avatar, class: "card-img" %>
+        </div>
+        <% end %>
+        <div class="col-md-7">
+          <div class="card-body">
+            <h5 class="card-title">Profile image</h5>
+            <p id="image-help" class="card-text">
+              Upload a picture of yourself that will be used to promote the show on the internet
+            </p>
+            <!-- <p class="card-text"><small class="text-muted">(at least 700px wide by 700px hight)</small></p> -->
+            <div class="custom-file">
+              <%= f.file_field :avatar, class: "custom-file-input" %>
+              <%= f.label :add_image, class: "custom-file-label" %>
+            </div>
+            <small id="avatar" class="alert-text m-1 text-danger">Image error</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- end col--->
+</div><!-- end row-->

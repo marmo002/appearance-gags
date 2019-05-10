@@ -1,18 +1,31 @@
 class WelcomeFormController < ApplicationController
+  rescue_from ActionController::ParameterMissing do |exception|
+    json_response({ message: error }, :unprocessable_entity)
+  end
+
   before_action :done_with_profile?
 
-  def profile_creation
+  def legal_info
+
+  end
+
+  def internet_profile
+    # session[:welcome_process] = session[:welcome_process] || "profile_creation"
+  end
+
+  def profile_image
     # session[:welcome_process] = session[:welcome_process] || "profile_creation"
   end
 
   def profile_social
-    # case session[:welcome_process]
-    # when 1
-    #   redirect_to welcome_path
-    # end
+
   end
 
-  def company_info
+  def company_legal
+
+  end
+
+  def company_social
 
   end
 
@@ -38,6 +51,13 @@ class WelcomeFormController < ApplicationController
   end
 
   def user_update
+
+    if params['has_company']
+      session[:has_company] = true
+    else
+      session[:has_company] = nil
+    end
+
     respond_to do |format|
       if current_user.update(user_params)
         format.json {
@@ -54,7 +74,6 @@ class WelcomeFormController < ApplicationController
           flash[:primary] = "Profile updated successfully"
           redirect_back(fallback_location: welcome_path)
         }
-        # format.js
       else
         format.json { render json: current_user.errors }
         format.html {
@@ -77,6 +96,7 @@ private
     params.require(:user).permit(
       :first_name,
       :last_name,
+      :dob,
       :email,
       :phone,
       :avatar,
@@ -87,6 +107,13 @@ private
       :signed_release,
       :bio,
       :company_name,
+      :company_legal_name,
+      :company_phone,
+      :company_address1,
+      :company_address2,
+      :company_city,
+      :company_province,
+      :company_postalcode,
       :companylogo,
       social_media: [ :profile, :facebook, :linkedin, :twitter, :instagram, :youtube, :other ],
       company_social_media: [ :website, :facebook, :linkedin, :twitter, :instagram, :youtube ]

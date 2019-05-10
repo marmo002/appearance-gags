@@ -1,0 +1,73 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="card companylogo-card mb-3" style="max-width: 540px;">
+      <div class="row no-gutters">
+        <% if current_user.companylogo.attached? %>
+        <div class="col-md-4 pl-3 align-self-center">
+          <%= image_tag url_for(current_user.companylogo), class: "card-img" %>
+        </div>
+        <% end %>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">Company logo</h5>
+            <p id="image-help" class="card-text">
+              Upload a company logo that will be used to promote the show on the internet
+            </p>
+            <!-- <p class="card-text"><small class="text-muted">(at least 700px wide by 700px hight)</small></p> -->
+            <div class="custom-file">
+              <%= f.file_field :companylogo, class: "custom-file-input", "aria-describedby" => "image-help" %>
+              <%= f.label :add_image, class: "custom-file-label" %>
+            </div>
+            <small id="companylogo" class="alert-text m-1 text-danger">Image error</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <%= f.fields_for :company_social_media do | c_media| %>
+    <div class="form-group">
+      <%= c_media.label :companywebsite %>
+      <%= c_media.url_field :website, id: :company_website, class: "form-control", placeholder: "Company website", value: current_user.company_social_media["website"] %>
+    </div>
+
+    <div class="form-group">
+      <%= c_media.label :companyfacebook %>
+      <%= c_media.url_field :facebook, id: :company_facebook, class: "form-control", placeholder: "Company facebook", value: current_user.company_social_media["facebook"] %>
+    </div>
+
+    <div class="form-group">
+      <%= c_media.label :companylinkedin %>
+      <%= c_media.url_field :linkedin, id: :company_linkedin, class: "form-control", placeholder: "Company linkedIn", value: current_user.company_social_media["linkedin"] %>
+    </div>
+
+    <div class="form-group">
+      <%= c_media.label :company_youtube %>
+      <%= c_media.url_field :youtube, id: :company_other, class: "form-control", placeholder: "Company youtube", value: current_user.company_social_media["youtube"] %>
+    </div>
+
+    <div class="form-group">
+      <%= c_media.label :companytwitter %>
+
+      <div class="input-group flex-nowrap">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="addon-wrapping">@</span>
+        </div>
+        <%= c_media.text_field :twitter, id: :company_twitter, class: "form-control", placeholder: "Company twitter handle", value: current_user.company_social_media["twitter"] %>
+      </div>
+
+    </div>
+
+    <div class="form-group">
+      <%= c_media.label :companyinstagram %>
+      <div class="input-group flex-nowrap">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="addon-wrapping">@</span>
+        </div>
+        <%= c_media.text_field :instagram, id: :company_instagram, class: "form-control", placeholder: "Company instagram handle", value: current_user.company_social_media["instagram"] %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

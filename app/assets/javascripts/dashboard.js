@@ -62,6 +62,27 @@ document.addEventListener("turbolinks:load", function(){
 
   });//input:file change
 
+  $('[data-js-file-upload]').on("ajax:beforeSend", function(event){
+    var detail = event.detail;
+    var xhr = detail[0], options = detail[1];
+
+    let nextUrl = $(this).data('next');
+    let inputField = $(this).find('input[type=file]');
+
+    if (inputField.val().length < 1) {
+      event.preventDefault();
+      document.location = nextUrl;
+    }
+    console.log(inputField.val());
+    console.log("-----");
+    console.log( typeof(inputField.val()) );
+    console.log("-----");
+    console.log(nextUrl);
+    console.log("-----");
+    console.log(detail);
+
+  });
+
   document.body.addEventListener('ajax:success', function(event) {
 
     var detail = event.detail;
@@ -85,14 +106,10 @@ document.addEventListener("turbolinks:load", function(){
     if (data.status == "success") {
 
       if (data.action) {
-
         go_to_next_form(srcElement)
-
       } else {
-
         // success message
         displayMessages( data.type, data.message);
-
         // empty passwordfields if they have text
         $('#change_pass_form input[type="password"]').val('');
       }
