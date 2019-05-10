@@ -2,7 +2,9 @@
   <div class="col-md-6">
     <div class="form-group">
       <%= f.label :company_name %>
-      <%= f.text_field :company_name, class: "form-control", placeholder: "Company name" %>
+      <%= f.text_field :company_name, class: "form-control", placeholder: "The name of you company" %>
+      <small id="company_name" class="alert-text m-1 text-danger">First name error</small>
+      <!-- <small id="" class="form-text text-muted mb-3">Legal first name as it appears on your id</small> -->
     </div>
 
     <div class="card companylogo-card mb-3" style="max-width: 540px;">
@@ -27,6 +29,54 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :company_legal_name %>
+      <%= f.text_field :company_legal_name, class: "form-control", placeholder: "The legal name of you company" %>
+      <small id="company_legal_name" class="alert-text m-1 text-danger">Last name error</small>
+      <small id="" class="form-text text-muted mb-3">The name of your company as registered with the goverment</small>
+    </div>
+
+    <div class="form-group">
+       <%= f.label :company_phone %>
+       <%= f.telephone_field :company_phone, class: "form-control", placeholder: "Company phone number" %>
+       <!-- <small id="phone-help" class="form-text text-muted">Phone must be in format (123) 456 7878.</small> -->
+    </div>
+
+    <div class="form-group">
+      <%= f.label :company_address1 %>
+      <%= f.text_field :company_address1, class: "form-control", placeholder: "Company address 1" %>
+      <small id="company_address1" class="alert-text m-1 text-danger">Last name error</small>
+      <!-- <small id="" class="form-text text-muted mb-3">The name of your company as registered with the goverment</small> -->
+    </div>
+
+    <div class="form-group">
+      <%= f.label :company_address2 %>
+      <%= f.text_field :company_address2, class: "form-control", placeholder: "Company address 2" %>
+      <small id="company_address2" class="alert-text m-1 text-danger">Last name error</small>
+      <!-- <small id="" class="form-text text-muted mb-3">The name of your company as registered with the goverment</small> -->
+    </div>
+
+    <div class="form-group">
+      <%= f.label :company_city %>
+      <%= f.text_field :company_city, class: "form-control", placeholder: "Company city" %>
+      <small id="company_city" class="alert-text m-1 text-danger">Last name error</small>
+      <!-- <small id="" class="form-text text-muted mb-3">The name of your company as registered with the goverment</small> -->
+    </div>
+
+    <div class="form-group">
+      <%= f.label :company_province %>
+      <%= f.text_field :company_province, class: "form-control", placeholder: "Company province" %>
+      <small id="company_province" class="alert-text m-1 text-danger">Last name error</small>
+      <!-- <small id="" class="form-text text-muted mb-3">The name of your company as registered with the goverment</small> -->
+    </div>
+
+    <div class="form-group">
+      <%= f.label :company_postalcode %>
+      <%= f.text_field :company_postalcode, class: "form-control", placeholder: "Company postal code" %>
+      <small id="company_postalcode" class="alert-text m-1 text-danger">Last name error</small>
+      <!-- <small id="" class="form-text text-muted mb-3">The name of your company as registered with the goverment</small> -->
     </div>
   </div>
 

@@ -53,21 +53,10 @@ private
   def user_params
 
     params.require(:user).permit(
-      :first_name,
-      :last_name,
-      :dob,
       :email,
       :phone,
-      :avatar,
       :password,
       :password_confirmation,
-      :name_for_show,
-      :title_for_show,
-      :bio,
-      :company_name,
-      :companylogo,
-      social_media: [ :facebook, :linkedin, :twitter, :instagram, :other ],
-      company_social_media: [ :website, :facebook, :linkedin, :twitter, :instagram, :other ]
     )
   end
 

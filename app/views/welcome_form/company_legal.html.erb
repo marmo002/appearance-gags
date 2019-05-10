@@ -15,15 +15,14 @@
           <div class="tab-pane fade show active" id="company-info">
 
             <%= form_with model: current_user, url: welcome_update_path, html: { class: "customer-form", id: "user-profile-form", data: { next: welcome_company_social_path } } do |f| %>
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <div class="input-group-text">
-                    <input id="company-notapplication" type="checkbox" name="has_company" value="yes" <%= "checked" if session[:has_company] %> aria-label="Checkbox for following text input">
-                  </div>
+
+              <div class="gag-form-group">
+                <div class="input_wrapper">
+                  <input id="company-notapplication" class="gag-checkbox" type="checkbox" name="has_company" value="yes"  <%= "checked" if session[:has_company] %>>
                 </div>
-                <div class="input-group-append">
-                  <span class="input-group-text" id="basic-addon2">Not applicable (I dont represent, nor I have a company)</span>
-                </div>
+                <label class="gag-checkbox-label" for="company-notapplication">
+                  Not applicable (I dont represent, nor I have a company)
+                </label>
               </div>
 
               <fieldset id=company-legal-fieldset>

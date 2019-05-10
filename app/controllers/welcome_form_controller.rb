@@ -107,6 +107,13 @@ private
       :signed_release,
       :bio,
       :company_name,
+      :company_legal_name,
+      :company_phone,
+      :company_address1,
+      :company_address2,
+      :company_city,
+      :company_province,
+      :company_postalcode,
       :companylogo,
       social_media: [ :profile, :facebook, :linkedin, :twitter, :instagram, :youtube, :other ],
       company_social_media: [ :website, :facebook, :linkedin, :twitter, :instagram, :youtube ]

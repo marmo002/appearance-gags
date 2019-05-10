@@ -34,7 +34,7 @@
                   <%#= f.label :password %>
                   <%= f.password_field :password, id: "pass-field", class: "form-control", placeholder: "Your password", "aria-describedby" => "password-help" %>
                   <div class="attached-button">
-                    <button class="btn btn-outline-secondary" type="button" id="show-pass-button">Show</button>
+                    <button class="btn btn-outline-secondary" type="button" id="show-pass-button" tabIndex="-1">Show</button>
                   </div>
                   <small id="password-help" class="form-text text-muted">Password must be at least 6 characters.</small>
               </div>
