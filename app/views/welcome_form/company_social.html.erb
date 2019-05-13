@@ -4,7 +4,7 @@
       <div class="col-md-10">
 
         <%#= render 'welcome_form/partials/welcome_submenu' %>
-        <h2 class="custom-subtitle-1">Step 6 of 7: Company social media</h2>
+        <h2 class="custom-subtitle-1">Step 7 of 8: Company social media</h2>
         <p class="subtle_subtitle">Company logo and social media you want to promote on the show.</p>
 
         <div class="progress mb-3">
@@ -15,7 +15,7 @@
           <div class="tab-pane fade show active" id="company-info">
             <%= form_with model: current_user, url: welcome_update_path, html: { class: "customer-form", id: "user-profile-form", novalidate: true, data: { next: welcome_release_path } } do |f| %>
               <%= render 'welcome_form/partials/company_social_form', f: f %>
-              <%= link_to "Back", welcome_company_legal_path, class: "btn btn-primary"  %>
+              <%= link_to "Back", welcome_company_image_path, class: "btn btn-primary"  %>
               <%= f.submit "Next", class: "btn btn-primary float-right", role: "button", data: { "disable-with": "Updating..." } %>
             <% end %>
           </div><!--profile-tab-->

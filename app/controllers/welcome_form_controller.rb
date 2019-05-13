@@ -10,14 +10,16 @@ class WelcomeFormController < ApplicationController
   end
 
   def internet_profile
-    # session[:welcome_process] = session[:welcome_process] || "profile_creation"
   end
 
   def profile_image
-    # session[:welcome_process] = session[:welcome_process] || "profile_creation"
   end
 
   def profile_social
+
+  end
+
+  def company_image
 
   end
 

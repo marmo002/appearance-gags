@@ -10,6 +10,8 @@
               <a class="list-group-item list-group-item-action" id="list-type-list" data-toggle="list" href="#list-type" role="tab" aria-controls="type">Type</a>
               <a class="list-group-item list-group-item-action" id="list-audio-hardware-list" data-toggle="list" href="#list-audio-hardware" role="tab" aria-controls="audio-hardware">Audio requirements</a>
               <a class="list-group-item list-group-item-action" id="list-video-hardware-list" data-toggle="list" href="#list-video-hardware" role="tab" aria-controls="video-hardware">Video requirements</a>
+              <a class="list-group-item list-group-item-action" id="list-computer-list" data-toggle="list" href="#list-computer" role="tab" aria-controls="computer">Type of computer</a>
+              <a class="list-group-item list-group-item-action" id="list-browser-list" data-toggle="list" href="#list-browser" role="tab" aria-controls="browser">Type of browser</a>
               <a class="list-group-item list-group-item-action" id="list-internet-list" data-toggle="list" href="#list-internet" role="tab" aria-controls="internet">Internet connectivity & compatibility</a>
               <a class="list-group-item list-group-item-action" id="list-test-list" data-toggle="list" href="#list-test" role="tab" aria-controls="test">Test date</a>
               <a class="list-group-item list-group-item-action" id="list-recording-list" data-toggle="list" href="#list-recording" role="tab" aria-controls="recording">Recording date</a>
@@ -47,6 +49,20 @@
                   <%= button_tag 'next', type: 'button', class: 'btn btn-primary bookings-next' %>
                 </div>
                 <!-- list-video-hardware -->
+
+                <!-- list-computer -->
+                <div class="tab-pane fade" id="list-computer" role="tabpanel" aria-labelledby="list-settings-list">
+                  <%= render 'bookings/partials/computer_content', booking: booking  %>
+                  <%= button_tag 'next', type: 'button', class: 'btn btn-primary bookings-next' %>
+                </div>
+                <!-- list-computer -->
+
+                <!-- list-browser -->
+                <div class="tab-pane fade" id="list-browser" role="tabpanel" aria-labelledby="list-settings-list">
+                  <%= render 'bookings/partials/browser_content', booking: booking  %>
+                  <%= button_tag 'next', type: 'button', class: 'btn btn-primary bookings-next' %>
+                </div>
+                <!-- list-browser -->
 
                 <!-- list-internet -->
                 <div class="tab-pane fade" id="list-internet" role="tabpanel" aria-labelledby="list-settings-list">
