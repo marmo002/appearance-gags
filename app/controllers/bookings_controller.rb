@@ -32,33 +32,35 @@ class BookingsController < ApplicationController
 
   def new_alt
     @booking = Booking.new
+    @user_social = current_user.get_social_media("social_media")
   end
 
   def create
-    @booking = Booking.new(booking_params)
-    @booking.user = current_user
-    @booking.show_name = session[:show_name]
-    @booking.booking_type = session[:type]
-    user_info = {
-      'full_name' => current_user.full_name,
-      'email' => current_user.email,
-      'phone' => current_user.phone,
-      'name_for_show' => current_user.name_for_show,
-      'title_for_show' => current_user.title_for_show,
-      'bio' => current_user.bio,
-      'release' => company.release
-    }
-    @booking.user_info = @booking.user_info.merge(user_info)
-
-    if @booking.save
-      flash[:primary] = "Booking created"
-      session[:show_name] = nil
-      session[:type] = nil
-      redirect_to dashboard_url page: 'booking-history-tab'
-    else
-      render :new
-      # redirect_back(fallback_location: new_booking_path)
-    end
+    @params = params
+    # @booking = Booking.new(booking_params)
+    # @booking.user = current_user
+    # @booking.show_name = session[:show_name]
+    # @booking.booking_type = session[:type]
+    # user_info = {
+    #   'full_name' => current_user.full_name,
+    #   'email' => current_user.email,
+    #   'phone' => current_user.phone,
+    #   'name_for_show' => current_user.name_for_show,
+    #   'title_for_show' => current_user.title_for_show,
+    #   'bio' => current_user.bio,
+    #   'release' => company.release
+    # }
+    # @booking.user_info = @booking.user_info.merge(user_info)
+    #
+    # if @booking.save
+    #   flash[:primary] = "Booking created"
+    #   session[:show_name] = nil
+    #   session[:type] = nil
+    #   redirect_to dashboard_url page: 'booking-history-tab'
+    # else
+    #   render :new
+    #   # redirect_back(fallback_location: new_booking_path)
+    # end
   end
 
   def bookings_list
@@ -125,7 +127,7 @@ private
         :company_other
         ]
       ],
-      hardware_requirements: [:headphone, :webcam, :ping, :download, :upload ]
+      hardware_requirements: [:audio, :video, :computer_type, :browser_type, :ping, :download, :upload ]
     )
   end
 

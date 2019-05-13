@@ -39,13 +39,4 @@ $(function () {
   });//end turbolinks
 
 
-  //WHEN CLICK ON RADIO BUTTON, ADD BORDER TO LABEL
-  // $('input[type=radio]').change(function(e){
-  //   let parentElement = $(this).parent();
-  //   let parentBorderColor = parentElement.css("border-color");
-  //   parentElement.css("border-color", parentBorderColor);
-  //
-  // });
-
-
 });//end document.ready

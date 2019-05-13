@@ -1,0 +1,54 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="row">
+      <div class="col-md-4">
+        <h2 class="custom-subtitle-2 p-0">Profile picture</h2>
+      </div>
+      <div class="col-md-8">
+        <% if current_user.avatar.attached? %>
+        <%= image_tag current_user.avatar, class: "img-thumbnail" %>
+        <% else %>
+        <div class="alert alert-light" role="alert">
+          No profile image added.
+          <%#= link_to "Add it in dashboard", dashboard_url(page: 'profile-tab') %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <h2 class="custom-subtitle-2 p-0">Personal information</h2>
+      </div>
+      <div class="col-md-8">
+        <div class="gag-report-grid1">
+          <div class="gig-report-item">Full Name</div>
+          <div class="gig-report-item">
+            <%= current_user.full_name %>
+          </div>
+          <div class="gig-report-item">Name on show</div>
+          <div class="gig-report-item">
+            <%= current_user.name_for_show %>
+          </div>
+          <div class="gig-report-item">Title for show</div>
+          <div class="gig-report-item">
+            <%= current_user.title_for_show %>
+          </div>
+          <div class="gig-report-item">Bio</div>
+          <div class="gig-report-item">
+            <%= current_user.bio %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <h2 class="custom-subtitle-2 p-0">Personal social media</h2>
+      </div>
+      <div class="col-md-8">
+        
+      </div>
+    </div>
+  </div><!-- col -->
+</div>

@@ -1,0 +1,67 @@
+<div class="row">
+  <div class="col-md-12">
+    <%= booking.fields_for :hardware_requirements do |h_requirements| %>
+
+      <h3 class="custom-subtitle-2 p-0">Type of computer</h3>
+      <div class="gag-form-group mb-5">
+        <div class="line-select-grid">
+          <%= h_requirements.radio_button :computer_type, 'windows', { id: "radio-windows", class: 'gag-radio-input d-none' } %>
+          <label class="gag-radio-label label-button" for="radio-windows">Windows</label>
+          <%= h_requirements.radio_button :computer_type, 'mac', { id: "radio-mac", class: 'gag-radio-input d-none' } %>
+          <label class="gag-radio-label label-button" for="radio-mac">Mac</label>
+        </div><!-- grid -->
+      </div><!-- gag-form-group -->
+
+      <h3 class="custom-subtitle-2 p-0">Which browser you will use?</h3>
+      <div class="gag-form-group mb-5">
+        <div class="line-select-grid">
+          <%= h_requirements.radio_button :browser_type, 'chrome', { id: "radio-chrome", class: 'gag-radio-input d-none' } %>
+          <label class="gag-radio-label label-button" for="radio-chrome">Chrome</label>
+
+          <%= h_requirements.radio_button :browser_type, 'firefox', { id: "radio-firefox", class: 'gag-radio-input d-none' } %>
+          <label class="gag-radio-label label-button" for="radio-firefox">Firefox</label>
+
+          <%= h_requirements.radio_button :browser_type, 'safari', { id: "radio-safari", class: 'gag-radio-input d-none' } %>
+          <label class="gag-radio-label label-button" for="radio-safari">Safari</label>
+
+          <%= h_requirements.radio_button :browser_type, 'Edge', { id: "radio-Edge", class: 'gag-radio-input d-none' } %>
+          <label class="gag-radio-label label-button" for="radio-Edge">Microsoft Edge</label>
+        </div><!-- grid -->
+      </div><!-- gag-form-group -->
+
+      <h3 class="custom-subtitle-2 p-0">Speed test</h3>
+      <div class="card mb-3">
+        <!-- <h5 class="card-header">Speed test</h5> -->
+        <div class="row no-gutters">
+          <div class="col-lg-4 pl-3 align-self-center">
+            <%= image_tag 'main-logo.png', class: "card-img" %>
+          </div>
+          <div class="col-lg-8">
+            <div class="card-body">
+              <p id="image-help" class="card-text">
+                With the computer and webbrowser you plan on broadcasting
+                from; visit
+                <a href="https://www.speedtest.net" target="_blank">
+                  speedtest.net
+                </a>
+                and enter results bellow
+              </p>
+              <div class="form-group">
+                 <%#= h_requirements.label :ping %>
+                 <%= h_requirements.text_field :ping, class: "form-control", placeholder: "Enter: Ping rate(m/s)" %>
+              </div>
+              <div class="form-group">
+                 <%#= h_requirements.label :download %>
+                 <%= h_requirements.text_field :download, class: "form-control", placeholder: "Enter: Download speed(mbps)" %>
+              </div>
+              <div class="form-group">
+                 <%#= h_requirements.label :upload %>
+                 <%= h_requirements.text_field :upload, class: "form-control", placeholder: "Enter: Upload speed(mbps)" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div><!-- col -->
+</div>
