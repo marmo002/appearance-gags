@@ -70,7 +70,16 @@ class BookingsController < ApplicationController
   end
 
   def get_recording_form
-    render partial: "bookings/partials/recording_date_so_form"
+    render partial: "bookings/partials/recording_content"
+  end
+
+  def get_instudio_form
+    @booking = Booking.new
+    render partial: "bookings/partials/booking_inStudio_form", locals: { booking_form: @booking }
+  end
+
+  def booking_menu
+    render partial: "bookings/partials/booking_menu"
   end
 
 private

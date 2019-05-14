@@ -25,6 +25,8 @@ Rails.application.routes.draw do
   resources :bookings, only: [:index, :new, :show]
   get "bookings_list" => "bookings#bookings_list", as: :bookings_list
   get "booking_recording_form" => "bookings#get_recording_form", as: :get_recording_form
+  get "booking_studio_form" => "bookings#get_instudio_form", as: :get_studio_form
+  get "booking_menu" => "bookings#booking_menu", as: :booking_menu
   post "bookings" => "bookings#create", as: :create_booking
   get "bookings_alt" => "bookings#new_alt", as: :new_alt
 
