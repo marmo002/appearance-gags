@@ -6,7 +6,7 @@
       </div>
       <div class="col-md-8">
         <% if current_user.avatar.attached? %>
-        <%= image_tag current_user.avatar, class: "img-thumbnail" %>
+        <%= image_tag current_user.avatar, class: "img-thumbnail custom-height" %>
         <% else %>
         <div class="alert alert-dark" role="alert">
           No profile image added.
@@ -36,7 +36,7 @@
             </span>
           </div>
           <div class="gig-report-item">
-            <%= current_user.title_for_show %>
+            <%= current_user.title_for_show.empty? ? "No title for shows" : "#{current_user.title_for_show}" %>
           </div>
           <div class="gig-report-item">
             <span class="gag-report-labels">
@@ -44,7 +44,7 @@
             </span>
           </div>
           <div class="gig-report-item">
-            <%= current_user.bio %>
+            <%= current_user.bio.empty? ? "No bio" : "#{current_user.bio}" %>
           </div>
         </div>
       </div>

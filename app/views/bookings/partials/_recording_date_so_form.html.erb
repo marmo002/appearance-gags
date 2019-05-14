@@ -1,50 +1,22 @@
   <script>
-    function hide_recording_date(id){
-      $('#' + id).hide();
-    }
-
-    // CHECK IF THERE IS A RECORDING DATE
-    function setUpDatesDivs(hidden_field, embeddedDatePicker, placeHolder) {
-      var recordingValue = $('#' + hidden_field).val();
-
-      if (recordingValue.length > 0) {
-        var readyDate = new Date(recordingValue);
-        var recordingDate = readyDate.toDateString();
-        var recordingTime = readyDate.toLocaleTimeString();
-        var recordingText = recordingDate + " at " + recordingTime;
-
-        hide_recording_date(embeddedDatePicker);
-        $('#' + placeHolder).text(recordingText);
-        $('#' + placeHolder).parent().removeClass('d-none');
-      } else {
-        console.log('no recording date');
-        console.log(recordingValue);
-      }
-    }
 
     function SOAfterConfirmationFunction(data)
     {
-    	console.log(data);
-    	console.log('---------------');
-      console.log(typeof(data));
-      console.log('---------------');
+    	// console.log(data);
+    	// console.log('---------------');
+      // console.log(typeof(data));
+      // console.log('---------------');
 
       if (data["errorStatus"] == 0 ) {
         var recording_date = data['bookingInfo']['MeetingTimes'][0]['CustomerTime'];
-        console.log(recording_date);
-        console.log('---------------');
+        // console.log(recording_date);
+        // console.log('---------------');
         $('#recording_date').val(recording_date);
-        console.log("---------------------------");
-        console.log("RecordingDate ADDED TO Hidden input");
-        console.log("---------------------------");
+        // console.log("---------------------------");
+        // console.log("RecordingDate ADDED TO Hidden input");
+        // console.log("---------------------------");
 
         setUpDatesDivs("recording_date", "SOIDIV_GetAGripOnLighting", "recording_date_placeholder" );
-
-        var eventType = "<%= session[:type] %>";
-
-        if (eventType && eventType == "virtual"){
-
-        }
 
       }
     }

@@ -33,6 +33,7 @@ class BookingsController < ApplicationController
   def new_alt
     @booking = Booking.new
     @user_social = current_user.get_social_media("social_media")
+    @company_social = current_user.get_social_media("company_social_media")
   end
 
   def create
