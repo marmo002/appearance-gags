@@ -6,19 +6,26 @@ function datePicker(conatinerId){
 
   dobPicker.datetimepicker({
     viewMode: 'years',
-    format: 'DD/MM/YYYY',
+    format: 'YYYY/MM/DD'
+    // maxDate: Date.now()
   });
 
   if (pickedDate) {
-    dobPicker.datetimepicker('defaultDate', moment(pickedDate))
+    let setDate = new Date(pickedDate);
+    dobPicker.datetimepicker('defaultDate', setDate);
   }
+
+  $('#user_dob').focus(function(e){
+    
+    dobPicker.datetimepicker('show');
+  });
 }
 
 // when click on not applicable,
 // it will disable form and
 // next button will take user to release
 function disableForm(isChecked, originalUrl){
-  
+
 
 }
 
@@ -57,6 +64,7 @@ function disableFormOnClick(){
 $(function () {
 
   datePicker("user_dob_picker");
+
   disableFormOnClick();
 
   document.addEventListener("turbolinks:load", function(){

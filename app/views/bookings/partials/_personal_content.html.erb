@@ -1,0 +1,80 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="row mb-5">
+      <div class="col-md-4">
+        <h2 class="custom-subtitle-2 p-0">Profile picture</h2>
+      </div>
+      <div class="col-md-8">
+        <% if current_user.avatar.attached? %>
+        <%= image_tag current_user.avatar, class: "img-thumbnail custom-height" %>
+        <% else %>
+        <div class="alert alert-dark" role="alert">
+          No profile image added.
+          <%#= link_to "Add it in dashboard", dashboard_url(page: 'profile-tab') %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <h2 class="custom-subtitle-2 p-0">Personal information</h2>
+      </div>
+      <div class="col-md-8">
+        <div class="gag-report-grid1">
+          <div class="gig-report-item">
+            <span class="gag-report-labels">
+              Name for show
+            </span>
+          </div>
+          <div class="gig-report-item">
+            <%= current_user.name_for_show.empty? ? "#{current_user.full_name}" : "#{current_user.name_for_show}" %>
+          </div>
+          <div class="gig-report-item">
+            <span class="gag-report-labels">
+              Title for show
+            </span>
+          </div>
+          <div class="gig-report-item">
+            <%= current_user.title_for_show.empty? ? "No title for shows" : "#{current_user.title_for_show}" %>
+          </div>
+          <div class="gig-report-item">
+            <span class="gag-report-labels">
+              Bio
+            </span>
+          </div>
+          <div class="gig-report-item">
+            <%= current_user.bio.empty? ? "No bio" : "#{current_user.bio}" %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <h2 class="custom-subtitle-2 p-0">Personal social media</h2>
+      </div>
+      <div class="col-md-8">
+        <% if @user_social %>
+          <%= booking.fields_for :user_info do |user_i|%>
+            <%= user_i.fields_for :social_media do |social_media| %>
+              <% @user_social.each do |personal_social_name, personal_social_url| %>
+                <div class="form-group">
+                  <div class="custom-control custom-checkbox">
+                    <%= social_media.check_box personal_social_name, {checked: true, class: "custom-control-input", id: "#{personal_social_name}"}, "#{personal_social_url}" %>
+                    <%= social_media.label :personal_social_url, "#{personal_social_name}: #{personal_social_url}", class: "custom-control-label", for: "#{personal_social_name}" %>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+          <% else %>
+          <div class="alert alert-dark" role="alert">
+            No personal social media added.
+            <%#= link_to "Add it in dashboard", dashboard_url(page: 'personal-social-media-tab') %>
+          </div>
+          <% end %>
+      </div>
+    </div>
+  </div><!-- col -->
+</div>

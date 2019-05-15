@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get "welcome_profile_image" => "welcome_form#profile_image", as: :welcome_profile_image
   get "welcome_social" => "welcome_form#profile_social", as: :welcome_social
   get "welcome_company_legal" => "welcome_form#company_legal", as: :welcome_company_legal
+  get "welcome_company_image" => "welcome_form#company_image", as: :welcome_company_image
   get "welcome_company_social" => "welcome_form#company_social", as: :welcome_company_social
   get "welcome_release" => "welcome_form#release", as: :welcome_release
 
@@ -24,6 +25,8 @@ Rails.application.routes.draw do
   resources :bookings, only: [:index, :new, :show]
   get "bookings_list" => "bookings#bookings_list", as: :bookings_list
   get "booking_recording_form" => "bookings#get_recording_form", as: :get_recording_form
+  get "booking_studio_form" => "bookings#get_instudio_form", as: :get_studio_form
+  get "booking_menu" => "bookings#booking_menu", as: :booking_menu
   post "bookings" => "bookings#create", as: :create_booking
   get "bookings_alt" => "bookings#new_alt", as: :new_alt
 

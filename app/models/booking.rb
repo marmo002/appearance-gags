@@ -5,9 +5,11 @@ class Booking < ApplicationRecord
 
   validates :recording_date, presence: true
   validates :test_date, presence: true, if: :type_virtual?
+  validates :info_confirmation, acceptance: { message: '- Please confirm information is current and accurate' }
+
+  # Custom validations
   validate :dates_cant_be_past_today
   validate :harware_speed_requirements, if: :type_virtual?
-  validates :info_confirmation, acceptance: { message: '- Please confirm information is current and accurate' }
 
   default_scope { order(recording_date: :asc) }
   scope :past, lambda { where("recording_date < ?", Date.today) }

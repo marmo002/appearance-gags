@@ -20,14 +20,14 @@
 
     <div class="form-group">
       <div class="input-group date" id="user_dob_picker" data-target-input="nearest">
-        <%= f.text_field :dob, class: "form-control datetimepicker-input", date: {target: "#user_dob_picker"}, placeholder: "Date of birth" %>
+        <%= f.text_field :dob, class: "form-control datetimepicker-input", data: {target: "#user_dob_picker"}, placeholder: "Date of birth" %>
         <!-- <input type="text" class="form-control datetimepicker-input" data-target="#user_dob_picker"/> -->
         <div class="input-group-append" data-target="#user_dob_picker" data-toggle="datetimepicker">
           <div class="input-group-text"><i class="fa fa-calendar"></i></div>
         </div>
       </div>
       <small id="dob" class="alert-text m-1 text-danger">DOB error</small>
-      <small id="" class="form-text text-muted mb-3">Your date of birth</small>
+      <small id="" class="form-text text-muted mb-3">Your date of birth DD/MM/YYYY</small>
     </div>
 
   </div><!-- end col--->

@@ -1,0 +1,80 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="row mb-5">
+      <div class="col-md-4">
+        <h2 class="custom-subtitle-2 p-0">Company logo</h2>
+      </div>
+      <div class="col-md-8">
+        <% if current_user.companylogo.attached? %>
+        <%= image_tag current_user.companylogo, class: "img-thumbnail custom-height" %>
+        <% else %>
+        <div class="alert alert-dark" role="alert">
+          No company logo image added.
+          <%#= link_to "Add it in dashboard", dashboard_url(page: 'profile-tab') %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <h2 class="custom-subtitle-2 p-0">Company information</h2>
+      </div>
+      <div class="col-md-8">
+        <div class="gag-report-grid1">
+          <div class="gig-report-item">
+            <span class="gag-report-labels">
+              Company name
+            </span>
+          </div>
+          <div class="gig-report-item">
+            <%= current_user.company_name.empty? ? "No company name added" : "#{current_user.company_name}" %>
+          </div>
+          <div class="gig-report-item">
+            <span class="gag-report-labels">
+              Company legal name
+            </span>
+          </div>
+          <div class="gig-report-item">
+            <%= current_user.company_legal_name.empty? ? "No company legal name added" : "#{current_user.company_legal_name}" %>
+          </div>
+          <div class="gig-report-item">
+            <span class="gag-report-labels">
+              Company phone number
+            </span>
+          </div>
+          <div class="gig-report-item">
+            <%= current_user.phone.empty? ? "No company legal name added" : "#{current_user.phone}" %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <h2 class="custom-subtitle-2 p-0">Company social media</h2>
+      </div>
+      <div class="col-md-8">
+        <% if @company_social %>
+          <%= booking.fields_for :user_info do |user_i|%>
+            <%= user_i.fields_for :social_media do |social_media| %>
+              <% @company_social.each do |personal_social_name, personal_social_url| %>
+                <div class="form-group">
+                  <div class="custom-control custom-checkbox">
+                    <%= social_media.check_box personal_social_name, {checked: true, class: "custom-control-input", id: "#{personal_social_name}"}, "#{personal_social_url}" %>
+                    <%= social_media.label :personal_social_url, "#{personal_social_name}: #{personal_social_url}", class: "custom-control-label", for: "#{personal_social_name}" %>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+          <% else %>
+          <div class="alert alert-dark" role="alert">
+            No company social media added.
+            <%#= link_to "Add it in dashboard", dashboard_url(page: 'personal-social-media-tab') %>
+          </div>
+          <% end %>
+      </div>
+    </div>
+  </div><!-- col -->
+</div>

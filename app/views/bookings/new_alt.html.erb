@@ -6,86 +6,121 @@
         <div class="row">
           <div class="col-md-3">
             <div class="list-group" id="booking-list-tab" role="tablist">
-              <a class="list-group-item list-group-item-action active" id="list-show-list" data-toggle="list" href="#list-show" role="tab" aria-controls="show">Show</a>
-              <a class="list-group-item list-group-item-action" id="list-type-list" data-toggle="list" href="#list-type" role="tab" aria-controls="type">Type</a>
-              <a class="list-group-item list-group-item-action" id="list-audio-hardware-list" data-toggle="list" href="#list-audio-hardware" role="tab" aria-controls="audio-hardware">Audio requirements</a>
-              <a class="list-group-item list-group-item-action" id="list-video-hardware-list" data-toggle="list" href="#list-video-hardware" role="tab" aria-controls="video-hardware">Video requirements</a>
-              <a class="list-group-item list-group-item-action" id="list-internet-list" data-toggle="list" href="#list-internet" role="tab" aria-controls="internet">Internet connection</a>
-              <a class="list-group-item list-group-item-action" id="list-test-list" data-toggle="list" href="#list-test" role="tab" aria-controls="test">Test date</a>
-              <a class="list-group-item list-group-item-action" id="list-recording-list" data-toggle="list" href="#list-recording" role="tab" aria-controls="recording">Recording date</a>
-              <a class="list-group-item list-group-item-action" id="list-personal-list" data-toggle="list" href="#list-personal" role="tab" aria-controls="personal">Personal information</a>
-              <a class="list-group-item list-group-item-action" id="list-company-list" data-toggle="list" href="#list-company" role="tab" aria-controls="company">Company information</a>
+              <%= render 'bookings/partials/booking_menu'  %>
             </div>
           </div>
           <div class="col-md-9">
-            <%= form_with model: @booking, local: true, url: create_booking_path,  html: { id: "booking-form" } do |booking| %>
+            <div id="booking_form">
+              <%#= render 'bookings/partials/booking_inStudio_form', booking_form: @booking  %>
+              <%= form_with model: @booking, local: true, url: create_booking_path,  html: { id: "booking-form" } do |booking| %>
               <div class="tab-content" id="booking-tab-content">
-                <!-- list-show -->
-                <div class="tab-pane fade show active" id="list-show" role="tabpanel" aria-labelledby="list-show-list">
-                  <%= render 'bookings/partials/show_content', booking: booking  %>
-                  <%= button_tag 'next', type: 'button', class: 'btn btn-primary bookings-next' %>
-                </div>
-                <!-- list-show -->
 
                 <!-- list-type -->
-                <div class="tab-pane fade" id="list-type" role="tabpanel" aria-labelledby="list-profile-list">
+                <div class="tab-pane fade show active" id="list-type" role="tabpanel" aria-labelledby="list-profile-list">
                   <%= render 'bookings/partials/type_content', booking: booking  %>
-                  <%= button_tag 'next', type: 'button', class: 'btn btn-primary bookings-next' %>
+                  <%= button_tag 'next', type: 'button', class: 'btn btn-primary bookings-next', disabled: true %>
                 </div>
                 <!-- list-type -->
+
+                <!-- list-show -->
+                <div class="tab-pane fade" id="list-show" role="tabpanel" aria-labelledby="list-show-list">
+                  <%= render 'bookings/partials/show_content', booking: booking  %>
+                  <%= button_tag 'next', type: 'button', class: 'btn btn-primary bookings-next', disabled: true %>
+                </div>
+                <!-- list-show -->
 
                 <!-- list-audio-hardware -->
                 <div class="tab-pane fade" id="list-audio-hardware" role="tabpanel" aria-labelledby="list-messages-list">
                   <%= render 'bookings/partials/audio_content', booking: booking  %>
-                  <%= button_tag 'next', type: 'button', class: 'btn btn-primary bookings-next' %>
+                  <%= button_tag 'next', type: 'button', class: 'btn btn-primary bookings-next', disabled: true %>
                 </div>
                 <!-- list-audio-hardware -->
 
-                <!-- list-audio-hardware -->
+                <!-- list-video-hardware -->
                 <div class="tab-pane fade" id="list-video-hardware" role="tabpanel" aria-labelledby="list-messages-list">
-                  Hardware requirements questionaire
-                  <%= button_tag 'next', type: 'button', class: 'btn btn-primary bookings-next' %>
+                  <%= render 'bookings/partials/video_content', booking: booking  %>
+                  <%= button_tag 'next', type: 'button', class: 'btn btn-primary bookings-next', disabled: true %>
                 </div>
-                <!-- list-hardware -->
+                <!-- list-video-hardware -->
+
+                <!-- list-computer -->
+                <div class="tab-pane fade" id="list-computer" role="tabpanel" aria-labelledby="list-settings-list">
+                  <%= render 'bookings/partials/computer_content', booking: booking  %>
+                  <%= button_tag 'next', type: 'button', class: 'btn btn-primary bookings-next', disabled: true %>
+                </div>
+                <!-- list-computer -->
+
+                <!-- list-browser -->
+                <div class="tab-pane fade" id="list-browser" role="tabpanel" aria-labelledby="list-settings-list">
+                  <%= render 'bookings/partials/browser_content', booking: booking  %>
+                  <%= button_tag 'next', type: 'button', class: 'btn btn-primary bookings-next', disabled: true %>
+                </div>
+                <!-- list-browser -->
 
                 <!-- list-internet -->
                 <div class="tab-pane fade" id="list-internet" role="tabpanel" aria-labelledby="list-settings-list">
-                  Internet connection test
-                  <%= button_tag 'next', type: 'button', class: 'btn btn-primary bookings-next' %>
+                  <%= render 'bookings/partials/internet_content', booking: booking  %>
+                  <%= button_tag 'next', type: 'button', class: 'btn btn-primary bookings-next', disabled: true %>
                 </div>
                 <!-- list-internet -->
 
                 <!-- list-test -->
                 <div class="tab-pane fade" id="list-test" role="tabpanel" aria-labelledby="list-settings-list">
-                  Pick a test date
-                  <%= button_tag 'next', type: 'button', class: 'btn btn-primary bookings-next' %>
+                  
+                  <%= render 'bookings/partials/test_content', booking: booking  %>
+                  <%= button_tag 'next', type: 'button', class: 'btn btn-primary bookings-next', disabled: true %>
                 </div>
                 <!-- list-test -->
 
                 <!-- list-recording -->
                 <div class="tab-pane fade" id="list-recording" role="tabpanel" aria-labelledby="list-settings-list">
-                  Pick a recording date
-                  <%= button_tag 'next', type: 'button', class: 'btn btn-primary bookings-next' %>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <!-- <h3 class="custom-subtitle-2 p-0">Keep in mind that your test must be scheduled before the recording date.</h3> -->
+                      <h2 class="d-none">Recording date: <span id="recording_date_placeholder"></span></h2>
+
+                      <div id="recording_date_container">
+
+                      </div>
+
+                      <%= booking.hidden_field :recording_date, id: "recording_date" %>
+
+                      <script>
+                        setUpDatesDivs("recording_date", "SOIDIV_GetAGripOnLife", "recording_date_placeholder" );
+                      </script>
+
+                    </div><!-- col -->
+                  </div>
+                  <%= button_tag 'next', type: 'button', class: 'btn btn-primary bookings-next', disabled: true, booking: booking %>
                 </div>
                 <!-- list-recording -->
 
                 <!-- list-personal -->
                 <div class="tab-pane fade" id="list-personal" role="tabpanel" aria-labelledby="list-settings-list">
-                  Personal info
+                  <%= render 'bookings/partials/personal_content', booking: booking  %>
                   <%= button_tag 'next', type: 'button', class: 'btn btn-primary bookings-next' %>
                 </div>
                 <!-- list-personal -->
 
                 <!-- list-company -->
                 <div class="tab-pane fade" id="list-company" role="tabpanel" aria-labelledby="list-settings-list">
-                  Company info
                   <%#= link_to "next", "#", class: "btn btn-primary bookings-next" %>
-                  <%= button_tag 'Create booking', type: 'button', class: 'btn btn-primary' %>
+                  <%= render 'bookings/partials/company_content', booking: booking  %>
+                  <%= button_tag 'Create booking', type: 'submit', class: 'btn btn-primary' %>
                 </div>
                 <!-- list-company -->
               </div>
-            <% end %><!-- end of form -->
+              <% end %><!-- end of form -->
+            </div>
+            <script type="text/javascript">
+              var element1 = $('#list-audio-hardware').clone(true);
+              var element2 = $('#list-video-hardware').clone(true);
+              var element3 = $('#list-computer').clone(true);
+              var element4 = $('#list-browser').clone(true);
+              var element5 = $('#list-internet').clone(true);
+              var element6 = $('#list-test').clone(true);
 
+            </script>
           </div> <!-- col-->
         </div>
 
