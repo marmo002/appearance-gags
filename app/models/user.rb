@@ -17,6 +17,7 @@ class User < ApplicationRecord
 
   # CUSTOM VALIDATIONS
   validate :image_validation, on: :update
+  validate :dob_cant_be_past, on: :update
   # validate :legal_info
 
   # SCOPES
@@ -83,6 +84,12 @@ class User < ApplicationRecord
   end
 
 private
+
+  def dob_cant_be_past
+    if dob.present? && dob > Date.today
+      errors.add(:dob, "DOB can't be in the future")
+    end
+  end#dates_cant_be_past_today
 
   def is_hash?(item)
     item.class == Hash

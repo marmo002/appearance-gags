@@ -186,7 +186,7 @@ function bookingsNextTab(){
 function setUpDatesDivs(hidden_field, embeddedDatePicker, placeHolder) {
   var recordingValue = $('#' + hidden_field).val();
 
-  if (recordingValue.length > 0) {
+  if (recordingValue && recordingValue.length > 0) {
     var readyDate = new Date(recordingValue);
     var recordingDate = readyDate.toDateString();
     var recordingTime = readyDate.toLocaleTimeString();
@@ -234,17 +234,17 @@ $(function () {
     enableNxtOnSpeedTest();
     enableOnTestdate();
 
-      // DATEPICKER OPTIONS
-      $('#recording-datepicker').datetimepicker({
-          format: 'L',
-          disabledDates: [
-              moment("4/25/2019"),
-              new Date(2019, 04 - 1, 30),
-              "11/22/2013 00:53"
-          ],
-          minDate: Date.now(),
-          daysOfWeekDisabled: [0, 6]
-      });
+    // DATEPICKER OPTIONS
+    $('#recording-datepicker').datetimepicker({
+        format: 'L',
+        disabledDates: [
+            moment("4/25/2019"),
+            new Date(2019, 04 - 1, 30),
+            "11/22/2013 00:53"
+        ],
+        minDate: Date.now(),
+        daysOfWeekDisabled: [0, 6]
+    });
 
 
   });//end turbolinks

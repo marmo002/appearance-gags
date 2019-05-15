@@ -15,6 +15,38 @@
   padding: 0 30px;
 }
 
+#booking-list-tab .list-group-item
+{
+  border: initial;
+  padding: 10px 0 10px 20px;
+  font-weight: bold;
+  color: grey;
+}
+
+  #booking-list-tab .list-group-item::before
+  {
+    content: "";
+    position: absolute;
+    width: 4px;
+    height: 100%;
+    background-color: grey;
+    left: 0px;
+    top: 0;
+
+  }
+
+#booking-list-tab .list-group-item.active
+{
+  background-color: initial;
+  color: #ffc107;
+}
+
+  #booking-list-tab .list-group-item.active::before
+  {
+    background-color: #ffc107;
+
+  }
+
 .bookings-next
 {
   margin-top: 15px;
