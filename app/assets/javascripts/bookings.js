@@ -14,13 +14,35 @@ function subMenuRestrictions(elements){
   })
 }
 
-//NUMBER LEFT TABS
+//NUMBER ALL LEFT TABS ON SUB-MENU
 function numberBookingMenu(){
   //get spans from html where number will be placed
   let bookingBullets = $('.booking-form-index');
   for (var i = 0; i < bookingBullets.length; i++) {
     bookingBullets[i].innerText = i + 1 + ".";
   }
+}
+
+// GET RECORDING DATE FORM
+function getRecordingForm(){
+ $.ajax({
+   url: "/booking_recording_form",
+   context: document.body
+ }).done(function(response) {
+   $('#recording_date_container').html(response);
+ });
+ console.log("got recording form");
+}
+
+// GET TEST DATE FORM
+function getTestForm(){
+ $.ajax({
+   url: "/booking_test_form",
+   context: document.body
+ }).done(function(response) {
+   $('#test_date_container').html(response);
+ });
+ console.log("got test form");
 }
 
 //Removes menus and tab-panes from virtual booking
@@ -32,6 +54,7 @@ function inStudioFormSetUp(){
    "list-browser",
    "list-internet",
    "list-test",
+   "list-recording",
   ]
 
   for (var i = 0; i < list.length; i++) {
@@ -43,22 +66,14 @@ function inStudioFormSetUp(){
   numberBookingMenu();
 
   // GET RECORDING DATE FORM
-  $.ajax({
-    url: "/booking_recording_form",
-    context: document.body
-  }).done(function(response) {
-    $('#recording_date_container').html(response);
+  getRecordingForm();
 
-    //number left menu items accordingtly
-    numberBookingMenu();
-  });
 }
 
 //recreates elements for virtual booking
 function virtualFormSetUp(){
 
-  console.log("vritual form setup");
-  //get new booking menu
+  //get complete booking sub-menu
   $.ajax({
     url: "/booking_menu",
     context: document.body
@@ -68,12 +83,34 @@ function virtualFormSetUp(){
      numberBookingMenu();
      subMenuRestrictions('#booking-list-tab a');
   });
+
+  let list = [
+   "list-audio-hardware",
+   "list-video-hardware",
+   "list-computer",
+   "list-browser",
+   "list-internet",
+   "list-test",
+   "list-recording",
+  ]
+
+  for (var i = 0; i < list.length; i++) {
+   // $("a[href='#" + list[i] + "']").remove();
+   $("#" + list[i]).remove();
+   // console.log(list[i]);
+  }
+
+    $('#list-show').after(element7);
     $('#list-show').after(element6);
     $('#list-show').after(element5);
     $('#list-show').after(element4);
     $('#list-show').after(element3);
     $('#list-show').after(element2);
     $('#list-show').after(element1);
+
+    // GET TEST DATE FORM
+    getTestForm();
+
     //GOT TO NEXT TAB WHEN CLICK ON NEXT BUTTON
     bookingsNextTab();
 
@@ -85,9 +122,6 @@ function virtualFormSetUp(){
 
     enableNextOnChange()
     enableNxtOnSpeedTest();
-    enableOnTestdate();
-
-  //get form
 
 }
 
@@ -152,25 +186,17 @@ function enableNxtOnSpeedTest(){
 
 }
 
-//enable next button, when testdate is set
-function enableOnTestdate(){
-  $('#recording_test_date').change(function(e){
-    console.log("Test value");
-    console.log(this);
-  });
-}
-
 //GOT TO NEXT TAB WHEN CLICK ON NEXT BUTTON
 function bookingsNextTab(){
   $(".bookings-next").on('click', function(e){
     e.preventDefault()
     const parentContainer =  $(this).parents('.tab-pane')[0];
-    console.log("next button parent container");
-    console.log($(parentContainer).attr('data-permit'));
+// console.log("next button parent container");
+// console.log($(parentContainer).attr('data-permit'));
     if ( $(parentContainer).attr('data-permit') ) {
       let listTabId =  $(this).parent().attr('id');
       let nextTab = $('a[href="#'+listTabId+'"]').next();
-      console.log( nextTab );
+// console.log( nextTab );
       if (nextTab) {
         $( nextTab ).tab('show')
       } else {
@@ -195,6 +221,10 @@ function setUpDatesDivs(hidden_field, embeddedDatePicker, placeHolder) {
     //hide date picker
     $('#' + embeddedDatePicker).hide();
 
+    //enable next button
+    let elementInside = "#" + hidden_field;
+    enableNxtButton(elementInside);
+
     //Add picked date to title, and toggle display block
     $('#' + placeHolder).text(recordingText);
     $('#' + placeHolder).parent().removeClass('d-none');
@@ -215,9 +245,8 @@ $(function () {
   //number bookings left menu
   numberBookingMenu();
 
-  enableNextOnChange()
+  enableNextOnChange();
   enableNxtOnSpeedTest();
-  enableOnTestdate();
 
   document.addEventListener("turbolinks:load", function(){
 
@@ -232,7 +261,7 @@ $(function () {
 
     enableNextOnChange();
     enableNxtOnSpeedTest();
-    enableOnTestdate();
+
 
     // DATEPICKER OPTIONS
     $('#recording-datepicker').datetimepicker({

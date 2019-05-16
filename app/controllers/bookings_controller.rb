@@ -37,31 +37,27 @@ class BookingsController < ApplicationController
   end
 
   def create
-    @params = params
-    # @booking = Booking.new(booking_params)
-    # @booking.user = current_user
-    # @booking.show_name = session[:show_name]
-    # @booking.booking_type = session[:type]
-    # user_info = {
-    #   'full_name' => current_user.full_name,
-    #   'email' => current_user.email,
-    #   'phone' => current_user.phone,
-    #   'name_for_show' => current_user.name_for_show,
-    #   'title_for_show' => current_user.title_for_show,
-    #   'bio' => current_user.bio,
-    #   'release' => company.release
-    # }
-    # @booking.user_info = @booking.user_info.merge(user_info)
-    #
-    # if @booking.save
-    #   flash[:primary] = "Booking created"
-    #   session[:show_name] = nil
-    #   session[:type] = nil
-    #   redirect_to dashboard_url page: 'booking-history-tab'
-    # else
-    #   render :new
-    #   # redirect_back(fallback_location: new_booking_path)
-    # end
+    # @params = params
+    @booking = Booking.new(booking_params)
+    @booking.user = current_user
+    user_info = {
+      'full_name' => current_user.full_name,
+      'email' => current_user.email,
+      'phone' => current_user.phone,
+      'name_for_show' => current_user.name_for_show,
+      'title_for_show' => current_user.title_for_show,
+      'bio' => current_user.bio,
+      'release' => company.release
+    }
+    @booking.user_info = @booking.user_info.merge(user_info)
+
+    if @booking.save
+      flash[:primary] = "Booking created"
+      redirect_to dashboard_url page: 'booking-history-tab'
+    else
+      render :new_alt
+      # redirect_back(fallback_location: new_booking_path)
+    end
   end
 
   def bookings_list
@@ -73,9 +69,8 @@ class BookingsController < ApplicationController
     render partial: "bookings/partials/recording_content"
   end
 
-  def get_instudio_form
-    @booking = Booking.new
-    render partial: "bookings/partials/booking_inStudio_form", locals: { booking_form: @booking }
+  def get_test_form
+    render partial: "bookings/partials/test_content"
   end
 
   def booking_menu
@@ -115,10 +110,10 @@ private
   def booking_params
 
     params.require(:booking).permit(
+      :booking_type,
+      :show_name,
       :recording_date,
-      :recording_time,
       :test_date,
-      :test_time,
       :info_confirmation,
       user_info: [
         social_media: [
@@ -134,7 +129,7 @@ private
         :company_linkedin,
         :company_twitter,
         :company_instagram,
-        :company_other
+        :company_youtube
         ]
       ],
       hardware_requirements: [:audio, :video, :computer_type, :browser_type, :ping, :download, :upload ]

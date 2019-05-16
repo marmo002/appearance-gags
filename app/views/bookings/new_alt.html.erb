@@ -2,6 +2,19 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-12">
+        <% if @booking.errors.any? %>
+          <ul>
+            <% @booking.errors.full_messages.each do |m| %>
+              <div class="alert alert-danger" role="alert">
+                <ul>
+                  <%= m %>
+                </ul>
+              </div>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
+      <div class="col-md-12">
 
         <div class="row">
           <div class="col-md-3">
@@ -65,15 +78,32 @@
                 <!-- list-internet -->
 
                 <!-- list-test -->
-                <div class="tab-pane fade" id="list-test" role="tabpanel" aria-labelledby="list-settings-list">
-                  
-                  <%= render 'bookings/partials/test_content', booking: booking  %>
+                <div class="tab-pane fade" id="list-test" role="tabpanel" aria-labelledby="list-settings-list", data-permit="true">
+
+                  <div class="row">
+                    <div class="col-md-12">
+                      <h3 class="custom-subtitle-2 p-0">Keep in mind that your test must be scheduled before the recording date.</h3>
+                      <h2 class="d-none">Test date: <span id="test_date_placeholder"></span></h2>
+
+                      <div id="test_date_container">
+                        <%#= render 'bookings/partials/test_content'  %>
+                      </div>
+
+                      <%= booking.hidden_field :test_date, id: "recording_test_date" %>
+
+                      <script>
+                        setUpDatesDivs("recording_test_date", "SOIDIV_GetAGripOnLife", "test_date_placeholder" );
+                      </script>
+
+                    </div><!-- col -->
+                  </div>
+
                   <%= button_tag 'next', type: 'button', class: 'btn btn-primary bookings-next', disabled: true %>
                 </div>
                 <!-- list-test -->
 
                 <!-- list-recording -->
-                <div class="tab-pane fade" id="list-recording" role="tabpanel" aria-labelledby="list-settings-list">
+                <div class="tab-pane fade" id="list-recording" role="tabpanel" aria-labelledby="list-settings-list" data-permit="true">
                   <div class="row">
                     <div class="col-md-12">
                       <!-- <h3 class="custom-subtitle-2 p-0">Keep in mind that your test must be scheduled before the recording date.</h3> -->
@@ -86,17 +116,17 @@
                       <%= booking.hidden_field :recording_date, id: "recording_date" %>
 
                       <script>
-                        setUpDatesDivs("recording_date", "SOIDIV_GetAGripOnLife", "recording_date_placeholder" );
+                        setUpDatesDivs("recording_date", "SOIDIV_GetAGripOnLighting", "recording_date_placeholder" );
                       </script>
 
                     </div><!-- col -->
                   </div>
-                  <%= button_tag 'next', type: 'button', class: 'btn btn-primary bookings-next', disabled: true, booking: booking %>
+                  <%= button_tag 'next', type: 'button', class: 'btn btn-primary bookings-next' %>
                 </div>
                 <!-- list-recording -->
 
                 <!-- list-personal -->
-                <div class="tab-pane fade" id="list-personal" role="tabpanel" aria-labelledby="list-settings-list">
+                <div class="tab-pane fade" id="list-personal" role="tabpanel" aria-labelledby="list-settings-list" data-permit="true">
                   <%= render 'bookings/partials/personal_content', booking: booking  %>
                   <%= button_tag 'next', type: 'button', class: 'btn btn-primary bookings-next' %>
                 </div>
@@ -119,6 +149,7 @@
               var element4 = $('#list-browser').clone(true);
               var element5 = $('#list-internet').clone(true);
               var element6 = $('#list-test').clone(true);
+              var element7 = $('#list-recording').clone(true);
 
             </script>
           </div> <!-- col-->

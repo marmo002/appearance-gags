@@ -1,11 +1,11 @@
 class Booking < ApplicationRecord
   belongs_to :user
 
-  attr_accessor :info_confirmation
+  # attr_accessor :info_confirmation
 
   validates :recording_date, presence: true
   validates :test_date, presence: true, if: :type_virtual?
-  validates :info_confirmation, acceptance: { message: '- Please confirm information is current and accurate' }
+  # validates :info_confirmation, acceptance: { message: '- Please confirm information is current and accurate' }
 
   # Custom validations
   validate :dates_cant_be_past_today
@@ -96,12 +96,20 @@ private
 
   def harware_speed_requirements
 
-      unless hardware_requirements['headphone']
+      unless hardware_requirements['audio']
         errors.add(:hardware_requirements, "Please confirm you have proper headphones")
       end
 
-      unless hardware_requirements['webcam']
+      unless hardware_requirements['video']
         errors.add(:hardware_requirements, "Please confirm you have proper webcam")
+      end
+
+      unless hardware_requirements['computer_type']
+        errors.add(:hardware_requirements, "Please confirm yout type of computer")
+      end
+
+      unless hardware_requirements['browser_type']
+        errors.add(:hardware_requirements, "Please confirm the browser your are using")
       end
 
       if hardware_requirements['ping'].length < 1

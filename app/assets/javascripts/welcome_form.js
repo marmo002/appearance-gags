@@ -2,7 +2,7 @@ function datePicker(conatinerId){
   // DATEPICKER OPTIONS
   const dobPicker = $('#' + conatinerId);
   const pickedDate = dobPicker.find('input[type=text]').val();
-  console.log(pickedDate);
+  // console.log(pickedDate);
 
   dobPicker.datetimepicker({
     viewMode: 'years',
@@ -16,7 +16,7 @@ function datePicker(conatinerId){
   }
 
   $('#user_dob').focus(function(e){
-    
+
     dobPicker.datetimepicker('show');
   });
 }
