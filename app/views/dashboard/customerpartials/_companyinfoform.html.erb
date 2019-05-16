@@ -84,22 +84,22 @@
     <%= f.fields_for :company_social_media do | c_media| %>
     <div class="form-group">
       <%= c_media.label :companywebsite %>
-      <%= c_media.text_field :website, id: :company_website, class: "form-control", placeholder: "Company website", value: current_user.company_social_media["website"] %>
+      <%= c_media.text_field :company_website, id: :company_website, class: "form-control", placeholder: "Company website", value: current_user.company_social_media["company_website"] %>
     </div>
 
     <div class="form-group">
       <%= c_media.label :companyfacebook %>
-      <%= c_media.text_field :facebook, id: :company_facebook, class: "form-control", placeholder: "Company facebook", value: current_user.company_social_media["facebook"] %>
+      <%= c_media.text_field :company_facebook, id: :company_facebook, class: "form-control", placeholder: "Company facebook", value: current_user.company_social_media["company_facebook"] %>
     </div>
 
     <div class="form-group">
       <%= c_media.label :companylinkedin %>
-      <%= c_media.text_field :linkedin, id: :company_linkedin, class: "form-control", placeholder: "Company linkedIn", value: current_user.company_social_media["linkedin"] %>
+      <%= c_media.text_field :company_linkedin, id: :company_linkedin, class: "form-control", placeholder: "Company linkedIn", value: current_user.company_social_media["company_linkedin"] %>
     </div>
 
     <div class="form-group">
       <%= c_media.label :company_youtube %>
-      <%= c_media.text_field :youtube, id: :company_other, class: "form-control", placeholder: "Company youtube", value: current_user.company_social_media["youtube"] %>
+      <%= c_media.text_field :company_youtube, id: :company_other, class: "form-control", placeholder: "Company youtube", value: current_user.company_social_media["company_youtube"] %>
     </div>
 
     <div class="form-group">
@@ -109,7 +109,7 @@
         <div class="input-group-prepend">
           <span class="input-group-text" id="addon-wrapping">@</span>
         </div>
-        <%= c_media.text_field :twitter, id: :company_twitter, class: "form-control", placeholder: "Company twitter handle", value: current_user.company_social_media["twitter"] %>
+        <%= c_media.text_field :company_twitter, id: :company_twitter, class: "form-control", placeholder: "Company twitter handle", value: current_user.company_social_media["company_twitter"] %>
       </div>
 
     </div>
@@ -120,7 +120,7 @@
         <div class="input-group-prepend">
           <span class="input-group-text" id="addon-wrapping">@</span>
         </div>
-        <%= c_media.text_field :instagram, id: :company_instagram, class: "form-control", placeholder: "Company instagram handle", value: current_user.company_social_media["instagram"] %>
+        <%= c_media.text_field :company_instagram, id: :company_instagram, class: "form-control", placeholder: "Company instagram handle", value: current_user.company_social_media["company_instagram"] %>
       </div>
     </div>
     <% end %>

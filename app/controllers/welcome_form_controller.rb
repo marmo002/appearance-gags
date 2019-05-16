@@ -118,7 +118,7 @@ private
       :company_postalcode,
       :companylogo,
       social_media: [ :profile, :facebook, :linkedin, :twitter, :instagram, :youtube, :other ],
-      company_social_media: [ :website, :facebook, :linkedin, :twitter, :instagram, :youtube ]
+      company_social_media: [ :company_website, :company_facebook, :company_linkedin, :company_twitter, :company_instagram, :company_youtube ]
     )
   end
 

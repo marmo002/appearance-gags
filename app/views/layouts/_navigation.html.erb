@@ -18,7 +18,7 @@
         </li>
         <% unless is_admin? %>
         <li class="nav-item">
-          <%= link_to "Book show", bookings_path, class: "nav-link" %>
+          <%= link_to "Book show", new_alt_path, class: "nav-link" %>
         </li>
         <% end %>
         <% if is_admin? %>

@@ -6,10 +6,7 @@
           <div class="col-md-6">
             <h2>Sign up</h2>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
+              Please create an account to proceed with booking your guest appearance
             </p>
             <%= form_for @user do |f| %>
               <% @user.errors.full_messages.each do |error| %>
@@ -44,14 +41,13 @@
                  <%= f.password_field :password_confirmation, id: "pass-confirmation", class: "form-control", placeholder: "Confirm password" %>
               </div>
 
-              <%= f.submit "Sign up ; )", class: "btn btn-primary", role: "button" %>
+              <%= f.submit "Sign up", class: "btn btn-primary", role: "button" %>
             <% end %>
           </div>
           <div class="col-md-4 align-self-center mt-5">
             <h2>Log in</h2>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Returning Guest? Log-in here
             </p>
             <%= form_tag sessions_path, :method => :post do %>
               <div class="form-group">

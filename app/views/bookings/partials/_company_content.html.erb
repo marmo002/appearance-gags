@@ -57,12 +57,12 @@
       <div class="col-md-8">
         <% if @company_social %>
           <%= booking.fields_for :user_info do |user_i|%>
-            <%= user_i.fields_for :social_media do |social_media| %>
-              <% @company_social.each do |personal_social_name, personal_social_url| %>
+            <%= user_i.fields_for :company_social_media do |c_social_media| %>
+              <% @company_social.each do |company_social_name, company_social_url| %>
                 <div class="form-group">
                   <div class="custom-control custom-checkbox">
-                    <%= social_media.check_box personal_social_name, {checked: true, class: "custom-control-input", id: "#{personal_social_name}"}, "#{personal_social_url}" %>
-                    <%= social_media.label :personal_social_url, "#{personal_social_name}: #{personal_social_url}", class: "custom-control-label", for: "#{personal_social_name}" %>
+                    <%= c_social_media.check_box company_social_name, {checked: true, class: "custom-control-input", id: "#{company_social_name}"}, "#{company_social_url}" %>
+                    <%= c_social_media.label :company_social_url, "#{company_social_name}: #{company_social_url}", class: "custom-control-label", for: "#{company_social_name}" %>
                   </div>
                 </div>
               <% end %>
