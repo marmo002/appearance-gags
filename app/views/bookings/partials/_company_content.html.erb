@@ -1,5 +1,7 @@
+<%= booking.fields_for :user_info do |user_info_company| %>
 <div class="row">
   <div class="col-md-12">
+
     <div class="row mb-5">
       <div class="col-md-4">
         <h2 class="custom-subtitle-2 p-0">Company logo</h2>
@@ -7,6 +9,17 @@
       <div class="col-md-8">
         <% if current_user.companylogo.attached? %>
         <%= image_tag current_user.companylogo, class: "img-thumbnail custom-height" %>
+
+        <!-- image consent -->
+        <% logo_consent_text = "I consent to the distribution of this logo." %>
+        <div class="form-group">
+          <div class="custom-control custom-checkbox">
+            <%= user_info_company.check_box :logo_consent, { checked: true, class: "custom-control-input", id: "logo_consent"}, "#{logo_consent_text}", "false" %>
+            <%= user_info_company.label :image_consent, logo_consent_text, class: "custom-control-label gag-report-labels mt-3", for: "logo_consent" %>
+          </div>
+        </div>
+        <!-- image consent -->
+
         <% else %>
         <div class="alert alert-dark" role="alert">
           No company logo image added.
@@ -16,37 +29,32 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row mb-5">
       <div class="col-md-4">
         <h2 class="custom-subtitle-2 p-0">Company information</h2>
       </div>
       <div class="col-md-8">
+        <% unless current_user.company_name.empty? %>
         <div class="gag-report-grid1">
           <div class="gig-report-item">
-            <span class="gag-report-labels">
-              Company name
-            </span>
+            <% company_name =  current_user.company_name.empty? ? "No company name added" : "#{current_user.company_name}" %>
+            <div class="form-group">
+              <div class="custom-control custom-checkbox">
+                <%= user_info_company.check_box :company_name, { checked: true, class: "custom-control-input", id: "company_name"}, "#{company_name}", "User doesn't wanna use its company name" %>
+                <%= user_info_company.label :company_name, 'Company name:', class: "custom-control-label gag-report-labels", for: "company_name" %>
+              </div>
+            </div>
           </div>
           <div class="gig-report-item">
-            <%= current_user.company_name.empty? ? "No company name added" : "#{current_user.company_name}" %>
-          </div>
-          <div class="gig-report-item">
-            <span class="gag-report-labels">
-              Company legal name
-            </span>
-          </div>
-          <div class="gig-report-item">
-            <%= current_user.company_legal_name.empty? ? "No company legal name added" : "#{current_user.company_legal_name}" %>
-          </div>
-          <div class="gig-report-item">
-            <span class="gag-report-labels">
-              Company phone number
-            </span>
-          </div>
-          <div class="gig-report-item">
-            <%= current_user.phone.empty? ? "No company legal name added" : "#{current_user.phone}" %>
+            <%= company_name %>
           </div>
         </div>
+        <% else %>
+        <div class="alert alert-dark" role="alert">
+          No company name added.
+          <%#= link_to "Add it in dashboard", dashboard_url(page: 'personal-social-media-tab') %>
+        </div>
+        <% end %>
       </div>
     </div>
 
@@ -56,25 +64,24 @@
       </div>
       <div class="col-md-8">
         <% if @company_social %>
-          <%= booking.fields_for :user_info do |user_i|%>
-            <%= user_i.fields_for :company_social_media do |c_social_media| %>
-              <% @company_social.each do |company_social_name, company_social_url| %>
-                <div class="form-group">
-                  <div class="custom-control custom-checkbox">
-                    <%= c_social_media.check_box company_social_name, {checked: true, class: "custom-control-input", id: "#{company_social_name}"}, "#{company_social_url}" %>
-                    <%= c_social_media.label :company_social_url, "#{company_social_name}: #{company_social_url}", class: "custom-control-label", for: "#{company_social_name}" %>
-                  </div>
+          <%= user_info_company.fields_for :company_social_media do |c_social_media| %>
+            <% @company_social.each do |company_social_name, company_social_url| %>
+              <div class="form-group">
+                <div class="custom-control custom-checkbox">
+                  <%= c_social_media.check_box company_social_name, {checked: true, class: "custom-control-input", id: "#{company_social_name}"}, "#{company_social_url}" %>
+                  <%= c_social_media.label :company_social_url, "#{company_social_name}: #{company_social_url}", class: "custom-control-label", for: "#{company_social_name}" %>
                 </div>
-              <% end %>
+              </div>
             <% end %>
           <% end %>
-          <% else %>
-          <div class="alert alert-dark" role="alert">
-            No company social media added.
-            <%#= link_to "Add it in dashboard", dashboard_url(page: 'personal-social-media-tab') %>
-          </div>
-          <% end %>
+        <% else %>
+        <div class="alert alert-dark" role="alert">
+          No company social media added.
+          <%#= link_to "Add it in dashboard", dashboard_url(page: 'personal-social-media-tab') %>
+        </div>
+        <% end %>
       </div>
     </div>
   </div><!-- col -->
 </div>
+<% end %><!--user_info_company end-->

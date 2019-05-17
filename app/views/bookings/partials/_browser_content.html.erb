@@ -3,7 +3,7 @@
     <%= booking.fields_for :hardware_requirements do |h_requirements| %>
 
       <h3 class="custom-subtitle-2 p-0">Which browser you will use?</h3>
-      <div class="gag-form-group mb-5">
+      <div class="gag-form-group">
         <div class="line-select-grid">
           <%= h_requirements.radio_button :browser_type, 'chrome', { id: "radio-chrome", class: 'gag-radio-input d-none' } %>
           <label class="gag-radio-label label-button" for="radio-chrome">Chrome</label>
@@ -14,11 +14,16 @@
           <%= h_requirements.radio_button :browser_type, 'safari', { id: "radio-safari", class: 'gag-radio-input d-none' } %>
           <label class="gag-radio-label label-button" for="radio-safari">Safari</label>
 
-          <%= h_requirements.radio_button :browser_type, 'Edge', { id: "radio-Edge", class: 'gag-radio-input d-none' } %>
-          <label class="gag-radio-label label-button" for="radio-Edge">Microsoft Edge</label>
+          <%= h_requirements.radio_button :browser_type, 'Edge', { id: "radio-edge", class: 'gag-radio-input d-none' } %>
+          <label class="gag-radio-label label-button" for="radio-edge">Microsoft Edge</label>
+
+          <%= h_requirements.radio_button :browser_type, 'Other', { id: "radio-other", class: 'gag-radio-input d-none' } %>
+          <label class="gag-radio-label label-button" for="radio-other">Other</label>
         </div><!-- grid -->
       </div><!-- gag-form-group -->
-
+      <p class="subtle_subtitle">
+        Note: Internet Explorer Does not work with our Virtual Studio.
+      </p>
     <% end %>
   </div><!-- col -->
 </div>

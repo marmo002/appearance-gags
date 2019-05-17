@@ -28,8 +28,12 @@
               <fieldset id=company-legal-fieldset>
                 <%= render 'welcome_form/partials/company_legal_form', f: f %>
               </fieldset>
-              <%= link_to "Back", welcome_social_path, class: "btn btn-primary"  %>
-              <%= f.submit "Next", class: "btn btn-primary float-right", role: "button", data: { "disable-with": "Updating..." } %>
+              <div class="row">
+                <div class="col-md-12">
+                  <%= link_to "Back", welcome_social_path, class: "btn btn-primary"  %>
+                  <%= f.submit "Next", class: "btn btn-primary float-right", role: "button", data: { "disable-with": "Updating..." } %>
+                </div>
+              </div>
             <% end %>
           </div><!--profile-tab-->
         </div>

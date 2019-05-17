@@ -11,7 +11,25 @@
           </div>
           <div class="col-lg-8">
             <div class="card-body">
-              <p id="image-help" class="card-text">
+              <%
+              speedtest_txt1 = "I'm using the computer I plan to enter the virtual studio with."
+              speedtest_txt2 = "I'm logged into the internet connection I will use when I enter the virtual studio."
+              %>
+              <div class="form-group">
+                <div class="custom-control custom-checkbox">
+                  <%= h_requirements.check_box :speed_check1, { class: "custom-control-input", id: "speed_check1"}, "#{speedtest_txt1}", "unchecked" %>
+                  <%= h_requirements.label :personal_social_url, speedtest_txt1, class: "custom-control-label gag-report-labels", for: "speed_check1" %>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="custom-control custom-checkbox">
+                  <%= h_requirements.check_box :speed_check2, { class: "custom-control-input", id: "speed_check2"}, "#{speedtest_txt2}", "unchecked"  %>
+                  <%= h_requirements.label :personal_social_url, speedtest_txt2, class: "custom-control-label gag-report-labels", for: "speed_check2" %>
+                </div>
+              </div>
+
+              <p class="card-text">
                 Using the computer and web browser, and internet connection
                 you plan on broadcasting from; visit
                 <a href="https://www.speedtest.net" target="_blank">
@@ -20,16 +38,16 @@
                 and enter results bellow
               </p>
               <div class="form-group">
-                 <%#= h_requirements.label :ping %>
-                 <%= h_requirements.text_field :ping, class: "form-control", placeholder: "Enter: Ping rate(m/s)" %>
+                 <%= h_requirements.label :ping_ms, class: 'gag-report-labels' %>
+                 <%= h_requirements.text_field :ping, class: "form-control", placeholder: "Ping ms" %>
               </div>
               <div class="form-group">
-                 <%#= h_requirements.label :download %>
-                 <%= h_requirements.text_field :download, class: "form-control", placeholder: "Enter: Download speed(mbps)" %>
+                 <%= h_requirements.label :download_Mbps, class: 'gag-report-labels' %>
+                 <%= h_requirements.text_field :download, class: "form-control", placeholder: "Download Mbps" %>
               </div>
               <div class="form-group">
-                 <%#= h_requirements.label :upload %>
-                 <%= h_requirements.text_field :upload, class: "form-control", placeholder: "Enter: Upload speed(mbps)" %>
+                 <%= h_requirements.label :upload, class: 'gag-report-labels' %>
+                 <%= h_requirements.text_field :upload, class: "form-control", placeholder: "Upload" %>
               </div>
             </div>
           </div>
