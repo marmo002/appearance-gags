@@ -1,18 +1,11 @@
-<fieldset>
-  <legend class="custom-subtitle-1" >Pick a test date</legend>
-  <!-- <small class="form-text text-muted">You must pick a test day at leat 5mins before recording time.</small> -->
-  <div class="row">
-    <div class="col-md-6">
-      <div class="form-group">
-        <%#= booking.label :test_date %>
-        <%= booking.date_field :test_date, id: "test-date", class: "form-control", placeholder: "Test date" %>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="form-group">
-        <%#= booking.label :test_time %>
-        <%= booking.time_field :test_time, id: "test-time", class: "form-control", placeholder: "Test time" %>
-      </div>
+<div class="form-group">
+  <div class="input-group date" id="user_dob_picker" data-target-input="nearest">
+    <%= f.text_field :test_date, id: "recording_test_date", class: "form-control", data: {target: "#user_dob_picker"}, placeholder: "Fake test date" %>
+    <!-- <input type="text" class="form-control datetimepicker-input" data-target="#user_dob_picker"/> -->
+    <div class="input-group-append" data-target="#user_dob_picker" data-toggle="datetimepicker">
+      <div class="input-group-text"><i class="fa fa-calendar"></i></div>
     </div>
   </div>
-</fieldset>
+  <small id="test_date" class="alert-text m-1 text-danger">test_date error</small>
+  <small id="" class="form-text text-muted mb-3">Test date DD/MM/YYYY</small>
+</div>

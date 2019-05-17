@@ -15,8 +15,12 @@
             <!-- <h2>Personal information</h2> -->
             <%= form_with model: current_user, url: welcome_update_path, html: { class: "customer-form", id: "user-profile-form", data: { next: welcome_profile_image_path } } do |f| %>
               <%= render 'welcome_form/partials/internet_profile_form', f: f %>
-              <%= link_to "Back", welcome_legal_path, class: "btn btn-primary"  %>
-              <%= f.submit "Next", class: "btn btn-primary float-right", role: "button", data: { "disable-with": "Updating..." } %>
+              <div class="row">
+                <div class="col-md-12">
+                  <%= link_to "Back", welcome_legal_path, class: "btn btn-primary"  %>
+                  <%= f.submit "Next", class: "btn btn-primary float-right", role: "button", data: { "disable-with": "Updating..." } %>
+                </div>
+              </div>
             <% end %>
           </div><!--profile-tab-->
         </div>

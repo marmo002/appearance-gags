@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 :root {
-  --site-light-grey: #DDDDDD;
+  --site-light-grey: #ababab;
   // --site-dark-grey: #5D5B5B;
   --site-dark-grey: #444444;
   --site-black: #262626;
@@ -98,6 +98,11 @@ h5
   color: var(--site-black);
 }
 
+#main-menu a
+{
+  font-weight: bold;
+}
+
 .nav-pills .nav-link,
 .nav-pills .show > .nav-link
 {
@@ -163,7 +168,7 @@ body{
 
 main
 {
-  min-height: 500px;
+  min-height: 800px;
 }
 
 nav img
@@ -175,17 +180,7 @@ nav img
 
 section
 {
-  padding: 50px 0;
-}
-
-.banner-background-image
-{
-
-}
-
-label
-{
-  // overflow: hidden;
+  padding: 80px 0;
 }
 
 input,
@@ -299,7 +294,7 @@ small
 .line-select-grid
 {
   display: inline-grid;
-  grid-template-columns: repeat(5, auto);
+  grid-template-columns: repeat(3, auto);
   grid-gap: 20px;
 }
 
@@ -385,10 +380,19 @@ fieldset
 }
 
 .subtle_subtitle {
-  padding: 0 10px;
-  color: dimgrey;
+  // padding: 0 10px;
+  color: var(--site-dark-grey);
+  font-weight: bold;
+  font-size: 14px;
+  padding-left: 10px;
+}
+
+.enhance_paragraph {
+  margin-bottom: 0;
   font-weight: bold;
   font-size: 1rem;
+  line-height: 1.3;
+  color: var(--site-black)
 }
 
 .gag-report-labels

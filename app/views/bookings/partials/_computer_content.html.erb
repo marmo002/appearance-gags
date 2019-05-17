@@ -3,12 +3,14 @@
     <%= booking.fields_for :hardware_requirements do |h_requirements| %>
 
       <h3 class="custom-subtitle-2 p-0">Type of computer</h3>
-      <div class="gag-form-group mb-5">
+      <div class="gag-form-group">
         <div class="line-select-grid">
           <%= h_requirements.radio_button :computer_type, 'windows', { id: "radio-windows", class: 'gag-radio-input d-none' } %>
           <label class="gag-radio-label label-button" for="radio-windows">Windows</label>
           <%= h_requirements.radio_button :computer_type, 'mac', { id: "radio-mac", class: 'gag-radio-input d-none' } %>
           <label class="gag-radio-label label-button" for="radio-mac">Mac</label>
+          <%= h_requirements.radio_button :computer_type, 'other', { id: "radio-pc-other", class: 'gag-radio-input d-none' } %>
+          <label class="gag-radio-label label-button" for="radio-pc-other">Other</label>
         </div><!-- grid -->
       </div><!-- gag-form-group -->
 

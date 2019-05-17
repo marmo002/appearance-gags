@@ -38,4 +38,26 @@
     // border-right-width: 1;
   }
 
+  /*
+  ###############################
+      bookings page styles
+  ###############################
+  */
+  #booking-list-tab
+  {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-bottom: 50px;
+    grid-gap: 15px;
+  }
+
+  #booking-list-tab .list-group-item {
+    padding: 5px 0 5px 10px;
+    font-size: 13px;
+  }
+
+  .line-select-grid {
+    grid-template-columns: repeat(2, auto);
+  }
+
 }//end 768px

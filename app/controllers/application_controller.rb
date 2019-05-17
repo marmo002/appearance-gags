@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
 
     if logged_in?
       unless current_user.profile_done
-        flash[:warning] = "Please finished your profile set up."
+        flash[:warning] = "Please finish your profile set up."
         redirect_to welcome_legal_url
       end
     end

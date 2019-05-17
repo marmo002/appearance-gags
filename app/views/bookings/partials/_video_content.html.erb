@@ -3,6 +3,9 @@
     <%= booking.fields_for :hardware_requirements do |h_requirements| %>
 
       <div class="gag-form-group">
+        <h3 class="subtle_subtitle">
+          Option 1: I have an external webcam with the appropriate setting and lighting in a quiet environment.
+        </h3>
         <% s_webcam = 'I have a webcam with the appropriate lighting and in a good recording environment.' %>
         <%= h_requirements.radio_button :video, s_webcam, { id: "s_webcam-checkbox", class: 'gag-radio-input d-none' } %>
         <label class="gag-radio-label" for="s_webcam-checkbox">
@@ -12,10 +15,10 @@
                 <%=  image_tag 'webCam-r.png', class: "card-img", alt: "headphones image" %>
               </div>
               <div class="col-9 align-self-center">
-                <div class="card-body p-0">
-                  <h5 class="card-title">
+                <div class="card-body">
+                  <p class="enhance_paragraph">
                     <%= s_webcam %>
-                  </h5>
+                  </p>
                 </div>
               </div>
             </div>
@@ -24,6 +27,9 @@
       </div><!-- gag-form-group -->
 
       <div class="gag-form-group">
+        <h3 class="subtle_subtitle mt-4">
+          Option 2: My computer has a webcam embedded on its screen.
+        </h3>
         <% e_cam = 'I have a webcam embedded on my computer' %>
         <%= h_requirements.radio_button :video, e_cam, { id: "e_webcam-checkbox", class: 'gag-radio-input d-none' } %>
         <label class="gag-radio-label" for="e_webcam-checkbox">
@@ -33,10 +39,10 @@
                 <%=  image_tag 'laptopWebcam-r.png', class: "card-img", alt: "earpods image" %>
               </div>
               <div class="col-9 align-self-center">
-                <div class="card-body p-0">
-                  <h5 class="card-title">
+                <div class="card-body">
+                  <p class="enhance_paragraph">
                     <%= e_cam %>
-                  </h5>
+                  </p>
                 </div>
               </div>
             </div>
@@ -45,6 +51,9 @@
       </div><!-- gag-form-group -->
 
       <div class="gag-form-group">
+        <h3 class="subtle_subtitle mt-4">
+          Option 3: I don’t have either but will get something for my test date.
+        </h3>
         <% video_noallow = 'I don\' have either video hardware' %>
         <%= h_requirements.radio_button :video, video_noallow, { id: "video-none-checkbox", class: 'gag-radio-input d-none' } %>
         <label class="gag-radio-label" for="video-none-checkbox">
@@ -54,10 +63,10 @@
                 <%=  image_tag 'dontHaveVideo.png', class: "card-img", alt: "no hardware image" %>
               </div>
               <div class="col-9 align-self-center">
-                <div class="card-body p-0">
-                  <h5 class="card-title">
+                <div class="card-body">
+                  <p class="enhance_paragraph">
                     <%= video_noallow %>
-                  </h5>
+                  </p>
                 </div>
               </div>
             </div>

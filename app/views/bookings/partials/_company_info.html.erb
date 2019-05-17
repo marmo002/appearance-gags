@@ -9,6 +9,7 @@
         </div>
         <% if current_user.companylogo.attached? %>
           <%= image_tag current_user.companylogo, class: "img-thumbnail" %>
+
         <% else %>
         <div class="alert alert-light" role="alert">
           No company logo added.

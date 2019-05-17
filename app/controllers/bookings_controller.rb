@@ -43,11 +43,7 @@ class BookingsController < ApplicationController
     user_info = {
       'full_name' => current_user.full_name,
       'email' => current_user.email,
-      'phone' => current_user.phone,
-      'name_for_show' => current_user.name_for_show,
-      'title_for_show' => current_user.title_for_show,
-      'bio' => current_user.bio,
-      'release' => company.release
+      'phone' => current_user.phone
     }
     @booking.user_info = @booking.user_info.merge(user_info)
 
@@ -116,6 +112,12 @@ private
       :test_date,
       :info_confirmation,
       user_info: [
+        :image_consent,
+        :name_for_show,
+        :title_for_show,
+        :bio,
+        :logo_consent,
+        :company_name,
         social_media: [
         :facebook,
         :linkedin,
@@ -132,7 +134,7 @@ private
         :company_youtube
         ]
       ],
-      hardware_requirements: [:audio, :video, :computer_type, :browser_type, :ping, :download, :upload ]
+      hardware_requirements: [:audio, :video, :computer_type, :browser_type, :speed_check1, :speed_check2, :ping, :download, :upload ]
     )
   end
 

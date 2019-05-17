@@ -1,3 +1,41 @@
+<p>Temporary datepicker</p>
+<div class="form-group mb-5">
+  <div class="input-group date" id="datetimepicker13" data-target-input="nearest">
+      <input type="text" id="fake-recording-picker" class="form-control datetimepicker-input" data-target="#datetimepicker13"/>
+      <div class="input-group-append" data-target="#datetimepicker13" data-toggle="datetimepicker">
+          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+      </div>
+  </div>
+  <script type="text/javascript">
+      $(function () {
+        const recordingPicker = $('#datetimepicker13');
+        const pickedDate = recordingPicker.find('input[type=text]').val();
+
+        recordingPicker.datetimepicker({
+            daysOfWeekDisabled: [0, 6],
+            viewMode: 'months',
+            sideBySide: true
+        });
+
+        if (pickedDate) {
+          let setDate = new Date(pickedDate);
+          recordingPicker.datetimepicker('defaultDate', setDate);
+        }
+
+        recordingPicker.on("hide.datetimepicker", function(e) {
+          let fakeDate = $('#fake-recording-picker').val();
+          $('#recording_date').val(fakeDate);
+
+          setUpDatesDivs("recording_date", "SOIDIV_GetAGripOnLighting", "recording_date_placeholder" );
+
+         });
+
+      });
+  </script>
+</div>
+
+
+
 <script>
 
   function SOAfterConfirmationFunction(data)
@@ -22,6 +60,6 @@
   }
 </script>
 <!-- ScheduleOnce embed START -->
-<div id="SOIDIV_GetAGripOnLighting" data-so-page="GetAGripOnLighting" data-height="550" data-style="border: 1px solid #d8d8d8; min-width: 290px; max-width: 900px;" data-psz="11"></div>
+<div id="SOIDIV_GetAGripOnLighting" style="display:none" data-so-page="GetAGripOnLighting" data-height="550" data-style="border: 1px solid #d8d8d8; min-width: 290px; max-width: 900px;" data-psz="11"></div>
 <script type="text/javascript" src="https://cdn.oncehub.com/mergedjs/so.js"></script>
 <!-- ScheduleOnce embed END -->

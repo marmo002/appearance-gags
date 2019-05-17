@@ -6,7 +6,7 @@ function subMenuRestrictions(elements){
     let tabPaneId = this.href.split('#')[1];
     // console.log(tabPaneId);
     let tabPane = $('#' + tabPaneId);
-    console.log(tabPane.attr('data-permit'));
+// console.log(tabPane.attr('data-permit'));
 
     if ( tabPane.attr('data-permit') ) {
       $(this).tab('show');
@@ -53,8 +53,7 @@ function inStudioFormSetUp(){
    "list-computer",
    "list-browser",
    "list-internet",
-   "list-test",
-   "list-recording",
+   "list-test"
   ]
 
   for (var i = 0; i < list.length; i++) {
@@ -127,7 +126,7 @@ function virtualFormSetUp(){
 
 function enableNxtButton(elemt, status="enable"){
   let tabContainer = $(elemt).parents('.tab-pane');
-  let nextButton = $(tabContainer).children('button');
+  let nextButton = $(tabContainer).find('button');
 
   if (status == "enable") {
     tabContainer.attr('data-permit', true);
@@ -165,7 +164,7 @@ function enableNxtOnSpeedTest(){
   const uploadInput = $('#booking_hardware_requirements_upload');
   let speedInputs = uploadInput.parents('.card-body').find('input');
 
-  speedInputs.change(function(e){
+  speedInputs.keyup(function(e){
     let allFilled = 0;
 
     for (var i = 0; i < speedInputs.length; i++) {
@@ -191,14 +190,21 @@ function bookingsNextTab(){
   $(".bookings-next").on('click', function(e){
     e.preventDefault()
     const parentContainer =  $(this).parents('.tab-pane')[0];
-// console.log("next button parent container");
+// console.log(parentContainer);
 // console.log($(parentContainer).attr('data-permit'));
     if ( $(parentContainer).attr('data-permit') ) {
-      let listTabId =  $(this).parent().attr('id');
+      let listTabId =  $(parentContainer).attr('id');
       let nextTab = $('a[href="#'+listTabId+'"]').next();
 // console.log( nextTab );
       if (nextTab) {
         $( nextTab ).tab('show')
+        if ( window.innerWidth > 768 ) {
+          var scrollPoint = 86;
+        } else {
+          var scrollPoint = 400;
+        }
+        $("html, body").animate({ scrollTop: scrollPoint }, "slow");
+        // return true;
       } else {
         console.log("bookings js: No next tab was found");
       }

@@ -15,8 +15,12 @@
           <div class="tab-pane fade show active" id="company-info">
             <%= form_with model: current_user, url: welcome_update_path, html: { class: "customer-form", id: "user-profile-form", novalidate: true, data: { next: welcome_release_path } } do |f| %>
               <%= render 'welcome_form/partials/company_social_form', f: f %>
-              <%= link_to "Back", welcome_company_image_path, class: "btn btn-primary"  %>
-              <%= f.submit "Next", class: "btn btn-primary float-right", role: "button", data: { "disable-with": "Updating..." } %>
+              <div class="row">
+                <div class="col-md-12">
+                  <%= link_to "Back", welcome_company_image_path, class: "btn btn-primary"  %>
+                  <%= f.submit "Next", class: "btn btn-primary float-right", role: "button", data: { "disable-with": "Updating..." } %>
+                </div>
+              </div>
             <% end %>
           </div><!--profile-tab-->
         </div>

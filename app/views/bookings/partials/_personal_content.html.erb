@@ -1,3 +1,4 @@
+<%= booking.fields_for :user_info do |user_hash|%>
 <div class="row">
   <div class="col-md-12">
     <div class="row mb-5">
@@ -6,7 +7,18 @@
       </div>
       <div class="col-md-8">
         <% if current_user.avatar.attached? %>
-        <%= image_tag current_user.avatar, class: "img-thumbnail custom-height" %>
+          <%= image_tag current_user.avatar, class: "img-thumbnail custom-height" %>
+
+          <%= booking.fields_for :user_info do |image_consent| %>
+          <% image_consent_text = "I consent to the distribution of this image of myself." %>
+          <div class="form-group">
+            <div class="custom-control custom-checkbox">
+              <%= image_consent.check_box :image_consent, { checked: true, class: "custom-control-input", id: "image_consent"}, "#{image_consent_text}", "false" %>
+              <%= image_consent.label :image_consent, image_consent_text, class: "custom-control-label gag-report-labels mt-3", for: "image_consent" %>
+            </div>
+          </div>
+          <% end %>
+
         <% else %>
         <div class="alert alert-dark" role="alert">
           No profile image added.
@@ -16,39 +28,61 @@
       </div>
     </div>
 
-    <div class="row">
+    <!-- personal info -->
+    <div class="row mb-5">
       <div class="col-md-4">
         <h2 class="custom-subtitle-2 p-0">Personal information</h2>
       </div>
       <div class="col-md-8">
         <div class="gag-report-grid1">
+
           <div class="gig-report-item">
-            <span class="gag-report-labels">
-              Name for show
-            </span>
+            <% name_for_booking =  current_user.name_for_show.empty? ? "#{current_user.full_name}" : "#{current_user.name_for_show}" %>
+            <div class="form-group">
+              <div class="custom-control custom-checkbox">
+                <%= user_hash.check_box :name_for_show, { checked: true, class: "custom-control-input", id: "name_for_show"}, "#{name_for_booking}", "User doesn't wanna use any name" %>
+                <%= user_hash.label :name_for_show, 'Name for show:', class: "custom-control-label gag-report-labels", for: "name_for_show" %>
+              </div>
+            </div>
           </div>
           <div class="gig-report-item">
-            <%= current_user.name_for_show.empty? ? "#{current_user.full_name}" : "#{current_user.name_for_show}" %>
+            <%= name_for_booking %>
+          </div><!-- gig-report-item-->
+
+          <% unless current_user.title_for_show.empty? %>
+            <div class="gig-report-item">
+              <% title_for_booking =  current_user.title_for_show.empty? ? "No title for shows" : "#{current_user.title_for_show}" %>
+              <div class="form-group">
+                <div class="custom-control custom-checkbox">
+                  <%= user_hash.check_box :title_for_show, { checked: true, class: "custom-control-input", id: "title_for_show"}, "#{title_for_booking}", "No title for show" %>
+                  <%= user_hash.label :title_for_show, 'Title for show:', class: "custom-control-label gag-report-labels", for: "title_for_show" %>
+                </div>
+              </div>
+            </div>
+            <div class="gig-report-item">
+              <%= title_for_booking %>
+            </div>
+          <% end %>
+
+          <% unless current_user.bio.empty? %>
+          <div class="gig-report-item">
+            <% bio_booking =  current_user.bio.empty? ? "No bio" : "#{current_user.bio}" %>
+            <div class="form-group">
+              <div class="custom-control custom-checkbox">
+                <%= user_hash.check_box :bio, { checked: true, class: "custom-control-input", id: "bio"}, "#{bio_booking}", "No bio for show" %>
+                <%= user_hash.label :bio, 'Bio for show:', class: "custom-control-label gag-report-labels", for: "bio" %>
+              </div>
+            </div>
           </div>
           <div class="gig-report-item">
-            <span class="gag-report-labels">
-              Title for show
-            </span>
+            <%= bio_booking %>
           </div>
-          <div class="gig-report-item">
-            <%= current_user.title_for_show.empty? ? "No title for shows" : "#{current_user.title_for_show}" %>
-          </div>
-          <div class="gig-report-item">
-            <span class="gag-report-labels">
-              Bio
-            </span>
-          </div>
-          <div class="gig-report-item">
-            <%= current_user.bio.empty? ? "No bio" : "#{current_user.bio}" %>
-          </div>
+          <% end %>
+
         </div>
       </div>
     </div>
+    <!-- personal info -->
 
     <div class="row">
       <div class="col-md-4">
@@ -56,25 +90,24 @@
       </div>
       <div class="col-md-8">
         <% if @user_social %>
-          <%= booking.fields_for :user_info do |user_i|%>
-            <%= user_i.fields_for :social_media do |social_media| %>
-              <% @user_social.each do |personal_social_name, personal_social_url| %>
-                <div class="form-group">
-                  <div class="custom-control custom-checkbox">
-                    <%= social_media.check_box personal_social_name, {checked: true, class: "custom-control-input", id: "#{personal_social_name}"}, "#{personal_social_url}" %>
-                    <%= social_media.label :personal_social_url, "#{personal_social_name}: #{personal_social_url}", class: "custom-control-label", for: "#{personal_social_name}" %>
-                  </div>
+          <%= user_hash.fields_for :social_media do |social_media| %>
+            <% @user_social.each do |personal_social_name, personal_social_url| %>
+              <div class="form-group">
+                <div class="custom-control custom-checkbox">
+                  <%= social_media.check_box personal_social_name, {checked: true, class: "custom-control-input", id: "#{personal_social_name}"}, "#{personal_social_url}" %>
+                  <%= social_media.label :personal_social_url, "#{personal_social_name}: #{personal_social_url}", class: "custom-control-label", for: "#{personal_social_name}" %>
                 </div>
-              <% end %>
+              </div>
             <% end %>
           <% end %>
-          <% else %>
-          <div class="alert alert-dark" role="alert">
-            No personal social media added.
-            <%#= link_to "Add it in dashboard", dashboard_url(page: 'personal-social-media-tab') %>
-          </div>
-          <% end %>
+        <% else %>
+        <div class="alert alert-dark" role="alert">
+          No personal social media added.
+          <%#= link_to "Add it in dashboard", dashboard_url(page: 'personal-social-media-tab') %>
+        </div>
+        <% end %>
       </div>
     </div>
   </div><!-- col -->
 </div>
+<% end %>
