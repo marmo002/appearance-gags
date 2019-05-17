@@ -198,6 +198,13 @@ function bookingsNextTab(){
 // console.log( nextTab );
       if (nextTab) {
         $( nextTab ).tab('show')
+        if ( window.innerWidth > 768 ) {
+          var scrollPoint = 86;
+        } else {
+          var scrollPoint = 400;
+        }
+        $("html, body").animate({ scrollTop: scrollPoint }, "slow");
+        // return true;
       } else {
         console.log("bookings js: No next tab was found");
       }
