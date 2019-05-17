@@ -5,6 +5,10 @@ class Booking < ApplicationRecord
 
   validates :recording_date, presence: true
   validates :test_date, presence: true, if: :type_virtual?
+  validates :booking_type, inclusion: { in: %w(in-studio virtual),
+            message: "%{value} is not a valid booking type" }
+  validates :show_name, inclusion: { in: %w(life lighting),
+            message: "%{value} is not a valid show name" }
   # validates :info_confirmation, acceptance: { message: '- Please confirm information is current and accurate' }
 
   # Custom validations

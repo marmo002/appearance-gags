@@ -118,7 +118,7 @@
                       <h2 class="d-none">Test date: <span id="test_date_placeholder"></span></h2>
 
                       <div id="test_date_container">
-                        <%#= render 'bookings/partials/test_content'  %>
+                        <%= render 'bookings/partials/test_content', f: booking  %>
                       </div>
 
                       <%= booking.hidden_field :test_date, id: "recording_test_date" %>

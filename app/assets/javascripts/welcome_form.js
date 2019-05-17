@@ -16,7 +16,6 @@ function datePicker(conatinerId){
   }
 
   $('#user_dob').focus(function(e){
-
     dobPicker.datetimepicker('show');
   });
 }
