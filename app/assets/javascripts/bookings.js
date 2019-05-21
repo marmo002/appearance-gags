@@ -1,3 +1,12 @@
+const list = [
+ "list-audio-hardware",
+ "list-video-hardware",
+ "list-computer",
+ "list-browser",
+ "list-internet",
+ "list-test"
+]
+
 //SHOW TAB ON LEFT SUBMENU
 //ONLY IF TAB-PANE HAS DATA-PERMIT == TRUE
 function subMenuRestrictions(elements){
@@ -47,15 +56,8 @@ function getTestForm(){
 
 //Removes menus and tab-panes from virtual booking
 function inStudioFormSetUp(){
-  let list = [
-   "list-audio-hardware",
-   "list-video-hardware",
-   "list-computer",
-   "list-browser",
-   "list-internet",
-   "list-test"
-  ]
 
+  // iterate throught const list. Setted up on top
   for (var i = 0; i < list.length; i++) {
    $("a[href='#" + list[i] + "']").remove();
    $("#" + list[i]).remove();
@@ -83,29 +85,22 @@ function virtualFormSetUp(){
      subMenuRestrictions('#booking-list-tab a');
   });
 
-  let list = [
-   "list-audio-hardware",
-   "list-video-hardware",
-   "list-computer",
-   "list-browser",
-   "list-internet",
-   "list-test",
-   "list-recording",
-  ]
-
+  // iterate throught const list. Setted up on top
   for (var i = 0; i < list.length; i++) {
    // $("a[href='#" + list[i] + "']").remove();
    $("#" + list[i]).remove();
    // console.log(list[i]);
   }
-
-    $('#list-show').after(element7);
-    $('#list-show').after(element6);
-    $('#list-show').after(element5);
-    $('#list-show').after(element4);
-    $('#list-show').after(element3);
-    $('#list-show').after(element2);
-    $('#list-show').after(element1);
+    // get second container in the list (.tab-pane)
+    // and append the nodes we cloned on load
+    let tabPane = $('.tab-pane')[1];
+    // $(tabPane).after(element7);
+    $(tabPane).after(element6);
+    $(tabPane).after(element5);
+    $(tabPane).after(element4);
+    $(tabPane).after(element3);
+    $(tabPane).after(element2);
+    $(tabPane).after(element1);
 
     // GET TEST DATE FORM
     getTestForm();
@@ -152,7 +147,7 @@ function enableNextOnChange(){
         console.log("virtual choosen");
         break;
       default:
-        console.log("wrong arguments");
+        console.log("select is neither in-studio nor virtual");
     }
 
     enableNxtButton(this);

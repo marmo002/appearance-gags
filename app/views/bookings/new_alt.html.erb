@@ -25,24 +25,33 @@
           <div class="col-md-8">
             <div id="booking_form">
               <%#= render 'bookings/partials/booking_inStudio_form', booking_form: @booking  %>
-              <%= form_with model: @booking, local: true, url: create_booking_path,  html: { id: "booking-form" } do |booking| %>
+              <%= form_with model: @booking, url: create_booking_path,  html: { id: "booking-form" } do |booking| %>
               <div class="tab-content" id="booking-tab-content">
 
                 <!-- list-type -->
-                <div class="tab-pane fade show active" id="list-type" role="tabpanel" aria-labelledby="list-profile-list">
-                  <%= render 'bookings/partials/type_content', booking: booking  %>
+                <div class="tab-pane fade show active" id="booking_type_container" role="tabpanel" aria-labelledby="list-profile-list">
 
+                  <div class="row">
+                    <div class="col-md-12">
+                      <small id="booking_type" class="alert-text m-1 text-danger">booking_type error</small>
+                    </div>
+                  </div>
+                  <%= render 'bookings/partials/type_content', booking: booking  %>
                   <div class="row">
                     <div class="col-md-12">
                       <%= button_tag 'next', type: 'button', class: 'btn btn-primary bookings-next float-right', disabled: true %>
                     </div>
                   </div>
-
                 </div>
                 <!-- list-type -->
 
                 <!-- list-show -->
-                <div class="tab-pane fade" id="list-show" role="tabpanel" aria-labelledby="list-show-list">
+                <div class="tab-pane fade" id="booking_show_container" role="tabpanel" aria-labelledby="list-show-list">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <small id="show_name" class="alert-text m-1 text-danger">booking_type error</small>
+                    </div>
+                  </div>
                   <%= render 'bookings/partials/show_content', booking: booking  %>
                   <div class="row">
                     <div class="col-md-12">
@@ -54,6 +63,11 @@
 
                 <!-- list-audio-hardware -->
                 <div class="tab-pane fade" id="list-audio-hardware" role="tabpanel" aria-labelledby="list-messages-list">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <small id="audio_hardware" class="alert-text m-1 text-danger">audio_hardware error</small>
+                    </div>
+                  </div>
                   <%= render 'bookings/partials/audio_content', booking: booking  %>
                   <div class="row">
                     <div class="col-md-12">
@@ -65,6 +79,11 @@
 
                 <!-- list-video-hardware -->
                 <div class="tab-pane fade" id="list-video-hardware" role="tabpanel" aria-labelledby="list-messages-list">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <small id="video_hardware" class="alert-text m-1 text-danger">video_hardware error</small>
+                    </div>
+                  </div>
                   <%= render 'bookings/partials/video_content', booking: booking  %>
                   <div class="row">
                     <div class="col-md-12">
@@ -76,6 +95,11 @@
 
                 <!-- list-computer -->
                 <div class="tab-pane fade" id="list-computer" role="tabpanel" aria-labelledby="list-settings-list">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <small id="computer_type" class="alert-text m-1 text-danger">computer_type error</small>
+                    </div>
+                  </div>
                   <%= render 'bookings/partials/computer_content', booking: booking  %>
 
                   <div class="row">
@@ -88,6 +112,11 @@
 
                 <!-- list-browser -->
                 <div class="tab-pane fade" id="list-browser" role="tabpanel" aria-labelledby="list-settings-list">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <small id="browser_type" class="alert-text m-1 text-danger">browser_type error</small>
+                    </div>
+                  </div>
                   <%= render 'bookings/partials/browser_content', booking: booking  %>
 
                   <div class="row">
@@ -100,6 +129,11 @@
 
                 <!-- list-internet -->
                 <div class="tab-pane fade" id="list-internet" role="tabpanel" aria-labelledby="list-settings-list">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <small id="intenet_requirements" class="alert-text m-1 text-danger">intenet_requirements error</small>
+                    </div>
+                  </div>
                   <%= render 'bookings/partials/internet_content', booking: booking  %>
                   <div class="row">
                     <div class="col-md-12">
@@ -111,6 +145,11 @@
 
                 <!-- list-test -->
                 <div class="tab-pane fade" id="list-test" role="tabpanel" aria-labelledby="list-settings-list", data-permit="true">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <small id="test_date" class="alert-text text-danger">error</small>
+                    </div>
+                  </div>
 
                   <div class="row">
                     <div class="col-md-12">
@@ -142,14 +181,18 @@
                 <div class="tab-pane fade" id="list-recording" role="tabpanel" aria-labelledby="list-settings-list" data-permit="true">
                   <div class="row">
                     <div class="col-md-12">
-                      <!-- <h3 class="custom-subtitle-2 p-0">Keep in mind that your test must be scheduled before the recording date.</h3> -->
+                      <small id="recording_date" class="alert-text text-danger">error</small>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
                       <h2 class="d-none">Recording date: <span id="recording_date_placeholder"></span></h2>
 
                       <div id="recording_date_container">
 
                       </div>
 
-                      <%= booking.hidden_field :recording_date, id: "recording_date" %>
+                      <%= booking.hidden_field :recording_date, id: "recording_date_input" %>
 
                       <script>
                         setUpDatesDivs("recording_date", "SOIDIV_GetAGripOnLighting", "recording_date_placeholder" );
@@ -198,7 +241,7 @@
               var element4 = $('#list-browser').clone(true);
               var element5 = $('#list-internet').clone(true);
               var element6 = $('#list-test').clone(true);
-              var element7 = $('#list-recording').clone(true);
+              // var element7 = $('#list-recording').clone(true);
 
             </script>
           </div> <!-- col-->

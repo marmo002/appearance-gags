@@ -72,7 +72,7 @@ class DashboardController < ApplicationController
         }
         # format.js
       else
-        format.json { render json: current_user.errors }
+        format.json { render json: current_user.errors, status: :bad_request  }
         format.html {
           flash[:danger] = "Please review form"
           session[:user_errors] = current_user.errors.as_json(full_messages: true)
@@ -98,7 +98,7 @@ class DashboardController < ApplicationController
         }
       else
         format.json {
-          render json: company.errors
+          render json: company.errors, status: :bad_request
          }
         format.html {
           flash[:danger] = "Please review form"

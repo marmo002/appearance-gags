@@ -3,12 +3,12 @@ class Booking < ApplicationRecord
 
   # attr_accessor :info_confirmation
 
-  validates :recording_date, presence: true
-  validates :test_date, presence: true, if: :type_virtual?
   validates :booking_type, inclusion: { in: %w(in-studio virtual),
-            message: "%{value} is not a valid booking type" }
+            :message => "Please choose a valid booking type" }
   validates :show_name, inclusion: { in: %w(life lighting),
-            message: "%{value} is not a valid show name" }
+            :message => "Please choose a valid show name" }
+  validates :test_date, presence: true, if: :type_virtual?
+  validates :recording_date, presence: true
   # validates :info_confirmation, acceptance: { message: '- Please confirm information is current and accurate' }
 
   # Custom validations
@@ -101,31 +101,31 @@ private
   def harware_speed_requirements
 
       unless hardware_requirements['audio']
-        errors.add(:hardware_requirements, "Please confirm you have proper headphones")
+        errors.add(:audio_hardware, "Please choose an audio requirement option")
       end
 
       unless hardware_requirements['video']
-        errors.add(:hardware_requirements, "Please confirm you have proper webcam")
+        errors.add(:video_hardware, "Please choose a video requirement option")
       end
 
       unless hardware_requirements['computer_type']
-        errors.add(:hardware_requirements, "Please confirm yout type of computer")
+        errors.add(:computer_type, "Please confirm computer type")
       end
 
       unless hardware_requirements['browser_type']
-        errors.add(:hardware_requirements, "Please confirm the browser your are using")
+        errors.add(:browser_type, "Please confirm the browser your are using")
       end
 
       if hardware_requirements['ping'].length < 1
-        errors.add(:hardware_requirements, "Verify ping")
+        errors.add(:intenet_requirements, "Verify ping")
       end
 
       if hardware_requirements['download'].length < 1
-        errors.add(:hardware_requirements, "Verify download")
+        errors.add(:intenet_requirements, "Verify download")
       end
 
       if hardware_requirements['upload'].length < 1
-        errors.add(:hardware_requirements, "Verify upload")
+        errors.add(:intenet_requirements, "Verify upload")
       end
 
   end#harware_speed_requirements
