@@ -1,6 +1,6 @@
 document.addEventListener("turbolinks:load", function(){
 
-  // -------------------------------------
+  /*/ -------------------------------------
   // ADD RIGHT PARAMS TO URL WHEN CLICK ON DASHBOARD TAB
   // ------------------------------------- */
   $('.dashboard_navigation a').click(function(e){
@@ -73,69 +73,89 @@ document.addEventListener("turbolinks:load", function(){
       event.preventDefault();
       document.location = nextUrl;
     }
-    console.log(inputField.val());
-    console.log("-----");
-    console.log( typeof(inputField.val()) );
-    console.log("-----");
-    console.log(nextUrl);
-    console.log("-----");
-    console.log(detail);
-
   });
 
+  // -------------------------------------
+  // GET AJAX RESPONSE ON ALL AJAX CALLS AND
+  // RETURN ERRORS OR SUCCESSFULL MESSAGES
+  // ------------------------------------- */
   document.body.addEventListener('ajax:success', function(event) {
-
     var detail = event.detail;
     var data = detail[0], status = detail[1], xhr = detail[2];
     var srcElement = event.target;
     var model = srcElement.attributes.action.value.split('/')[1].split('_')[0];
-    console.log(event);
-    console.log("-------------");
-    console.log(model);
 
+    // clear red-border from input with error
     var all_inputs = $(srcElement).find('.border_errors');
     for (var i = 0; i < all_inputs.length; i++) {
       $(all_inputs[i]).removeClass("border_errors");
     }
 
+    // hide small error tag from bellow inputs
     var all_small_tags = $(srcElement).find('small.alert-text');
     for (var i = 0; i < all_small_tags.length; i++) {
       $(all_small_tags[i]).hide();
     }
 
-    if (data.status == "success") {
-
-      if (data.action) {
-        go_to_next_form(srcElement)
-      } else {
-        // success message
-        displayMessages( data.type, data.message);
-        // empty passwordfields if they have text
-        $('#change_pass_form input[type="password"]').val('');
-      }
-
+    if (data.model == "welcome-form") {
+      go_to_next_form(srcElement)
     } else {
+      // success message
+      displayMessages( data.type, data.message);
+      // empty passwordfields if they have text
+      $('#change_pass_form input[type="password"]').val('');
+    }
 
-      displayMessages( 'danger', 'Please fix errors');
+  });
+  // ajax cycle for user dashboard profile form
 
-      for (const elm_id of Object.keys(data)) {
-          // console.log(elm_id, data[elm_id]);
+  document.body.addEventListener('ajax:error', function(event) {
+    console.log("something wrong happend");
+    var detail = event.detail;
+    var data = detail[0], status = detail[1], xhr = detail[2];
+    var srcElement = event.target;
+    var model = srcElement.attributes.action.value.split('/')[1].split('_')[0];
+    console.log(data);
 
-          var small_tag = $(srcElement).find("#" + elm_id);
-          if (elm_id == "avatar") {
-            var input_tag = $(srcElement).find(".avatar-card");
-          } else if (elm_id == "companylogo") {
-            var input_tag = $(srcElement).find(".companylogo-card");
-          } else {
-            var input_tag = $(srcElement).find("#"+model+"_" + elm_id);
-          }
-          // console.log(input_tag);
+    displayMessages( 'danger', 'Please fix errors');
 
-          input_tag.toggleClass("border_errors");
+    for (const elm_id of Object.keys(data)) {
+      var small_tag = $(srcElement).find("#" + elm_id);
 
-          small_tag.text(data[elm_id]);
-          small_tag.show();
+      if (elm_id == "avatar") {
+        var input_tag = $(srcElement).find(".avatar-card");
+      } else if (elm_id == "companylogo") {
+        var input_tag = $(srcElement).find(".companylogo-card");
+      } else {
+        var input_tag = $(srcElement).find("#"+model+"_" + elm_id);
       }
+
+      input_tag.toggleClass("border_errors");
+      small_tag.text(data[elm_id]);
+      small_tag.show();
+    }
+
+    if (model === 'bookings') {
+
+      let bookingMenuidList = $('#booking-list-tab a').map( function(e){
+        return this.id.replace('_link', '');
+      }).get();
+
+      const errorsTitles = Object.keys(data);
+
+      for (var i = 0; i < bookingMenuidList.length; i++) {
+        let anchorId = bookingMenuidList[i]
+        console.log(anchorId);
+        console.log("---------");
+
+        if (errorsTitles.includes(anchorId)) {
+          $( "#" + anchorId + "_link" ).tab('show');
+          break;
+        }
+
+      }
+
+
 
     }
 

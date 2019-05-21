@@ -28,7 +28,11 @@ function disableForm(isChecked, originalUrl){
 
 }
 
-
+// -------------------------------------
+// WELCOMEFORM: ON CHECKBOX, DISABLE
+// COMPANY FORM AND ON NEXT CLICK
+// GOT TO RELEASE
+// ------------------------------------- */
 function disableFormOnClick(){
   const notApplicableButton = $('#company-notapplication');
   const companyLegalFieldset = $('#company-legal-fieldset');

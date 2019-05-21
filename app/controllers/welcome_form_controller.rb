@@ -69,7 +69,7 @@ class WelcomeFormController < ApplicationController
             message: "Profile updated successfully",
             avatar: current_user.avatar.attached? ? url_for(current_user.avatar) : nil,
             companylogo: current_user.companylogo.attached? ? url_for(current_user.companylogo) : nil,
-            action: "welcome-form"
+            model: "welcome-form"
           }
         }
         format.html {
@@ -77,7 +77,7 @@ class WelcomeFormController < ApplicationController
           redirect_back(fallback_location: welcome_path)
         }
       else
-        format.json { render json: current_user.errors }
+        format.json { render json: current_user.errors, status: :bad_request  }
         format.html {
           flash[:danger] = "Fill required fields before continuing"
           session[:user_errors] = current_user.errors.as_json(full_messages: true)

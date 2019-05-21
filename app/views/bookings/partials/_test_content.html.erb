@@ -15,12 +15,16 @@
             daysOfWeekDisabled: [0, 6],
             viewMode: 'months',
             sideBySide: true
+
         });
 
         if (pickedDate) {
           let setDate = new Date(pickedDate);
           testPicker.datetimepicker('defaultDate', setDate);
+        } else {
+          testPicker.datetimepicker('date', null);
         }
+
 
         testPicker.on("hide.datetimepicker", function(e) {
          let fakeDate = $('#fake-test-picker').val();

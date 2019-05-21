@@ -47,13 +47,31 @@ class BookingsController < ApplicationController
     }
     @booking.user_info = @booking.user_info.merge(user_info)
 
-    if @booking.save
-      flash[:primary] = "Booking created"
-      redirect_to dashboard_url page: 'booking-history-tab'
-    else
-      render :new_alt
-      # redirect_back(fallback_location: new_booking_path)
-    end
+    respond_to do |format|
+      if @booking.save
+        format.json {
+          render json: {
+            status: "success",
+            type: "primary",
+            message: "Booking was created successfully",
+            model: "booking"
+          }
+        }
+        format.html {
+          flash[:primary] = "Booking was created successfully"
+          redirect_to dashboard_url page: 'booking-history-tab'
+        }
+        # format.js
+      else
+        format.json { render json: @booking.errors, status: :bad_request }
+        format.html {
+          flash[:danger] = "Please review form"
+          session[:user_errors] = @booking.errors.as_json(full_messages: true)
+          redirect_back(fallback_location: dashboard_path)
+        }
+      end
+    end#respond_to end
+
   end
 
   def bookings_list

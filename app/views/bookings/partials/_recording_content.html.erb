@@ -20,6 +20,8 @@
         if (pickedDate) {
           let setDate = new Date(pickedDate);
           recordingPicker.datetimepicker('defaultDate', setDate);
+        } else {
+          recordingPicker.datetimepicker('date', null);
         }
 
         recordingPicker.on("hide.datetimepicker", function(e) {
