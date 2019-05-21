@@ -50,11 +50,13 @@ class BookingsController < ApplicationController
     respond_to do |format|
       if @booking.save
         format.json {
+          flash[:primary] = "Booking was created successfully"
           render json: {
             status: "success",
             type: "primary",
             message: "Booking was created successfully",
-            model: "booking"
+            model: "booking",
+            booking_path: booking_path(@booking)
           }
         }
         format.html {

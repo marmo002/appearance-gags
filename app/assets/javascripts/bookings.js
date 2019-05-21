@@ -57,7 +57,7 @@ function getTestForm(){
 //Removes menus and tab-panes from virtual booking
 function inStudioFormSetUp(){
 
-  // iterate throught const list. Seted up on top
+  // iterate throught const list. Setted up on top
   for (var i = 0; i < list.length; i++) {
    $("a[href='#" + list[i] + "']").remove();
    $("#" + list[i]).remove();
@@ -85,7 +85,7 @@ function virtualFormSetUp(){
      subMenuRestrictions('#booking-list-tab a');
   });
 
-  // iterate throught const list. Seted up on top
+  // iterate throught const list. Setted up on top
   for (var i = 0; i < list.length; i++) {
    // $("a[href='#" + list[i] + "']").remove();
    $("#" + list[i]).remove();
@@ -94,7 +94,7 @@ function virtualFormSetUp(){
     // get second container in the list (.tab-pane)
     // and append the nodes we cloned on load
     let tabPane = $('.tab-pane')[1];
-    $(tabPane).after(element7);
+    // $(tabPane).after(element7);
     $(tabPane).after(element6);
     $(tabPane).after(element5);
     $(tabPane).after(element4);

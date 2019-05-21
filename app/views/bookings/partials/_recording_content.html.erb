@@ -26,9 +26,9 @@
 
         recordingPicker.on("hide.datetimepicker", function(e) {
           let fakeDate = $('#fake-recording-picker').val();
-          $('#recording_date').val(fakeDate);
+          $('#recording_date_input').val(fakeDate);
 
-          setUpDatesDivs("recording_date", "SOIDIV_GetAGripOnLighting", "recording_date_placeholder" );
+          setUpDatesDivs("recording_date_input", "SOIDIV_GetAGripOnLighting", "recording_date_placeholder" );
 
          });
 
@@ -51,12 +51,12 @@
       var recording_date = data['bookingInfo']['MeetingTimes'][0]['CustomerTime'];
       // console.log(recording_date);
       // console.log('---------------');
-      $('#recording_date').val(recording_date);
+      $('#recording_date_input').val(recording_date);
       // console.log("---------------------------");
       // console.log("RecordingDate ADDED TO Hidden input");
       // console.log("---------------------------");
 
-      setUpDatesDivs("recording_date", "SOIDIV_GetAGripOnLighting", "recording_date_placeholder" );
+      setUpDatesDivs("recording_date_input", "SOIDIV_GetAGripOnLighting", "recording_date_placeholder" );
 
     }
   }

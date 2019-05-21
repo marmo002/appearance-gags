@@ -186,14 +186,13 @@
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <!-- <h3 class="custom-subtitle-2 p-0">Keep in mind that your test must be scheduled before the recording date.</h3> -->
                       <h2 class="d-none">Recording date: <span id="recording_date_placeholder"></span></h2>
 
                       <div id="recording_date_container">
 
                       </div>
 
-                      <%= booking.hidden_field :recording_date, id: "recording_date" %>
+                      <%= booking.hidden_field :recording_date, id: "recording_date_input" %>
 
                       <script>
                         setUpDatesDivs("recording_date", "SOIDIV_GetAGripOnLighting", "recording_date_placeholder" );
@@ -242,7 +241,7 @@
               var element4 = $('#list-browser').clone(true);
               var element5 = $('#list-internet').clone(true);
               var element6 = $('#list-test').clone(true);
-              var element7 = $('#list-recording').clone(true);
+              // var element7 = $('#list-recording').clone(true);
 
             </script>
           </div> <!-- col-->

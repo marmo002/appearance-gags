@@ -99,6 +99,11 @@ document.addEventListener("turbolinks:load", function(){
 
     if (data.model == "welcome-form") {
       go_to_next_form(srcElement)
+    }else if (data.model == "booking") {
+      // success message
+      window.location = data.booking_path;
+      // displayMessages( data.type, data.message);
+
     } else {
       // success message
       displayMessages( data.type, data.message);
