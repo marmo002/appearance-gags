@@ -128,19 +128,19 @@
                 <!-- list-browser -->
 
                 <!-- list-internet -->
-                <div class="tab-pane fade" id="list-internet" role="tabpanel" aria-labelledby="list-settings-list">
+                <!-- <div class="tab-pane fade" id="list-internet" role="tabpanel" aria-labelledby="list-settings-list">
                   <div class="row">
                     <div class="col-md-12">
                       <small id="intenet_requirements" class="alert-text m-1 text-danger">intenet_requirements error</small>
                     </div>
                   </div>
-                  <%= render 'bookings/partials/internet_content', booking: booking  %>
+                  <%#= render 'bookings/partials/internet_content', booking: booking  %>
                   <div class="row">
                     <div class="col-md-12">
-                      <%= button_tag 'next', type: 'button', class: 'btn btn-primary bookings-next float-right', disabled: true %>
+                      <%#= button_tag 'next', type: 'button', class: 'btn btn-primary bookings-next float-right', disabled: true %>
                     </div>
                   </div>
-                </div>
+                </div> -->
                 <!-- list-internet -->
 
                 <!-- list-test -->
@@ -153,7 +153,10 @@
 
                   <div class="row">
                     <div class="col-md-12">
-                      <h3 class="custom-subtitle-2 p-0">Keep in mind that your test must be scheduled before the recording date.</h3>
+                      <div class="alert alert-warning" role="alert">
+                        Keep in mind that your test must be scheduled before the recording date.
+                      </div>
+                      
                       <h2 class="d-none">Test date: <span id="test_date_placeholder"></span></h2>
 
                       <div id="test_date_container">
@@ -239,7 +242,7 @@
               var element2 = $('#list-video-hardware').clone(true);
               var element3 = $('#list-computer').clone(true);
               var element4 = $('#list-browser').clone(true);
-              var element5 = $('#list-internet').clone(true);
+              // var element5 = $('#list-internet').clone(true);
               var element6 = $('#list-test').clone(true);
               // var element7 = $('#list-recording').clone(true);
 

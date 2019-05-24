@@ -2,23 +2,26 @@
   <div class="col-md-12">
     <%= booking.fields_for :hardware_requirements do |h_requirements| %>
 
+    <h3 class="custom-subtitle-2 p-0">Type of audio device</h3>
       <div class="gag-form-group">
-        <h3 class="subtle_subtitle">
+        <!-- <h3 class="subtle_subtitle">
           Option 1: USB over ear headset with over mouth
           microphone is the Preferred Audio Option
-        </h3>
+        </h3> -->
+
         <% headphones = 'I have over ear headphone with on-board over mouth microphone connected to my computer via USB port.' %>
         <%= h_requirements.radio_button :audio, headphones, { id: "headphone-checkbox", class: 'gag-radio-input d-none' } %>
         <label class="gag-radio-label" for="headphone-checkbox">
           <div class="card mb-3">
             <div class="row no-gutters">
-              <div class="col-3">
+              <div class="col-5">
                 <%=  image_tag 'headphone.png', class: "card-img", alt: "headphones image" %>
               </div>
-              <div class="col-9 align-self-center">
+              <div class="col-7 align-self-center">
                 <div class="card-body">
                   <p class="enhance_paragraph">
-                    <%= headphones %>
+                    <%#= headphones %>
+                    Preferred
                   </p>
                 </div>
               </div>
@@ -28,21 +31,22 @@
       </div><!-- gag-form-group -->
 
       <div class="gag-form-group">
-        <h3 class="subtle_subtitle mt-4">
+        <!-- <h3 class="subtle_subtitle mt-4">
           Option 2: Earbuds with a microphone can work but sometimes not very well.
-        </h3>
+        </h3> -->
         <% earpods = 'I have earpods with a mic connected to my computer via audio jack' %>
         <%= h_requirements.radio_button :audio, earpods, { id: "earpods-checkbox", class: 'gag-radio-input d-none' } %>
         <label class="gag-radio-label" for="earpods-checkbox">
           <div class="card mb-3">
             <div class="row no-gutters">
-              <div class="col-3">
+              <div class="col-5">
                 <%=  image_tag 'earbudsReady.png', class: "card-img", alt: "earpods image" %>
               </div>
-              <div class="col-9 align-self-center">
+              <div class="col-7 align-self-center">
                 <div class="card-body">
                   <p class="enhance_paragraph">
-                    <%= earpods %>
+                    <%#= earpods %>
+                    OK
                   </p>
                 </div>
               </div>
@@ -52,21 +56,22 @@
       </div><!-- gag-form-group -->
 
       <div class="gag-form-group">
-        <h3 class="subtle_subtitle mt-4">
+        <!-- <h3 class="subtle_subtitle mt-4">
           Option 3: Your computer or webcam microphone is not an option.
-        </h3>
+        </h3> -->
         <% audio_noallow = 'I don’t know which but will get something for my test date.' %>
         <%= h_requirements.radio_button :audio, audio_noallow, { id: "audio-none-checkbox", class: 'gag-radio-input d-none' } %>
         <label class="gag-radio-label" for="audio-none-checkbox">
           <div class="card">
             <div class="row no-gutters">
-              <div class="col-3">
+              <div class="col-5">
                 <%=  image_tag 'dontHave.png', class: "card-img", alt: "no hardware image" %>
               </div>
-              <div class="col-9 align-self-center">
+              <div class="col-7 align-self-center">
                 <div class="card-body">
                   <p class="enhance_paragraph">
-                    <%= audio_noallow %>
+                    <%#= audio_noallow %>
+                    I don't know
                   </p>
                 </div>
               </div>

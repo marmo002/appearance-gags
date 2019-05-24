@@ -116,17 +116,17 @@ private
         errors.add(:browser_type, "Please confirm the browser your are using")
       end
 
-      if hardware_requirements['ping'].length < 1
-        errors.add(:intenet_requirements, "Verify ping")
-      end
-
-      if hardware_requirements['download'].length < 1
-        errors.add(:intenet_requirements, "Verify download")
-      end
-
-      if hardware_requirements['upload'].length < 1
-        errors.add(:intenet_requirements, "Verify upload")
-      end
+      # if hardware_requirements['ping'].length < 1
+      #   errors.add(:intenet_requirements, "Verify ping")
+      # end
+      #
+      # if hardware_requirements['download'].length < 1
+      #   errors.add(:intenet_requirements, "Verify download")
+      # end
+      #
+      # if hardware_requirements['upload'].length < 1
+      #   errors.add(:intenet_requirements, "Verify upload")
+      # end
 
   end#harware_speed_requirements
 
