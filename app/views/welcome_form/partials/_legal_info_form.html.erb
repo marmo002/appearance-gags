@@ -36,19 +36,25 @@
 
     <div class="form-group">
       <%= f.label :country %>
-      <%= f.select :country, ['USA', 'Canada', 'United Kingdom', 'Australia', 'New Zealand'], { selected: 'Canada' }, class: "form-control" %>
+      <%= f.select :country, countries, { include_blank: "Country" }, class: "form-control" %>
       <small id="country" class="alert-text m-1 text-danger">Country error</small>
       <!-- <small id="" class="form-text text-muted mb-3">Legal last name as it appears on your id</small> -->
     </div>
 
     <div class="form-group">
       <%= f.label :state %>
-      <%= f.text_field :state, class: "form-control", list: 'states', autocomplete: 'off', placeholder: "Province/State Region" %>
-      <datalist id="states">
+      <%= f.text_field :state, class: "form-control", list: 'states-list', autocomplete: 'off', placeholder: "Province/State Region" %>
+      <datalist id="states-list">
         <option>Ontario</option>
         <option>Alberta</option>
         <option>Quebec</option>
         <option>Nova Scotia</option>
+        <option>British Columbia</option>
+        <option>British Columbia</option>
+        <option>British Columbia</option>
+        <option>British Columbia</option>
+        <option>British Columbia</option>
+        <option>British Columbia</option>
         <option>British Columbia</option>
       </datalist>
       <small id="state" class="alert-text m-1 text-danger">state error</small>

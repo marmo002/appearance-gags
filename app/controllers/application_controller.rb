@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   helper_method :authorized?
   helper_method :get_hash_data
   helper_method :booking_text
+  helper_method :countries
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
@@ -59,6 +60,16 @@ class ApplicationController < ActionController::Base
       webcam: "I have a webcam with the appropriate lighting and in a good recording environment (i.e no uncontrolled noises and where interruptions can be eliminated).",
       confirmation: "I confirm that the above information is current and accurate."
     }
+  end
+
+  def countries
+    [
+      ['USA', { 'data-geonameId' => '6252001' }],
+      ['Canada', { 'data-geonameId' => '6251999' }],
+      ['United Kingdom', { 'data-geonameId' => '6301961' }],
+      ['Australia', { 'data-geonameId' => '2077456' }],
+      ['New Zealand', { 'data-geonameId' => '2186224' }]
+    ]
   end
 
 end

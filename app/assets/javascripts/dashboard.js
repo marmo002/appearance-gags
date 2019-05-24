@@ -1,4 +1,40 @@
+function getCountryStates(countryid){
+  $.ajax({
+    url: "/geo_states/" + countryid,
+    context: document.body
+  }).done(function(response) {
+    $("#states-list").html('');
+    // iterate throught response
+    // $("#states-list").append('<option>'+ response+'</option>');
+
+  });
+}
+
+function getStateCities(stateid){
+  $.ajax({
+    url: "http://api.geonames.org/childrenJSON?geonameId=" + countryid + "&username=getagrip",
+    context: document.body
+  }).done(function(response) {
+    // $('#recording_date_container').html(response);
+    console.log(response);
+  });
+}
+
+function locationSetup(containerid){
+  const locationInput = $("#" + containerid);
+
+  locationInput.change(function(e){
+    let itemId = $(this).find(':selected').data('geonameid');
+
+    getCountryStates(itemId);
+
+  });
+}
+
 document.addEventListener("turbolinks:load", function(){
+  // getCountryStates("6252001");
+
+  locationSetup("user_country");
 
   /*/ -------------------------------------
   // ADD RIGHT PARAMS TO URL WHEN CLICK ON DASHBOARD TAB

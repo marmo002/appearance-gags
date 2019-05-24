@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   # patch "users" => "users#update"
   resources :users
 
+  get "geo_states/:countryId" => "geo_api#states", as: :geo_states
 
   get "welcome_legal" => "welcome_form#legal_info", as: :welcome_legal
   get "welcome" => "welcome_form#internet_profile", as: :welcome_profile

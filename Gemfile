@@ -52,6 +52,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 gem "wysiwyg-rails"
 gem "font-awesome-sass"
+# geonames api
+gem 'geo_names'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
