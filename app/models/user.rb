@@ -6,8 +6,8 @@ class User < ApplicationRecord
 
   has_many :bookings, dependent: :destroy
 
-  validates :email, :phone, presence: true
-  validates :first_name, :last_name, :dob, presence: true, on: :update
+  validates :email, :phone,  presence: true
+  validates :first_name, :last_name, :dob, :country, :state, :city, presence: true, on: :update
   validates :email, uniqueness: true
   # validates :phone, format:{
   #   with: /\A\(\d{3}\).\d{3}.\d{4}\z/,

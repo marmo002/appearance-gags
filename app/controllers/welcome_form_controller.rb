@@ -98,6 +98,9 @@ private
     params.require(:user).permit(
       :first_name,
       :last_name,
+      :country,
+      :state,
+      :city,
       :dob,
       :email,
       :phone,
