@@ -2,39 +2,55 @@ function getCountryStates(countryid){
   $.ajax({
     url: "/geo_states/" + countryid,
     context: document.body
-  }).done(function(response) {
+  }).done(data => {
+    $("#user_state").val('');
+    $("#user_state").attr('disabled', false);
+    $("#user_city").attr('disabled', false);
     $("#states-list").html('');
     // iterate throught response
-    // $("#states-list").append('<option>'+ response+'</option>');
-
+    for (var i = 0; i < data.length; i++) {
+      $("#states-list").append('<option data-geoid="'+ data[i]['geo_id'] +'">'+ data[i]['name'] +'</option>');
+    }
   });
 }
 
-function getStateCities(stateid){
+function getCountryStatesCompany(countryid){
   $.ajax({
-    url: "http://api.geonames.org/childrenJSON?geonameId=" + countryid + "&username=getagrip",
+    url: "/geo_states/" + countryid,
     context: document.body
-  }).done(function(response) {
-    // $('#recording_date_container').html(response);
-    console.log(response);
+  }).done(data => {
+    $("#user_company_province").val('');
+    $("#user_company_province").attr('disabled', false);
+    // $("#user_city").attr('disabled', false);
+    $("#company-states-list").html('');
+    // iterate throught response
+    for (var i = 0; i < data.length; i++) {
+      $("#company-states-list").append('<option data-geoid="'+ data[i]['geo_id'] +'">'+ data[i]['name'] +'</option>');
+    }
   });
 }
 
-function locationSetup(containerid){
+function statesSetup(containerid){
   const locationInput = $("#" + containerid);
 
   locationInput.change(function(e){
     let itemId = $(this).find(':selected').data('geonameid');
-
-    getCountryStates(itemId);
+    //get states for country and add it to state input
+    if (containerid === "user_country") {
+      getCountryStates(itemId);
+    } else {
+      getCountryStatesCompany(itemId);
+    }
 
   });
 }
 
+
 document.addEventListener("turbolinks:load", function(){
   // getCountryStates("6252001");
 
-  locationSetup("user_country");
+  statesSetup("user_country");
+  statesSetup("user_company_country");
 
   /*/ -------------------------------------
   // ADD RIGHT PARAMS TO URL WHEN CLICK ON DASHBOARD TAB

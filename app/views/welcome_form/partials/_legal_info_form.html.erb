@@ -43,19 +43,9 @@
 
     <div class="form-group">
       <%= f.label :state %>
-      <%= f.text_field :state, class: "form-control", list: 'states-list', autocomplete: 'off', placeholder: "Province/State Region" %>
+      <%= f.text_field :state, class: "form-control", list: 'states-list', autocomplete: 'off', disabled: true, placeholder: "Province/State Region" %>
       <datalist id="states-list">
-        <option>Ontario</option>
-        <option>Alberta</option>
-        <option>Quebec</option>
-        <option>Nova Scotia</option>
-        <option>British Columbia</option>
-        <option>British Columbia</option>
-        <option>British Columbia</option>
-        <option>British Columbia</option>
-        <option>British Columbia</option>
-        <option>British Columbia</option>
-        <option>British Columbia</option>
+        <!-- <option>Choose a country</option> -->
       </datalist>
       <small id="state" class="alert-text m-1 text-danger">state error</small>
       <!-- <small id="" class="form-text text-muted mb-3">Legal last name as it appears on your id</small> -->
@@ -63,7 +53,10 @@
 
     <div class="form-group">
       <%= f.label :city %>
-      <%= f.text_field :city, class: "form-control", placeholder: "City" %>
+      <%= f.text_field :city, class: "form-control", list: 'city-list', autocomplete: 'off', disabled: true, placeholder: "City" %>
+      <datalist id="city-list">
+        <!-- <option>Choose a country</option> -->
+      </datalist>
       <small id="city" class="alert-text m-1 text-danger">city error</small>
       <!-- <small id="" class="form-text text-muted mb-3">Legal last name as it appears on your id</small> -->
     </div>

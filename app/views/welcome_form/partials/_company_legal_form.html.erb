@@ -2,14 +2,14 @@
   <div class="col-md-6">
     <div class="form-group">
       <%= f.label :company_name %>
-      <%= f.text_field :company_name, class: "form-control", placeholder: "The name of you company" %>
-      <small id="company_name" class="alert-text m-1 text-danger">First name error</small>
+      <%= f.text_field :company_name, class: "form-control", placeholder: "The operating name of the company" %>
+      <small id="company_name" class="alert-text m-1 text-danger">Copmany name error</small>
       <!-- <small id="" class="form-text text-muted mb-3">Legal first name as it appears on your id</small> -->
     </div>
 
     <div class="form-group">
       <%= f.label :company_legal_name %>
-      <%= f.text_field :company_legal_name, class: "form-control", placeholder: "The legal name of you company" %>
+      <%= f.text_field :company_legal_name, class: "form-control", placeholder: "The legal name of the company" %>
       <small id="company_legal_name" class="alert-text m-1 text-danger">Last name error</small>
       <small id="" class="form-text text-muted mb-3">The name of your company as registered with the goverment</small>
     </div>
@@ -20,41 +20,51 @@
        <!-- <small id="phone-help" class="form-text text-muted">Phone must be in format (123) 456 7878.</small> -->
     </div>
 
+    <div class="form-group">
+      <%= f.label :company_country %>
+      <%= f.select :company_country, countries, { include_blank: "Country" }, class: "form-control" %>
+      <small id="company_country" class="alert-text m-1 text-danger">Country error</small>
+      <!-- <small id="" class="form-text text-muted mb-3">Legal last name as it appears on your id</small> -->
+    </div>
+
   </div><!-- end col--->
 
   <div class="col-md-6">
 
     <div class="form-group">
       <%= f.label :company_address1 %>
-      <%= f.text_field :company_address1, class: "form-control", placeholder: "Company address 1" %>
+      <%= f.text_field :company_address1, class: "form-control", placeholder: "Adddess Line 1" %>
       <small id="company_address1" class="alert-text m-1 text-danger">Last name error</small>
       <!-- <small id="" class="form-text text-muted mb-3">The name of your company as registered with the goverment</small> -->
     </div>
 
     <div class="form-group">
       <%= f.label :company_address2 %>
-      <%= f.text_field :company_address2, class: "form-control", placeholder: "Company address 2" %>
+      <%= f.text_field :company_address2, class: "form-control", placeholder: "Adddess Line 2" %>
       <small id="company_address2" class="alert-text m-1 text-danger">Last name error</small>
       <!-- <small id="" class="form-text text-muted mb-3">The name of your company as registered with the goverment</small> -->
     </div>
 
     <div class="form-group">
       <%= f.label :company_city %>
-      <%= f.text_field :company_city, class: "form-control", placeholder: "Company city" %>
+      <%= f.text_field :company_city, class: "form-control", placeholder: "City" %>
       <small id="company_city" class="alert-text m-1 text-danger">Last name error</small>
       <!-- <small id="" class="form-text text-muted mb-3">The name of your company as registered with the goverment</small> -->
     </div>
 
     <div class="form-group">
       <%= f.label :company_province %>
-      <%= f.text_field :company_province, class: "form-control", placeholder: "Company province" %>
-      <small id="company_province" class="alert-text m-1 text-danger">Last name error</small>
+      <%= f.text_field :company_province, list: 'company-states-list', autocomplete: 'off', class: "form-control", placeholder: "State/Province Region" %>
+      <datalist id="company-states-list">
+        <!-- <option>Choose a country</option> -->
+      </datalist>
+      <small id="company_province" class="alert-text m-1 text-danger">Company province error</small>
       <!-- <small id="" class="form-text text-muted mb-3">The name of your company as registered with the goverment</small> -->
     </div>
 
     <div class="form-group">
       <%= f.label :company_postalcode %>
-      <%= f.text_field :company_postalcode, class: "form-control", placeholder: "Company postal code" %>
+      <%= f.text_field :company_postalcode, class: "form-control", placeholder: "Zip/Postal/Post Code" %>
       <small id="company_postalcode" class="alert-text m-1 text-danger">Last name error</small>
       <!-- <small id="" class="form-text text-muted mb-3">The name of your company as registered with the goverment</small> -->
     </div>
