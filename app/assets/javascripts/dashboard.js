@@ -2,7 +2,7 @@ function getCountryStates(countryid){
   $.ajax({
     url: "/geo_states/" + countryid,
     context: document.body
-  }).done(data => {
+  }).done(function(data){
     $("#user_state").val('');
     $("#user_state").attr('disabled', false);
     $("#user_city").attr('disabled', false);
@@ -18,7 +18,7 @@ function getCountryStatesCompany(countryid){
   $.ajax({
     url: "/geo_states/" + countryid,
     context: document.body
-  }).done(data => {
+  }).done(function(data) {
     $("#user_company_province").val('');
     $("#user_company_province").attr('disabled', false);
     // $("#user_city").attr('disabled', false);

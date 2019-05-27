@@ -12,7 +12,7 @@ class Booking < ApplicationRecord
   # validates :info_confirmation, acceptance: { message: '- Please confirm information is current and accurate' }
 
   # Custom validations
-  validate :dates_cant_be_past_today
+  # validate :dates_cant_be_past_today
   validate :harware_speed_requirements, if: :type_virtual?
 
   default_scope { order(recording_date: :asc) }
@@ -135,11 +135,11 @@ private
       errors.add(:recording_date, "can't be in the past")
     end
 
-    if type_virtual?
-      if test_date.present? && test_date > recording_date
-        errors.add(:test_date, "can't be after recording date")
-      end
-    end
+    # if type_virtual?
+    #   if test_date.present? && test_date.datetime > recording_date.datetime
+    #     errors.add(:test_date, "can't be after recording date")
+    #   end
+    # end
   end#dates_cant_be_past_today
 
 end
