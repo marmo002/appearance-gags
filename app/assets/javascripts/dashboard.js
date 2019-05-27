@@ -2,7 +2,7 @@ function getCountryStates(countryid){
   $.ajax({
     url: "/geo_states/" + countryid,
     context: document.body
-  }).done(data => {
+  }).done(function(data){
     $("#user_state").val('');
     $("#user_state").attr('disabled', false);
     $("#user_city").attr('disabled', false);
@@ -18,7 +18,7 @@ function getCountryStatesCompany(countryid){
   $.ajax({
     url: "/geo_states/" + countryid,
     context: document.body
-  }).done(data => {
+  }).done(function(data) {
     $("#user_company_province").val('');
     $("#user_company_province").attr('disabled', false);
     // $("#user_city").attr('disabled', false);
@@ -172,7 +172,7 @@ document.addEventListener("turbolinks:load", function(){
     var data = detail[0], status = detail[1], xhr = detail[2];
     var srcElement = event.target;
     var model = srcElement.attributes.action.value.split('/')[1].split('_')[0];
-    console.log(data);
+    console.log(event);
 
     displayMessages( 'danger', 'Please fix errors');
 
@@ -212,11 +212,7 @@ document.addEventListener("turbolinks:load", function(){
 
       }
 
-
-
-    }
-
-
+    }//model bookings
   });
   // ajax cycle for user dashboard profile form
 

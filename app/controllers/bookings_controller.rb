@@ -68,7 +68,7 @@ class BookingsController < ApplicationController
         format.json { render json: @booking.errors, status: :bad_request }
         format.html {
           flash[:danger] = "Please review form"
-          session[:user_errors] = @booking.errors.as_json(full_messages: true)
+          session[:booking_errors] = @booking.errors.as_json(full_messages: true)
           redirect_back(fallback_location: dashboard_path)
         }
       end

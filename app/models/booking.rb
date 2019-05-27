@@ -12,7 +12,7 @@ class Booking < ApplicationRecord
   # validates :info_confirmation, acceptance: { message: '- Please confirm information is current and accurate' }
 
   # Custom validations
-  validate :dates_cant_be_past_today
+  # validate :dates_cant_be_past_today
   validate :harware_speed_requirements, if: :type_virtual?
 
   default_scope { order(recording_date: :asc) }
