@@ -1,39 +1,17 @@
 <div class="row">
   <div class="col-md-6">
+    <h3 class="custom-subtitle-2 p-0">Legal information</h3>
+
     <div class="form-group">
       <%= f.label :company_name %>
-      <%= f.text_field :company_name, class: "form-control", placeholder: "The name of you company" %>
+      <%= f.text_field :company_name, class: "form-control", placeholder: "The operating name of the company" %>
       <small id="company_name" class="alert-text m-1 text-danger">First name error</small>
       <!-- <small id="" class="form-text text-muted mb-3">Legal first name as it appears on your id</small> -->
     </div>
 
-    <div class="card companylogo-card mb-3" style="max-width: 540px;">
-      <div class="row no-gutters">
-        <% if current_user.companylogo.attached? %>
-        <div class="col-md-4 pl-3 align-self-center">
-          <%= image_tag url_for(current_user.companylogo), class: "card-img" %>
-        </div>
-        <% end %>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h5 class="card-title">Company logo</h5>
-            <p id="image-help" class="card-text">
-              Upload a company logo that will be used to promote the show on the internet
-            </p>
-            <!-- <p class="card-text"><small class="text-muted">(at least 700px wide by 700px hight)</small></p> -->
-            <div class="custom-file">
-              <%= f.file_field :companylogo, class: "custom-file-input", "aria-describedby" => "image-help" %>
-              <%= f.label :add_image, class: "custom-file-label" %>
-            </div>
-            <small id="companylogo" class="alert-text m-1 text-danger">Image error</small>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <div class="form-group">
       <%= f.label :company_legal_name %>
-      <%= f.text_field :company_legal_name, class: "form-control", placeholder: "The legal name of you company" %>
+      <%= f.text_field :company_legal_name, class: "form-control", placeholder: "The legal name of the company" %>
       <small id="company_legal_name" class="alert-text m-1 text-danger">Last name error</small>
       <small id="" class="form-text text-muted mb-3">The name of your company as registered with the goverment</small>
     </div>
@@ -46,41 +24,77 @@
 
     <div class="form-group">
       <%= f.label :company_address1 %>
-      <%= f.text_field :company_address1, class: "form-control", placeholder: "Company address 1" %>
+      <%= f.text_field :company_address1, class: "form-control", placeholder: "Adddess Line 1" %>
       <small id="company_address1" class="alert-text m-1 text-danger">Last name error</small>
       <!-- <small id="" class="form-text text-muted mb-3">The name of your company as registered with the goverment</small> -->
     </div>
 
     <div class="form-group">
       <%= f.label :company_address2 %>
-      <%= f.text_field :company_address2, class: "form-control", placeholder: "Company address 2" %>
+      <%= f.text_field :company_address2, class: "form-control", placeholder: "Adddess Line 2" %>
       <small id="company_address2" class="alert-text m-1 text-danger">Last name error</small>
       <!-- <small id="" class="form-text text-muted mb-3">The name of your company as registered with the goverment</small> -->
     </div>
 
     <div class="form-group">
+      <%= f.label :company_country %>
+      <%= f.select :company_country, countries, { include_blank: "Country" }, class: "form-control" %>
+      <small id="company_country" class="alert-text m-1 text-danger">Country error</small>
+      <!-- <small id="" class="form-text text-muted mb-3">Legal last name as it appears on your id</small> -->
+    </div>
+
+    <div class="form-group">
       <%= f.label :company_city %>
-      <%= f.text_field :company_city, class: "form-control", placeholder: "Company city" %>
+      <%= f.text_field :company_city, class: "form-control", placeholder: "City" %>
       <small id="company_city" class="alert-text m-1 text-danger">Last name error</small>
       <!-- <small id="" class="form-text text-muted mb-3">The name of your company as registered with the goverment</small> -->
     </div>
 
     <div class="form-group">
       <%= f.label :company_province %>
-      <%= f.text_field :company_province, class: "form-control", placeholder: "Company province" %>
-      <small id="company_province" class="alert-text m-1 text-danger">Last name error</small>
+      <%= f.text_field :company_province, list: 'company-states-list', autocomplete: 'off', class: "form-control", placeholder: "State/Province Region" %>
+      <datalist id="company-states-list">
+        <!-- <option>Choose a country</option> -->
+      </datalist>
+      <small id="company_province" class="alert-text m-1 text-danger">Company province error</small>
       <!-- <small id="" class="form-text text-muted mb-3">The name of your company as registered with the goverment</small> -->
     </div>
 
     <div class="form-group">
       <%= f.label :company_postalcode %>
-      <%= f.text_field :company_postalcode, class: "form-control", placeholder: "Company postal code" %>
+      <%= f.text_field :company_postalcode, class: "form-control", placeholder: "Zip/Postal/Post Code" %>
       <small id="company_postalcode" class="alert-text m-1 text-danger">Last name error</small>
       <!-- <small id="" class="form-text text-muted mb-3">The name of your company as registered with the goverment</small> -->
     </div>
   </div>
 
   <div class="col-md-6">
+    <h3 class="custom-subtitle-2 p-0">Digital Media Branding (Stage name)</h3>
+
+    <div class="card companylogo-card mb-3" style="max-width: 540px;">
+      <div class="row no-gutters">
+        <% if current_user.companylogo.attached? %>
+        <div class="col-md-4 pl-3 align-self-center">
+          <%= image_tag url_for(current_user.companylogo), class: "card-img" %>
+        </div>
+        <% end %>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">Company logo</h5>
+            <p id="image-help" class="card-text">
+              Add or change profile image
+            </p>
+            <!-- <p class="card-text"><small class="text-muted">(at least 700px wide by 700px hight)</small></p> -->
+            <div class="custom-file">
+              <%= f.file_field :companylogo, class: "custom-file-input", "aria-describedby" => "image-help" %>
+              <%= f.label :add_image, class: "custom-file-label" %>
+            </div>
+            <small id="companylogo" class="alert-text m-1 text-danger">Image error</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <%= f.fields_for :company_social_media do | c_media| %>
     <div class="form-group">
       <%= c_media.label :companywebsite %>
@@ -122,6 +136,11 @@
         </div>
         <%= c_media.text_field :company_instagram, id: :company_instagram, class: "form-control", placeholder: "Company instagram handle", value: current_user.company_social_media["company_instagram"] %>
       </div>
+    </div>
+
+    <div class="form-group">
+      <%= c_media.label :company_other %>
+      <%= c_media.text_field :company_other, id: :company_other, class: "form-control", placeholder: "Other", value: current_user.company_social_media["company_other"] %>
     </div>
     <% end %>
   </div>

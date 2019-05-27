@@ -1,5 +1,6 @@
 <div class="row">
   <div class="col-md-6">
+    <h3 class="custom-subtitle-2 p-0">Legal information</h3>
     <div class="form-group">
       <%= f.label :first_name %>
       <%= f.text_field :first_name, class: "form-control", placeholder: "Your legal First name" %>
@@ -14,11 +15,45 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :email %>
-      <%= f.email_field :email, class: "form-control", placeholder: "Your email (just between us, no spam)" %>
-      <small id="email" class="alert-text m-1 text-danger">Email error</small>
-      <small id="" class="form-text text-muted mb-3">your email (just between us, no spam)</small>
+      <div class="input-group date" id="user_dob_picker" data-target-input="nearest">
+        <%= f.text_field :dob, class: "form-control datetimepicker-input", data: {target: "#user_dob_picker"}, placeholder: "Date of birth" %>
+        <!-- <input type="text" class="form-control datetimepicker-input" data-target="#user_dob_picker"/> -->
+        <div class="input-group-append" data-target="#user_dob_picker" data-toggle="datetimepicker">
+          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+        </div>
+      </div>
+      <small id="dob" class="alert-text m-1 text-danger">DOB error</small>
+      <small id="" class="form-text text-muted mb-3">Your date of birth DD/MM/YYYY</small>
     </div>
+
+    <div class="form-group">
+      <%= f.label :city %>
+      <%= f.text_field :city, class: "form-control", list: 'city-list', autocomplete: 'off', disabled: true, placeholder: "City" %>
+      <datalist id="city-list">
+        <!-- <option>Choose a country</option> -->
+      </datalist>
+      <small id="city" class="alert-text m-1 text-danger">city error</small>
+      <!-- <small id="" class="form-text text-muted mb-3">Legal last name as it appears on your id</small> -->
+    </div>
+
+    <div class="form-group">
+      <%= f.label :state %>
+      <%= f.text_field :state, class: "form-control", list: 'states-list', autocomplete: 'off', disabled: true, placeholder: "Province/State Region" %>
+      <datalist id="states-list">
+        <!-- <option>Choose a country</option> -->
+      </datalist>
+      <small id="state" class="alert-text m-1 text-danger">state error</small>
+      <!-- <small id="" class="form-text text-muted mb-3">Legal last name as it appears on your id</small> -->
+    </div>
+
+    <div class="form-group">
+      <%= f.label :country %>
+      <%= f.select :country, countries, { include_blank: "Country" }, class: "form-control" %>
+      <small id="country" class="alert-text m-1 text-danger">Country error</small>
+      <!-- <small id="" class="form-text text-muted mb-3">Legal last name as it appears on your id</small> -->
+    </div>
+
+    <h3 class="custom-subtitle-2 p-0">Contact Information</h3>
 
     <div class="form-group">
       <%= f.label :phone %>
@@ -28,60 +63,16 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :country %>
-      <%= f.select :country, ['USA', 'Canada', 'United Kingdom', 'Australia', 'New Zealand'], { selected: 'Canada' }, class: "form-control" %>
-      <small id="country" class="alert-text m-1 text-danger">Country error</small>
-      <!-- <small id="" class="form-text text-muted mb-3">Legal last name as it appears on your id</small> -->
+      <%= f.label :email %>
+      <%= f.email_field :email, class: "form-control", placeholder: "Your email (just between us, no spam)" %>
+      <small id="email" class="alert-text m-1 text-danger">Email error</small>
+      <small id="" class="form-text text-muted mb-3">your email (just between us, no spam)</small>
     </div>
 
-    <div class="form-group">
-      <%= f.label :state %>
-      <%= f.text_field :state, class: "form-control", list: 'states', autocomplete: 'off', placeholder: "Province/State Region" %>
-      <datalist id="states">
-        <option>Ontario</option>
-        <option>Alberta</option>
-        <option>Quebec</option>
-        <option>Nova Scotia</option>
-        <option>British Columbia</option>
-      </datalist>
-      <small id="state" class="alert-text m-1 text-danger">state error</small>
-      <!-- <small id="" class="form-text text-muted mb-3">Legal last name as it appears on your id</small> -->
-    </div>
-
-    <div class="form-group">
-      <%= f.label :city %>
-      <%= f.text_field :city, class: "form-control", placeholder: "City" %>
-      <small id="city" class="alert-text m-1 text-danger">city error</small>
-      <!-- <small id="" class="form-text text-muted mb-3">Legal last name as it appears on your id</small> -->
-    </div>
-
-
-    <div class="card mb-3 avatar-card" style="max-width: 100%;">
-      <div class="row no-gutters">
-        <% if current_user.avatar.attached? %>
-        <div class="col-md-4 pl-3 align-self-center">
-          <%= image_tag current_user.avatar, class: "card-img" %>
-        </div>
-        <% end %>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h5 class="card-title">Profile image</h5>
-            <p id="image-help" class="card-text">
-              Upload a picture of yourself that will be used to promote the show on the internet
-            </p>
-            <!-- <p class="card-text"><small class="text-muted">(at least 700px wide by 700px hight)</small></p> -->
-            <div class="custom-file">
-              <%= f.file_field :avatar, class: "custom-file-input" %>
-              <%= f.label :add_image, class: "custom-file-label" %>
-            </div>
-            <small id="avatar" class="alert-text m-1 text-danger">Image error</small>
-          </div>
-        </div>
-      </div>
-    </div>
   </div><!-- end col--->
 
   <div class="col-md-6">
+    <h3 class="custom-subtitle-2 p-0">Digital Media Branding (Stage name)</h3>
     <div class="form-group">
       <%= f.label :name_for_show %>
       <%= f.text_field :name_for_show, id: "name_for_show", class: "form-control", placeholder: "Your name as you want it to appear on the internet" %>
@@ -95,6 +86,30 @@
     <div class="form-group">
       <%= f.label :bio %>
       <%= f.text_area :bio, id: "user_bio", class: "form-control", placeholder: "Your bio, how you want yourself described in text on the internet. We may shorten or make minor edits" %>
+    </div>
+
+    <div class="card mb-3 avatar-card" style="max-width: 100%;">
+      <div class="row no-gutters">
+        <% if current_user.avatar.attached? %>
+        <div class="col-md-4 pl-3 align-self-center">
+          <%= image_tag current_user.avatar, class: "card-img" %>
+        </div>
+        <% end %>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">Profile image</h5>
+            <p id="image-help" class="card-text">
+              Add or change profile image
+            </p>
+            <!-- <p class="card-text"><small class="text-muted">(at least 700px wide by 700px hight)</small></p> -->
+            <div class="custom-file">
+              <%= f.file_field :avatar, class: "custom-file-input" %>
+              <%= f.label :add_image, class: "custom-file-label" %>
+            </div>
+            <small id="avatar" class="alert-text m-1 text-danger">Image error</small>
+          </div>
+        </div>
+      </div>
     </div>
   </div><!-- end col--->
 </div><!-- end row-->

@@ -135,11 +135,11 @@ private
       errors.add(:recording_date, "can't be in the past")
     end
 
-    # if type_virtual?
-    #   if test_date.present? && test_date.datetime > recording_date.datetime
-    #     errors.add(:test_date, "can't be after recording date")
-    #   end
-    # end
+    if type_virtual?
+      if test_date.present? && test_date > recording_date
+        errors.add(:test_date, "can't be after recording date")
+      end
+    end
   end#dates_cant_be_past_today
 
 end

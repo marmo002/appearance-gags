@@ -121,22 +121,22 @@ h5
   background-color: var(--site-dark-grey);
 }
 
-#pills-tab
+.dashboard_navigation
 {
   display: grid;
-  grid-template-columns: repeat(6, auto);
+  grid-template-columns: repeat(7, auto);
   width: 90%;
   margin: 0 auto;
   //Dashboard modifications V1
-  position: relative;
-  top: -34px;
+  // position: relative;
+  // top: -120px;
   background: white;
   padding: 15px;
   border-radius: 10px;
   border: solid 1px var(--site-light-grey);
 }
 
-#pills-tab .nav-link
+.dashboard_navigation .nav-link
 {
   text-align: center;
 }
@@ -147,6 +147,7 @@ h5
   grid-template-columns: repeat(4, auto);
   width: 90%;
   margin: 0 auto;
+  // top: 0;
 }
 
 #admin-dashboard-submenu .nav-link
