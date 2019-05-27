@@ -3,7 +3,7 @@ const list = [
  "list-video-hardware",
  "list-computer",
  "list-browser",
- "list-internet",
+ // "list-internet",
  "list-test"
 ]
 
@@ -96,7 +96,7 @@ function virtualFormSetUp(){
     let tabPane = $('.tab-pane')[1];
     // $(tabPane).after(element7);
     $(tabPane).after(element6);
-    $(tabPane).after(element5);
+    // $(tabPane).after(element5);
     $(tabPane).after(element4);
     $(tabPane).after(element3);
     $(tabPane).after(element2);

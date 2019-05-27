@@ -56,6 +56,9 @@
     User.create(
       first_name: "Admin",
       last_name: "User",
+      country: "Canada",
+      state: "Ontario",
+      city: "Toronto",
       dob: "1987-07-01",
       email: "admin@mail.com",
       phone: "(416) 000 0000",
