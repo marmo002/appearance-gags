@@ -3,20 +3,20 @@
     <h3 class="custom-subtitle-2 p-0">Legal information</h3>
     <div class="form-group">
       <%= f.label :first_name %>
-      <%= f.text_field :first_name, class: "form-control", placeholder: "Your legal First name" %>
+      <%= f.text_field :first_name, class: "form-control",autocomplete: "randomString", placeholder: "Your legal First name" %>
       <small id="first_name" class="alert-text m-1 text-danger">First name error</small>
 
     </div>
 
     <div class="form-group">
       <%= f.label :last_name %>
-      <%= f.text_field :last_name, class: "form-control", placeholder: "Your legal last name" %>
+      <%= f.text_field :last_name, class: "form-control",autocomplete: "randomString", placeholder: "Your legal last name" %>
       <small id="last_name" class="alert-text m-1 text-danger">Last name error</small>
     </div>
 
     <div class="form-group">
       <div class="input-group date" id="user_dob_picker" data-target-input="nearest">
-        <%= f.text_field :dob, class: "form-control datetimepicker-input", data: {target: "#user_dob_picker"}, placeholder: "Date of birth" %>
+        <%= f.text_field :dob, class: "form-control datetimepicker-input", data: {target: "#user_dob_picker"},autocomplete: "randomString", placeholder: "Date of birth" %>
         <!-- <input type="text" class="form-control datetimepicker-input" data-target="#user_dob_picker"/> -->
         <div class="input-group-append" data-target="#user_dob_picker" data-toggle="datetimepicker">
           <div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -28,7 +28,7 @@
 
     <div class="form-group">
       <%= f.label :city %>
-      <%= f.text_field :city, class: "form-control", list: 'city-list', autocomplete: 'off', disabled: true, placeholder: "City" %>
+      <%= f.text_field :city, class: "form-control", list: 'city-list', disabled: true,autocomplete: "randomString", placeholder: "City" %>
       <datalist id="city-list">
         <!-- <option>Choose a country</option> -->
       </datalist>
@@ -38,7 +38,7 @@
 
     <div class="form-group">
       <%= f.label :state %>
-      <%= f.text_field :state, class: "form-control", list: 'states-list', autocomplete: 'off', disabled: true, placeholder: "Province/State Region" %>
+      <%= f.text_field :state, class: "form-control", list: 'states-list', disabled: true,autocomplete: "randomString", placeholder: "Province/State Region" %>
       <datalist id="states-list">
         <!-- <option>Choose a country</option> -->
       </datalist>
@@ -64,7 +64,7 @@
 
     <div class="form-group">
       <%= f.label :email %>
-      <%= f.email_field :email, class: "form-control", placeholder: "Your email (just between us, no spam)" %>
+      <%= f.email_field :email, class: "form-control",autocomplete: "randomString", placeholder: "Your email (just between us, no spam)" %>
       <small id="email" class="alert-text m-1 text-danger">Email error</small>
       <small id="" class="form-text text-muted mb-3">your email (just between us, no spam)</small>
     </div>
@@ -97,20 +97,20 @@
         </div>
       </div>
     </div>
-    
+
     <div class="form-group">
       <%= f.label :name_for_show %>
-      <%= f.text_field :name_for_show, id: "name_for_show", class: "form-control", placeholder: "Your name as you want it to appear on the internet" %>
+      <%= f.text_field :name_for_show, id: "name_for_show", class: "form-control",autocomplete: "randomString", placeholder: "Your name as you want it to appear on the internet" %>
     </div>
 
     <div class="form-group">
       <%= f.label :title_for_show %>
-      <%= f.text_field :title_for_show, id: "title_for_show", class: "form-control", placeholder: "Your title, what you call yourself" %>
+      <%= f.text_field :title_for_show, id: "title_for_show", class: "form-control",autocomplete: "randomString", placeholder: "Your title, what you call yourself" %>
     </div>
 
     <div class="form-group">
       <%= f.label :bio %>
-      <%= f.text_area :bio, id: "user_bio", class: "form-control", placeholder: "Your bio, how you want yourself described in text on the internet. We may shorten or make minor edits" %>
+      <%= f.text_area :bio, id: "user_bio", class: "form-control",autocomplete: "randomString", placeholder: "Your bio, how you want yourself described in text on the internet. We may shorten or make minor edits" %>
     </div>
   </div><!-- end col--->
 </div><!-- end row-->
