@@ -241,9 +241,12 @@ function setUpDatesDivs(hidden_field, embeddedDatePicker, placeHolder) {
 function enablePersonalTabNextButtons(buttonClass){
   let buttons = $(buttonClass);
 
-  for (var i = 0; i < buttons.length; i++) {
-    enableNxtButton(buttons[i]);
+  if (buttons[0]) {
+    for (var i = 0; i < buttons.length; i++) {
+      enableNxtButton(buttons[i]);
+    }
   }
+
 }
 
 $(function () {

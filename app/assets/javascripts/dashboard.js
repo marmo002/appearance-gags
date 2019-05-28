@@ -1,6 +1,6 @@
 function getCountryStates(countryid){
   let userStates = $("#user_state");
-  console.log(userStates);
+  // console.log(userStates);
   userStates.attr('placeholder', "Loading...");
 
   $.ajax({
@@ -20,10 +20,13 @@ function getCountryStates(countryid){
 }
 
 function getCountryStatesCompany(countryid){
+  $("#user_company_province").attr('placeholder', "Loading...");
+
   $.ajax({
     url: "/geo_states/" + countryid,
     context: document.body
   }).done(function(data) {
+    $("#user_company_province").attr('placeholder', "State/Province Region");
     $("#user_company_province").val('');
     $("#user_company_province").attr('disabled', false);
     // $("#user_city").attr('disabled', false);
