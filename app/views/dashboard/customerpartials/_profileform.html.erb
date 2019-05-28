@@ -73,20 +73,6 @@
 
   <div class="col-md-6">
     <h3 class="custom-subtitle-2 p-0">Digital Media Branding (Stage name)</h3>
-    <div class="form-group">
-      <%= f.label :name_for_show %>
-      <%= f.text_field :name_for_show, id: "name_for_show", class: "form-control", placeholder: "Your name as you want it to appear on the internet" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :title_for_show %>
-      <%= f.text_field :title_for_show, id: "title_for_show", class: "form-control", placeholder: "Your title, what you call yourself" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :bio %>
-      <%= f.text_area :bio, id: "user_bio", class: "form-control", placeholder: "Your bio, how you want yourself described in text on the internet. We may shorten or make minor edits" %>
-    </div>
 
     <div class="card mb-3 avatar-card" style="max-width: 100%;">
       <div class="row no-gutters">
@@ -110,6 +96,21 @@
           </div>
         </div>
       </div>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label :name_for_show %>
+      <%= f.text_field :name_for_show, id: "name_for_show", class: "form-control", placeholder: "Your name as you want it to appear on the internet" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :title_for_show %>
+      <%= f.text_field :title_for_show, id: "title_for_show", class: "form-control", placeholder: "Your title, what you call yourself" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :bio %>
+      <%= f.text_area :bio, id: "user_bio", class: "form-control", placeholder: "Your bio, how you want yourself described in text on the internet. We may shorten or make minor edits" %>
     </div>
   </div><!-- end col--->
 </div><!-- end row-->

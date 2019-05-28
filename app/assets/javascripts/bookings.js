@@ -121,6 +121,7 @@ function virtualFormSetUp(){
 
 function enableNxtButton(elemt, status="enable"){
   let tabContainer = $(elemt).parents('.tab-pane');
+  console.log(tabContainer);
   let nextButton = $(tabContainer).find('button');
 
   if (status == "enable") {
@@ -204,7 +205,7 @@ function bookingsNextTab(){
         console.log("bookings js: No next tab was found");
       }
     } else {
-      console.log("Please select an option");
+      console.log("Parent doesn hava data-permit");
     }
   });
 }
@@ -232,6 +233,16 @@ function setUpDatesDivs(hidden_field, embeddedDatePicker, placeHolder) {
   } else {
     console.log('no recording date');
     console.log(recordingValue);
+  }
+}
+
+//iterates throught all elements on class
+//and calls back enableNxtButton per element
+function enablePersonalTabNextButtons(buttonClass){
+  let buttons = $(buttonClass);
+
+  for (var i = 0; i < buttons.length; i++) {
+    enableNxtButton(buttons[i]);
   }
 }
 

@@ -17,7 +17,7 @@
       <div class="col-md-10">
 
         <div class="row justify-content-between">
-          <div class="col-md-3">
+          <div class="col-md-4">
             <div class="list-group" id="booking-list-tab" role="tablist">
               <%= render 'bookings/partials/booking_menu'  %>
             </div>
@@ -144,7 +144,7 @@
                 <!-- list-internet -->
 
                 <!-- list-test -->
-                <div class="tab-pane fade" id="list-test" role="tabpanel" aria-labelledby="list-settings-list", data-permit="true">
+                <div class="tab-pane fade" id="list-test" role="tabpanel" aria-labelledby="list-settings-list",>
                   <div class="row">
                     <div class="col-md-12">
                       <small id="test_date" class="alert-text text-danger">error</small>
@@ -181,7 +181,7 @@
                 <!-- list-test -->
 
                 <!-- list-recording -->
-                <div class="tab-pane fade" id="list-recording" role="tabpanel" aria-labelledby="list-settings-list" data-permit="true">
+                <div class="tab-pane fade" id="list-recording" role="tabpanel" aria-labelledby="list-settings-list">
                   <div class="row">
                     <div class="col-md-12">
                       <small id="recording_date" class="alert-text text-danger">error</small>
@@ -205,18 +205,19 @@
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <%= button_tag 'next', type: 'button', class: 'btn btn-primary bookings-next float-right' %>
+                      <%= button_tag 'next', type: 'button', class: 'btn btn-primary bookings-next float-right', disabled: true %>
                     </div>
                   </div>
                 </div>
                 <!-- list-recording -->
 
                 <!-- list-personal -->
-                <div class="tab-pane fade" id="list-personal" role="tabpanel" aria-labelledby="list-settings-list" data-permit="true">
+                <div class="tab-pane fade" id="list-personal" role="tabpanel" aria-labelledby="list-settings-list" >
+                  <%= button_tag 'next', type: 'button', class: 'btn btn-primary bookings-next recording_next_button float-right' %>
                   <%= render 'bookings/partials/personal_content', booking: booking  %>
                   <div class="row">
                     <div class="col-md-12">
-                      <%= button_tag 'next', type: 'button', class: 'btn btn-primary bookings-next float-right' %>
+                      <%= button_tag 'next', type: 'button', class: 'btn btn-primary bookings-next recording_next_button float-right', disabled: true  %>
                     </div>
                   </div>
                 </div>
