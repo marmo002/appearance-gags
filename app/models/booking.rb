@@ -33,6 +33,14 @@ class Booking < ApplicationRecord
     user_info['phone'] if user_info
   end
 
+  def release
+    user_info['release'] if user_info
+  end
+
+  def dob
+    user_info['dob'] if user_info
+  end
+
   def name_for_show
     user_info['name_for_show'] if user_info
   end
@@ -45,9 +53,30 @@ class Booking < ApplicationRecord
     user_info['bio'] if user_info
   end
 
-  def release
-    user_info['release'] if user_info
+  def company_legal_name
+    if user_info
+      if user_info['company_legal']
+        user_info['company_legal']['legal_name'] if user_info['company_legal']['legal_name']
+      end
+    end
   end
+
+  def company_phone
+    if user_info
+      if user_info['company_legal']
+        user_info['company_legal']['phone_number'] if user_info['company_legal']['phone_number']
+      end
+    end
+  end
+
+  def company_address
+    if user_info
+      if user_info['company_legal']
+        user_info['company_legal']['company_address'] if user_info['company_legal']['company_address']
+      end
+    end
+  end
+
 
   # INSTANCE METHODS
 

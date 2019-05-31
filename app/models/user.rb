@@ -83,6 +83,22 @@ class User < ApplicationRecord
     end
   end
 
+  def user_location
+    "#{city}, #{state}, #{country}"
+  end
+
+  def company_full_address
+    address = [
+      company_address1,
+      company_address2,
+      company_city,
+      company_province,
+      company_postalcode,
+      company_country
+    ]
+    address.compact.delete_if{|a| a.empty? }.join(', ')
+  end
+
 private
 
   def dob_cant_be_past

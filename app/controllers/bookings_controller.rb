@@ -49,7 +49,15 @@ class BookingsController < ApplicationController
     user_info = {
       'full_name' => current_user.full_name,
       'email' => current_user.email,
-      'phone' => current_user.phone
+      'phone' => current_user.phone,
+      'release' => company.release,
+      'dob' => current_user.dob,
+      'user_location' => current_user.user_location,
+      'company_legal' => {
+        'legal_name' => current_user.company_legal_name,
+        'phone_number' => current_user.company_phone,
+        'company_address' => current_user.company_full_address
+      }
     }
     @booking.user_info = @booking.user_info.merge(user_info)
 
