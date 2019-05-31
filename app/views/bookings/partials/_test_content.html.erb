@@ -10,12 +10,12 @@
       $(function () {
         const testPicker = $('#datetimepicker12');
         const pickedDate = testPicker.find('input[type=text]').val();
+        // console.log(pickedDate);
 
         testPicker.datetimepicker({
             daysOfWeekDisabled: [0, 6],
             viewMode: 'months',
             sideBySide: true
-
         });
 
         if (pickedDate) {
@@ -28,7 +28,8 @@
 
         testPicker.on("hide.datetimepicker", function(e) {
          let fakeDate = $('#fake-test-picker').val();
-         $('#recording_test_date').val(fakeDate);
+         console.log(fakeDate);
+         $('#recording_test_date').val( new Date(fakeDate) );
 
          setUpDatesDivs("recording_test_date", "SOIDIV_GetAGripOnLife", "test_date_placeholder" );
 

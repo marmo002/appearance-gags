@@ -1,4 +1,8 @@
 function getCountryStates(countryid){
+  let userStates = $("#user_state");
+  // console.log(userStates);
+  userStates.attr('placeholder', "Loading...");
+
   $.ajax({
     url: "/geo_states/" + countryid,
     context: document.body
@@ -6,6 +10,7 @@ function getCountryStates(countryid){
     $("#user_state").val('');
     $("#user_state").attr('disabled', false);
     $("#user_city").attr('disabled', false);
+    $("#user_state").attr('placeholder', "Province/State Region");
     $("#states-list").html('');
     // iterate throught response
     for (var i = 0; i < data.length; i++) {
@@ -15,10 +20,13 @@ function getCountryStates(countryid){
 }
 
 function getCountryStatesCompany(countryid){
+  $("#user_company_province").attr('placeholder', "Loading...");
+
   $.ajax({
     url: "/geo_states/" + countryid,
     context: document.body
   }).done(function(data) {
+    $("#user_company_province").attr('placeholder', "State/Province Region");
     $("#user_company_province").val('');
     $("#user_company_province").attr('disabled', false);
     // $("#user_city").attr('disabled', false);
@@ -44,6 +52,9 @@ function statesSetup(containerid){
 
   });
 }
+
+statesSetup("user_country");
+statesSetup("user_company_country");
 
 
 document.addEventListener("turbolinks:load", function(){

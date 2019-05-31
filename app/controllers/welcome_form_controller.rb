@@ -119,6 +119,7 @@ private
       :company_city,
       :company_province,
       :company_postalcode,
+      :company_country,
       :companylogo,
       social_media: [ :profile, :facebook, :linkedin, :twitter, :instagram, :youtube, :other ],
       company_social_media: [ :company_website, :company_facebook, :company_linkedin, :company_twitter, :company_instagram, :company_youtube ]

@@ -2,10 +2,10 @@
 <div class="row">
   <div class="col-md-12">
     <div class="row mb-5">
-      <div class="col-md-4">
+      <div class="col-md-12">
         <h2 class="custom-subtitle-2 p-0">Profile picture</h2>
       </div>
-      <div class="col-md-8">
+      <div class="col-md-12">
         <% if current_user.avatar.attached? %>
           <%= image_tag current_user.avatar, class: "img-thumbnail custom-height" %>
 
@@ -30,10 +30,10 @@
 
     <!-- personal info -->
     <div class="row mb-5">
-      <div class="col-md-4">
+      <div class="col-md-12">
         <h2 class="custom-subtitle-2 p-0">Personal information</h2>
       </div>
-      <div class="col-md-8">
+      <div class="col-md-12">
         <div class="gag-report-grid1">
 
           <div class="gig-report-item">
@@ -65,7 +65,7 @@
           <% end %>
 
           <% unless current_user.bio.empty? %>
-          <div class="gig-report-item">
+          <div class="gig-report-item bio-label">
             <% bio_booking =  current_user.bio.empty? ? "No bio" : "#{current_user.bio}" %>
             <div class="form-group">
               <div class="custom-control custom-checkbox">
@@ -74,7 +74,7 @@
               </div>
             </div>
           </div>
-          <div class="gig-report-item">
+          <div class="gig-report-item bio-content">
             <%= bio_booking %>
           </div>
           <% end %>
@@ -85,10 +85,10 @@
     <!-- personal info -->
 
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-12">
         <h2 class="custom-subtitle-2 p-0">Personal social media</h2>
       </div>
-      <div class="col-md-8">
+      <div class="col-md-12">
         <% if @user_social %>
           <%= user_hash.fields_for :social_media do |social_media| %>
             <% @user_social.each do |personal_social_name, personal_social_url| %>

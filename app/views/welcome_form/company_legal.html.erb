@@ -14,7 +14,7 @@
           <%= render 'dashboard/show_errors' %>
           <div class="tab-pane fade show active" id="company-info">
 
-            <%= form_with model: current_user, url: welcome_update_path, html: { class: "customer-form", id: "user-profile-form", data: { next: welcome_company_image_path } } do |f| %>
+            <%= form_with model: current_user, url: welcome_update_path, html: { class: "customer-form", autocomplete: 'off', id: "user-profile-form", data: { next: welcome_company_image_path } } do |f| %>
 
               <div class="gag-form-group">
                 <div class="input_wrapper">

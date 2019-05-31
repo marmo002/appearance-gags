@@ -25,10 +25,11 @@
         }
 
         recordingPicker.on("hide.datetimepicker", function(e) {
-          let fakeDate = $('#fake-recording-picker').val();
-          $('#recording_date_input').val(fakeDate);
+          let fakeDateRecording = $('#fake-recording-picker').val();
+          $('#recording_date_input').val(new Date(fakeDateRecording));
 
           setUpDatesDivs("recording_date_input", "SOIDIV_GetAGripOnLighting", "recording_date_placeholder" );
+          enablePersonalTabNextButtons(".recording_next_button");
 
          });
 
@@ -57,7 +58,7 @@
       // console.log("---------------------------");
 
       setUpDatesDivs("recording_date_input", "SOIDIV_GetAGripOnLighting", "recording_date_placeholder" );
-
+      enablePersonalTabNextButtons(".recording_next_button");
     }
   }
 </script>

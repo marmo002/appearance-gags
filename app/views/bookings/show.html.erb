@@ -1,7 +1,8 @@
 <section>
   <div class="container">
     <div class="row">
-      <div class="col-md-4">
+
+      <div class="col-md-5">
         <div class="card">
           <div class="card-header">
             Booking info
@@ -16,9 +17,17 @@
                 <p class="booking-sub <%= @booking.booking_type %>"><%= @booking.booking_type %></p>
               </li>
               <li class="list-group-item">
+                <p class="text-muted booking-sub">Recording date</p>
                 <p class="bookings-main"><%= @booking.recording_date.strftime('%B %d, %Y') %></p>
                 <p class="text-muted booking-sub"><%= @booking.recording_date.strftime('%I:%M %p') %></p>
               </li>
+              <% if @booking.type_virtual? %>
+              <li class="list-group-item">
+                <p class="text-muted booking-sub">Test date</p>
+                <p class="bookings-main"><%= @booking.test_date.strftime('%B %d, %Y') %></p>
+                <p class="text-muted booking-sub"><%= @booking.test_date.strftime('%I:%M %p') %></p>
+              </li>
+              <% end %>
               <% if is_admin? %>
               <li class="list-group-item">
                 <p class="bookings-main"><%= link_to 'User profile', @user, class: 'btn btn-primary' %></p>
@@ -28,7 +37,18 @@
           </div>
         </div><!-- card-->
       </div>
-      <div class="col-md-8">
+
+      <div class="col-md-7">
+        <% if @booking.is_past_booking? %>
+        <div class="card mb-5">
+          <div class="card-header">
+            Digital Files
+          </div>
+          <div class="card-body">
+            To be developed
+          </div>
+        </div><!-- card-->
+        <% end %>
         <div class="card">
           <div class="card-header">
             Attached info
@@ -43,32 +63,39 @@
                 <p class="text-muted booking-sub mb-3">email: <%= @booking.email %></p>
                 <p class="text-muted booking-sub mb-3">phone: <%= @booking.phone %></p>
                 <% if @user.name_for_show %>
-                  <%= tag.p "Show name: #{@user.name_for_show}", class: 'text-muted booking-sub mb-3' %>
+                <%= tag.p "Show name: #{@user.name_for_show}", class: 'text-muted booking-sub mb-3' %>
                 <% end %>
                 <% if @user.title_for_show %>
-                  <%= content_tag :p, "Show title: #{@user.title_for_show}", class: 'text-muted booking-sub mb-3' %>
+                <%= content_tag :p, "Show title: #{@user.title_for_show}", class: 'text-muted booking-sub mb-3' %>
                 <% end %>
                 <% if @user.bio %>
-                  <%= content_tag :p, "Bio: #{@user.bio}", class: 'text-muted booking-sub mb-3' %>
+                <p>
+                  <a class="btn btn-primary" data-toggle="collapse" href="#bioCollapse" role="button" aria-expanded="false" aria-controls="bioCollapse">
+                    Bio
+                  </a>
+                </p>
+                <div class="collapse" id="bioCollapse">
+                  <%= content_tag :p, "#{@user.bio}", class: 'text-muted booking-sub mb-3' %>
+                </div>
                 <% end %>
                 <% if @user.avatar.attached? %>
-                  <%= content_tag :p, "Profile image:", class: 'text-muted booking-sub mb-3' %>
-                  <%= image_tag @user.avatar, class: "img-thumbnail" %>
+                <%= content_tag :p, "Profile image:", class: 'text-muted booking-sub mb-3' %>
+                <%= image_tag @user.avatar, class: "img-thumbnail" %>
                 <% end %>
               </li>
               <li class="list-group-item">
                 <p class="bookings-main">Social media</p>
               </li>
               <li class="list-group-item">
-              <% if @booking.clean_social_media %>
+                <% if @booking.clean_social_media %>
                 <% @booking.clean_social_media.each do |sm_name, sm_url| %>
                 <p>
                   <a href="https://<%= sm_url %>" target="_blank"><%= sm_url %></a>
                 </p>
                 <% end %>
-              <% else %>
+                <% else %>
                 <%= tag.p "User has no social media", class: 'text-muted booking-sub' %>
-              <% end %>
+                <% end %>
               </li>
               <li class="list-group-item">
                 <p class="bookings-main">Company info</p>
@@ -79,20 +106,20 @@
               </li>
               <% end %>
               <li class="list-group-item">
-              <% if @booking.clean_company_social_media %>
+                <% if @booking.clean_company_social_media %>
                 <% @booking.clean_company_social_media.each do |sm_name, sm_url| %>
                 <p>
                   <a href="https://<%= sm_url %>" target="_blank"><%= sm_url %></a>
                 </p>
                 <% end %>
-              <% else %>
+                <% else %>
                 <%= tag.p "No company social media", class: 'text-muted booking-sub mb-3' %>
-              <% end %>
+                <% end %>
 
-              <% if @user.companylogo.attached? %>
+                <% if @user.companylogo.attached? %>
                 <%= content_tag :p, "Company logo:", class: 'text-muted booking-sub mb-3' %>
                 <%= image_tag @user.companylogo, class: "img-thumbnail" %>
-              <% end %>
+                <% end %>
               </li>
             </ul>
           </div>

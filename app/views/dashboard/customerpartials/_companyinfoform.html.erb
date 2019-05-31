@@ -24,35 +24,35 @@
 
     <div class="form-group">
       <%= f.label :company_address1 %>
-      <%= f.text_field :company_address1, class: "form-control", placeholder: "Adddess Line 1" %>
+      <%= f.text_field :company_address1, class: "form-control", autocomplete: "randomString", placeholder: "Adddess Line 1" %>
       <small id="company_address1" class="alert-text m-1 text-danger">Last name error</small>
       <!-- <small id="" class="form-text text-muted mb-3">The name of your company as registered with the goverment</small> -->
     </div>
 
     <div class="form-group">
       <%= f.label :company_address2 %>
-      <%= f.text_field :company_address2, class: "form-control", placeholder: "Adddess Line 2" %>
+      <%= f.text_field :company_address2, class: "form-control", autocomplete: "randomString", placeholder: "Adddess Line 2" %>
       <small id="company_address2" class="alert-text m-1 text-danger">Last name error</small>
       <!-- <small id="" class="form-text text-muted mb-3">The name of your company as registered with the goverment</small> -->
     </div>
 
     <div class="form-group">
       <%= f.label :company_country %>
-      <%= f.select :company_country, countries, { include_blank: "Country" }, class: "form-control" %>
+      <%= f.select :company_country, countries, { include_blank: "Country" }, class: "form-control", autocomplete: "randomString" %>
       <small id="company_country" class="alert-text m-1 text-danger">Country error</small>
       <!-- <small id="" class="form-text text-muted mb-3">Legal last name as it appears on your id</small> -->
     </div>
 
     <div class="form-group">
       <%= f.label :company_city %>
-      <%= f.text_field :company_city, class: "form-control", placeholder: "City" %>
+      <%= f.text_field :company_city, class: "form-control", autocomplete: "randomString", placeholder: "City" %>
       <small id="company_city" class="alert-text m-1 text-danger">Last name error</small>
       <!-- <small id="" class="form-text text-muted mb-3">The name of your company as registered with the goverment</small> -->
     </div>
 
     <div class="form-group">
       <%= f.label :company_province %>
-      <%= f.text_field :company_province, list: 'company-states-list', autocomplete: 'off', class: "form-control", placeholder: "State/Province Region" %>
+      <%= f.text_field :company_province, list: 'company-states-list', class: "form-control", autocomplete: "randomString", placeholder: "State/Province Region" %>
       <datalist id="company-states-list">
         <!-- <option>Choose a country</option> -->
       </datalist>
@@ -62,7 +62,7 @@
 
     <div class="form-group">
       <%= f.label :company_postalcode %>
-      <%= f.text_field :company_postalcode, class: "form-control", placeholder: "Zip/Postal/Post Code" %>
+      <%= f.text_field :company_postalcode, class: "form-control", autocomplete: "randomString", placeholder: "Zip/Postal/Post Code" %>
       <small id="company_postalcode" class="alert-text m-1 text-danger">Last name error</small>
       <!-- <small id="" class="form-text text-muted mb-3">The name of your company as registered with the goverment</small> -->
     </div>
@@ -113,7 +113,7 @@
 
     <div class="form-group">
       <%= c_media.label :company_youtube %>
-      <%= c_media.text_field :company_youtube, id: :company_other, class: "form-control", placeholder: "Company youtube", value: current_user.company_social_media["company_youtube"] %>
+      <%= c_media.text_field :company_youtube, id: :company_youtube, class: "form-control", placeholder: "Company youtube", value: current_user.company_social_media["company_youtube"] %>
     </div>
 
     <div class="form-group">

@@ -46,6 +46,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find params[:id]
     @upcomming_bookings = @user.bookings.upcomming.first(10)
+    @past_bookings = @user.bookings.past.first(10)
+
   end
 
 private

@@ -22,7 +22,36 @@
 //= require tempusdominus-bootstrap-4
 //= require_tree .
 
+
+/*
+ * jQuery autoResize (textarea auto-resizer)
+ * @copyright James Padolsey http://james.padolsey.com
+ * @version 1.04
+ */
+
+// autoresize all textareas
+function textAreaAutoheight(){
+  $("textarea").each(function(textarea) {
+    $(this).height(this.scrollHeight);
+  });
+}
+
+function textareaOnChange(){
+  $("textarea").keyup(function(event){
+    $(this).height("auto");
+    $(this).height(this.scrollHeight);
+  });
+}
+
+// autoresize all textareas
+textAreaAutoheight();
+textareaOnChange();
+
 document.addEventListener("turbolinks:load", function(){
+
+  // autoresize all textareas
+  textAreaAutoheight();
+  textareaOnChange();
 
   $('#release-text-area').froalaEditor()
 
