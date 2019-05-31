@@ -59,6 +59,13 @@ class Booking < ApplicationRecord
     convert_handles_from( clean_social_media_hash("company_social_media") )
   end
 
+  def type_virtual?
+    booking_type == "virtual"
+  end#type_virtual?
+
+  def is_past_booking?
+    recording_date < Date.today
+  end
 
 private
 
@@ -93,10 +100,6 @@ private
   def is_hash?(item)
     item.class == Hash
   end
-
-  def type_virtual?
-    booking_type == "virtual"
-  end#type_virtual?
 
   def harware_speed_requirements
 
