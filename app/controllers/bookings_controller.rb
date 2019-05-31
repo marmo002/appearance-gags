@@ -5,6 +5,12 @@ class BookingsController < ApplicationController
   before_action :redirect_admin, only: [:new]
 
   def index
+    if is_admin?
+      redirect_to bookings_list_path
+      return
+    end
+    @upcomming_bookings = current_user.bookings.upcomming.first(10)
+    @past_bookings = current_user.bookings.past.first(10)
   end
 
   def show
