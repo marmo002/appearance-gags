@@ -1,44 +1,77 @@
 <section>
-  <div class="container">
+  <div class="container-fluid">
     <div class="row">
 
-      <div class="col-md-5">
-        <div class="card">
-          <div class="card-header">
-            Booking info
-          </div>
-          <div class="card-body">
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">
-                <p class="bookings-main">Get a grip studios</p>
-              </li>
-              <li class="list-group-item">
-                <p class="bookings-main"><span class="badge badge-primary <%= @booking.show_name %>"><%= @booking.show_name %> Show</span></p>
-                <p class="booking-sub <%= @booking.booking_type %>"><%= @booking.booking_type %></p>
-              </li>
-              <li class="list-group-item">
-                <p class="text-muted booking-sub">Recording date</p>
-                <p class="bookings-main"><%= @booking.recording_date.strftime('%B %d, %Y') %></p>
-                <p class="text-muted booking-sub"><%= @booking.recording_date.strftime('%I:%M %p') %></p>
-              </li>
-              <% if @booking.type_virtual? %>
-              <li class="list-group-item">
-                <p class="text-muted booking-sub">Test date</p>
-                <p class="bookings-main"><%= @booking.test_date.strftime('%B %d, %Y') %></p>
-                <p class="text-muted booking-sub"><%= @booking.test_date.strftime('%I:%M %p') %></p>
-              </li>
-              <% end %>
-              <% if is_admin? %>
-              <li class="list-group-item">
-                <p class="bookings-main"><%= link_to 'User profile', @user, class: 'btn btn-primary' %></p>
-              </li>
-              <% end %>
-            </ul>
-          </div>
-        </div><!-- card-->
+      <div class="col-lg-4">
+
+          <div class="card">
+            <div class="card-header">
+              Booking info
+            </div>
+            <div class="card-body">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <p class="bookings-main"><span class="badge badge-primary <%= @booking.show_name %>"><%= @booking.show_name %> Show</span></p>
+                  <p class="booking-sub <%= @booking.booking_type %>"><%= @booking.booking_type %></p>
+                </li>
+                <% if @booking.type_virtual? %>
+                <li class="list-group-item p-0">
+                  <div class="" id="booking_info_accordion">
+                    <div class="card-header" id="heading-requirements">
+                      <h2 class="mb-0">
+                        <button class="btn btn btn-primary" type="button" data-toggle="collapse" data-target="#collapse-requirements" aria-expanded="true" aria-controls="collapse-requirements">
+                          Hardware requirements
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse-requirements" class="collapse" aria-labelledby="heading-requirements" data-parent="#booking_info_accordion">
+                      <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item">
+                            <p class="text-muted booking-sub">Audio:</p>
+                            <p><%= @booking.hardware_requirements['audio'] %></p>
+                          </li>
+                          <li class="list-group-item">
+                            <p class="text-muted booking-sub">Video:</p>
+                            <p><%= @booking.hardware_requirements['video'] %></p>
+                          </li>
+                          <li class="list-group-item">
+                            <p class="text-muted booking-sub">Computer:</p>
+                            <p><%= @booking.hardware_requirements['computer_type'] %></p>
+                          </li>
+                          <li class="list-group-item">
+                            <p class="text-muted booking-sub">Browser:</p>
+                            <p><%= @booking.hardware_requirements['browser_type'] %></p>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div><!--accordion-->
+                </li>
+                <li class="list-group-item">
+                  <p class="text-muted booking-sub">Test date</p>
+                  <p class="bookings-main"><%= @booking.test_date.strftime('%B %d, %Y') %></p>
+                  <p class="text-muted booking-sub"><%= @booking.test_date.strftime('%I:%M %p') %></p>
+                </li>
+                <% end %>
+                <li class="list-group-item">
+                  <p class="text-muted booking-sub">Recording date</p>
+                  <p class="bookings-main"><%= @booking.recording_date.strftime('%B %d, %Y') %></p>
+                  <p class="text-muted booking-sub"><%= @booking.recording_date.strftime('%I:%M %p') %></p>
+                </li>
+                <% if is_admin? %>
+                <li class="list-group-item">
+                  <p class="bookings-main"><%= link_to 'User profile', @user, class: 'btn btn-primary' %></p>
+                </li>
+                <% end %>
+              </ul>
+            </div>
+          </div><!-- card-->
+
+
       </div>
 
-      <div class="col-md-7">
+      <div class="col-lg-8">
         <% if @booking.is_past_booking? %>
         <div class="card mb-5">
           <div class="card-header">
