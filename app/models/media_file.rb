@@ -1,0 +1,3 @@
+class MediaFile < ApplicationRecord
+  
+end
