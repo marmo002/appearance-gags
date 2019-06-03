@@ -71,6 +71,8 @@ ActiveRecord::Schema.define(version: 2019_06_03_112152) do
     t.boolean "is_approved", default: false
     t.text "edit"
     t.bigint "booking_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["booking_id"], name: "index_media_files_on_booking_id"
   end
 

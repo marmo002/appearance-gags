@@ -7,6 +7,7 @@ class CreateMedia < ActiveRecord::Migration[5.2]
       t.boolean :is_approved, default: false
       t.text :edit
       t.references :booking, foreign_key: true
+      t.timestamps
     end
   end
 end

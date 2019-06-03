@@ -1,6 +1,9 @@
 class Booking < ApplicationRecord
   belongs_to :user
 
+  has_many :media_files, dependent: :destroy
+
+
   # attr_accessor :info_confirmation
 
   validates :booking_type, inclusion: { in: %w(in-studio virtual),

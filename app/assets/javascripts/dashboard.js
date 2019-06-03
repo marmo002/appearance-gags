@@ -146,7 +146,7 @@ document.addEventListener("turbolinks:load", function(){
     var detail = event.detail;
     var data = detail[0], status = detail[1], xhr = detail[2];
     var srcElement = event.target;
-    var model = srcElement.attributes.action.value.split('/')[1].split('_')[0];
+    // var model = srcElement.attributes.action.value.split('/')[1].split('_')[0];
 
     // clear red-border from input with error
     var all_inputs = $(srcElement).find('.border_errors');
@@ -162,10 +162,23 @@ document.addEventListener("turbolinks:load", function(){
 
     if (data.model == "welcome-form") {
       go_to_next_form(srcElement)
-    }else if (data.model == "booking") {
+    } else if (data.model == "booking") {
+      console.log(data);
       // success message
       window.location = data.booking_path;
       // displayMessages( data.type, data.message);
+    } else if (data.model == "media_file") {
+      displayMessages( data.type, data.message);
+      $('#add_media_file').modal('hide');
+
+      let mediaHtml = '<tr>'+
+      '<th>'+ data["title"] +'</th> ' +
+      '<td>'+ data["audio_link"] +'</td> ' +
+      '<td>'+ data["video_link"] +'</td> ' +
+      '</tr>';
+
+      $('#media_files_info').append(mediaHtml);
+
 
     } else {
       // success message
@@ -223,7 +236,11 @@ document.addEventListener("turbolinks:load", function(){
 
       }
 
-    }//model bookings
+    } else if (data.model == "media_file") {
+      displayMessages( data.type, data.message);
+      $('#add_media_file').modal('hide');
+    }
+    //model bookings
   });
   // ajax cycle for user dashboard profile form
 
