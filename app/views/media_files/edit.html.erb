@@ -1,0 +1,21 @@
+<%= form_with model: @media_file,  html: { id: "" } do |media| %>
+  <div class="form-group">
+    <%= media.label :title %>
+    <%= media.text_field :title, class: "form-control", placeholder: "Episode title" %>
+    <small id="title" class="alert-text m-1 text-danger">title error</small>
+  </div>
+  <div class="form-group">
+    <%= media.label :audio_link %>
+    <%= media.text_field :audio_link, class: "form-control", placeholder: "Audio link" %>
+    <small id="audio_link" class="alert-text m-1 text-danger">audio_link error</small>
+  </div>
+  <div class="form-group">
+    <%= media.label :video_link %>
+    <%= media.text_field :video_link, class: "form-control", placeholder: "Video link" %>
+    <small id="video_link" class="alert-text m-1 text-danger">video link error</small>
+  </div>
+
+  <%= button_tag 'Cancel', type: 'button', class: 'btn btn-secondary', data: { dismiss: "modal" } %>
+  <%= media.submit "Add", class: "btn btn-primary", data: { "disable-with": "Updating..." } %>
+
+<% end %><!-- end of form -->

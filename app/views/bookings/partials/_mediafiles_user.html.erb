@@ -1,0 +1,125 @@
+        <!-- digital files -->
+        <div class="card mb-5">
+          <div class="card-header">
+            Digital Files
+            <% if is_admin? %>
+              <!-- Button trigger modal -->
+              <%= link_to "+ Add","#", class: "btn btn-outline-dark btn-sm float-right", id: "addmedia-form-button", data: { toggle: "modal", target: "#add_media_file", booking_id: @booking.id } %>
+              <!-- Modal -->
+              <div class="modal fade" id="add_media_file" tabindex="-1" role="dialog" aria-labelledby="add_mediaLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">New digital file</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body" id="mediafiles_add_form_container">
+                        Media files form container
+                      </div>
+                      <!-- <div class="modal-footer">
+                      </div> -->
+                  </div>
+                </div>
+              </div>
+              <!-- Modal -->
+            <% end %>
+          </div>
+          <div class="card-body" id="media_files_info">
+
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Title/Date</th>
+                  <th scope="col">Upload #</th>
+                  <th scope="col">Links</th>
+                  <th scope="col">status</th>
+                  <th scope="col">Admin</th>
+                </tr>
+              </thead>
+              <tbody id="media_files_body">
+                <tr class="d-none">
+                  <th>
+                    <p class="subtle_subtitle mb-0 p-0">sample</p>
+                    <p class="text-muted booking-sub">sample</p>
+                  </th>
+                  <td class="media_count">1</td>
+                  <td>
+                    <%= link_to "audio link", "somelink.net", class: "audio_link", target: "_blank" %><br>
+                    <%= link_to "video link", "somelink.net", class: "video_link", target: "_blank" %>
+                  </td>
+                  <td>
+                    <span class="badge badge-warning">Not approved</span>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-outline-dark btn-sm" data-toggle="modal" data-target="#approvalFilesModal" data-media-file="someNumber">Approval files</button>
+                  </td>
+                </tr>
+
+                <% @booking.media_files.each_with_index do |media, i| %>
+                <tr>
+                  <th>
+                    <p class="subtle_subtitle mb-0 p-0"><%= media.title %></p>
+                    <p class="text-muted booking-sub">
+                      <%= media.created_at.strftime("%b %d, %Y") %>
+                    </p>
+                  </th>
+                  <td class="media_count"><%= @booking.media_files.count - i %></td>
+                  <td>
+                    <%= link_to "audio link", media.audio_link, class: "audio_link", target: "_blank" %><br>
+                    <%= link_to "video link", media.video_link, class: "video_link", target: "_blank" %>
+                  </td>
+                  <% if  media.is_approved %>
+                  <td>
+                    <span class="badge badge-success">Approved</span>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-outline-dark btn-sm" data-toggle="modal" data-target="#approvalFilesModal" data-media-file="<%= media.id %>">Approval files</button>
+                  </td>
+                  <% else %>
+                  <td>
+                    <span class="badge badge-warning">Not approved</span>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-outline-dark btn-sm" data-toggle="modal" data-target="#approvalFilesModal" data-media-file="<%= media.id %>">Approval files</button>
+                  </td>
+                  <% end %>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+
+            <!-- upload files modal -->
+            <div class="modal fade" id="approvalFilesModal" tabindex="-1" role="dialog" aria-labelledby="approvalFilesModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="approvalFilesModalLabel">File upload</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form>
+                      <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Recipient:</label>
+                        <input type="text" class="form-control" id="recipient-name">
+                      </div>
+                      <div class="form-group">
+                        <label for="message-text" class="col-form-label">Message:</label>
+                        <textarea class="form-control" id="message-text"></textarea>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Upload file</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- upload files modal -->
+          </div>
+        </div><!-- card-->
+        <!-- digital files -->

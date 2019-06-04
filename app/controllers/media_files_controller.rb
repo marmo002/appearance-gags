@@ -23,9 +23,11 @@ class MediaFilesController < ApplicationController
             type: "primary",
             message: "Media file was created successfully",
             model: "media_file",
+            id: @media_file.id,
             title: @media_file.title,
             audio_link: @media_file.audio_link,
-            video_link: @media_file.video_link
+            video_link: @media_file.video_link,
+            created_at: @media_file.created_at.strftime("%b %d, %Y")
           }
         }
         format.html {
@@ -41,6 +43,14 @@ class MediaFilesController < ApplicationController
         }
       end
     end#respond_to end
+
+  end
+
+  def edit
+    @media_file = MediaFile.find(params[:booking_id])
+  end
+
+  def update
 
   end
 

@@ -57,7 +57,7 @@ statesSetup("user_country");
 statesSetup("user_company_country");
 
 
-document.addEventListener("turbolinks:load", function(){
+$(document).on("turbolinks:load", function(){
   // getCountryStates("6252001");
 
   statesSetup("user_country");
@@ -168,16 +168,30 @@ document.addEventListener("turbolinks:load", function(){
       window.location = data.booking_path;
       // displayMessages( data.type, data.message);
     } else if (data.model == "media_file") {
+
+      let newMedia = $('#media_files_body tr:first-child').clone(true);
+      $(newMedia).removeClass("d-none");
+      $(newMedia).find(".subtle_subtitle").text(data.title);
+      $(newMedia).find(".booking-sub").text(data.created_at);
+
+      let lastCount = $(newMedia).find(".media_count").text();
+      let newCount = Number(lastCount);
+      if (newCount === 1) {
+
+      } else {
+        newCount ++;
+      }
+
+      $(newMedia).find(".media_count").text(newCount);
+
+      $(newMedia).find(".audio_link").attr("href", data.audio_link);
+      $(newMedia).find(".video_link").attr("href", data.video_link);
+      $(newMedia).find("button").data("media-file", data.id);
+
+      $('#media_files_body').prepend(newMedia);
+
       displayMessages( data.type, data.message);
       $('#add_media_file').modal('hide');
-
-      let mediaHtml = '<tr>'+
-      '<th>'+ data["title"] +'</th> ' +
-      '<td>'+ data["audio_link"] +'</td> ' +
-      '<td>'+ data["video_link"] +'</td> ' +
-      '</tr>';
-
-      $('#media_files_info').append(mediaHtml);
 
 
     } else {
