@@ -75,6 +75,8 @@
         <% if @booking.is_past_booking? %>
           <% if is_admin? %>
             <%= render 'bookings/partials/mediafiles_admin'  %>
+          <% else %>
+          <%= render 'bookings/partials/mediafiles_user'  %>
           <% end %>
         <% end %>
 

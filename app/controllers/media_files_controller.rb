@@ -27,7 +27,8 @@ class MediaFilesController < ApplicationController
             title: @media_file.title,
             audio_link: @media_file.audio_link,
             video_link: @media_file.video_link,
-            created_at: @media_file.created_at.strftime("%b %d, %Y")
+            created_at: @media_file.created_at.strftime("%b %d, %Y"),
+            count: @booking.media_files.count
           }
         }
         format.html {
@@ -47,20 +48,87 @@ class MediaFilesController < ApplicationController
   end
 
   def edit
-    @media_file = MediaFile.find(params[:booking_id])
+    @media_file = MediaFile.find(params[:id])
+    render partial: "media_files/partials/admin_edit_form"
   end
 
   def update
+    @media_file = MediaFile.find(params[:id])
+    @user = @media_file.booking.user
+
+    if is_admin?
+      respond_to do |format|
+        if @media_file.update(media_file_params)
+          # approve media_file if not approve yet
+          approve_media(@media_file)
+
+          format.json {
+            render json: {
+              status: "success",
+              type: "primary",
+              message: "Digital file updated successfully"
+            }
+          }
+          format.html {
+            flash[:primary] = "Digital file updated successfully"
+            redirect_to booking_url @media_file.booking
+          }
+          # format.js
+        else
+          format.json { render json: @media_file.errors, status: :bad_request  }
+          format.html {
+            flash[:danger] = "Please review form"
+            session[:user_errors] = current_user.errors.as_json(full_messages: true)
+            redirect_back(fallback_location: dashboard_path)
+          }
+        end
+      end#respond_to end
+    elsif current_user == @user
+
+    else
+      flash[:danger] = "Not allowed to visit this page"
+      redirect_to dashboard_url
+      return
+    end
+  end
+
+  def delete_upload
+    @upload = ActiveStorage::Attachment.find(params[:id])
+
+      if @upload
+        @upload.purge_later
+
+        flash[:primary] = "Upload was deleted successfully"
+        redirect_back(fallback_location: dashboard_path)
+      else
+        flash[:danger] = "File not found"
+        redirect_back(fallback_location: dashboard_path)
+      end
 
   end
 
 private
 
+def approve_media(media)
+  unless media.is_approved
+    media.booking.media_files.each { |media_item|
+      media_item.is_approved = true
+    }
+  end
+end
+
   def media_file_params
-    params.require(:media_file).permit(
-      :title,
-      :audio_link,
-      :video_link
-    )
+    if is_admin?
+      params.require(:media_file).permit(
+        :title,
+        :audio_link,
+        :video_link,
+        uploads: []
+      )
+    else
+      params.require(:media_file).permit(
+        :edit
+      )
+    end
   end
 end

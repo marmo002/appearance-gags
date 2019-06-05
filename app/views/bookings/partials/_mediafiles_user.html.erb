@@ -2,29 +2,6 @@
         <div class="card mb-5">
           <div class="card-header">
             Digital Files
-            <% if is_admin? %>
-              <!-- Button trigger modal -->
-              <%= link_to "+ Add","#", class: "btn btn-outline-dark btn-sm float-right", id: "addmedia-form-button", data: { toggle: "modal", target: "#add_media_file", booking_id: @booking.id } %>
-              <!-- Modal -->
-              <div class="modal fade" id="add_media_file" tabindex="-1" role="dialog" aria-labelledby="add_mediaLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">New digital file</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body" id="mediafiles_add_form_container">
-                        Media files form container
-                      </div>
-                      <!-- <div class="modal-footer">
-                      </div> -->
-                  </div>
-                </div>
-              </div>
-              <!-- Modal -->
-            <% end %>
           </div>
           <div class="card-body" id="media_files_info">
 
@@ -35,7 +12,7 @@
                   <th scope="col">Upload #</th>
                   <th scope="col">Links</th>
                   <th scope="col">status</th>
-                  <th scope="col">Admin</th>
+                  <th scope="col"></th>
                 </tr>
               </thead>
               <tbody id="media_files_body">
@@ -70,19 +47,19 @@
                     <%= link_to "audio link", media.audio_link, class: "audio_link", target: "_blank" %><br>
                     <%= link_to "video link", media.video_link, class: "video_link", target: "_blank" %>
                   </td>
-                  <% if  media.is_approved %>
+                  <% if media.is_approved %>
                   <td>
                     <span class="badge badge-success">Approved</span>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-outline-dark btn-sm" data-toggle="modal" data-target="#approvalFilesModal" data-media-file="<%= media.id %>">Approval files</button>
+                    <button type="button" class="btn btn-outline-dark btn-sm" data-toggle="modal" data-target="#approvalFilesModal" data-media-file="<%= media.id %>">Approve</button>
                   </td>
                   <% else %>
                   <td>
                     <span class="badge badge-warning">Not approved</span>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-outline-dark btn-sm" data-toggle="modal" data-target="#approvalFilesModal" data-media-file="<%= media.id %>">Approval files</button>
+                    <button type="button" class="btn btn-outline-dark btn-sm" data-toggle="modal" data-target="#approvalFilesModal" data-media-file="<%= media.id %>">Approve</button>
                   </td>
                   <% end %>
                 </tr>
@@ -91,7 +68,7 @@
             </table>
 
             <!-- upload files modal -->
-            <div class="modal fade" id="approvalFilesModal" tabindex="-1" role="dialog" aria-labelledby="approvalFilesModalLabel" aria-hidden="true">
+            <!-- <div class="modal fade" id="approvalFilesModal" tabindex="-1" role="dialog" aria-labelledby="approvalFilesModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
@@ -118,7 +95,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
             <!-- upload files modal -->
           </div>
         </div><!-- card-->

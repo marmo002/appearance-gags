@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     resources :media_files, only: [:new, :create]
   end
   resources :media_files, only: [:edit, :update]
+  delete 'delete_upload/:id' => 'media_files#delete_upload', as: :delete_upload
 
   get "bookings_list" => "bookings#bookings_list", as: :bookings_list
   get "booking_recording_form" => "bookings#get_recording_form", as: :get_recording_form

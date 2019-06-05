@@ -25,7 +25,7 @@
           <div class="col-md-8">
             <div id="booking_form">
               <%#= render 'bookings/partials/booking_inStudio_form', booking_form: @booking  %>
-              <%= form_with model: @booking, url: create_booking_path,  html: { id: "booking-form" } do |booking| %>
+              <%= form_with model: @booking, url: create_booking_path, id: "booking-form", data: { "model-name" => "bookings" } do |booking| %>
               <div class="tab-content" id="booking-tab-content">
 
                 <!-- list-type -->

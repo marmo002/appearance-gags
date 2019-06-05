@@ -50,7 +50,7 @@
           <%= render 'dashboard/show_errors' %>
 
           <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-            <%= form_with model: current_user, url: dashboard_update_path, html: { class: "customer-form", id: "user-profile-form" } do |f| %>
+            <%= form_with model: current_user, url: dashboard_update_path, class: "customer-form", id: "user-profile-form", data: { "model-name" => "user" } do |f| %>
             <%= render 'dashboard/customerpartials/profileform', f: f %>
             <%= f.submit "Save", class: "btn btn-primary", role: "button", data: { "disable-with": "Updating..." } %>
             <% end %>
@@ -62,7 +62,7 @@
             <% end %>
           </div><!--personal-social-media-tab-->
           <div class="tab-pane fade" id="company_info" role="tabpanel" aria-labelledby="company-info-tab">
-            <%= form_with model: current_user, url: dashboard_update_path do |f| %>
+            <%= form_with model: current_user, url: dashboard_update_path, data: { "model-name" => "user" } do |f| %>
             <%= render 'dashboard/customerpartials/companyinfoform', f: f %>
             <%= f.submit "Save", class: "btn btn-primary", role: "button" %>
             <% end %>
@@ -79,7 +79,7 @@
           </div><!--booking-history-tab-->
           <div class="tab-pane fade" id="change-password" role="tabpanel" aria-labelledby="change-password-tab">
             <%= render 'dashboard/customerpartials/changepasswordform' %>
-          </div><!--booking-history-tab-->
+          </div><!--password-change-tab-->
         </div>
       </div><!--col-md- -->
     </div>

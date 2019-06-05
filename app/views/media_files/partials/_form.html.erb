@@ -1,4 +1,4 @@
-<%= form_with model: @media_file, url: booking_media_files_path(@booking),  html: { id: "" } do |media| %>
+<%= form_with model: @media_file, url: booking_media_files_path(@booking), data: { "model-name" => "media_file" } do |media| %>
   <div class="form-group">
     <%= media.label :title %>
     <%= media.text_field :title, class: "form-control", placeholder: "Episode title" %>
