@@ -1,0 +1,7 @@
+<% if is_admin? %>
+  <!-- admin template -->
+  <%= render 'media_files/partials/mediafiles_admin'  %>
+  <!-- admin template -->
+<% else %>
+<%= render 'media_files/partials/mediafiles_user'  %>
+<% end %>

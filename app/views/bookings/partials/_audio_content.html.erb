@@ -10,6 +10,7 @@
         </h3> -->
 
         <% headphones = 'I have over ear headphone with on-board over mouth microphone connected to my computer via USB port.' %>
+
         <%= h_requirements.radio_button :audio, headphones, { id: "headphone-checkbox", class: 'gag-radio-input d-none' } %>
         <label class="gag-radio-label" for="headphone-checkbox">
           <div class="card mb-3">
@@ -20,8 +21,8 @@
               <div class="col-7 align-self-center">
                 <div class="card-body">
                   <p class="enhance_paragraph">
+                    Preferred<br>
                     <%#= headphones %>
-                    Preferred
                   </p>
                 </div>
               </div>

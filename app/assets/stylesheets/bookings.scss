@@ -193,6 +193,11 @@ p.bookings-main .badge
   border: initial;
 }
 
+#booking_info_accordion .card-header
+{
+  background-color: initial;
+}
+
 a.link_to_booking
 {
   color: black;
@@ -236,4 +241,26 @@ p.booking-sub {
   border-radius: 0.25rem;
   margin-top: 5px;
   font-size: 1rem;
+}
+
+#uploaded_files
+{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-auto-rows: 150px;
+  grid-row-gap: 15px;
+  margin-bottom: 30px;
+}
+
+.uploads img {
+    width: auto;
+    height: 100%;
+}
+
+.uploads a:first-child
+{
+  display: inline-block;
+  width: 100%;
+  height: 100px;
+  margin-bottom: 10px;
 }

@@ -1,0 +1,7 @@
+<% if is_admin? %>
+  <!-- admin template -->
+  <%= render 'media_files/partials/admin_edit_form'  %>
+  <!-- admin template -->
+<% else %>
+  <%= render 'media_files/partials/user_write_edit_form'  %>
+<% end %>

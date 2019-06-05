@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_24_104221) do
+ActiveRecord::Schema.define(version: 2019_06_03_112152) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,18 @@ ActiveRecord::Schema.define(version: 2019_05_24_104221) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "media_files", force: :cascade do |t|
+    t.string "title"
+    t.string "audio_link"
+    t.string "video_link"
+    t.boolean "is_approved", default: false
+    t.text "edit"
+    t.bigint "booking_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["booking_id"], name: "index_media_files_on_booking_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -101,4 +113,5 @@ ActiveRecord::Schema.define(version: 2019_05_24_104221) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "bookings", "users"
+  add_foreign_key "media_files", "bookings"
 end

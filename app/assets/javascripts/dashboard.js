@@ -1,3 +1,73 @@
+
+function displayMessages(type, message){
+  var errorMessages = $(
+    '<div id="main-alerts" class="alert alert-' + type + ' flash-alerts alert-dismissible fade show" role="alert">'+ message +'</div>'
+  );
+  $('body').prepend(errorMessages);
+
+  setTimeout(function(){ $('#main-alerts').remove() }, 4200);
+
+}
+
+function getMediaFilesIndex(bookingId){
+
+}
+
+// VALIDATE IMAGE FILE INPUT WITH JS
+function imageValidation(){
+  $('input:file').change( function(e){
+    var card_box = $(this).closest('.card');
+    var avatar_img = card_box.find('.card-img')[0];
+
+    if (this.files.length > 0) {
+      console.log(this.files);
+      var input_file = this.files;
+      var validImageTypes = ["image/gif", "image/jpeg", "image/png"];
+
+      card_box.removeClass("border_errors");
+      card_box.find('small').hide();
+      let isImage = "";
+
+      for (var i = 0; i < input_file.length; i++) {
+        let fileType = input_file[i]["type"];
+        let fileName = $(this).next().text();
+
+        if (i === 0) {
+          $(this).next().text(input_file[i].name);
+        } else {
+          $(this).next().text(fileName + ", " + input_file[i].name);
+        }
+
+        if ($.inArray(fileType, validImageTypes) < 0) {
+          isImage = "wrong_file";
+        } else {
+
+          var img_src = window.URL.createObjectURL(input_file[i]);
+
+          if ( avatar_img ) {
+            avatar_img.src = img_src;
+          } else {
+            $('<div/>', {
+              class: 'col-md-4 pl-3 align-self-center'
+            })
+            .append("<img src='" + img_src + "' class='card-img'>")
+            .prependTo( card_box.children('.row') );
+          }
+        }
+
+      }//end for loop
+
+      if (isImage === "wrong_file") {
+        card_box.toggleClass("border_errors");
+        card_box.find('small').text('File is not an image');
+        card_box.find('small').show();
+      }
+
+    }//check if any files -- end
+
+  });//input:file change
+}//imageValidation
+
 function getCountryStates(countryid){
   let userStates = $("#user_state");
   // console.log(userStates);
@@ -57,7 +127,7 @@ statesSetup("user_country");
 statesSetup("user_company_country");
 
 
-document.addEventListener("turbolinks:load", function(){
+$(document).on("turbolinks:load", function(){
   // getCountryStates("6252001");
 
   statesSetup("user_country");
@@ -89,41 +159,7 @@ document.addEventListener("turbolinks:load", function(){
   }// get dashboard tab from params and activate accordingtly
 
   // VALIDATE IMAGE FILE INPUT WITH JS
-  $('input:file').change( function(e){
-    var card_box = $(this).closest('.card');
-    var avatar_img = card_box.find('.card-img')[0];
-
-    if (this.files.length > 0) {
-
-      var input_file = this.files[0];
-      var fileType = input_file["type"];
-      var validImageTypes = ["image/gif", "image/jpeg", "image/png"];
-    // console.log(input_file.name);
-      $(this).next().text(input_file.name);
-      card_box.removeClass("border_errors");
-      card_box.find('small').hide();
-
-      if ($.inArray(fileType, validImageTypes) < 0) {
-        card_box.toggleClass("border_errors");
-        card_box.find('small').text('File is not an image');
-        card_box.find('small').show();
-      } else {
-        var img_src = window.URL.createObjectURL(input_file);
-
-        if ( avatar_img ) {
-          avatar_img.src = img_src;
-        } else {
-          $('<div/>', {
-            class: 'col-md-4 pl-3 align-self-center'
-          })
-          .append("<img src='" + img_src + "' class='card-img'>")
-          .prependTo( card_box.children('.row') );
-        }
-      }
-
-    }//check if any files -- end
-
-  });//input:file change
+  imageValidation();
 
   $('[data-js-file-upload]').on("ajax:beforeSend", function(event){
     var detail = event.detail;
@@ -141,12 +177,15 @@ document.addEventListener("turbolinks:load", function(){
   // -------------------------------------
   // GET AJAX RESPONSE ON ALL AJAX CALLS AND
   // RETURN ERRORS OR SUCCESSFULL MESSAGES
-  // ------------------------------------- */
+  // -------------------------------------
   document.body.addEventListener('ajax:success', function(event) {
     var detail = event.detail;
     var data = detail[0], status = detail[1], xhr = detail[2];
     var srcElement = event.target;
-    var model = srcElement.attributes.action.value.split('/')[1].split('_')[0];
+    // var model = srcElement.attributes.action.value.split('/')[1].split('_')[0];
+    $('.modal').each(function(){
+        $(this).modal('hide');
+    });
 
     // clear red-border from input with error
     var all_inputs = $(srcElement).find('.border_errors');
@@ -162,10 +201,34 @@ document.addEventListener("turbolinks:load", function(){
 
     if (data.model == "welcome-form") {
       go_to_next_form(srcElement)
-    }else if (data.model == "booking") {
+    } else if (data.model == "booking") {
+      console.log(data);
       // success message
       window.location = data.booking_path;
       // displayMessages( data.type, data.message);
+    } else if (data.model == "media_file") {
+      // let newMedia = $('#media_files_body tr:first-child').clone(true);
+      // $(newMedia).removeClass("d-none");
+      // $(newMedia).find(".subtle_subtitle").text(data.title);
+      // $(newMedia).find(".booking-sub").text(data.created_at);
+      // $(newMedia).find(".media_count").text(data.count);
+
+      // $(newMedia).find(".audio_link").attr("href", data.audio_link);
+      // $(newMedia).find(".video_link").attr("href", data.video_link);
+      // $(newMedia).find("button").data("media-file", data.id);
+
+      const url = "/bookings/" + data.booking + "/media_files";
+
+      $.ajax({
+        url: url,
+        context: document.body
+      }).done(function(response) {
+        $('#media_files_info').html(response);
+        getFilesUploadForm();
+      });
+
+      displayMessages( data.type, data.message);
+      //hide add-approval-files modal on successfull ajax
 
     } else {
       // success message
@@ -182,8 +245,10 @@ document.addEventListener("turbolinks:load", function(){
     var detail = event.detail;
     var data = detail[0], status = detail[1], xhr = detail[2];
     var srcElement = event.target;
-    var model = srcElement.attributes.action.value.split('/')[1].split('_')[0];
+    var model = $(srcElement).data('model-name');
     console.log(event);
+    console.log("-------model: -----------");
+    console.log(model);
 
     displayMessages( 'danger', 'Please fix errors');
 
@@ -223,20 +288,13 @@ document.addEventListener("turbolinks:load", function(){
 
       }
 
-    }//model bookings
+    } else if (data.model == "media_file") {
+      // displayMessages( data.type, data.message);
+      // $('#add_media_file').modal('hide');
+    }
+    //model bookings
   });
   // ajax cycle for user dashboard profile form
-
-
-  function displayMessages(type, message){
-    var errorMessages = $(
-      '<div id="main-alerts" class="alert alert-' + type + ' flash-alerts alert-dismissible fade show" role="alert">'+ message +'</div>'
-    );
-    $('body').prepend(errorMessages);
-
-    setTimeout(function(){ $('#main-alerts').remove() }, 4200);
-
-  }
 
   // RELEASE TAB SIGNED BUTTON
   $('#release-form').on("ajax:success", function(event){

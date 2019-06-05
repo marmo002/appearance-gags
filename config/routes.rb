@@ -23,7 +23,13 @@ Rails.application.routes.draw do
   patch "user_welcome_update" => "welcome_form#user_update", as: :welcome_update
   patch "user_welcome_finish" => "welcome_form#done_profile", as: :welcome_finish
 
-  resources :bookings, only: [:index, :new, :show]
+  resources :bookings, only: [:index, :new, :show] do
+    resources :media_files, only: [:index, :new, :create]
+  end
+  resources :media_files, only: [:edit, :update]
+  delete 'delete_upload/:id' => 'media_files#delete_upload', as: :delete_upload
+  patch 'user_approve_media/:id' => 'media_files#user_approve_media', as: :user_approve_media
+
   get "bookings_list" => "bookings#bookings_list", as: :bookings_list
   get "booking_recording_form" => "bookings#get_recording_form", as: :get_recording_form
   get "booking_test_form" => "bookings#get_test_form", as: :get_test_form

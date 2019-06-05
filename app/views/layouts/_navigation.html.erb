@@ -20,6 +20,9 @@
         <li class="nav-item">
           <%= link_to "Book show", new_alt_path, class: "nav-link" %>
         </li>
+        <li class="nav-item">
+          <%= link_to "Bookings", bookings_path, class: "nav-link" %>
+        </li>
         <% end %>
         <% if is_admin? %>
         <li class="nav-item">

@@ -1,39 +1,39 @@
-function datePicker(conatinerId){
-  // DATEPICKER OPTIONS
-  const dobPicker = $('#' + conatinerId);
-  const pickedDate = dobPicker.find('input[type=text]').val();
-  // console.log(pickedDate);
+  function datePicker(conatinerId){
+    // DATEPICKER OPTIONS
+    const dobPicker = $('#' + conatinerId);
+    const pickedDate = dobPicker.find('input[type=text]').val();
+    // console.log(pickedDate);
 
-  dobPicker.datetimepicker({
-    viewMode: 'years',
-    format: 'YYYY/MM/DD'
-    // maxDate: Date.now()
-  });
+    dobPicker.datetimepicker({
+      viewMode: 'years',
+      format: 'YYYY/MM/DD'
+      // maxDate: Date.now()
+    });
 
-  if (pickedDate) {
-    let setDate = new Date(pickedDate);
-    dobPicker.datetimepicker('defaultDate', setDate);
+    if (pickedDate) {
+      let setDate = new Date(pickedDate);
+      dobPicker.datetimepicker('defaultDate', setDate);
+    }
+
+    $('#user_dob').focus(function(e){
+      dobPicker.datetimepicker('show');
+    });
   }
 
-  $('#user_dob').focus(function(e){
-    dobPicker.datetimepicker('show');
-  });
-}
-
-// when click on not applicable,
-// it will disable form and
-// next button will take user to release
-function disableForm(isChecked, originalUrl){
+  // when click on not applicable,
+  // it will disable form and
+  // next button will take user to release
+  function disableForm(isChecked, originalUrl){
 
 
-}
+  }
 
-// -------------------------------------
-// WELCOMEFORM: ON CHECKBOX, DISABLE
-// COMPANY FORM AND ON NEXT CLICK
-// GOT TO RELEASE
-// ------------------------------------- */
-function disableFormOnClick(){
+  // -------------------------------------
+  // WELCOMEFORM: ON CHECKBOX, DISABLE
+  // COMPANY FORM AND ON NEXT CLICK
+  // GOT TO RELEASE
+  // ------------------------------------- */
+  function disableFormOnClick(){
   const notApplicableButton = $('#company-notapplication');
   const companyLegalFieldset = $('#company-legal-fieldset');
   const currentForm = companyLegalFieldset.parent('form');
@@ -63,14 +63,7 @@ function disableFormOnClick(){
   })//onchange function end
 }
 
-
-$(function () {
-
-  datePicker("user_dob_picker");
-
-  disableFormOnClick();
-
-  document.addEventListener("turbolinks:load", function(){
+  $(document).on("turbolinks:load", function(){
 
     datePicker("user_dob_picker");
 
@@ -78,6 +71,3 @@ $(function () {
 
 
   });//end turbolinks
-
-
-});//end document.ready

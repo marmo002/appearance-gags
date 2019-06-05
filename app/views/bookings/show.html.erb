@@ -1,54 +1,175 @@
 <section>
-  <div class="container">
+  <div class="container-fluid">
     <div class="row">
 
-      <div class="col-md-5">
-        <div class="card">
-          <div class="card-header">
-            Booking info
-          </div>
-          <div class="card-body">
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">
-                <p class="bookings-main">Get a grip studios</p>
-              </li>
-              <li class="list-group-item">
-                <p class="bookings-main"><span class="badge badge-primary <%= @booking.show_name %>"><%= @booking.show_name %> Show</span></p>
-                <p class="booking-sub <%= @booking.booking_type %>"><%= @booking.booking_type %></p>
-              </li>
-              <li class="list-group-item">
-                <p class="text-muted booking-sub">Recording date</p>
-                <p class="bookings-main"><%= @booking.recording_date.strftime('%B %d, %Y') %></p>
-                <p class="text-muted booking-sub"><%= @booking.recording_date.strftime('%I:%M %p') %></p>
-              </li>
-              <% if @booking.type_virtual? %>
-              <li class="list-group-item">
-                <p class="text-muted booking-sub">Test date</p>
-                <p class="bookings-main"><%= @booking.test_date.strftime('%B %d, %Y') %></p>
-                <p class="text-muted booking-sub"><%= @booking.test_date.strftime('%I:%M %p') %></p>
-              </li>
-              <% end %>
-              <% if is_admin? %>
-              <li class="list-group-item">
-                <p class="bookings-main"><%= link_to 'User profile', @user, class: 'btn btn-primary' %></p>
-              </li>
-              <% end %>
-            </ul>
-          </div>
-        </div><!-- card-->
+      <div class="col-lg-4">
+
+          <div class="card">
+            <div class="card-header">
+              Booking info
+            </div>
+            <div class="card-body">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <p class="bookings-main"><span class="badge badge-primary <%= @booking.show_name %>"><%= @booking.show_name %> Show</span></p>
+                  <p class="booking-sub <%= @booking.booking_type %>"><%= @booking.booking_type %></p>
+                </li>
+                <% if @booking.type_virtual? %>
+                <li class="list-group-item p-0">
+                  <div class="" id="booking_info_accordion">
+                    <div class="card-header" id="heading-requirements">
+                      <h2 class="mb-0">
+                        <button class="btn btn btn-primary" type="button" data-toggle="collapse" data-target="#collapse-requirements" aria-expanded="true" aria-controls="collapse-requirements">
+                          Hardware requirements
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapse-requirements" class="collapse" aria-labelledby="heading-requirements" data-parent="#booking_info_accordion">
+                      <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item">
+                            <p class="text-muted booking-sub">Audio:</p>
+                            <p><%= @booking.hardware_requirements['audio'] %></p>
+                          </li>
+                          <li class="list-group-item">
+                            <p class="text-muted booking-sub">Video:</p>
+                            <p><%= @booking.hardware_requirements['video'] %></p>
+                          </li>
+                          <li class="list-group-item">
+                            <p class="text-muted booking-sub">Computer:</p>
+                            <p><%= @booking.hardware_requirements['computer_type'] %></p>
+                          </li>
+                          <li class="list-group-item">
+                            <p class="text-muted booking-sub">Browser:</p>
+                            <p><%= @booking.hardware_requirements['browser_type'] %></p>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div><!--accordion-->
+                </li>
+                <li class="list-group-item">
+                  <p class="text-muted booking-sub">Test date</p>
+                  <p class="bookings-main"><%= @booking.test_date.strftime('%B %d, %Y') %></p>
+                  <p class="text-muted booking-sub"><%= @booking.test_date.strftime('%I:%M %p') %></p>
+                </li>
+                <% end %>
+                <li class="list-group-item">
+                  <p class="text-muted booking-sub">Recording date</p>
+                  <p class="bookings-main"><%= @booking.recording_date.strftime('%B %d, %Y') %></p>
+                  <p class="text-muted booking-sub"><%= @booking.recording_date.strftime('%I:%M %p') %></p>
+                </li>
+                <% if is_admin? %>
+                <li class="list-group-item">
+                  <p class="bookings-main"><%= link_to 'User profile', @user, class: 'btn btn-primary' %></p>
+                </li>
+                <% end %>
+              </ul>
+            </div>
+          </div><!-- card-->
+
+
       </div>
 
-      <div class="col-md-7">
+      <div class="col-lg-8">
         <% if @booking.is_past_booking? %>
+        <!-- digital files -->
         <div class="card mb-5">
           <div class="card-header">
-            Digital Files
+              Digital Files
+              <% if is_admin? %>
+              <!-- Button trigger modal -->
+              <%= link_to "+ Add","#", class: "btn btn-outline-dark btn-sm float-right", id: "addmedia-form-button", data: { toggle: "modal", target: "#add_media_file", booking_id: @booking.id } %>
+              <!-- Modal -->
+              <div class="modal fade" id="add_media_file" tabindex="-1" role="dialog" aria-labelledby="add_mediaLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">New digital file</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body" id="mediafiles_add_form_container">
+                      Media files form container
+                    </div>
+                    <!-- <div class="modal-footer">
+                    </div> -->
+                  </div>
+                </div>
+              </div>
+              <!-- Modal -->
+            <% end %>
           </div>
-          <div class="card-body">
-            To be developed
-          </div>
+          <div class="card-body" id="media_files_info">
+            <%= render :template => 'media_files/index.html.erb'  %>
+          </div><!-- media_files_info-->
         </div><!-- card-->
+        <!-- digital files -->
+
+        <!-- upload files modal -->
+        <div class="modal fade" id="approvalFilesModal" tabindex="-1" role="dialog" aria-labelledby="approvalFilesModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content" id="uploads_container">
+              admin aproval media with file upload
+            </div><!--modal-content-->
+          </div>
+        </div>
+        <!-- upload files modal -->
+
+        <!-- readEditmodal for admin -->
+        <div class="modal fade" id="readEditModal" tabindex="-1" role="dialog" aria-labelledby="readEditModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content" id="">
+              <div class="modal-header">
+                <h5 class="modal-title" id="approvalFilesModalLabel">Edit note for producer</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                  <div class="jumbotron p-2">
+                    <div class="container">
+                      <p class="lead" id="edit-note-text">
+                        add read media text here
+                      </p>
+                    </div>
+                  </div>
+                  <%= button_tag 'Cancel', type: 'button', class: 'btn btn-secondary', data: { dismiss: "modal" } %>
+              </div><!-- modal-body-->
+
+            </div><!--modal-content-->
+          </div>
+        </div>
+        <!-- readEditmodal for admin -->
+
+        <!-- readEditmodal for admin -->
+        <div class="modal fade" id="userApprovalModal" tabindex="-1" role="dialog" aria-labelledby="userApprovalModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content" id="">
+              <div class="modal-header">
+                <h5 class="modal-title" id="userApprovalModalLabel">Confirmation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                Do you want to aprove this booking digital files?
+              </div><!-- modal-body-->
+              <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+                <%= button_tag 'Cancel', type: 'button', class: 'btn btn-secondary', data: { dismiss: "modal" } %>
+                <!-- <button type="button" class="btn btn-primary">Yes</button> -->
+                <%= button_to "Yes", media_file_path(id: 52), remote: true %>
+              </div>
+
+            </div><!--modal-content-->
+          </div>
+        </div>
+        <!-- readEditmodal for admin -->
         <% end %>
+
+        <!-- booking info -->
         <div class="card">
           <div class="card-header">
             Attached info
@@ -68,7 +189,7 @@
                 <% if @user.title_for_show %>
                 <%= content_tag :p, "Show title: #{@user.title_for_show}", class: 'text-muted booking-sub mb-3' %>
                 <% end %>
-                <% if @user.bio %>
+                <% unless @user.bio.empty? %>
                 <p>
                   <a class="btn btn-primary" data-toggle="collapse" href="#bioCollapse" role="button" aria-expanded="false" aria-controls="bioCollapse">
                     Bio
@@ -124,6 +245,7 @@
             </ul>
           </div>
         </div><!-- card-->
+        <!-- booking info -->
       </div>
     </div>
   </div>
