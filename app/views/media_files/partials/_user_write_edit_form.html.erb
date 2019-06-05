@@ -1,0 +1,35 @@
+<div class="modal-header">
+  <h5 class="modal-title" id="approvalFilesModalLabel">Edit note for producer</h5>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <% if @media_file.edit %>
+    <div class="jumbotron p-2">
+      <div class="container">
+        <p class="lead">
+          <%= @media_file.edit %>
+        </p>
+      </div>
+    </div>
+    <%= button_tag 'Cancel', type: 'button', class: 'btn btn-secondary', data: { dismiss: "modal" } %>
+
+  <% else %>
+    <%= form_with model: @media_file do |f| %>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <%= f.label :edit, class: "col-form-label" %>
+            <%= f.text_area :edit, class: "form-control", placeholder: "Please be as brief as possible..." %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%= button_tag 'Cancel', type: 'button', class: 'btn btn-secondary', data: { dismiss: "modal" } %>
+    <%= f.submit "Save", class: "btn btn-primary", data: { "disable-with": "Updating..." } %>
+    <% end %>
+  <% end %>
+</div><!-- modal-body-->

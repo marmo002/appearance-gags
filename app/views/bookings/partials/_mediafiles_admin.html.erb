@@ -1,33 +1,4 @@
-        <!-- digital files -->
-        <div class="card mb-5">
-          <div class="card-header">
-            Digital Files
-            <% if is_admin? %>
-              <!-- Button trigger modal -->
-              <%= link_to "+ Add","#", class: "btn btn-outline-dark btn-sm float-right", id: "addmedia-form-button", data: { toggle: "modal", target: "#add_media_file", booking_id: @booking.id } %>
-              <!-- Modal -->
-              <div class="modal fade" id="add_media_file" tabindex="-1" role="dialog" aria-labelledby="add_mediaLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">New digital file</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body" id="mediafiles_add_form_container">
-                        Media files form container
-                      </div>
-                      <!-- <div class="modal-footer">
-                      </div> -->
-                  </div>
-                </div>
-              </div>
-              <!-- Modal -->
-            <% end %>
-          </div>
-          <div class="card-body" id="media_files_info">
-
+        <!-- admin template -->
             <table class="table table-hover">
               <thead>
                 <tr>
@@ -107,6 +78,4 @@
               </div>
             </div>
             <!-- upload files modal -->
-          </div>
-        </div><!-- card-->
-        <!-- digital files -->
+        <!-- admin template -->

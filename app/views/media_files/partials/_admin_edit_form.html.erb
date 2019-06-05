@@ -1,27 +1,34 @@
-<%= form_with model: @media_file do |f| %>
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-12">
-      <div class="card mb-3 avatar-card" style="max-width: 100%;">
-        <div class="row no-gutters">
-          <div class="col-md-8">
-            <div class="card-body">
-              <h5 class="card-title">Approval files</h5>
-              <p id="image-help" class="card-text">
-                upload one o more files
-              </p>
-              <!-- <p class="card-text"><small class="text-muted">(at least 700px wide by 700px hight)</small></p> -->
-              <div class="custom-file">
-                <%= f.file_field :uploads, multiple: true, class: "custom-file-input" %>
-                <%= f.label :uploads, class: "custom-file-label" %>
+<div class="modal-header">
+  <h5 class="modal-title" id="approvalFilesModalLabel">File upload</h5>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <%= form_with model: @media_file do |f| %>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card mb-3 avatar-card" style="max-width: 100%;">
+          <div class="row no-gutters">
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">Approval files</h5>
+                <p id="image-help" class="card-text">
+                  upload one o more files
+                </p>
+                <!-- <p class="card-text"><small class="text-muted">(at least 700px wide by 700px hight)</small></p> -->
+                <div class="custom-file">
+                  <%= f.file_field :uploads, multiple: true, class: "custom-file-input" %>
+                  <%= f.label :uploads, class: "custom-file-label" %>
+                </div>
+                <small id="uploads" class="alert-text m-1 text-danger">Image error</small>
               </div>
-              <small id="uploads" class="alert-text m-1 text-danger">Image error</small>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <% if @media_file.uploads.attached? %>
+      <% if @media_file.uploads.attached? %>
       <div class="col-12">
         <div id="uploaded_files">
           <% @media_file.uploads.each do |upload| %>
@@ -32,10 +39,11 @@
           <% end %>
         </div>
       </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
-</div>
 
-<%= button_tag 'Cancel', type: 'button', class: 'btn btn-secondary', data: { dismiss: "modal" } %>
-<%= f.submit "Save", class: "btn btn-primary", data: { "disable-with": "Updating..." } %>
-<% end %>
+  <%= f.submit "#{ @media_file.is_approved ? "Upload" : "Approve and upload" }", class: "btn btn-primary", data: { "disable-with": "Updating..." } %>
+  <%= button_tag 'Cancel', type: 'button', class: 'btn btn-secondary', data: { dismiss: "modal" } %>
+  <% end %>
+</div><!-- modal-body-->

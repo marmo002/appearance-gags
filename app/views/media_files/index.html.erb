@@ -1,8 +1,7 @@
-<h1>Media files index</h1>
-<ul>
-  <% if @media %>
-  <li> <%= @media %></li>
-  <% else %>
-  <li> no media files yet</li>
-  <% end %>
-</ul>
+<% if is_admin? %>
+  <!-- admin template -->
+  <%= render 'media_files/partials/mediafiles_admin'  %>
+  <!-- admin template -->
+<% else %>
+<%= render 'media_files/partials/mediafiles_user'  %>
+<% end %>

@@ -13,6 +13,24 @@ class MediaFile < ApplicationRecord
   #CUSTOM VALIDATIONS
   validate :uploads_validation
 
+  # INSTANCE METHODS
+
+  # approve all media_files
+  def approve_media
+    medias = self.booking.media_files
+    if medias.count > 0
+      unless self.is_approved
+        medias.each { |media_item|
+          media_item.is_approved = true
+          media_item.save
+        }
+      end
+      true
+    else
+      return "no media files for this booking"
+    end
+  end
+
   private
 
   def uploads_validation
@@ -33,5 +51,6 @@ class MediaFile < ApplicationRecord
       end
     end
   end
+
 
 end

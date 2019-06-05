@@ -1,3 +1,18 @@
+
+function displayMessages(type, message){
+  var errorMessages = $(
+    '<div id="main-alerts" class="alert alert-' + type + ' flash-alerts alert-dismissible fade show" role="alert">'+ message +'</div>'
+  );
+  $('body').prepend(errorMessages);
+
+  setTimeout(function(){ $('#main-alerts').remove() }, 4200);
+
+}
+
+function getMediaFilesIndex(bookingId){
+
+}
+
 // VALIDATE IMAGE FILE INPUT WITH JS
 function imageValidation(){
   $('input:file').change( function(e){
@@ -168,6 +183,9 @@ $(document).on("turbolinks:load", function(){
     var data = detail[0], status = detail[1], xhr = detail[2];
     var srcElement = event.target;
     // var model = srcElement.attributes.action.value.split('/')[1].split('_')[0];
+    $('.modal').each(function(){
+        $(this).modal('hide');
+    });
 
     // clear red-border from input with error
     var all_inputs = $(srcElement).find('.border_errors');
@@ -189,30 +207,34 @@ $(document).on("turbolinks:load", function(){
       window.location = data.booking_path;
       // displayMessages( data.type, data.message);
     } else if (data.model == "media_file") {
+      // let newMedia = $('#media_files_body tr:first-child').clone(true);
+      // $(newMedia).removeClass("d-none");
+      // $(newMedia).find(".subtle_subtitle").text(data.title);
+      // $(newMedia).find(".booking-sub").text(data.created_at);
+      // $(newMedia).find(".media_count").text(data.count);
 
-      let newMedia = $('#media_files_body tr:first-child').clone(true);
-      $(newMedia).removeClass("d-none");
-      $(newMedia).find(".subtle_subtitle").text(data.title);
-      $(newMedia).find(".booking-sub").text(data.created_at);
-      $(newMedia).find(".media_count").text(data.count);
+      // $(newMedia).find(".audio_link").attr("href", data.audio_link);
+      // $(newMedia).find(".video_link").attr("href", data.video_link);
+      // $(newMedia).find("button").data("media-file", data.id);
 
-      $(newMedia).find(".audio_link").attr("href", data.audio_link);
-      $(newMedia).find(".video_link").attr("href", data.video_link);
-      $(newMedia).find("button").data("media-file", data.id);
+      const url = "/bookings/" + data.booking + "/media_files";
 
-      $('#media_files_body').prepend(newMedia);
+      $.ajax({
+        url: url,
+        context: document.body
+      }).done(function(response) {
+        $('#media_files_info').html(response);
+        getFilesUploadForm();
+      });
 
       displayMessages( data.type, data.message);
-      $('#add_media_file').modal('hide');
-
+      //hide add-approval-files modal on successfull ajax
 
     } else {
       // success message
       displayMessages( data.type, data.message);
       // empty passwordfields if they have text
       $('#change_pass_form input[type="password"]').val('');
-      //hide add-approval-files modal on successfull ajax
-      $('#approvalFilesModal').modal('hide');
     }
 
   });
@@ -273,17 +295,6 @@ $(document).on("turbolinks:load", function(){
     //model bookings
   });
   // ajax cycle for user dashboard profile form
-
-
-  function displayMessages(type, message){
-    var errorMessages = $(
-      '<div id="main-alerts" class="alert alert-' + type + ' flash-alerts alert-dismissible fade show" role="alert">'+ message +'</div>'
-    );
-    $('body').prepend(errorMessages);
-
-    setTimeout(function(){ $('#main-alerts').remove() }, 4200);
-
-  }
 
   // RELEASE TAB SIGNED BUTTON
   $('#release-form').on("ajax:success", function(event){

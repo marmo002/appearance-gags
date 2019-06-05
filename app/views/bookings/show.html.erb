@@ -73,11 +73,100 @@
 
       <div class="col-lg-8">
         <% if @booking.is_past_booking? %>
-          <% if is_admin? %>
-            <%= render 'bookings/partials/mediafiles_admin'  %>
-          <% else %>
-          <%= render 'bookings/partials/mediafiles_user'  %>
-          <% end %>
+        <!-- digital files -->
+        <div class="card mb-5">
+          <div class="card-header">
+              Digital Files
+              <% if is_admin? %>
+              <!-- Button trigger modal -->
+              <%= link_to "+ Add","#", class: "btn btn-outline-dark btn-sm float-right", id: "addmedia-form-button", data: { toggle: "modal", target: "#add_media_file", booking_id: @booking.id } %>
+              <!-- Modal -->
+              <div class="modal fade" id="add_media_file" tabindex="-1" role="dialog" aria-labelledby="add_mediaLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">New digital file</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body" id="mediafiles_add_form_container">
+                      Media files form container
+                    </div>
+                    <!-- <div class="modal-footer">
+                    </div> -->
+                  </div>
+                </div>
+              </div>
+              <!-- Modal -->
+            <% end %>
+          </div>
+          <div class="card-body" id="media_files_info">
+            <%= render :template => 'media_files/index.html.erb'  %>
+          </div><!-- media_files_info-->
+        </div><!-- card-->
+        <!-- digital files -->
+
+        <!-- upload files modal -->
+        <div class="modal fade" id="approvalFilesModal" tabindex="-1" role="dialog" aria-labelledby="approvalFilesModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content" id="uploads_container">
+              admin aproval media with file upload
+            </div><!--modal-content-->
+          </div>
+        </div>
+        <!-- upload files modal -->
+
+        <!-- readEditmodal for admin -->
+        <div class="modal fade" id="readEditModal" tabindex="-1" role="dialog" aria-labelledby="readEditModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content" id="">
+              <div class="modal-header">
+                <h5 class="modal-title" id="approvalFilesModalLabel">Edit note for producer</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                  <div class="jumbotron p-2">
+                    <div class="container">
+                      <p class="lead" id="edit-note-text">
+                        add read media text here
+                      </p>
+                    </div>
+                  </div>
+                  <%= button_tag 'Cancel', type: 'button', class: 'btn btn-secondary', data: { dismiss: "modal" } %>
+              </div><!-- modal-body-->
+
+            </div><!--modal-content-->
+          </div>
+        </div>
+        <!-- readEditmodal for admin -->
+
+        <!-- readEditmodal for admin -->
+        <div class="modal fade" id="userApprovalModal" tabindex="-1" role="dialog" aria-labelledby="userApprovalModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content" id="">
+              <div class="modal-header">
+                <h5 class="modal-title" id="userApprovalModalLabel">Confirmation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                Do you want to aprove this booking digital files?
+              </div><!-- modal-body-->
+              <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+                <%= button_tag 'Cancel', type: 'button', class: 'btn btn-secondary', data: { dismiss: "modal" } %>
+                <!-- <button type="button" class="btn btn-primary">Yes</button> -->
+                <%= button_to "Yes", media_file_path(id: 52), remote: true %>
+              </div>
+
+            </div><!--modal-content-->
+          </div>
+        </div>
+        <!-- readEditmodal for admin -->
         <% end %>
 
         <!-- booking info -->

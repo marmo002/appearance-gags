@@ -1,12 +1,13 @@
         <!-- user template -->
-            <table class="table table-striped">
+            <table class="table table-hover">
               <thead>
                 <tr>
                   <th scope="col">Title/Date</th>
                   <th scope="col">Upload #</th>
                   <th scope="col">Links</th>
                   <th scope="col">status</th>
-                  <th scope="col"></th>
+                  <th scope="col">Edit</th>
+                  <th scope="col">Approval</th>
                 </tr>
               </thead>
               <tbody id="media_files_body">
@@ -46,14 +47,31 @@
                     <span class="badge badge-success">Approved</span>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-outline-dark btn-sm" data-toggle="modal" data-target="#approvalFilesModal" data-media-file="<%= media.id %>">Approve</button>
+                    <% if media.edit  %>
+                    <button type="button" class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#readEditModal" data-media-edit-note="<%= media.edit %>">Read note</button>
+                    <% else  %>
+                    <span class="badge badge-secondary">Not edit note</span>
+                    <% end  %>
+                  </td>
+                  <td>
+
+                  </td>
+                  <td>
                   </td>
                   <% else %>
                   <td>
                     <span class="badge badge-warning">Not approved</span>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-outline-dark btn-sm" data-toggle="modal" data-target="#approvalFilesModal" data-media-file="<%= media.id %>">Approve</button>
+                    <% if media.edit %>
+                    <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#approvalFilesModal" data-media-file="<%= media.id %>"> Read edit</button>
+                    <% else %>
+                    <button type="button" class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#approvalFilesModal" data-media-file="<%= media.id %>">Write edit</button>
+                    <% end %>
+                  </td>
+                  <td>
+                    <!-- <button type="button" class="btn btn-outline-dark btn-sm" data-toggle="modal" data-target="#userApprovalModal" data-media-file="<%#= media.id %>">Approve</button> -->
+                    <%= button_to "Approve", user_approve_media_path(media), class: "btn btn-outline-dark btn-sm", method: :patch, data: { confirm: 'Are you sure you want to approve this media?', disable_with: 'loading...' } %>
                   </td>
                   <% end %>
                 </tr>
