@@ -22,6 +22,9 @@ class MediaFilesController < ApplicationController
 
     respond_to do |format|
       if @media_file.save
+        # notify user of new file bye email
+        AppMailer.user_new_mediafile(@booking.user.id, @media_file.id).deliver_later
+
         format.json {
           render json: {
             status: "success",
