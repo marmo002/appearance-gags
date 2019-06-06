@@ -95,7 +95,7 @@
 
             <!-- START CENTERED WHITE CONTAINER -->
             <span class="preheader" style="color: transparent; display: none; height: 0; max-height: 0; max-width: 0; opacity: 0; overflow: hidden; mso-hide: all; visibility: hidden; width: 0;">
-              Get a grip studios. You got a new digital file added for your review.
+              Get a grip studios. Your booking media was approved by admin.
             </span>
             <table class="main" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background: #ffffff; border-radius: 3px;">
 
@@ -107,13 +107,15 @@
                     <tbody><tr>
                       <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;">
                         <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
-                          Hi there,
+                          Mr/Mrs <%= @user.full_name %>,
                         </p>
-                        <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
-                          We have added a new media file. Please take a moment to review this files and approve/edit accordingly
+                        <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">
+                           As per your request, we have approved the media for your booking session recorded on
+                           <%= @booking.recording_date.strftime('%B %d, %Y') %> with the attached upload(s).
                         </p>
-                        <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
-                          You can review this files at <%= link_to 'link', booking_url(@booking) %>
+                        <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">
+                          You can review the above at
+                           <%= link_to 'this booking', booking_url(@booking) %>
                         </p>
                         <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
                           Thank you!

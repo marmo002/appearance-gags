@@ -61,6 +61,7 @@ class DashboardController < ApplicationController
           render json: {
             status: "success",
             type: "primary",
+            model: "user",
             message: "Profile updated successfully",
             avatar: current_user.avatar.attached? ? url_for(current_user.avatar) : nil,
             companylogo: current_user.companylogo.attached? ? url_for(current_user.companylogo) : nil
@@ -89,6 +90,7 @@ class DashboardController < ApplicationController
           render json: {
             status: "success",
             type: "primary",
+            modal: "company",
             message: "Info updated successfully",
           }
         }

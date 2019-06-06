@@ -1,6 +1,7 @@
 Hi there,
 
-We have added a new media file. Please take a moment to review this files and approve/edit accordingly
+Mr/Mrs <%= @user.full_name %> just approved media for booking recorded on
+<%= @booking.recording_date.strftime('%B %d, %Y') %>.
 =============================================
 You can review this files at <%= booking_url(@booking) %>
 

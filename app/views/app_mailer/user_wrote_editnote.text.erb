@@ -1,0 +1,13 @@
+Hi there,
+
+Mr/Mrs <%= @user.full_name %> wrote the following edit note to a booking digital file
+=============================================
+
+<%= @media_file.edit %>
+
+=============================================
+
+You can review this edit at <%= booking_url(@booking) %>
+
+=============================================
+Thank you!
