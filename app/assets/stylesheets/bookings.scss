@@ -36,6 +36,14 @@
 
   }
 
+  #bookings-list-grid
+  {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    grid-column-gap: 30px;
+    grid-auto-rows: auto;
+  }
+
 #booking-list-tab .list-group-item.active
 {
   background-color: initial;

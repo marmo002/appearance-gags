@@ -43,20 +43,20 @@
                     <%= link_to "video link", media.video_link, class: "video_link", target: "_blank" %>
                   </td>
                   <% if  media.is_approved %>
-                  <td>
-                    <span class="badge badge-success">Approved</span>
-                  </td>
-                  <% else %>
-                  <td>
-                    <span class="badge badge-warning">Not approved</span>
-                  </td>
+                    <td>
+                      <span class="badge badge-success">Approved</span>
+                    </td>
+                    <% else %>
+                    <td>
+                      <span class="badge badge-warning">Not approved</span>
+                    </td>
                   <% end %>
                   <td>
-                  <% if media.edit  %>
-                  <button type="button" class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#readEditModal" data-media-edit-note="<%= media.edit %>">Read note</button>
-                  <% else  %>
-                  <span class="badge badge-secondary">Not edit note</span>
-                  <% end  %>
+                    <% if media.edit  %>
+                    <button type="button" class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#readEditModal" data-media-edit-note="<%= media.edit %>">Read note</button>
+                    <% else  %>
+                    <span class="badge badge-secondary">Not edit note</span>
+                    <% end  %>
                   </td>
                   <td>
                     <button type="button" class="btn btn-outline-dark btn-sm" data-toggle="modal" data-target="#approvalFilesModal" data-media-file="<%= media.id %>">Approval files</button>

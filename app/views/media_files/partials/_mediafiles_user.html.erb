@@ -37,25 +37,27 @@
                       <%= media.created_at.strftime("%b %d, %Y") %>
                     </p>
                   </th>
+
                   <td class="media_count"><%= @booking.media_files.count - i %></td>
+
                   <td>
                     <%= link_to "audio link", media.audio_link, class: "audio_link", target: "_blank" %><br>
                     <%= link_to "video link", media.video_link, class: "video_link", target: "_blank" %>
                   </td>
+
                   <% if media.is_approved %>
                   <td>
                     <span class="badge badge-success">Approved</span>
                   </td>
+
                   <td>
                     <% if media.edit  %>
-                    <button type="button" class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#readEditModal" data-media-edit-note="<%= media.edit %>">Read note</button>
+                    <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#readEditModal" data-media-edit-note="<%= media.edit %>">Read note</button>
                     <% else  %>
                     <span class="badge badge-secondary">Not edit note</span>
                     <% end  %>
                   </td>
-                  <td>
 
-                  </td>
                   <td>
                   </td>
                   <% else %>
@@ -64,7 +66,7 @@
                   </td>
                   <td>
                     <% if media.edit %>
-                    <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#approvalFilesModal" data-media-file="<%= media.id %>"> Read edit</button>
+                    <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#approvalFilesModal" data-media-file="<%= media.id %>">Read edit</button>
                     <% else %>
                     <button type="button" class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#approvalFilesModal" data-media-file="<%= media.id %>">Write edit</button>
                     <% end %>
@@ -74,6 +76,7 @@
                     <%= button_to "Approve", user_approve_media_path(media), class: "btn btn-outline-dark btn-sm", method: :patch, data: { confirm: 'Are you sure you want to approve this media?', disable_with: 'loading...' } %>
                   </td>
                   <% end %>
+                  <!-- media.is_approved -->
                 </tr>
                 <% end %>
               </tbody>
