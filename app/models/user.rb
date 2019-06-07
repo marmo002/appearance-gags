@@ -35,7 +35,6 @@ class User < ApplicationRecord
     by_phone = where.not(id: user_id).where("phone LIKE ?", "%#{search_term}%").first(20)
     # by_last = where("lower(last_name) ILIKE ?", "%#{search_term.downcase}%")
     results = [by_name, by_last, by_email, by_phone].flatten.uniq
-
   end
 
   # INSTANCE METHODS
@@ -63,24 +62,24 @@ class User < ApplicationRecord
   end
 
   def get_social_media(user_attribute)
-    new_r = {}
-    social_hash = get_hash_data(user_attribute)
-    if social_hash && social_hash.length > 0
+      new_r = {}
+      social_hash = get_hash_data(user_attribute)
+      if social_hash && social_hash.length > 0
           social_hash.each { |k, v|
-            next if v.empty?
-            if k == 'twitter'
-              v = 'twitter.com/' + v.gsub(/\W/, '')
-            elsif k == 'instagram'
-              v = 'instagram.com/' + v.gsub(/\W/, '')
-            else
-              v = v.gsub(/https?:\/\//, '')
-            end
-            new_r[k] = v
+              next if v.empty?
+              if k == 'twitter'
+                v = 'twitter.com/' + v.gsub(/\W/, '')
+              elsif k == 'instagram'
+                v = 'instagram.com/' + v.gsub(/\W/, '')
+              else
+                v = v.gsub(/https?:\/\//, '')
+              end
+              new_r[k] = v
           }
           new_r
-    else
-      false
-    end
+      else
+         false
+      end
   end
 
   def user_location

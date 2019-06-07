@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   helper_method :company
   helper_method :require_login
   helper_method :is_admin?
+  helper_method :logged_in?
   helper_method :authorized?
   helper_method :get_hash_data
   helper_method :booking_text

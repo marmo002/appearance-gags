@@ -16,7 +16,7 @@
             <span class="sr-only">(current)</span>
           <% end %>
         </li>
-        <% unless is_admin? %>
+        <% if logged_in? && !is_admin? %>
         <li class="nav-item">
           <%= link_to "Book show", new_alt_path(name: current_user.full_name, email: current_user.email), class: "nav-link" %>
         </li>
@@ -32,18 +32,13 @@
           <%= link_to "Bookings", bookings_list_path, class: "nav-link" %>
         </li>
         <% end %>
+        
+        <% if logged_in?  %>
         <li class="nav-item">
           <%= link_to "Digital files", digital_files_path, class: "nav-link" %>
         </li>
-        <!-- <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Book show
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Get a grip on lighting</a>
-            <a class="dropdown-item" href="#">Get a grip on life</a>
-          </div>
-        </li> -->
+        <% end %>
+
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Main site

@@ -18,7 +18,7 @@ class MediaFilesController < ApplicationController
       bookings = current_user.bookings.past.first(20)
     end
 
-    @past_bookings = bookings.select { |past| past.media_files.count > 0}
+    @past_with_media = bookings.select { |past| past.media_files.count > 0}
 
   end
 
