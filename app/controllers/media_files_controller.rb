@@ -10,7 +10,15 @@ class MediaFilesController < ApplicationController
 
   # index for a list of bookings
   # where booking.media_files.count > 0
-  def digital_files
+  def digital_files 
+    
+    if is_admin?
+      bookings = Booking.past.first(20)
+    else
+      bookings = current_user.bookings.past.first(20)
+    end
+
+    @past_with_media = bookings.select { |past| past.media_files.count > 0}
 
   end
 
