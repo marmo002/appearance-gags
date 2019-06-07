@@ -8,6 +8,12 @@ class MediaFilesController < ApplicationController
     render layout: false
   end
 
+  # index for a list of bookings
+  # where booking.media_files.count > 0
+  def digital_files
+
+  end
+
   def new
     @booking = Booking.find(params[:booking_id])
     @media_file = MediaFile.new
@@ -67,9 +73,12 @@ class MediaFilesController < ApplicationController
     if is_admin? || current_user == @user
       respond_to do |format|
         if @media_file.update(media_file_params)
+
           # approve media_file if not approve yet
-          @media_file.approve_media
-          #send email to user confirming aproval
+          @media_file.approve_media if is_admin?
+
+          #sends email confirming update
+          email_notification_of_update(@user.id, @media_file.id)
 
           format.json {
             render json: {
@@ -94,7 +103,7 @@ class MediaFilesController < ApplicationController
         end
       end#respond_to end
     else
-      flash[:danger] = "Not allowed to visit this page"
+      flash[:danger] = "You don't have permission to visist this page"
       redirect_to dashboard_url
       return
     end
@@ -117,8 +126,13 @@ class MediaFilesController < ApplicationController
 
   def user_approve_media
     @media_file = MediaFile.find(params[:id])
+    user_id = @media_file.booking.user.id
 
     if @media_file.approve_media
+      # send admin a notification
+      # that media was approved
+      AppMailer.user_approved_media(user_id, @media_file.id).deliver_later
+
       flash[:primary] = "Media files were approved"
       redirect_back(fallback_location: dashboard_path)
     else
@@ -129,6 +143,17 @@ class MediaFilesController < ApplicationController
   end
 
 private
+
+  # on update,
+  # if admin: sends email to user about media_file approval
+  # if user: sends email to admin about user new edit note
+  def email_notification_of_update(user_id, media_id)
+    if is_admin?
+      AppMailer.admin_approved_with_upload(user_id, media_id).deliver_later
+    else
+      AppMailer.user_wrote_editnote(user_id, media_id).deliver_later
+    end
+  end
 
   def media_file_params
     if is_admin?

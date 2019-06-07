@@ -1,4 +1,4 @@
-<p>Temporary datepicker</p>
+<!-- <p>Temporary datepicker</p>
 <div class="form-group mb-5">
   <div class="input-group date" id="datetimepicker13" data-target-input="nearest">
       <input type="text" id="fake-recording-picker" class="form-control datetimepicker-input" data-target="#datetimepicker13"/>
@@ -35,34 +35,25 @@
 
       });
   </script>
-</div>
-
-
+</div> -->
 
 <script>
 
   function SOAfterConfirmationFunction(data)
   {
-    // console.log(data);
-    // console.log('---------------');
-    // console.log(typeof(data));
-    // console.log('---------------');
 
     if (data["errorStatus"] == 0 ) {
       var recording_date = data['bookingInfo']['MeetingTimes'][0]['CustomerTime'];
-      // console.log(recording_date);
-      // console.log('---------------');
+
       $('#recording_date_input').val(recording_date);
-      // console.log("---------------------------");
-      // console.log("RecordingDate ADDED TO Hidden input");
-      // console.log("---------------------------");
 
       setUpDatesDivs("recording_date_input", "SOIDIV_GetAGripOnLighting", "recording_date_placeholder" );
       enablePersonalTabNextButtons(".recording_next_button");
     }
   }
 </script>
+
 <!-- ScheduleOnce embed START -->
-<div id="SOIDIV_GetAGripOnLighting" style="display:none" data-so-page="GetAGripOnLighting" data-height="550" data-style="border: 1px solid #d8d8d8; min-width: 290px; max-width: 900px;" data-psz="11"></div>
+<div id="SOIDIV_GetAGripOnLighting" data-so-page="GetAGripOnLighting" data-height="550" data-style="border: 1px solid #d8d8d8; min-width: 290px; max-width: 900px;" data-psz="11"></div>
 <script type="text/javascript" src="https://cdn.oncehub.com/mergedjs/so.js"></script>
 <!-- ScheduleOnce embed END -->

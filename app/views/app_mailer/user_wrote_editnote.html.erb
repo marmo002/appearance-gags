@@ -109,11 +109,20 @@
                         <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
                           Hi there,
                         </p>
-                        <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
-                          We have added a new media file. Please take a moment to review this files and approve/edit accordingly
+                        <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">
+                          Mr/Mrs <%= @user.full_name %> wrote the following edit note to a booking digital file
                         </p>
+                        <table border="0" cellpadding="0" cellspacing="0" class="btn btn-primary" style="border-collapse: separate;mso-table-lspace: 0pt;mso-table-rspace: 0pt;width: 100%;box-sizing: border-box;margin-bottom: 15px;">
+                          <tbody>
+                            <tr>
+                              <td style="font-family: sans-serif;font-size: 18px; line-height: 1.5; vertical-align: top; background-color: #e9ecef; border-radius: 5px;/* text-align: center; */padding: 10px;">
+                                <%= @media_file.edit %>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                         <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
-                          You can review this files at <%= link_to 'link', booking_url(@booking) %>
+                          You can review this edit at <%= link_to 'link', booking_url(@booking) %>
                         </p>
                         <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
                           Thank you!

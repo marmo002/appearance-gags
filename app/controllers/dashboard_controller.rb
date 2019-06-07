@@ -10,6 +10,7 @@ class DashboardController < ApplicationController
     @page = params[:tab]
     @upcomming_bookings = current_user.bookings.upcomming.first(10)
     @past_bookings = current_user.bookings.past.first(10)
+    @past_with_media = @past_bookings.select { |past| past.media_files.count > 0}
   end
 
   def admin_dashboard
@@ -61,6 +62,7 @@ class DashboardController < ApplicationController
           render json: {
             status: "success",
             type: "primary",
+            model: "user",
             message: "Profile updated successfully",
             avatar: current_user.avatar.attached? ? url_for(current_user.avatar) : nil,
             companylogo: current_user.companylogo.attached? ? url_for(current_user.companylogo) : nil
@@ -89,6 +91,7 @@ class DashboardController < ApplicationController
           render json: {
             status: "success",
             type: "primary",
+            modal: "company",
             message: "Info updated successfully",
           }
         }

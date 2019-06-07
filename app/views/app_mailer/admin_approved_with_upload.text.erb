@@ -1,0 +1,12 @@
+Mr/Mrs <%= @user.full_name %>,
+
+As per your request, we have approved the media for your
+booking session recorded on <%= @booking.recording_date.strftime('%B %d, %Y') %>
+with file(s) upload.
+
+=============================================
+
+You can review the above at <%= booking_url(@booking) %>
+
+=============================================
+Thank you!
