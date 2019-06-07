@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
+  # require 'sidekiq/web'
+  # mount Sidekiq::Web => '/sidekiq'
+
   root "bookings#new_alt"
   # resources :users, except: [:destroy]
 
@@ -9,7 +12,7 @@ Rails.application.routes.draw do
   # patch "users" => "users#update"
   resources :users
 
-  get "geo_states/:countryId" => "geo_api#states", as: :geo_states
+  # get "geo_states/:countryId" => "geo_api#states", as: :geo_states
 
   get "welcome_legal" => "welcome_form#legal_info", as: :welcome_legal
   get "welcome" => "welcome_form#internet_profile", as: :welcome_profile
@@ -27,6 +30,7 @@ Rails.application.routes.draw do
     resources :media_files, only: [:index, :new, :create]
   end
   resources :media_files, only: [:edit, :update]
+  get 'digital_files' => 'media_files#digital_files', as: :digital_files
   delete 'delete_upload/:id' => 'media_files#delete_upload', as: :delete_upload
   patch 'user_approve_media/:id' => 'media_files#user_approve_media', as: :user_approve_media
 

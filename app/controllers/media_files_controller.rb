@@ -8,6 +8,12 @@ class MediaFilesController < ApplicationController
     render layout: false
   end
 
+  # index for a list of bookings
+  # where booking.media_files.count > 0
+  def digital_files
+
+  end
+
   def new
     @booking = Booking.find(params[:booking_id])
     @media_file = MediaFile.new

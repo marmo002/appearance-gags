@@ -35,7 +35,7 @@
             <a class="nav-link" id="release-tab" data-toggle="tab" href="#release" role="tab" aria-controls="release" aria-selected="false">Release</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="booking-history-tab" data-toggle="tab" href="#booking-history" role="tab" aria-controls="booking-history" aria-selected="false">Booking history</a>
+            <a class="nav-link" id="booking-history-tab" data-toggle="tab" href="#booking-history" role="tab" aria-controls="booking-history" aria-selected="false">Bookings</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" id="digital-files-tab" data-toggle="tab" href="#digital-files" role="tab" aria-controls="digital-files" aria-selected="false">Digital Files</a>
@@ -45,7 +45,7 @@
           </li>
         </ul>
       </div><!--col-md-12 -->
-      <div class="col-md-10">
+      <div class="col-md-12 col-lg-10">
         <div class="tab-content" id="myTabContent">
           <%= render 'dashboard/show_errors' %>
 
@@ -74,8 +74,7 @@
             <%= render 'bookings/partials/user_bookings' %>
           </div><!--booking-history-tab-->
           <div class="tab-pane fade" id="digital-files" role="tabpanel" aria-labelledby="digital-files-tab">
-            <p>To be developed</p>
-            <%#= render 'dashboard/customerpartials/user_bookings' %>
+            <%= render 'bookings/partials/bookings_with_digital_files' %>
           </div><!--booking-history-tab-->
           <div class="tab-pane fade" id="change-password" role="tabpanel" aria-labelledby="change-password-tab">
             <%= render 'dashboard/customerpartials/changepasswordform' %>

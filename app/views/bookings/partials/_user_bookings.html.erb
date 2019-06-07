@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-md-6">
     <div class="card">
       <div class="card-header">
         Upcoming
@@ -10,7 +10,7 @@
             <div class="card-body">
               <div class="row">
                 <div class="col-md-4">
-                  <p class="bookings-main"><%= booking.recording_date.strftime('%B %d, %Y') %></p>
+                  <p class="bookings-main"><%= booking.recording_date.strftime('%b %d, %Y') %></p>
                   <p class="text-muted booking-sub"><%= booking.recording_date.strftime('%I:%M %p') %></p>
                 </div>
                 <div class="col-md-5">
@@ -24,19 +24,19 @@
       </div>
     </div><!-- card-->
   </div>
-  <div class="col-md-4">
+  <div class="col-md-6">
     <div class="card">
       <div class="card-header">
-        Past bookings
+        Recordings
       </div>
-      <div class="card-body">
+      <div class="card-body" id="bookings-list-grid">
         <% @past_bookings.each do |booking| %>
           <%= link_to booking_path(booking), class: "card mb-3 link_to_booking #{booking.show_name}-link" do %>
             <div class="card-body">
               <div class="row">
                 <div class="col-md-12">
                   <p class="text-muted booking-sub"><%= booking.user.email %></p>
-                  <p class="bookings-main"><%= booking.recording_date.strftime('%B %d, %Y') %></p>
+                  <p class="bookings-main"><%= booking.recording_date.strftime('%b %d, %Y') %></p>
                   <p class="text-muted booking-sub"><%= booking.recording_date.strftime('%I:%M %p') %></p>
                   <p class="bookings-main"><span class="badge badge-dark"><%= booking.show_name %> Show</span></p>
                   <p class="badge badge-secondary"><%= booking.booking_type %></p>

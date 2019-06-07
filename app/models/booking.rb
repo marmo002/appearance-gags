@@ -3,7 +3,6 @@ class Booking < ApplicationRecord
 
   has_many :media_files, dependent: :destroy
 
-
   # attr_accessor :info_confirmation
 
   validates :booking_type, inclusion: { in: %w(in-studio virtual),
@@ -21,6 +20,10 @@ class Booking < ApplicationRecord
   default_scope { order(recording_date: :asc) }
   scope :past, lambda { where("recording_date < ?", Date.today) }
   scope :upcomming, lambda { where("recording_date >= ?", Date.today) }
+  # scope :past_with_media, lambda { where("recording_date < ?", Date.today) }
+
+  # CLASS METHODS
+
 
 # READERS(GETTERS)
 

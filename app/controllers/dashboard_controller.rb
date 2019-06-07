@@ -10,6 +10,7 @@ class DashboardController < ApplicationController
     @page = params[:tab]
     @upcomming_bookings = current_user.bookings.upcomming.first(10)
     @past_bookings = current_user.bookings.past.first(10)
+    @past_with_media = @past_bookings.select { |past| past.media_files.count > 0}
   end
 
   def admin_dashboard

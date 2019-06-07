@@ -36,11 +36,11 @@
           <div class="col-md-6">
             <div class="card">
               <div class="card-header">
-                Past bookings
+                Recordings
               </div>
               <div class="card-body" id="bookings-list-grid">
                 <% @past_bookings.each do |booking| %>
-                  <%= link_to booking_path(booking), class: "card mb-3 link_to_booking #{booking.show_name}-link" do %>
+                  <%= link_to booking_path(booking), class: "card link_to_booking #{booking.show_name}-link" do %>
                     <div class="card-body">
                       <div class="row">
                         <div class="col-md-12">

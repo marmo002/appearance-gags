@@ -39,8 +39,8 @@
   #bookings-list-grid
   {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    grid-column-gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+    grid-gap: 1rem;
     grid-auto-rows: auto;
   }
 
