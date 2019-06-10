@@ -29,13 +29,6 @@ class BookingsController < ApplicationController
     end
   end
 
-  def new
-    bookings_new_security
-    @booking = Booking.new
-    session[:show_name] = params[:show_name]
-    session[:type] = params[:type]
-  end
-
   def new_alt
     @booking = Booking.new
     @user_social = current_user.get_social_media("social_media")
@@ -43,9 +36,9 @@ class BookingsController < ApplicationController
   end
 
   def create
-    # @params = params
     @booking = Booking.new(booking_params)
     @booking.user = current_user
+
     user_info = {
       'full_name' => current_user.full_name,
       'email' => current_user.email,
@@ -63,6 +56,10 @@ class BookingsController < ApplicationController
 
     respond_to do |format|
       if @booking.save
+        # check user consent for images
+        # attach image(s) accordingtly
+        set_booking_attachments(@booking)
+
         format.json {
           flash[:primary] = "Booking was created successfully"
           render json: {
@@ -77,7 +74,6 @@ class BookingsController < ApplicationController
           flash[:primary] = "Booking was created successfully"
           redirect_to dashboard_url page: 'booking-history-tab'
         }
-        # format.js
       else
         format.json { render json: @booking.errors, status: :bad_request }
         format.html {
@@ -116,24 +112,24 @@ private
     end
   end
 
-  def bookings_new_security
-    unless params[:show_name] == "lighting" || params[:show_name] == "life"
-      # flash[:warning] = "Wrong type of show"
-      redirect_to bookings_path
-      return
-    end
-
-    unless params[:type] == "in-studio" || params[:type] == "virtual"
-      # flash[:warning] = "Wrong type of show location"
-      redirect_to bookings_path
-      return
-    end
-  end
-
   def redirect_admin
     if is_admin?
       redirect_to dashboard_path
       return
+    end
+  end
+
+  def set_booking_attachments(booking)
+    # check image_consent
+    # attach image(s) accordingtly
+    if booking.user_info["image_consent"] == "true"
+      booking.user_avatar.attach(current_user.avatar.blob)
+    end
+    
+    # check logo_consent
+    # attach image(s) accordingtly
+    if booking.user_info["logo_consent"] == "true"
+      booking.user_companylogo.attach(current_user.companylogo.blob)
     end
   end
 

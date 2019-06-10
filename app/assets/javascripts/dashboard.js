@@ -14,7 +14,7 @@ function getMediaFilesIndex(bookingId){
 }
 
 // VALIDATE IMAGE FILE INPUT WITH JS
-function imageValidation(){
+function imageValidation(validImageTypes = ["image/gif", "image/jpeg", "image/png"]){
   $('input:file').change( function(e){
     var card_box = $(this).closest('.card');
     var avatar_img = card_box.find('.card-img')[0];
@@ -22,7 +22,7 @@ function imageValidation(){
     if (this.files.length > 0) {
       console.log(this.files);
       var input_file = this.files;
-      var validImageTypes = ["image/gif", "image/jpeg", "image/png"];
+      // var validImageTypes = ["image/gif", "image/jpeg", "image/png"];
 
       card_box.removeClass("border_errors");
       card_box.find('small').hide();

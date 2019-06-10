@@ -15,7 +15,8 @@ function getFilesUploadForm(){
       context: document.body
     }).done(function(response) {
         modal.find('#uploads_container').html(response);
-        imageValidation();
+      let validFormat = ["application/pdf", "image/gif", "image/jpeg", "image/png"];
+        imageValidation(validFormat);
     });
   });
 }

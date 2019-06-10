@@ -1,21 +1,27 @@
 class Booking < ApplicationRecord
   belongs_to :user
-
   has_many :media_files, dependent: :destroy
+
+  has_one_attached :user_avatar
+  has_one_attached :user_companylogo
 
   # attr_accessor :info_confirmation
 
   validates :booking_type, inclusion: { in: %w(in-studio virtual),
             :message => "Please choose a valid booking type" }
+
   validates :show_name, inclusion: { in: %w(life lighting),
             :message => "Please choose a valid show name" }
+
   validates :test_date, presence: true, if: :type_virtual?
   validates :recording_date, presence: true
   # validates :info_confirmation, acceptance: { message: '- Please confirm information is current and accurate' }
 
-  # Custom validations
+  # CUSTOM VALIDATIONS
   # validate :dates_cant_be_past_today
   validate :harware_speed_requirements, if: :type_virtual?
+  validate :image_consent
+  validate :logo_consent
 
   default_scope { order(recording_date: :asc) }
   scope :past, lambda { where("recording_date < ?", Date.today) }
@@ -179,5 +185,17 @@ private
       end
     end
   end#dates_cant_be_past_today
+
+  def image_consent
+    unless %w(true false).include? user_info["image_consent"]
+      errors.add(:image_consent, "Missing or wrong image consent value")
+    end
+  end
+
+  def logo_consent
+    unless %w(true false).include? user_info["logo_consent"]
+      errors.add(:logo_consent, "Missing or wrong company logo consent value")
+    end
+  end
 
 end
