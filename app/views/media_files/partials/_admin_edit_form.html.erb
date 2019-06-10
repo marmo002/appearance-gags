@@ -33,7 +33,12 @@
         <div id="uploaded_files">
           <% @media_file.uploads.each do |upload| %>
           <div class="uploads text-center">
+            <% if upload.blob.image?%>
             <%= link_to image_tag(upload, class: "rounded"), upload, class: "", target: "_blank" %>
+            <% else %>
+            <%= link_to image_tag( upload.preview(resize_to_limit: [100, 100]), class: "rounded"), upload, class: "", target: "_blank" %>
+            <% end %>
+
             <%= link_to "Delete", delete_upload_path(upload), class: "btn btn-primary btn-sm",  method: :delete, data: { confirm: 'Are you sure?' } %>
           </div>
           <% end %>

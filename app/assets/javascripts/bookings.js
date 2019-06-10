@@ -7,7 +7,7 @@ const list = [
  "list-test"
 ]
 
-//SHOW TAB ON LEFT SUBMENU
+//SHOW TAB FOR LEFT SUBMENU
 //ONLY IF TAB-PANE HAS DATA-PERMIT == TRUE
 function subMenuRestrictions(elements){
   $(elements).on('click', function (e) {

@@ -14,8 +14,8 @@
         <% logo_consent_text = "I consent to the distribution of this logo." %>
         <div class="form-group">
           <div class="custom-control custom-checkbox">
-            <%= user_info_company.check_box :logo_consent, { checked: true, class: "custom-control-input", id: "logo_consent"}, "#{logo_consent_text}", "false" %>
-            <%= user_info_company.label :image_consent, logo_consent_text, class: "custom-control-label gag-report-labels mt-3", for: "logo_consent" %>
+            <%= user_info_company.check_box :logo_consent, { checked: true, class: "custom-control-input", id: "logo_consent_input"}, "true", "false" %>
+            <%= user_info_company.label :image_consent, logo_consent_text, class: "custom-control-label gag-report-labels mt-3", for: "logo_consent_input" %>
           </div>
         </div>
         <!-- image consent -->

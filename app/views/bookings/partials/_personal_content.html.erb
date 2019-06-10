@@ -13,8 +13,8 @@
           <% image_consent_text = "I consent to the distribution of this image of myself." %>
           <div class="form-group">
             <div class="custom-control custom-checkbox">
-              <%= image_consent.check_box :image_consent, { checked: true, class: "custom-control-input", id: "image_consent"}, "#{image_consent_text}", "false" %>
-              <%= image_consent.label :image_consent, image_consent_text, class: "custom-control-label gag-report-labels mt-3", for: "image_consent" %>
+              <%= image_consent.check_box :image_consent, { checked: true, class: "custom-control-input", id: "image_consent_input"}, "true", "false" %>
+              <%= image_consent.label :image_consent, image_consent_text, class: "custom-control-label gag-report-labels mt-3", for: "image_consent_input" %>
             </div>
           </div>
           <% end %>
@@ -22,7 +22,6 @@
         <% else %>
         <div class="alert alert-dark" role="alert">
           No profile image added.
-          <%#= link_to "Add it in dashboard", dashboard_url(page: 'profile-tab') %>
         </div>
         <% end %>
       </div>

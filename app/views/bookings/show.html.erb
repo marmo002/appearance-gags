@@ -199,9 +199,9 @@
                   <%= content_tag :p, "#{@user.bio}", class: 'text-muted booking-sub mb-3' %>
                 </div>
                 <% end %>
-                <% if @user.avatar.attached? %>
+                <% if @booking.user_avatar.attached? %>
                 <%= content_tag :p, "Profile image:", class: 'text-muted booking-sub mb-3' %>
-                <%= image_tag @user.avatar, class: "img-thumbnail" %>
+                <%= image_tag @booking.user_avatar, class: "img-thumbnail" %>
                 <% end %>
               </li>
               <li class="list-group-item">
@@ -237,9 +237,9 @@
                 <%= tag.p "No company social media", class: 'text-muted booking-sub mb-3' %>
                 <% end %>
 
-                <% if @user.companylogo.attached? %>
+                <% if @booking.user_companylogo.attached? %>
                 <%= content_tag :p, "Company logo:", class: 'text-muted booking-sub mb-3' %>
-                <%= image_tag @user.companylogo, class: "img-thumbnail" %>
+                <%= image_tag @booking.user_companylogo, class: "img-thumbnail" %>
                 <% end %>
               </li>
             </ul>
