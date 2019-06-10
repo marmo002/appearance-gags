@@ -46,14 +46,23 @@
       var recording_date = data['bookingInfo']['MeetingTimes'][0]['CustomerTime'];
 
       $('#recording_date_input').val(recording_date);
-
-      setUpDatesDivs("recording_date_input", "SOIDIV_GetAGripOnLighting", "recording_date_placeholder" );
+      setUpDatesDivs("recording_date_input", "recordingDateContainer", "recording_date_placeholder" );
       enablePersonalTabNextButtons(".recording_next_button");
     }
   }
 </script>
 
+<% if @type == "life" %>
+
 <!-- ScheduleOnce embed START -->
-<div id="SOIDIV_GetAGripOnLighting" data-so-page="GetAGripOnLighting" data-height="550" data-style="border: 1px solid #d8d8d8; min-width: 290px; max-width: 900px;" data-psz="11"></div>
+<div id="SOIDIV_GetAGripOnLife" class="recordingDateContainer" data-so-page="GetAGripOnLife" data-height="550" data-style="border: 1px solid #d8d8d8; min-width: 290px; max-width: 900px;" data-psz="11"></div>
 <script type="text/javascript" src="https://cdn.oncehub.com/mergedjs/so.js"></script>
 <!-- ScheduleOnce embed END -->
+<% elsif @type == "lighting" %>
+<!-- ScheduleOnce embed START -->
+<div id="SOIDIV_GetAGripOnLighting" class="recordingDateContainer" data-so-page="GetAGripOnLighting" data-height="550" data-style="border: 1px solid #d8d8d8; min-width: 290px; max-width: 900px;" data-psz="11"></div>
+<script type="text/javascript" src="https://cdn.oncehub.com/mergedjs/so.js"></script>
+<!-- ScheduleOnce embed END -->
+<% else %>
+  <p>Wrong type of show!!</p>
+<% end %>

@@ -47,11 +47,22 @@ function imageValidation(validImageTypes = ["image/gif", "image/jpeg", "image/pn
           if ( avatar_img ) {
             avatar_img.src = img_src;
           } else {
-            $('<div/>', {
-              class: 'col-md-4 pl-3 align-self-center'
-            })
-            .append("<img src='" + img_src + "' class='card-img'>")
-            .prependTo( card_box.children('.row') );
+            if (fileType === "application/pdf") {
+              console.log("it's pdf");
+              newUrl = '/pdf-placeholder.png';
+              $('<div/>', {
+                class: 'col-md-4 pl-3 align-self-center'
+              })
+              .append("<img src='" + newUrl + "' class='card-img'>")
+              .prependTo( card_box.children('.row') );
+            } else {
+              $('<div/>', {
+                class: 'col-md-4 pl-3 align-self-center'
+              })
+              .append("<img src='" + img_src + "' class='card-img'>")
+              .prependTo( card_box.children('.row') );
+
+            }
           }
         }
 
@@ -182,6 +193,14 @@ $(document).on("turbolinks:load", function(){
     var detail = event.detail;
     var data = detail[0], status = detail[1], xhr = detail[2];
     var srcElement = event.target;
+
+    // Clean input[file] value
+    // on successfull update
+    let inputFiles = $('input:file');
+    for (let i = 0; i < inputFiles.length; i++) {
+      $(inputFiles[i]).val("");
+    }
+
     // var model = srcElement.attributes.action.value.split('/')[1].split('_')[0];
     $('.modal').each(function(){
         $(this).modal('hide');
@@ -207,15 +226,6 @@ $(document).on("turbolinks:load", function(){
       window.location = data.booking_path;
       // displayMessages( data.type, data.message);
     } else if (data.model == "media_file") {
-      // let newMedia = $('#media_files_body tr:first-child').clone(true);
-      // $(newMedia).removeClass("d-none");
-      // $(newMedia).find(".subtle_subtitle").text(data.title);
-      // $(newMedia).find(".booking-sub").text(data.created_at);
-      // $(newMedia).find(".media_count").text(data.count);
-
-      // $(newMedia).find(".audio_link").attr("href", data.audio_link);
-      // $(newMedia).find(".video_link").attr("href", data.video_link);
-      // $(newMedia).find("button").data("media-file", data.id);
 
       const url = "/bookings/" + data.booking + "/media_files";
 

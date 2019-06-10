@@ -92,6 +92,19 @@ class BookingsController < ApplicationController
   end
 
   def get_recording_form
+    @type = params[:show_type]
+
+    case @type
+    when "life"
+      @containerId = "SOIDIV_GetAGripOnLife"
+    when "lighting"
+      @containerId = "SOIDIV_GetAGripOnLighting"
+    end
+    
+    render partial: "bookings/partials/recording_content"
+  end
+
+  def life_recording_form
     render partial: "bookings/partials/recording_content"
   end
 
