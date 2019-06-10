@@ -30,10 +30,8 @@
          console.log(fakeDate);
          $('#recording_test_date').val( new Date(fakeDate) );
 
-         setUpDatesDivs("recording_test_date", "SOIDIV_GetAGripOnLife", "test_date_placeholder" );
+         setUpDatesDivs("recording_test_date", "testDateContainer", "test_date_placeholder" );
 
-         // GET RECORDING DATE FORM
-         getRecordingForm();
         });
 
 
@@ -44,30 +42,24 @@
 <script type="text/javascript">
   function SOAfterConfirmationFunction(data)
   {
-  	// console.log(data);
-  	// console.log('---------------');
-    // console.log(typeof(data));
-    // console.log('---------------');
 
     if (data["errorStatus"] == 0 ) {
       var recording_date = data['bookingInfo']['MeetingTimes'][0]['CustomerTime'];
-      // console.log(recording_date);
-      // console.log('---------------');
+
       $('#recording_test_date').val(recording_date);
-      // console.log("---------------------------");
-      // console.log("RecordingDate ADDED TO Hidden input");
-      // console.log("---------------------------");
+      console.log("soAfter called");
+      
 
-      setUpDatesDivs("recording_test_date", "SOIDIV_GetAGripOnLife", "test_date_placeholder" );
+      setUpDatesDivs("recording_test_date", "testDateContainer", "test_date_placeholder" );
 
-      // GET RECORDING DATE FORM
-      getRecordingForm();
+        // GET RECORDING DATE FORM
+        getRecordingForm();
 
     }
   }
 </script>
 
 <!-- ScheduleOnce embed START -->
-<div id="SOIDIV_GetAGripOnLife" data-so-page="GetAGripOnLife" data-height="550" data-style="border: 1px solid #d8d8d8; min-width: 290px; max-width: 900px;" data-psz="11"></div>
+<div id="SOIDIV_GetAGripStudiosVirtualGuestTestCalls" class="testDateContainer" data-so-page="GetAGripStudiosVirtualGuestTestCalls" data-height="550" data-style="border: 1px solid #d8d8d8; min-width: 290px; max-width: 900px;" data-psz="11"></div>
 <script type="text/javascript" src="https://cdn.oncehub.com/mergedjs/so.js"></script>
 <!-- ScheduleOnce embed END -->

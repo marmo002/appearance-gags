@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
 
-  root "bookings#new_alt"
+  root "dashboard#index"
   # resources :users, except: [:destroy]
 
   get "calendar" => "calendarapi#index"
@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   # patch "users" => "users#update"
   resources :users
 
-  # get "geo_states/:countryId" => "geo_api#states", as: :geo_states
+  get "geo_states/:countryId" => "geo_api#states", as: :geo_states
 
   get "welcome_legal" => "welcome_form#legal_info", as: :welcome_legal
   get "welcome" => "welcome_form#internet_profile", as: :welcome_profile
@@ -35,7 +35,8 @@ Rails.application.routes.draw do
   patch 'user_approve_media/:id' => 'media_files#user_approve_media', as: :user_approve_media
 
   get "bookings_list" => "bookings#bookings_list", as: :bookings_list
-  get "booking_recording_form" => "bookings#get_recording_form", as: :get_recording_form
+  get "booking_recording_form/:show_type" => "bookings#get_recording_form", as: :get_recording_form
+  get "life_recording_form" => "bookings#life_recording_form", as: :life_recording_form
   get "booking_test_form" => "bookings#get_test_form", as: :get_test_form
   get "booking_menu" => "bookings#booking_menu", as: :booking_menu
   post "bookings" => "bookings#create", as: :create_booking

@@ -34,13 +34,31 @@ function numberBookingMenu(){
 
 // GET RECORDING DATE FORM
 function getRecordingForm(){
- $.ajax({
-   url: "/booking_recording_form",
-   context: document.body
- }).done(function(response) {
-   $('#recording_date_container').html(response);
- });
- console.log("got recording form");
+  let showType = $('.pick-show-input:checked').val();
+
+  if  (showType){
+    $.ajax({
+      url: "/booking_recording_form/" + showType,
+      context: document.body
+    }).done(function(response) {
+      $('#recording_date_container').html(response);
+    });
+    
+  } else {
+    
+    $('.pick-show-input').change(function(e){
+      let showType = $(this).val();
+
+      $.ajax({
+        url: "/booking_recording_form/" + showType,
+        context: document.body
+      }).done(function(response) {
+        $('#recording_date_container').html(response);
+      });
+
+    });//end onchange
+  }
+
 }
 
 // GET TEST DATE FORM
@@ -221,7 +239,7 @@ function setUpDatesDivs(hidden_field, embeddedDatePicker, placeHolder) {
     var recordingText = recordingDate + " at " + recordingTime;
 
     //hide date picker
-    $('#' + embeddedDatePicker).hide();
+    $('.' + embeddedDatePicker).first().hide();
 
     //enable next button
     let elementInside = "#" + hidden_field;
