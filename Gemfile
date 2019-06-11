@@ -50,7 +50,7 @@ gem 'mini_magick', '~> 4.8'
 # gem 'capistrano-rails', group: :development
 gem 'httparty'
 #google api gem calendarapi
-gem 'google-api-client', require: 'google/apis/calendar_v3'
+# gem 'google-api-client', require: 'google/apis/calendar_v3'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
