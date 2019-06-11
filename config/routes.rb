@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   root "dashboard#index"
   # resources :users, except: [:destroy]
 
-  get "calendar" => "calendarapi#index"
   # post "users" => "users#create"
   # patch "users" => "users#update"
   resources :users
