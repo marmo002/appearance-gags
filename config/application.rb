@@ -17,6 +17,7 @@ module AppearanceGags
     # the framework and any gems in your application.
 
     config.active_job.queue_adapter = :sidekiq
+    config.serve_static_assets = true
 
   end
 end
