@@ -14,15 +14,11 @@
     </div>
 
     <div class="form-group">
-      <div class="input-group date" id="user_dob_picker" data-target-input="nearest">
-        <%= f.text_field :dob, class: "form-control datetimepicker-input", data: {target: "#user_dob_picker"},autocomplete: "randomString", placeholder: "Date of birth" %>
-        <!-- <input type="text" class="form-control datetimepicker-input" data-target="#user_dob_picker"/> -->
-        <div class="input-group-append" data-target="#user_dob_picker" data-toggle="datetimepicker">
-          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-        </div>
+      <div class="alert alert-dark" role="alert">
+        <strong>DOB:</strong> <%= current_user.dob.strftime('%B %d, %Y') %>
       </div>
-      <small id="dob" class="alert-text m-1 text-danger">DOB error</small>
-      <small id="" class="form-text text-muted mb-3">Your date of birth DD/MM/YYYY</small>
+      <!--- <small id="dob" class="alert-text m-1 text-danger">DOB error</small> -->
+      <!--<small id="" class="form-text text-muted mb-3">Your date of birth DD/MM/YYYY</small>-->
     </div>
 
     <div class="form-group">
