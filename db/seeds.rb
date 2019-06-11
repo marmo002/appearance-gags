@@ -20,19 +20,20 @@ if Rails.env.production?
     )
     
     #USER ADMIN
-    User.create(
-      first_name: "Michael",
-      legal_first: "Michael",
-      last_name: "Colligan",
-      legal_last: "Colligan",
-      dob: "1977-07-01 00:00:00 +0000",
-      email: "admin@mail.com",
-      phone: "(416) 333 6554",
-      role: "admin",
-      signed_release: true,
-      profile_done: true,
-      password: "password",
-      password_confirmation: "password"
+      User.create(
+        first_name: "Admin",
+        last_name: "User",
+        country: "Canada",
+        state: "Ontario",
+        city: "Toronto",
+        dob: "1987-07-01",
+        email: "admin@mail.com",
+        phone: "(416) 000 0000",
+        role: "admin",
+        signed_release: true,
+        profile_done: true,
+        password: "password",
+        password_confirmation: "password"
       )
       
     end
