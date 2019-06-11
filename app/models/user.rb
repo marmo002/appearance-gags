@@ -25,7 +25,8 @@ class User < ApplicationRecord
 
   # CLASS METHODS
   def self.release_updated
-    User.update_all( {signed_release: false} )
+    # User.update_all( {signed_release: false} )
+    User.where(role: "customer").update_all(signed_release: false)
   end
 
   def self.search(search_term, user_id)
