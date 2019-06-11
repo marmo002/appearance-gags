@@ -70,4 +70,8 @@
 
   }
 
+  #admin-dashboard-submenu {
+    grid-template-columns: repeat(2, auto);
+  }
+
 }//end 540px
