@@ -16,7 +16,6 @@
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
-//= require froala_editor.min.js
 //= require moment
 //= require moment-timezone-with-data
 //= require tempusdominus-bootstrap-4
@@ -44,16 +43,28 @@ function textareaOnChange(){
 }
 
 // autoresize all textareas
-textAreaAutoheight();
-textareaOnChange();
+// textAreaAutoheight();
+// textareaOnChange();
 
-document.addEventListener("turbolinks:load", function(){
+$(document).on('turbolinks:load', function () {
 
   // autoresize all textareas
   textAreaAutoheight();
   textareaOnChange();
 
-  $('#release-text-area').froalaEditor()
+  // $('#release-text-area').froalaEditor();
+
+  tinymce.init({
+
+    selector: '#release-text-area',
+    height: 300,
+    plugins: [
+      "advlist autolink link image lists charmap print preview hr anchor pagebreak",
+      "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+      "save table contextmenu directionality emoticons template paste textcolor"
+    ]
+
+  });
 
   if (document.location.pathname == "/admin") {
     var currentPage = "/dashboard";

@@ -54,7 +54,6 @@ gem 'google-api-client', require: 'google/apis/calendar_v3'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
-gem "wysiwyg-rails"
 gem "font-awesome-sass"
 # geonames api
 gem 'geo_names'

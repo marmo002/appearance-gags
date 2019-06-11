@@ -139,7 +139,6 @@ statesSetup("user_company_country");
 
 
 $(document).on("turbolinks:load", function(){
-  // getCountryStates("6252001");
 
   statesSetup("user_country");
   statesSetup("user_company_country");
