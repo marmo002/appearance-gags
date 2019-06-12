@@ -104,7 +104,7 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.default_options = {from: 'no-reply@example.com'}
 
-  config.action_mailer.default_url_options = { host: 'vast-harbor-44659.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: 'appearance.getagripstudios.com' }
 
   # Action mailer configuration
   config.action_mailer.delivery_method = :smtp
