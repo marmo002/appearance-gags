@@ -134,6 +134,20 @@ function statesSetup(containerid){
   });
 }
 
+// load texteditor
+// for text areas
+function tinyMCEload() {
+  tinymce.init({
+    selector: '#release-text-area',
+    height: 300,
+    plugins: [
+      "advlist autolink link image lists charmap print preview hr anchor pagebreak",
+      "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+      "save table contextmenu directionality emoticons template paste textcolor"
+    ]
+  });
+}
+
 statesSetup("user_country");
 statesSetup("user_company_country");
 
@@ -142,6 +156,8 @@ $(document).on("turbolinks:load", function(){
 
   statesSetup("user_country");
   statesSetup("user_company_country");
+
+  tinyMCEload();
 
   /*/ -------------------------------------
   // ADD RIGHT PARAMS TO URL WHEN CLICK ON DASHBOARD TAB
