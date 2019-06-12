@@ -2,7 +2,7 @@ class BookingsController < ApplicationController
   before_action :require_login
   before_action :authorized?, only: [:bookings_list]
   before_action :signed_release, only: [:new, :new_alt]
-  before_action :redirect_admin, only: [:new]
+  before_action :redirect_admin, only: [:new_alt]
 
   def index
     if is_admin?
@@ -124,10 +124,11 @@ private
       redirect_to dashboard_url page: 'release-tab'
     end
   end
-
+  
   def redirect_admin
     if is_admin?
       redirect_to dashboard_path
+      flash[:warning] = "You can't book sessions as admin"
       return
     end
   end

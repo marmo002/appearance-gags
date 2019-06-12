@@ -52,19 +52,6 @@ $(document).on('turbolinks:load', function () {
   textAreaAutoheight();
   textareaOnChange();
 
-  // $('#release-text-area').froalaEditor();
-
-  tinymce.init({
-
-    selector: '#release-text-area',
-    height: 300,
-    plugins: [
-      "advlist autolink link image lists charmap print preview hr anchor pagebreak",
-      "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
-      "save table contextmenu directionality emoticons template paste textcolor"
-    ]
-
-  });
 
   if (document.location.pathname == "/admin") {
     var currentPage = "/dashboard";
