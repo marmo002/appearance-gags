@@ -187,14 +187,18 @@ private
   end#dates_cant_be_past_today
 
   def image_consent
-    unless %w(true false).include? user_info["image_consent"]
-      errors.add(:image_consent, "Missing or wrong image consent value")
+    if user_info["image_consent"]
+      unless %w(true false).include? user_info["image_consent"]
+        errors.add(:image_consent, "Missing or wrong image consent value")
+      end
     end
   end
 
   def logo_consent
-    unless %w(true false).include? user_info["logo_consent"]
-      errors.add(:logo_consent, "Missing or wrong company logo consent value")
+    if user_info["logo_consent"]
+      unless %w(true false).include? user_info["logo_consent"]
+        errors.add(:logo_consent, "Missing or wrong company logo consent value")
+      end
     end
   end
 
