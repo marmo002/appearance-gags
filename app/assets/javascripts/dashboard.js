@@ -146,6 +146,9 @@ function tinyMCEload() {
       "save table contextmenu directionality emoticons template paste textcolor"
     ]
   });
+
+  console.log("tinyMCE function loaded");
+  
 }
 
 statesSetup("user_country");
