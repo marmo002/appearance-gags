@@ -137,9 +137,10 @@ function statesSetup(containerid){
 // load texteditor
 // for text areas
 function tinyMCEload() {
+  tinymce.remove();
   tinymce.init({
     selector: '#release-text-area',
-    height: 300,
+    height: 400,
     plugins: [
       "advlist autolink link image lists charmap print preview hr anchor pagebreak",
       "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
@@ -147,7 +148,6 @@ function tinyMCEload() {
     ]
   });
 
-  console.log("tinyMCE function loaded");
   
 }
 
