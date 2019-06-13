@@ -68,7 +68,7 @@ Rails.application.configure do
   #   arguments: '-i'
   # }
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.default_options = {from: 'no-reply@example.com'}
+  config.action_mailer.default_options = {from: 'no-reply@getagripstudios.com'}
 
   config.action_mailer.default_url_options = { host: '192.168.1.147:3000' }
 
@@ -78,10 +78,10 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address:              'smtp.gmail.com',
     port:                 587,
-    domain:               'example.com',
+    domain:               'getagripstudios.com',
     user_name:            Rails.application.credentials.mail_credential[:email],
     password:             Rails.application.credentials.mail_credential[:password],
-    authentication:       :login,
+    authentication:       "plain",
     enable_starttls_auto: true
   }
 
