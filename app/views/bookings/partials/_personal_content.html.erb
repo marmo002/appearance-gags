@@ -36,7 +36,7 @@
         <div class="gag-report-grid1">
 
           <div class="gig-report-item">
-            <% name_for_booking =  current_user.name_for_show ? "#{current_user.full_name}" : "#{current_user.name_for_show}" %>
+            <% name_for_booking =  current_user.name_for_show.present? ? "#{current_user.name_for_show}" : "#{current_user.full_name}" %>
             <div class="form-group">
               <div class="custom-control custom-checkbox">
                 <%= user_hash.check_box :name_for_show, { checked: true, class: "custom-control-input", id: "name_for_show"}, "#{name_for_booking}", "User doesn't wanna use any name" %>
@@ -48,7 +48,7 @@
             <%= name_for_booking %>
           </div><!-- gig-report-item-->
 
-          <% unless current_user.title_for_show.nil? %>
+          <% if current_user.title_for_show.present? %>
             <div class="gig-report-item">
               <% title_for_booking =  current_user.title_for_show.empty? ? "No title for shows" : "#{current_user.title_for_show}" %>
               <div class="form-group">
@@ -61,9 +61,13 @@
             <div class="gig-report-item">
               <%= title_for_booking %>
             </div>
+          <% else %>
+            <div class="alert alert-dark" role="alert">
+              No title set
+            </div>
           <% end %>
 
-          <% unless current_user.bio.nil? %>
+          <% if current_user.bio.present? %>
           <div class="gig-report-item bio-label">
             <% bio_booking =  current_user.bio.empty? ? "No bio" : "#{current_user.bio}" %>
             <div class="form-group">
@@ -76,6 +80,10 @@
           <div class="gig-report-item bio-content">
             <%= bio_booking %>
           </div>
+          <% else %>
+            <div class="alert alert-dark" role="alert">
+              No bio set
+            </div>
           <% end %>
 
         </div>

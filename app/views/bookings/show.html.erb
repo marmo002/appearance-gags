@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row">
 
-      <div class="col-lg-4">
+      <div class="col-lg-4 mb-5">
 
           <div class="card">
             <div class="card-header">
@@ -19,29 +19,29 @@
                   <div class="" id="booking_info_accordion">
                     <div class="card-header" id="heading-requirements">
                       <h2 class="mb-0">
-                        <button class="btn btn btn-primary" type="button" data-toggle="collapse" data-target="#collapse-requirements" aria-expanded="true" aria-controls="collapse-requirements">
+                        <button class="btn btn btn-primary btn-sm" type="button" data-toggle="collapse" data-target="#collapse-requirements" aria-expanded="true" aria-controls="collapse-requirements">
                           Hardware requirements
                         </button>
                       </h2>
                     </div>
                     <div id="collapse-requirements" class="collapse" aria-labelledby="heading-requirements" data-parent="#booking_info_accordion">
-                      <div class="card-body">
+                      <div class="card-body p-0">
                         <ul class="list-group list-group-flush">
                           <li class="list-group-item">
                             <p class="text-muted booking-sub">Audio:</p>
-                            <p><%= @booking.hardware_requirements['audio'] %></p>
+                            <p class="mb-0"><%= @booking.hardware_requirements['audio'] %></p>
                           </li>
                           <li class="list-group-item">
                             <p class="text-muted booking-sub">Video:</p>
-                            <p><%= @booking.hardware_requirements['video'] %></p>
+                            <p class="mb-0"><%= @booking.hardware_requirements['video'] %></p>
                           </li>
                           <li class="list-group-item">
                             <p class="text-muted booking-sub">Computer:</p>
-                            <p><%= @booking.hardware_requirements['computer_type'] %></p>
+                            <p class="mb-0"><%= @booking.hardware_requirements['computer_type'] %></p>
                           </li>
                           <li class="list-group-item">
                             <p class="text-muted booking-sub">Browser:</p>
-                            <p><%= @booking.hardware_requirements['browser_type'] %></p>
+                            <p class="mb-0"><%= @booking.hardware_requirements['browser_type'] %></p>
                           </li>
                         </ul>
                       </div>
@@ -61,13 +61,12 @@
                 </li>
                 <% if is_admin? %>
                 <li class="list-group-item">
-                  <p class="bookings-main"><%= link_to 'User profile', @user, class: 'btn btn-primary' %></p>
+                  <p class="bookings-main"><%= link_to 'User profile', @user, class: 'btn btn-primary btn-sm' %></p>
                 </li>
                 <% end %>
               </ul>
             </div>
           </div><!-- card-->
-
 
       </div>
 
@@ -172,77 +171,192 @@
         <!-- booking info -->
         <div class="card">
           <div class="card-header">
-            Attached info
-          </div>
-          <div class="card-body">
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">
-                <p class="bookings-main">Personal info</p>
+            <ul class="nav nav-tabs card-header-tabs" id="boooking-show-tabs" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" id="personal-tab" data-toggle="tab" href="#personal-branding" role="tab" aria-controls="personal-branding" aria-selected="true">Personal branding</a>
               </li>
-              <li class="list-group-item">
-                <p class="text-muted booking-sub mb-3">Name: <%= @booking.full_name %></p>
-                <p class="text-muted booking-sub mb-3">email: <%= @booking.email %></p>
-                <p class="text-muted booking-sub mb-3">phone: <%= @booking.phone %></p>
-                <% if @user.name_for_show %>
-                <%= tag.p "Show name: #{@user.name_for_show}", class: 'text-muted booking-sub mb-3' %>
-                <% end %>
-                <% if @user.title_for_show %>
-                <%= content_tag :p, "Show title: #{@user.title_for_show}", class: 'text-muted booking-sub mb-3' %>
-                <% end %>
-                <% unless @user.bio.empty? %>
-                <p>
-                  <a class="btn btn-primary" data-toggle="collapse" href="#bioCollapse" role="button" aria-expanded="false" aria-controls="bioCollapse">
-                    Bio
-                  </a>
-                </p>
-                <div class="collapse" id="bioCollapse">
-                  <%= content_tag :p, "#{@user.bio}", class: 'text-muted booking-sub mb-3' %>
-                </div>
-                <% end %>
-                <% if @booking.user_avatar.attached? %>
-                <%= content_tag :p, "Profile image:", class: 'text-muted booking-sub mb-3' %>
-                <%= image_tag @booking.user_avatar, class: "img-thumbnail" %>
-                <% end %>
+              <li class="nav-item">
+                <a class="nav-link" id="company-tab" data-toggle="tab" href="#company-branding" role="tab" aria-controls="company-branding" aria-selected="false">Company branding</a>
               </li>
-              <li class="list-group-item">
-                <p class="bookings-main">Social media</p>
-              </li>
-              <li class="list-group-item">
-                <% if @booking.clean_social_media %>
-                <% @booking.clean_social_media.each do |sm_name, sm_url| %>
-                <p>
-                  <a href="https://<%= sm_url %>" target="_blank"><%= sm_url %></a>
-                </p>
-                <% end %>
-                <% else %>
-                <%= tag.p "User has no social media", class: 'text-muted booking-sub' %>
-                <% end %>
-              </li>
-              <li class="list-group-item">
-                <p class="bookings-main">Company info</p>
-              </li>
-              <% if @user.company_name %>
-              <li class="list-group-item">
-                <%= content_tag :p, "Company name: #{@user.company_name}", class: 'text-muted booking-sub' %>
+              <% if is_admin? %>
+              <li class="nav-item">
+                <a class="nav-link" id="legal-tab" data-toggle="tab" href="#legal_info" role="tab" aria-controls="legal_info" aria-selected="false">legal info</a>
               </li>
               <% end %>
-              <li class="list-group-item">
-                <% if @booking.clean_company_social_media %>
-                <% @booking.clean_company_social_media.each do |sm_name, sm_url| %>
-                <p>
-                  <a href="https://<%= sm_url %>" target="_blank"><%= sm_url %></a>
-                </p>
-                <% end %>
-                <% else %>
-                <%= tag.p "No company social media", class: 'text-muted booking-sub mb-3' %>
-                <% end %>
-
-                <% if @booking.user_companylogo.attached? %>
-                <%= content_tag :p, "Company logo:", class: 'text-muted booking-sub mb-3' %>
-                <%= image_tag @booking.user_companylogo, class: "img-thumbnail" %>
-                <% end %>
-              </li>
             </ul>
+          </div>
+          <div class="card-body tab-content" id="boooking-show-content">
+            <!--personal-branding-->
+            <div class="tab-pane fade show active" id="personal-branding" role="tabpanel" aria-labelledby="personal-tab">
+              <div class="row">
+                <div class="col-md-6">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                      <p class="text-muted booking-sub">Name for show </p>
+                      <p class="bookings-main"><%= @booking.name_for_show %></p>
+                    </li>
+                    <li class="list-group-item">
+                      <p class="text-muted booking-sub">Title for show </p>
+                      <p class="bookings-main"><%= @booking.title_for_show %></p>
+                    </li>
+                    <li class="list-group-item">
+                      <% unless @user.bio.empty? %>
+                      <a class="btn btn-primary btn-sm" data-toggle="collapse" href="#bioCollapse" role="button" aria-expanded="false" aria-controls="bioCollapse">
+                        Bio
+                      </a>
+                      <div class="collapse" id="bioCollapse">
+                        <%= content_tag :p, "#{@user.bio}", class: 'text-muted mt-2' %>
+                      </div>
+                      <% end %>
+                    </li>
+                    <li class="list-group-item">
+                      <%# <p class="text-muted booking-sub">Title for show</p> %>
+                      <p class="mb-2 bookings-main">Personal social Media</p>
+
+                      <% if @booking.clean_social_media %>
+                        <% @booking.clean_social_media.each do |sm_name, sm_url| %>
+                        <p class="mb-2">
+                          <a href="https://<%= sm_url %>" target="_blank"><%= sm_url %></a>
+                        </p>
+                        <% end %>
+                      <% else %>
+                        <%= tag.p "No personal social media added for this recording", class: 'text-muted booking-sub' %>
+                      <% end %>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-md-6">
+                  <% if @booking.image_consent %>
+                  <%= image_tag @booking.user_avatar, class: "img-thumbnail"%>
+                  <p class="text-muted mt-3">
+                    I, <%= @booking.full_name %>, have given consent to the distribution of this image of myself for this recording.
+                  </p>
+                  <% else %>
+                    <div class="alert alert-dark" role="alert">
+                      No consent to display profile image.
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+            <!--personal-branding-->
+
+            <!--company-branding-->
+            <div class="tab-pane fade" id="company-branding" role="tabpanel" aria-labelledby="company-tab">
+              <div class="row">
+                <div class="col-md-6">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                      <p class="text-muted booking-sub">Company name</p>
+                      <p class="bookings-main"><%= @booking.company_name %></p>
+                    </li>
+                    <li class="list-group-item">
+                      <%# <p class="text-muted booking-sub">Title for show</p> %>
+                      <p class="mb-2 bookings-main">Company social Media</p>
+
+                      <% if @booking.clean_company_social_media %>
+                        <% @booking.clean_company_social_media.each do |sm_name, sm_url| %>
+                        <p class="mb-2">
+                          <a href="https://<%= sm_url %>" target="_blank"><%= sm_url %></a>
+                        </p>
+                        <% end %>
+                      <% else %>
+                        <%= tag.p "No company social media added for this recording", class: 'text-muted booking-sub' %>
+                      <% end %>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-md-6">
+                  <% if @booking.logo_consent %>
+                  <%= image_tag @booking.user_companylogo, class: "img-thumbnail"%>
+                  <p class="text-muted mt-3">
+                    I, <%= @booking.full_name %>, have given consent to the distribution of this image for this recording.
+                  </p>
+                  <% else %>
+                    <div class="alert alert-dark" role="alert">
+                      No consent to display company logo.
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+            <!--company-branding-->
+
+            <% if is_admin? %>
+            <!--legal_info-->
+            <div class="tab-pane fade" id="legal_info" role="tabpanel" aria-labelledby="legal-tab">
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                      <h3 class="custom-subtitle-1 p-0">User</h3>  
+                    </li>
+
+                    <li class="list-group-item">
+                      <p class="text-muted booking-sub">Legal name</p>
+                      <p class="bookings-main"><%= @booking.full_name %></p>
+                    </li>
+                    <li class="list-group-item">
+                      <p class="text-muted booking-sub">DOB</p>
+                      <p class="bookings-main"><%= @booking.dob %></p>
+                    </li>
+                    <li class="list-group-item">
+                      <p class="text-muted booking-sub">Location</p>
+                      <p class="bookings-main"><%= @booking.user_location %></p>
+                    </li>
+                    <li class="list-group-item">
+                      <p class="text-muted booking-sub">E-mail</p>
+                      <p class="bookings-main"><%= @booking.email %></p>
+                    </li>
+                    <li class="list-group-item">
+                      <p class="text-muted booking-sub">Phone</p>
+                      <p class="bookings-main"><%= @booking.phone %></p>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-md-6">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                      <h3 class="custom-subtitle-1 p-0">Company</h3>  
+                    </li>
+
+                    <li class="list-group-item">
+                      <p class="text-muted booking-sub">Company legal name</p>
+                      <p class="bookings-main"><%= @booking.company_legal_name %></p>
+                    </li>
+                    <li class="list-group-item">
+                      <p class="text-muted booking-sub">Phone</p>
+                      <p class="bookings-main"><%= @booking.company_phone %></p>
+                    </li>
+                    <li class="list-group-item">
+                      <p class="text-muted booking-sub">Full address</p>
+                      <p class="bookings-main"><%= @booking.company_address %></p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <a class="btn btn-primary btn-sm" data-toggle="collapse" href="#releaseCollapse" role="button" aria-expanded="false" aria-controls="releaseCollapse">
+                          Release at booking time
+                        </a>
+                    </li>
+                    <li class="list-group-item p-0">
+                      <div class="collapse" id="releaseCollapse">
+                        <div class="jumbotron p-3">
+                          <%= @booking.release.html_safe %>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!--legal_info-->
+            <% end %>
+
           </div>
         </div><!-- card-->
         <!-- booking info -->

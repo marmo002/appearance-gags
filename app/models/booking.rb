@@ -20,8 +20,8 @@ class Booking < ApplicationRecord
   # CUSTOM VALIDATIONS
   # validate :dates_cant_be_past_today
   validate :harware_speed_requirements, if: :type_virtual?
-  validate :image_consent
-  validate :logo_consent
+  validate :image_consent_validation
+  validate :logo_consent_validation
 
   default_scope { order(recording_date: :asc) }
   scope :past, lambda { where("recording_date < ?", Date.today) }
@@ -53,6 +53,10 @@ class Booking < ApplicationRecord
     user_info['dob'] if user_info
   end
 
+  def user_location
+    user_info['user_location'] if user_info
+  end
+
   def name_for_show
     user_info['name_for_show'] if user_info
   end
@@ -63,6 +67,30 @@ class Booking < ApplicationRecord
 
   def bio
     user_info['bio'] if user_info
+  end
+
+  def image_consent
+    if user_info
+      if user_info['image_consent'] == "true"
+        true
+      else user_info['image_consent'] == "false"
+        false
+      end
+    end
+  end
+
+  def logo_consent
+    if user_info
+      if user_info['logo_consent'] == "true"
+        true
+      else user_info['logo_consent'] == "false"
+        false
+      end
+    end
+  end
+  
+  def company_name
+    user_info['company_name'] if user_info
   end
 
   def company_legal_name
@@ -186,7 +214,7 @@ private
     end
   end#dates_cant_be_past_today
 
-  def image_consent
+  def image_consent_validation
     if user_info["image_consent"]
       unless %w(true false).include? user_info["image_consent"]
         errors.add(:image_consent, "Missing or wrong image consent value")
@@ -194,7 +222,7 @@ private
     end
   end
 
-  def logo_consent
+  def logo_consent_validation
     if user_info["logo_consent"]
       unless %w(true false).include? user_info["logo_consent"]
         errors.add(:logo_consent, "Missing or wrong company logo consent value")

@@ -39,7 +39,7 @@
                   <p class="bookings-main"><%= booking.recording_date.strftime('%b %d, %Y') %></p>
                   <p class="text-muted booking-sub"><%= booking.recording_date.strftime('%I:%M %p') %></p>
                   <p class="bookings-main"><span class="badge badge-dark"><%= booking.show_name %> Show</span></p>
-                  <p class="badge badge-secondary"><%= booking.booking_type %></p>
+                  <span class="badge badge-secondary"><%= booking.booking_type %></span>
                 </div>
               </div>
             </div>
