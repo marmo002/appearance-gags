@@ -25,7 +25,7 @@ class AppMailer < ApplicationMailer
     @user = User.find(user_id)
     @media_file = MediaFile.find(media_id)
     @booking = @media_file.booking
-    mail(to: @user.email, subject: "For admin: #{ @user.full_name} wrote an edit note")
+    mail(to: @company.email, subject: "For admin: #{ @user.full_name} wrote an edit note")
     # CHANGE @USER.EMAIL TO COMPANY EMAIL OR PRODUCER EMAIL
   end
 
@@ -53,7 +53,7 @@ class AppMailer < ApplicationMailer
     @media_file = MediaFile.find(media_id)
     @booking = @media_file.booking
 
-    mail(to: @user.email, subject: "For admin: #{ @user.full_name} approved media")
+    mail(to: @company.email, subject: "For admin: #{ @user.full_name} approved media")
     # CHANGE @USER.EMAIL TO COMPANY EMAIL OR ADMIN EMAIL
   end
 
