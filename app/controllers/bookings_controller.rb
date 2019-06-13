@@ -59,7 +59,7 @@ class BookingsController < ApplicationController
         # check user consent for images
         # attach image(s) accordingtly
         set_booking_attachments(@booking)
-
+        
         format.json {
           flash[:primary] = "Booking was created successfully"
           render json: {
@@ -74,6 +74,11 @@ class BookingsController < ApplicationController
           flash[:primary] = "Booking was created successfully"
           redirect_to dashboard_url page: 'booking-history-tab'
         }
+
+        # notify admin user booked
+        # new recording session
+        AppMailer.new_booking_created(@booking.user.id, @booking.id).deliver_later
+        
       else
         format.json { render json: @booking.errors, status: :bad_request }
         format.html {
