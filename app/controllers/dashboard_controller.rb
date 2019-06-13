@@ -52,6 +52,7 @@ class DashboardController < ApplicationController
 
   def send_release
     AppMailer.send_release_copy(current_user.id).deliver_later
+    flash[:primary] = "Email send successfully"
     redirect_to dashboard_url
   end
 
