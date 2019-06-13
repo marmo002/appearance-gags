@@ -115,7 +115,7 @@ Rails.application.configure do
     domain:               'example.com',
     user_name:            Rails.application.credentials.mail_credential[:email],
     password:             Rails.application.credentials.mail_credential[:password],
-    authentication:       'plain',
+    authentication:       :login,
     enable_starttls_auto: true
   }
 end
