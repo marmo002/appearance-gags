@@ -1,0 +1,9 @@
+Hi there,
+
+Mr/Mrs <%= @user.full_name %> just booked a recording session for
+<%= @booking.recording_date.strftime('%B %d, %Y') %>.
+=============================================
+You can see this booking at <%= booking_url(@booking) %>
+
+=============================================
+Thank you!

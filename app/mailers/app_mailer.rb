@@ -54,7 +54,17 @@ class AppMailer < ApplicationMailer
     @booking = @media_file.booking
 
     mail(to: @company.email, subject: "For admin: #{ @user.full_name} approved media")
-    # CHANGE @USER.EMAIL TO COMPANY EMAIL OR ADMIN EMAIL
+  end
+
+  # email to admin with new booking info
+  # when user creates new booking
+  def new_booking_created(user_id, booking_id)
+    @company = Company.first
+
+    @user = User.find(user_id)
+    @booking = Booking.find booking_id
+
+    mail(to: @company.email, subject: "For admin: #{ @user.full_name} just created a booking")
   end
 
 end
