@@ -34,7 +34,7 @@
         <h2 class="custom-subtitle-2 p-0">Company information</h2>
       </div>
       <div class="col-md-8">
-        <% unless current_user.company_name.nil? %>
+        <% if current_user.company_name.present? %>
         <div class="gag-report-grid1">
           <div class="gig-report-item">
             <% company_name =  current_user.company_name.empty? ? "No company name added" : "#{current_user.company_name}" %>

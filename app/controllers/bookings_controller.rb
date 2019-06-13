@@ -44,7 +44,7 @@ class BookingsController < ApplicationController
       'email' => current_user.email,
       'phone' => current_user.phone,
       'release' => company.release,
-      'dob' => current_user.dob,
+      'dob' => current_user.dob.strftime('%B %d, %Y'),
       'user_location' => current_user.user_location,
       'company_legal' => {
         'legal_name' => current_user.company_legal_name,

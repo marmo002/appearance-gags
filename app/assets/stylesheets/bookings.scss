@@ -94,11 +94,12 @@
 }
 
 .lifeshow-label:hover,
-input[type='radio']:checked + .lifeshow-label,
+input[type='radio']:checked + .lifeshow-label
 {
   border: solid 1px var(--purple);
   box-shadow: 0px 0px 5px 3px var(--purple);
 }
+
 input[type='radio']:checked + .lifeshow-label .gag-primary-badge
 {
   background-color: var(--purple);
@@ -117,7 +118,7 @@ input[type='radio']:checked + .lightingshow-label .gag-primary-badge
 }
 
 .in-studio-label:hover,
-input[type='radio']:checked + .in-studio-label,
+input[type='radio']:checked + .in-studio-label
 {
   border: solid 1px #0052f7;
   box-shadow: 0px 0px 5px 3px #0052f7;
@@ -130,7 +131,7 @@ input[type='radio']:checked + .in-studio-label .gag-secondary-badge
 }
 
 .virtual-label:hover,
-input[type='radio']:checked + .virtual-label,
+input[type='radio']:checked + .virtual-label
 {
   border: solid 1px orange;
   box-shadow: 0px 0px 5px 3px orange;
@@ -166,7 +167,7 @@ input[type='radio']:checked + .virtual-label .gag-secondary-badge
 
 p.bookings-main {
     font-weight: bold;
-    text-transform: uppercase;
+    // text-transform: uppercase;
     margin-bottom: auto;
 }
 
