@@ -288,20 +288,20 @@
                 </div>
                 <div class="col-md-6">
                   <ul class="list-group list-group-flush">
-                  <% if @booking.logo_consent %>
-                    <li class="list-group-item">
-                      <%= image_tag @booking.user_companylogo, class: "img-thumbnail"%>
-                      <p class="text-muted mt-3">
-                        I, <%= @booking.full_name %>, have given consent to the distribution of this image for this recording.
-                      </p>
-                    </li>
-                  <% else %>
-                    <li class="list-group-item">
-                      <div class="alert alert-dark" role="alert">
-                        No company logo or consent to display company logo.
-                      </div>
-                    </li>
-                  <% end %>
+                    <% if @booking.logo_consent %>
+                      <li class="list-group-item">
+                        <%= image_tag @booking.user_companylogo, class: "img-thumbnail"%>
+                        <p class="text-muted mt-3">
+                          I, <%= @booking.full_name %>, have given consent to the distribution of this image for this recording.
+                        </p>
+                      </li>
+                    <% else %>
+                      <li class="list-group-item">
+                        <div class="alert alert-dark" role="alert">
+                          No company logo or consent to display company logo.
+                        </div>
+                      </li>
+                    <% end %>
                   </ul>
                 </div>
               </div>

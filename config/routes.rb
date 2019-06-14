@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  require 'sidekiq/web'
-  mount Sidekiq::Web => '/sidekiq'
+  # require 'sidekiq/web'
+  # mount Sidekiq::Web => '/sidekiq'
 
   root "dashboard#index"
   # resources :users, except: [:destroy]
@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   # post "users" => "users#create"
   # patch "users" => "users#update"
   resources :users
+  get "pass_reset/:user_id" => "users#pass_reset", as: :pass_reset
 
   get "geo_states/:countryId" => "geo_api#states", as: :geo_states
 
