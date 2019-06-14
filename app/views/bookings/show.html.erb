@@ -20,7 +20,7 @@
                     <div class="card-header" id="heading-requirements">
                       <h2 class="mb-0">
                         <button class="btn btn btn-primary btn-sm" type="button" data-toggle="collapse" data-target="#collapse-requirements" aria-expanded="true" aria-controls="collapse-requirements">
-                          Hardware requirements
+                          Hardware requirements &nbsp;<i class="fas fa-angle-down"></i>
                         </button>
                       </h2>
                     </div>
@@ -210,7 +210,7 @@
                     <li class="list-group-item">
                       <% if @booking.bio.present? %>
                       <a class="btn btn-primary btn-sm" data-toggle="collapse" href="#bioCollapse" role="button" aria-expanded="false" aria-controls="bioCollapse">
-                        Bio
+                        Bio &nbsp;<i class="fas fa-angle-down"></i>
                       </a>
                       <div class="collapse" id="bioCollapse">
                         <%= content_tag :p, "#{@booking.bio}", class: 'text-muted mt-2' %>
@@ -369,7 +369,7 @@
                   <ul class="list-group list-group-flush">
                     <li class="list-group-item">
                         <a class="btn btn-primary btn-sm" data-toggle="collapse" href="#releaseCollapse" role="button" aria-expanded="false" aria-controls="releaseCollapse">
-                          Release at booking time
+                          Release at booking time &nbsp;<i class="fas fa-angle-down"></i>
                         </a>
                     </li>
                     <li class="list-group-item p-0">

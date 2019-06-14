@@ -17,11 +17,17 @@
                 <% end %>
             </ul>
             <% if @user.avatar.attached? %>
-              <%= image_tag @user.avatar, class: "img-thumbnail" %>
+              <%= image_tag @user.avatar, class: "img-thumbnail smaller-avatars" %>
             <% end %>
             <ul class="list-group list-group-flush">
               <li class="list-group-item">
-                <p class="bookings-main">Name: <%= @user.full_name %></p>
+                <p class="bookings-main">Legal name: <%= @user.full_name %></p>
+              </li>
+              <li class="list-group-item">
+                <p class="text-muted booking-sub">DOB: <%= @user.dob.strftime('%B %d, %Y') %></p>
+              </li>
+              <li class="list-group-item">
+                <p class="text-muted booking-sub">Location: <%= @user.user_location %></p>
               </li>
               <li class="list-group-item">
                 <p class="text-muted booking-sub">email: <%= @user.email %></p>
@@ -39,54 +45,82 @@
                 <%= content_tag :p, "Show title: #{@user.title_for_show}", class: 'text-muted booking-sub' %>
               </li>
               <% end %>
-              <% if @user.bio %>
+
               <li class="list-group-item">
-                <%= content_tag :p, "Bio: #{@user.bio}", class: 'text-muted booking-sub' %>
+                <% if @user.bio.present? %>
+                <a class="btn btn-primary btn-sm" data-toggle="collapse" href="#bioCollapse" role="button" aria-expanded="false" aria-controls="bioCollapse">
+                  Bio &nbsp;<i class="fas fa-angle-down"></i>
+                </a>
+                <div class="collapse" id="bioCollapse">
+                  <%= content_tag :p, "#{@user.bio}", class: 'text-muted mt-2' %>
+                </div>
+                <% else %>
+                  <%= tag.div "No bio added.", class: 'alert alert-dark', role: "alert" %>
+                <% end %>
               </li>
-              <% end %>
             </ul>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">
-                <p class="bookings-main">Social media</p>
-              </li>
               <% if @user.get_social_media("social_media") %>
-                <% @user.get_social_media("social_media").each do |sm_name, sm_url| %>
-                <li class="list-group-item">
-                  <a href="https://<%= sm_url %>" target="_blank"><%= sm_url %></a>
-                </li>
-                <% end %>
+              <li class="list-group-item">
+                <a class="btn btn-primary btn-sm" data-toggle="collapse" href="#userSocialCollapse" role="button" aria-expanded="false" aria-controls="userSocialCollapse">
+                  Social media &nbsp;<i class="fas fa-angle-down"></i>
+                </a>
+                <div class="collapse mt-3" id="userSocialCollapse">
+                    <% @user.get_social_media("social_media").each do |sm_name, sm_url| %>
+                    <p>
+                      <a href="https://<%= sm_url %>" target="_blank"><%= sm_url %></a>
+                    </p>
+                    <% end %>
+                </div>
+              </li>
               <% else %>
                 <li class="list-group-item">
                   <%= tag.p "User has no social media", class: 'text-muted booking-sub' %>
                 </li>
               <% end %>
             </ul>
+
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">
-                <p class="bookings-main">Company info</p>
-              </li>
               <% if @user.companylogo.attached? %>
-              <li class="list-group-item">
-                <%= image_tag @user.companylogo, class: "img-thumbnail" %>
-              </li>
-              <% end %>
-              <%  if @user.company_name %>
-              <li class="list-group-item">
-                <%= tag.p "Company name: #{@user.company_name}", class: 'text-muted booking-sub' %>
-              </li>
-              <% end %>
-              <% if @user.get_social_media("company_social_media") %>
-                <% @user.get_social_media("company_social_media").each do |csm_name, csm_url|%>
                 <li class="list-group-item">
-                  <a href="https://<%= csm_url %>" target="_blank"><%= csm_url %></a>
+                  <%= image_tag @user.companylogo, class: "img-thumbnail smaller-avatars" %>
                 </li>
-                <% end %>
+              <% end %>
+              <li class="list-group-item">
+                <p class="bookings-main">Company name: <%= @user.company_name %></p>
+              </li>
+               <li class="list-group-item">
+                <p class="text-muted booking-sub">Company legal name: <%= @user.company_legal_name %></p>
+              </li>
+               <li class="list-group-item">
+                <p class="text-muted booking-sub">Company phone: <%= @user.company_phone %></p>
+              </li>
+              <li class="list-group-item">
+                <p class="text-muted booking-sub">Company address:<br><%= @user.company_full_address %></p>
+              </li>
+            </ul>
+
+             <ul class="list-group list-group-flush">
+              <% if @user.get_social_media("company_social_media") %>
+              <li class="list-group-item">
+                <a class="btn btn-primary btn-sm" data-toggle="collapse" href="#companySocialCollapse" role="button" aria-expanded="false" aria-controls="companySocialCollapse">
+                  Company social media &nbsp;<i class="fas fa-angle-down"></i>
+                </a>
+                <div class="collapse mt-3" id="companySocialCollapse">
+                    <% @user.get_social_media("company_social_media").each do |sm_name, sm_url| %>
+                    <p>
+                      <a href="https://<%= sm_url %>" target="_blank"><%= sm_url %></a>
+                    </p>
+                    <% end %>
+                </div>
+              </li>
               <% else %>
                 <li class="list-group-item">
                   <%= tag.p "Company has no social media", class: 'text-muted booking-sub' %>
                 </li>
               <% end %>
             </ul>
+
           </div>
         </div><!-- card-->
       </div>
