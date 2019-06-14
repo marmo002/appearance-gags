@@ -39,7 +39,7 @@
             <% name_for_booking =  current_user.name_for_show.present? ? "#{current_user.name_for_show}" : "#{current_user.full_name}" %>
             <div class="form-group">
               <div class="custom-control custom-checkbox">
-                <%= user_hash.check_box :name_for_show, { checked: true, class: "custom-control-input", id: "name_for_show"}, "#{name_for_booking}", "User doesn't wanna use any name" %>
+                <%= user_hash.check_box :name_for_show, { checked: true, class: "custom-control-input", id: "name_for_show"}, "#{name_for_booking}", false %>
                 <%= user_hash.label :name_for_show, 'Name for show:', class: "custom-control-label gag-report-labels", for: "name_for_show" %>
               </div>
             </div>
