@@ -67,4 +67,15 @@ class AppMailer < ApplicationMailer
     mail(to: @company.email, subject: "For admin: #{ @user.full_name} just created a booking")
   end
 
+  # email to user with new
+  # random generated password
+  def user_new_password(user_id, password)
+    @company = Company.first
+
+    @user = User.find(user_id)
+    @password = password
+
+    mail(to: @user.email, subject: "Get a grip studios new password")
+  end
+
 end

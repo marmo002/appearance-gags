@@ -99,7 +99,22 @@ class User < ApplicationRecord
     address.compact.delete_if{|a| a.empty? }.join(', ')
   end
 
+  def assign_random_password
+    new_password = generate_random_password
+    
+    if self.update({:password=>new_password, :password_confirmation=>new_password})
+      new_password
+    else
+      false
+    end
+  end
+
 private
+
+  def generate_random_password
+    characters = [(0..9), ('a'..'z'), ('A'..'Z')].map(&:to_a).flatten
+    (0..9).map { characters[rand(characters.length)] }.join
+  end
 
   def dob_cant_be_past
     if dob.present? && dob > Date.today

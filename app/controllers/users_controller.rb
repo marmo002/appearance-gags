@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :require_login, only: [:index, :update]
-  before_action :authorized?, only: [:show]
+  before_action :authorized?, only: [:show, :pass_reset]
 
   def index
     @users = User.where.not(id: current_user.id).first(33)
@@ -48,6 +48,38 @@ class UsersController < ApplicationController
     @upcomming_bookings = @user.bookings.upcomming.first(10)
     @past_bookings = @user.bookings.past.first(10)
 
+  end
+
+  def pass_reset
+    @user = User.find params[:user_id]
+    pass_response = @user.assign_random_password
+
+    # send new password
+    # to user by email
+    AppMailer.user_new_password(@user.id, pass_response).deliver_later
+    
+    respond_to do |format|
+      if pass_response
+        format.json {
+          render json: {
+            status: "success",
+            type: "primary",
+            model: "user",
+            message: "New password email on it's way",
+          }
+        }
+        format.html {
+          flash[:primary] = "New password email on it's way"
+          redirect_back(fallback_location: root_path)          
+        }
+      else
+        format.json { render json: @user.errors, status: :bad_request  }
+        format.html {
+          flash[:danger] = "Something wrong happened"
+          redirect_back(fallback_location: root_path)
+        }
+      end
+    end#respond_to end
   end
 
 private

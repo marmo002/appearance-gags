@@ -4,9 +4,18 @@
       <div class="col-md-5">
         <div class="card">
           <div class="card-header">
-            User info
+            User details
           </div>
           <div class="card-body">
+            <ul class="list-group list-group-flush">
+                <% if is_admin? %>
+                <li class="list-group-item">
+                  <p class="bookings-main">
+                  <%= link_to 'Send password', pass_reset_path(@user), remote: true, class: 'btn btn-primary btn-sm' %>
+                  </p>
+                </li>
+                <% end %>
+            </ul>
             <% if @user.avatar.attached? %>
               <%= image_tag @user.avatar, class: "img-thumbnail" %>
             <% end %>

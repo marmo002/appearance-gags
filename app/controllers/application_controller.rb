@@ -41,7 +41,7 @@ class ApplicationController < ActionController::Base
 
   def authorized?
     unless is_admin?
-      flash[:warning] = "You are not allowed to visit this page."
+      flash[:warning] = "You are not authorized to use this resource."
       redirect_back(fallback_location: root_path)
     end
   end
