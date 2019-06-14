@@ -4,7 +4,12 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:email])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to dashboard_path
+      
+      # redirect to first request
+      # or to dashboard
+      redirect_to(session[:return_to] || dashboard_path)
+      session[:return_to] = nil
+
       flash[:primary] = "You logged in sucessfully."
     else
       flash[:danger] = "Email or password are incorrect. Please try again."

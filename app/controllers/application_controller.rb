@@ -29,10 +29,9 @@ class ApplicationController < ActionController::Base
   def require_login
     unless logged_in?
       flash[:warning] = "You must log in first."
+      session[:return_to] = request.url
       redirect_to new_user_url
-    end
-
-    if logged_in?
+    else
       unless current_user.profile_done
         flash[:warning] = "Please finish your profile set up."
         redirect_to welcome_legal_url
