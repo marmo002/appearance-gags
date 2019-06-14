@@ -5,8 +5,8 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       
-      # redirect to first request
-      # or to dashboard
+      # redirect to first request if any
+      # or go to dashboard otherwise
       redirect_to(session[:return_to] || dashboard_path)
       session[:return_to] = nil
 
