@@ -41,7 +41,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem "aws-sdk-s3", require: false
 
 # Use ActiveStorage variant
-gem 'mini_magick', '~> 4.8'
+gem 'mini_magick', '~> 4.9'
 
 #mask phone number, ip etc
 # gem 'jquery_mask_rails', '~> 0.1.0'
